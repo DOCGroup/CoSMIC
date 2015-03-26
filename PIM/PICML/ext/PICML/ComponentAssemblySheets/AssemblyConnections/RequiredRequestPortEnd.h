@@ -46,6 +46,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     RequiredRequestPortEnd_Impl (void);
 
@@ -67,10 +70,12 @@ namespace PICML
     ///@{
 
     /// Get the src Invoke connection.
-    size_t src_Invoke (std::vector <Invoke> & items) const;
+    size_t src_of_Invoke (std::vector <Invoke> & items) const;
+    GAME::Mga::Collection_T <Invoke> src_of_Invoke (void) const;
 
     /// Get the src ConnectorToReceptacle connection.
-    size_t src_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const;
+    size_t src_of_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const;
+    GAME::Mga::Collection_T <ConnectorToReceptacle> src_of_ConnectorToReceptacle (void) const;
     ///@}
 
     /**
@@ -79,7 +84,8 @@ namespace PICML
     ///@{
 
     /// Get the dst ReceptacleDelegate connection.
-    size_t dst_ReceptacleDelegate (std::vector <ReceptacleDelegate> & items) const;
+    size_t dst_of_ReceptacleDelegate (std::vector <ReceptacleDelegate> & items) const;
+    GAME::Mga::Collection_T <ReceptacleDelegate> dst_of_ReceptacleDelegate (void) const;
     ///@}
   };
 }

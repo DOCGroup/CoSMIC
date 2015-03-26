@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,19 +26,24 @@ namespace PICML
   const std::string FactoryOperation_Impl::metaname ("FactoryOperation");
 
   //
-  // _create (const ComponentFactory_in)
+  // is_abstract
   //
-  FactoryOperation FactoryOperation_Impl::_create (const ComponentFactory_in parent)
-  {
-    return ::GAME::Mga::create_object < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
-  }
+  const bool FactoryOperation_Impl::is_abstract = false;
 
   //
   // _create (const ObjectByValue_in)
   //
   FactoryOperation FactoryOperation_Impl::_create (const ObjectByValue_in parent)
   {
-    return ::GAME::Mga::create_object < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
+    return ::GAME::Mga::create < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
+  }
+
+  //
+  // _create (const ComponentFactory_in)
+  //
+  FactoryOperation FactoryOperation_Impl::_create (const ComponentFactory_in parent)
+  {
+    return ::GAME::Mga::create < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
   }
 
   //
@@ -46,7 +51,7 @@ namespace PICML
   //
   FactoryOperation FactoryOperation_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
+    return ::GAME::Mga::create < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
   }
 
   //
@@ -64,19 +69,19 @@ namespace PICML
   }
 
   //
-  // parent_ComponentFactory
-  //
-  ComponentFactory FactoryOperation_Impl::parent_ComponentFactory (void)
-  {
-    return ComponentFactory::_narrow (this->parent ());
-  }
-
-  //
   // parent_ObjectByValue
   //
   ObjectByValue FactoryOperation_Impl::parent_ObjectByValue (void)
   {
     return ObjectByValue::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ComponentFactory
+  //
+  ComponentFactory FactoryOperation_Impl::parent_ComponentFactory (void)
+  {
+    return ComponentFactory::_narrow (this->parent ());
   }
 }
 

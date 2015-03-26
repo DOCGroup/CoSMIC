@@ -49,6 +49,9 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -79,11 +82,14 @@ namespace DQML
      */
     ///@{
 
-    /// Get the src dpfactory_entityfactory_Connection connection.
-    size_t src_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const;
-
     /// Get the src dpf_dp_Connection connection.
-    size_t src_dpf_dp_Connection (std::vector <dpf_dp_Connection> & items) const;
+    size_t src_of_dpf_dp_Connection (std::vector <dpf_dp_Connection> & items) const;
+    GAME::Mga::Collection_T <dpf_dp_Connection> src_of_dpf_dp_Connection (void) const;
+
+    /// Get the src dpfactory_entityfactory_Connection connection.
+    size_t src_of_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const;
+    bool has_src_of_dpfactory_entityfactory_Connection (void) const;
+    dpfactory_entityfactory_Connection src_of_dpfactory_entityfactory_Connection (void) const;
     ///@}
   };
 }

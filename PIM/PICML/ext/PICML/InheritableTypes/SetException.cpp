@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/ExceptionType.h"
-#include "PICML/InterfaceDefinition/Exception.h"
-#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InheritableTypes/Attribute.h"
+#include "PICML/InterfaceDefinition/ExceptionType.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InterfaceDefinition/Exception.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,11 +25,16 @@ namespace PICML
   const std::string SetException_Impl::metaname ("SetException");
 
   //
+  // is_abstract
+  //
+  const bool SetException_Impl::is_abstract = false;
+
+  //
   // _create (const Attribute_in)
   //
   SetException SetException_Impl::_create (const Attribute_in parent)
   {
-    return ::GAME::Mga::create_object < SetException > (parent, SetException_Impl::metaname);
+    return ::GAME::Mga::create < SetException > (parent, SetException_Impl::metaname);
   }
 
   //
@@ -59,21 +64,21 @@ namespace PICML
   //
   bool SetException_Impl::ExceptionType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_ExceptionType
+  // refers_to_ExceptionType
   //
-  void SetException_Impl::set_ExceptionType (ExceptionType_in item)
+  void SetException_Impl::refers_to_ExceptionType (ExceptionType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ExceptionType
+  // refers_to_ExceptionType
   //
-  ExceptionType SetException_Impl::get_ExceptionType (void) const
+  ExceptionType SetException_Impl::refers_to_ExceptionType (void) const
   {
     return ExceptionType::_narrow (this->refers_to ());
   }

@@ -1,41 +1,56 @@
 // $Id$
 
+template <typename T>
+struct is_reference
+{
+  static const bool result_type = false;
+};
+
+template < >
+struct is_reference <GAME::Mga::reference_tag_t>
+{
+  static const bool result_type = true;
+};
+
 //
 // add_edge
 //
 template <typename T, typename P>
-void IDL_File_Ordering_Processor::add_edge (const Udm::Object & o)
+void IDL_File_Ordering_Processor::add_edge (const GAME::Mga::Model & o)
 {
+  // Only process references
+  if (!is_reference <T::impl_type::type_tag>::result_type)
+    return;
+
   // We need to get all the children of the specified type from
   // this object. We are going to then iterate over each item
   // and add it to the dependency graph.
-  typedef vector <T> VECTOR;
-  typedef vector <T>::const_iterator ITER;
-
-  VECTOR children = Udm::ChildrenAttr <T> (o.__impl (), Udm::NULLCHILDROLE);
-
-  for (ITER it = children.begin (); it != children.end (); ++ it)
+  for (auto child : o->children <T> ())
   {
-    // Get the object that is refered to by this reference. There is not
-    // need to continue if this is a null reference.
-    Udm::Object refobj = it->getReferencedObject ();
-
-    if (refobj == Udm::null)
+    // Skip references to predefined types
+    try
+    {
+      PICML::PredefinedType::_narrow (child->refers_to ());
       continue;
+    }
+    catch (GAME::Mga::Exception & e)
+    {
+      ACE_UNUSED_ARG (e);
+    }
 
-    if (it->type () != T::meta || Udm::IsDerivedFrom (refobj.type (), PICML::PredefinedType::meta))
-      continue;
-
-    Udm::Object reference_parent = refobj;
-    Udm::Object parent = find_parent<P> ((*it));
+    GAME::Mga::FCO refers_to = child->refers_to ();
+    GAME::Mga::FCO reference_parent = refers_to;
+    GAME::Mga::Object parent = find_parent <P> (child);
 
     if (!this->same_parent_before_file (parent, reference_parent))
-      reference_parent = this->parent_before_file (refobj);
+      reference_parent = this->parent_before_file (refers_to);
 
     if (!this->parent_in_same_file (parent, reference_parent))
     {
       if (this->map_.find (parent) == this->map_.end ())
+      {
         this->add_vertex (parent, this->current_graph_);
+      }
     }
     else if (this->map_.find (reference_parent) == this->map_.end () &&
              this->map_.find (parent) == this->map_.end ())
@@ -91,11 +106,11 @@ void IDL_File_Ordering_Processor::add_edge (const Udm::Object & o)
 // find_parent
 //
 template <typename T>
-Udm::Object IDL_File_Ordering_Processor::
-find_parent (const Udm::Object & o)
+GAME::Mga::Object IDL_File_Ordering_Processor::
+find_parent (const GAME::Mga::Object & o)
 {
-  Udm::Object parent;
-  for (parent = o.GetParent (); parent.type () != T::meta; parent = parent.GetParent ());
+  GAME::Mga::Object parent;
+  for (parent = o->parent (); parent->meta ()->name () != T::impl_type::metaname; parent = parent->parent ());
 
   return parent;
 }

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/PathDiagram/Path.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string PathReference_Impl::metaname ("PathReference");
 
   //
+  // is_abstract
+  //
+  const bool PathReference_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentImplementationContainer_in)
   //
   PathReference PathReference_Impl::_create (const ComponentImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < PathReference > (parent, PathReference_Impl::metaname);
+    return ::GAME::Mga::create < PathReference > (parent, PathReference_Impl::metaname);
   }
 
   //
@@ -54,11 +59,27 @@ namespace PICML
   }
 
   //
-  // dst_CriticalPath
+  // dst_of_CriticalPath
   //
-  size_t PathReference_Impl::dst_CriticalPath (std::vector <CriticalPath> & items) const
+  size_t PathReference_Impl::dst_of_CriticalPath (std::vector <CriticalPath> & items) const
   {
     return this->in_connections <CriticalPath> (items);
+  }
+
+  //
+  // has_dst_of_CriticalPath
+  //
+  bool PathReference_Impl::has_dst_of_CriticalPath (void) const
+  {
+    return this->in_connections <CriticalPath> ("dst").count () == 1;
+  }
+
+  //
+  // dst_of_CriticalPath
+  //
+  CriticalPath PathReference_Impl::dst_of_CriticalPath (void) const
+  {
+    return this->in_connections <CriticalPath> ("dst").first ();
   }
 
   //
@@ -66,21 +87,21 @@ namespace PICML
   //
   bool PathReference_Impl::Path_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_Path
+  // refers_to_Path
   //
-  void PathReference_Impl::set_Path (Path_in item)
+  void PathReference_Impl::refers_to_Path (Path_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Path
+  // refers_to_Path
   //
-  Path PathReference_Impl::get_Path (void) const
+  Path PathReference_Impl::refers_to_Path (void) const
   {
     return Path::_narrow (this->refers_to ());
   }

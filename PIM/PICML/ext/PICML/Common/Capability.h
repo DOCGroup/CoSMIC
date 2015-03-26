@@ -49,6 +49,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -81,7 +84,8 @@ namespace PICML
     ///@{
 
     /// Get the dst ImplementationCapability connection.
-    size_t dst_ImplementationCapability (std::vector <ImplementationCapability> & items) const;
+    size_t dst_of_ImplementationCapability (std::vector <ImplementationCapability> & items) const;
+    GAME::Mga::Collection_T <ImplementationCapability> dst_of_ImplementationCapability (void) const;
     ///@}
   };
 }

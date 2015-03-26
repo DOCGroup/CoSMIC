@@ -26,11 +26,16 @@ namespace PICML
   const std::string TerminalTransition_Impl::metaname ("TerminalTransition");
 
   //
-  // _create (const BehaviorModel_in)
+  // is_abstract
   //
-  TerminalTransition TerminalTransition_Impl::_create (const BehaviorModel_in parent)
+  const bool TerminalTransition_Impl::is_abstract = false;
+
+  //
+  // _create (const BehaviorModel_in, State_in src, Terminal_in dst)
+  //
+  TerminalTransition TerminalTransition_Impl::_create (const BehaviorModel_in parent, State_in src, Terminal_in dst)
   {
-    return ::GAME::Mga::create_object < TerminalTransition > (parent, TerminalTransition_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, TerminalTransition_Impl::metaname, src, dst);
   }
 
   //

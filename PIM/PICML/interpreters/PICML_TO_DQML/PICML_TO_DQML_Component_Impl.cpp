@@ -44,7 +44,7 @@ PICML_TO_DQML_Component_Impl::~PICML_TO_DQML_Component_Impl (void)
 int PICML_TO_DQML_Component_Impl::
 invoke_ex (GAME::Mga::Project project,
            GAME::Mga::FCO_in focus,
-           std::vector <GAME::Mga::FCO> & selected,
+           GAME::Mga::Collection_T <GAME::Mga::FCO> & selected,
            long flags)
 {
 

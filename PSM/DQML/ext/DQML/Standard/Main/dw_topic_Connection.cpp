@@ -24,11 +24,16 @@ namespace DQML
   const std::string dw_topic_Connection_Impl::metaname ("dw_topic_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // is_abstract
   //
-  dw_topic_Connection dw_topic_Connection_Impl::_create (const DDSQoS_in parent)
+  const bool dw_topic_Connection_Impl::is_abstract = false;
+
+  //
+  // _create (const DDSQoS_in, DataWriter_in src, Topic_in dst)
+  //
+  dw_topic_Connection dw_topic_Connection_Impl::_create (const DDSQoS_in parent, DataWriter_in src, Topic_in dst)
   {
-    return ::GAME::Mga::create_object < dw_topic_Connection > (parent, dw_topic_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, dw_topic_Connection_Impl::metaname, src, dst);
   }
 
   //

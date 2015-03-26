@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/QoSPolicies/ReliabilityQosPolicy.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/DDSEntities/DataReader.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -24,11 +24,16 @@ namespace DQML
   const std::string dr_reliability_Connection_Impl::metaname ("dr_reliability_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // is_abstract
   //
-  dr_reliability_Connection dr_reliability_Connection_Impl::_create (const DDSQoS_in parent)
+  const bool dr_reliability_Connection_Impl::is_abstract = false;
+
+  //
+  // _create (const DDSQoS_in, DataReader_in src, ReliabilityQosPolicy_in dst)
+  //
+  dr_reliability_Connection dr_reliability_Connection_Impl::_create (const DDSQoS_in parent, DataReader_in src, ReliabilityQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < dr_reliability_Connection > (parent, dr_reliability_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, dr_reliability_Connection_Impl::metaname, src, dst);
   }
 
   //

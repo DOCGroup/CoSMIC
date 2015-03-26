@@ -49,6 +49,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -82,7 +85,9 @@ namespace PICML
     ///@{
 
     /// Get the src AttributeValue connection.
-    size_t src_AttributeValue (std::vector <AttributeValue> & items) const;
+    size_t src_of_AttributeValue (std::vector <AttributeValue> & items) const;
+    bool has_src_of_AttributeValue (void) const;
+    AttributeValue src_of_AttributeValue (void) const;
     ///@}
 
     /**
@@ -91,7 +96,9 @@ namespace PICML
     ///@{
 
     /// Get the dst AttributeDelegate connection.
-    size_t dst_AttributeDelegate (std::vector <AttributeDelegate> & items) const;
+    size_t dst_of_AttributeDelegate (std::vector <AttributeDelegate> & items) const;
+    bool has_dst_of_AttributeDelegate (void) const;
+    AttributeDelegate dst_of_AttributeDelegate (void) const;
     ///@}
 
     /**
@@ -99,8 +106,8 @@ namespace PICML
      */
     ///@{
     bool ReadonlyAttribute_is_nil (void) const;
-    ReadonlyAttribute get_ReadonlyAttribute (void) const;
-    void set_ReadonlyAttribute (ReadonlyAttribute_in item);
+    ReadonlyAttribute refers_to_ReadonlyAttribute (void) const;
+    void refers_to_ReadonlyAttribute (ReadonlyAttribute_in item);
     ///@}
   };
 }

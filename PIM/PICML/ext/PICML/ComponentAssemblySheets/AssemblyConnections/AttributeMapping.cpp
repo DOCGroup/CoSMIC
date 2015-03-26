@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string AttributeMapping_Impl::metaname ("AttributeMapping");
 
   //
+  // is_abstract
+  //
+  const bool AttributeMapping_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAssembly_in)
   //
   AttributeMapping AttributeMapping_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < AttributeMapping > (parent, AttributeMapping_Impl::metaname);
+    return ::GAME::Mga::create < AttributeMapping > (parent, AttributeMapping_Impl::metaname);
   }
 
   //
@@ -56,35 +61,99 @@ namespace PICML
   }
 
   //
-  // src_AttributeDelegate
+  // src_of_AttributeMappingDelegate
   //
-  size_t AttributeMapping_Impl::src_AttributeDelegate (std::vector <AttributeDelegate> & items) const
+  size_t AttributeMapping_Impl::src_of_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const
+  {
+    return this->in_connections <AttributeMappingDelegate> (items);
+  }
+
+  //
+  // has_src_of_AttributeMappingDelegate
+  //
+  bool AttributeMapping_Impl::has_src_of_AttributeMappingDelegate (void) const
+  {
+    return this->in_connections <AttributeMappingDelegate> ("src").count () == 1;
+  }
+
+  //
+  // src_of_AttributeMappingDelegate
+  //
+  AttributeMappingDelegate AttributeMapping_Impl::src_of_AttributeMappingDelegate (void) const
+  {
+    return this->in_connections <AttributeMappingDelegate> ("src").first ();
+  }
+
+  //
+  // src_of_AttributeDelegate
+  //
+  size_t AttributeMapping_Impl::src_of_AttributeDelegate (std::vector <AttributeDelegate> & items) const
   {
     return this->in_connections <AttributeDelegate> (items);
   }
 
   //
-  // src_AttributeMappingDelegate
+  // has_src_of_AttributeDelegate
   //
-  size_t AttributeMapping_Impl::src_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const
+  bool AttributeMapping_Impl::has_src_of_AttributeDelegate (void) const
   {
-    return this->in_connections <AttributeMappingDelegate> (items);
+    return this->in_connections <AttributeDelegate> ("src").count () == 1;
   }
 
   //
-  // src_AttributeMappingValue
+  // src_of_AttributeDelegate
   //
-  size_t AttributeMapping_Impl::src_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const
+  AttributeDelegate AttributeMapping_Impl::src_of_AttributeDelegate (void) const
+  {
+    return this->in_connections <AttributeDelegate> ("src").first ();
+  }
+
+  //
+  // src_of_AttributeMappingValue
+  //
+  size_t AttributeMapping_Impl::src_of_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const
   {
     return this->in_connections <AttributeMappingValue> (items);
   }
 
   //
-  // dst_AttributeMappingDelegate
+  // has_src_of_AttributeMappingValue
   //
-  size_t AttributeMapping_Impl::dst_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const
+  bool AttributeMapping_Impl::has_src_of_AttributeMappingValue (void) const
+  {
+    return this->in_connections <AttributeMappingValue> ("src").count () == 1;
+  }
+
+  //
+  // src_of_AttributeMappingValue
+  //
+  AttributeMappingValue AttributeMapping_Impl::src_of_AttributeMappingValue (void) const
+  {
+    return this->in_connections <AttributeMappingValue> ("src").first ();
+  }
+
+  //
+  // dst_of_AttributeMappingDelegate
+  //
+  size_t AttributeMapping_Impl::dst_of_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const
   {
     return this->in_connections <AttributeMappingDelegate> (items);
+  }
+
+  //
+  // has_dst_of_AttributeMappingDelegate
+  //
+  bool AttributeMapping_Impl::has_dst_of_AttributeMappingDelegate (void) const
+  {
+    return this->in_connections <AttributeMappingDelegate> ("dst").count () == 1;
+  }
+
+  //
+  // dst_of_AttributeMappingDelegate
+  //
+  AttributeMappingDelegate AttributeMapping_Impl::dst_of_AttributeMappingDelegate (void) const
+  {
+    return this->in_connections <AttributeMappingDelegate> ("dst").first ();
   }
 
   //
@@ -92,21 +161,21 @@ namespace PICML
   //
   bool AttributeMapping_Impl::AttributeInstance_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_AttributeInstance
+  // refers_to_AttributeInstance
   //
-  void AttributeMapping_Impl::set_AttributeInstance (AttributeInstance_in item)
+  void AttributeMapping_Impl::refers_to_AttributeInstance (AttributeInstance_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_AttributeInstance
+  // refers_to_AttributeInstance
   //
-  AttributeInstance AttributeMapping_Impl::get_AttributeInstance (void) const
+  AttributeInstance AttributeMapping_Impl::refers_to_AttributeInstance (void) const
   {
     return AttributeInstance::_narrow (this->refers_to ());
   }

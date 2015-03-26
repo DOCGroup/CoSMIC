@@ -44,6 +44,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     GraphVertex_Impl (void);
 
@@ -66,7 +69,9 @@ namespace PICML
     ///@{
 
     /// Get the src DstEdge connection.
-    size_t src_DstEdge (std::vector <DstEdge> & items) const;
+    size_t src_of_DstEdge (std::vector <DstEdge> & items) const;
+    bool has_src_of_DstEdge (void) const;
+    DstEdge src_of_DstEdge (void) const;
     ///@}
 
     /**
@@ -75,7 +80,9 @@ namespace PICML
     ///@{
 
     /// Get the dst SrcEdge connection.
-    size_t dst_SrcEdge (std::vector <SrcEdge> & items) const;
+    size_t dst_of_SrcEdge (std::vector <SrcEdge> & items) const;
+    bool has_dst_of_SrcEdge (void) const;
+    SrcEdge dst_of_SrcEdge (void) const;
     ///@}
   };
 }

@@ -46,6 +46,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     ProvidedRequestPortEnd_Impl (void);
 
@@ -66,14 +69,17 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst ConnectorToFacet connection.
-    size_t dst_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const;
-
     /// Get the dst FacetDelegate connection.
-    size_t dst_FacetDelegate (std::vector <FacetDelegate> & items) const;
+    size_t dst_of_FacetDelegate (std::vector <FacetDelegate> & items) const;
+    GAME::Mga::Collection_T <FacetDelegate> dst_of_FacetDelegate (void) const;
 
     /// Get the dst Invoke connection.
-    size_t dst_Invoke (std::vector <Invoke> & items) const;
+    size_t dst_of_Invoke (std::vector <Invoke> & items) const;
+    GAME::Mga::Collection_T <Invoke> dst_of_Invoke (void) const;
+
+    /// Get the dst ConnectorToFacet connection.
+    size_t dst_of_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const;
+    GAME::Mga::Collection_T <ConnectorToFacet> dst_of_ConnectorToFacet (void) const;
     ///@}
   };
 }

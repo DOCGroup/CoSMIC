@@ -47,11 +47,14 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static pub_part_Connection _create (const DDSQoS_in parent);
+    static pub_part_Connection _create (const DDSQoS_in parent, Publisher_in src, PartitionQosPolicy_in dst);
     ///@}
 
     // Default constructor.

@@ -9,6 +9,7 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/SimpleType.h"
+#include "PICML/NamedTypes/Enum.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
 #include "PICML/PredefinedTypes/CharType.h"
 #include "PICML/PredefinedTypes/Char.h"
@@ -36,7 +37,6 @@
 #include "PICML/PredefinedTypes/GenericObject.h"
 #include "PICML/PredefinedTypes/Boolean.h"
 #include "PICML/PredefinedTypes/Byte.h"
-#include "PICML/NamedTypes/Enum.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/DataValueContainer.h"
 #include "game/mga/Functional_T.h"
@@ -52,11 +52,16 @@ namespace PICML
   const std::string DataValue_Impl::metaname ("DataValue");
 
   //
+  // is_abstract
+  //
+  const bool DataValue_Impl::is_abstract = false;
+
+  //
   // _create (const ComplexProperty_in)
   //
   DataValue DataValue_Impl::_create (const ComplexProperty_in parent)
   {
-    return ::GAME::Mga::create_object < DataValue > (parent, DataValue_Impl::metaname);
+    return ::GAME::Mga::create < DataValue > (parent, DataValue_Impl::metaname);
   }
 
   //
@@ -64,7 +69,7 @@ namespace PICML
   //
   DataValue DataValue_Impl::_create (const DataValueContainer_in parent)
   {
-    return ::GAME::Mga::create_object < DataValue > (parent, DataValue_Impl::metaname);
+    return ::GAME::Mga::create < DataValue > (parent, DataValue_Impl::metaname);
   }
 
   //
@@ -86,21 +91,21 @@ namespace PICML
   //
   bool DataValue_Impl::SimpleType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_SimpleType
+  // refers_to_SimpleType
   //
-  void DataValue_Impl::set_SimpleType (SimpleType_in item)
+  void DataValue_Impl::refers_to_SimpleType (SimpleType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_SimpleType
+  // refers_to_SimpleType
   //
-  SimpleType DataValue_Impl::get_SimpleType (void) const
+  SimpleType DataValue_Impl::refers_to_SimpleType (void) const
   {
     return SimpleType::_narrow (this->refers_to ());
   }

@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/QoSPolicies/OwnershipQosPolicy.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/DDSEntities/Topic.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -24,11 +24,16 @@ namespace DQML
   const std::string topic_ownership_Connection_Impl::metaname ("topic_ownership_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // is_abstract
   //
-  topic_ownership_Connection topic_ownership_Connection_Impl::_create (const DDSQoS_in parent)
+  const bool topic_ownership_Connection_Impl::is_abstract = false;
+
+  //
+  // _create (const DDSQoS_in, Topic_in src, OwnershipQosPolicy_in dst)
+  //
+  topic_ownership_Connection topic_ownership_Connection_Impl::_create (const DDSQoS_in parent, Topic_in src, OwnershipQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < topic_ownership_Connection > (parent, topic_ownership_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, topic_ownership_Connection_Impl::metaname, src, dst);
   }
 
   //

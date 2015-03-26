@@ -41,7 +41,7 @@ Domain_Component_Impl::~Domain_Component_Impl (void)
 int Domain_Component_Impl::
 invoke_ex (GAME::Mga::Project project,
            GAME::Mga::FCO_in focus,
-           std::vector <GAME::Mga::FCO> & selected,
+           GAME::Mga::Collection_T <GAME::Mga::FCO> & selected,
            long flags)
 {
   std::string output_path;

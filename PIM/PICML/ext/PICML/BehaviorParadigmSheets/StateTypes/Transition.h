@@ -47,11 +47,14 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static Transition _create (const BehaviorModel_in parent);
+    static Transition _create (const BehaviorModel_in parent, State_in src, ActionBase_in dst);
     ///@}
 
     // Default constructor.

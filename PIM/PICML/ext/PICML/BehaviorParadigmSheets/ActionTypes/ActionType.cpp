@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,11 +23,16 @@ namespace PICML
   const std::string ActionType_Impl::metaname ("ActionType");
 
   //
+  // is_abstract
+  //
+  const bool ActionType_Impl::is_abstract = false;
+
+  //
   // _create (const Action_in)
   //
   ActionType ActionType_Impl::_create (const Action_in parent)
   {
-    return ::GAME::Mga::create_object < ActionType > (parent, ActionType_Impl::metaname);
+    return ::GAME::Mga::create < ActionType > (parent, ActionType_Impl::metaname);
   }
 
   //
@@ -57,21 +62,21 @@ namespace PICML
   //
   bool ActionType_Impl::Operation_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_Operation
+  // refers_to_Operation
   //
-  void ActionType_Impl::set_Operation (Operation_in item)
+  void ActionType_Impl::refers_to_Operation (Operation_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Operation
+  // refers_to_Operation
   //
-  Operation ActionType_Impl::get_Operation (void) const
+  Operation ActionType_Impl::refers_to_Operation (void) const
   {
     return Operation::_narrow (this->refers_to ());
   }

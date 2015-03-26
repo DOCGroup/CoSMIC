@@ -22,11 +22,16 @@ namespace PICML
   const std::string Byte_Impl::metaname ("Byte");
 
   //
+  // is_abstract
+  //
+  const bool Byte_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   Byte Byte_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < Byte > (parent, Byte_Impl::metaname);
+    return ::GAME::Mga::create < Byte > (parent, Byte_Impl::metaname);
   }
 
   //

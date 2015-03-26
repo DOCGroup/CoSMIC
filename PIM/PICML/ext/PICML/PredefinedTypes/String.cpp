@@ -22,11 +22,16 @@ namespace PICML
   const std::string String_Impl::metaname ("String");
 
   //
+  // is_abstract
+  //
+  const bool String_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   String String_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < String > (parent, String_Impl::metaname);
+    return ::GAME::Mga::create < String > (parent, String_Impl::metaname);
   }
 
   //

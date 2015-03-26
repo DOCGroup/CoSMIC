@@ -25,11 +25,16 @@ namespace PICML
   const std::string Event_Impl::metaname ("Event");
 
   //
+  // is_abstract
+  //
+  const bool Event_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   Event Event_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < Event > (parent, Event_Impl::metaname);
+    return ::GAME::Mga::create < Event > (parent, Event_Impl::metaname);
   }
 
   //
@@ -37,7 +42,7 @@ namespace PICML
   //
   Event Event_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < Event > (parent, Event_Impl::metaname);
+    return ::GAME::Mga::create < Event > (parent, Event_Impl::metaname);
   }
 
   //
@@ -45,7 +50,7 @@ namespace PICML
   //
   Event Event_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < Event > (parent, Event_Impl::metaname);
+    return ::GAME::Mga::create < Event > (parent, Event_Impl::metaname);
   }
 
   //

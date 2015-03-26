@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/ReadonlyAttribute.h"
-#include "PICML/InheritableTypes/Attribute.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h"
+#include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "PICML/InheritableTypes/Attribute.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,11 +28,16 @@ namespace PICML
   const std::string AttributeInstance_Impl::metaname ("AttributeInstance");
 
   //
+  // is_abstract
+  //
+  const bool AttributeInstance_Impl::is_abstract = false;
+
+  //
   // _create (const ConnectorInstance_in)
   //
   AttributeInstance AttributeInstance_Impl::_create (const ConnectorInstance_in parent)
   {
-    return ::GAME::Mga::create_object < AttributeInstance > (parent, AttributeInstance_Impl::metaname);
+    return ::GAME::Mga::create < AttributeInstance > (parent, AttributeInstance_Impl::metaname);
   }
 
   //
@@ -40,7 +45,7 @@ namespace PICML
   //
   AttributeInstance AttributeInstance_Impl::_create (const ComponentInstance_in parent)
   {
-    return ::GAME::Mga::create_object < AttributeInstance > (parent, AttributeInstance_Impl::metaname);
+    return ::GAME::Mga::create < AttributeInstance > (parent, AttributeInstance_Impl::metaname);
   }
 
   //
@@ -66,19 +71,51 @@ namespace PICML
   }
 
   //
-  // src_AttributeValue
+  // src_of_AttributeValue
   //
-  size_t AttributeInstance_Impl::src_AttributeValue (std::vector <AttributeValue> & items) const
+  size_t AttributeInstance_Impl::src_of_AttributeValue (std::vector <AttributeValue> & items) const
   {
     return this->in_connections <AttributeValue> (items);
   }
 
   //
-  // dst_AttributeDelegate
+  // has_src_of_AttributeValue
   //
-  size_t AttributeInstance_Impl::dst_AttributeDelegate (std::vector <AttributeDelegate> & items) const
+  bool AttributeInstance_Impl::has_src_of_AttributeValue (void) const
+  {
+    return this->in_connections <AttributeValue> ("src").count () == 1;
+  }
+
+  //
+  // src_of_AttributeValue
+  //
+  AttributeValue AttributeInstance_Impl::src_of_AttributeValue (void) const
+  {
+    return this->in_connections <AttributeValue> ("src").first ();
+  }
+
+  //
+  // dst_of_AttributeDelegate
+  //
+  size_t AttributeInstance_Impl::dst_of_AttributeDelegate (std::vector <AttributeDelegate> & items) const
   {
     return this->in_connections <AttributeDelegate> (items);
+  }
+
+  //
+  // has_dst_of_AttributeDelegate
+  //
+  bool AttributeInstance_Impl::has_dst_of_AttributeDelegate (void) const
+  {
+    return this->in_connections <AttributeDelegate> ("dst").count () == 1;
+  }
+
+  //
+  // dst_of_AttributeDelegate
+  //
+  AttributeDelegate AttributeInstance_Impl::dst_of_AttributeDelegate (void) const
+  {
+    return this->in_connections <AttributeDelegate> ("dst").first ();
   }
 
   //
@@ -86,21 +123,21 @@ namespace PICML
   //
   bool AttributeInstance_Impl::ReadonlyAttribute_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_ReadonlyAttribute
+  // refers_to_ReadonlyAttribute
   //
-  void AttributeInstance_Impl::set_ReadonlyAttribute (ReadonlyAttribute_in item)
+  void AttributeInstance_Impl::refers_to_ReadonlyAttribute (ReadonlyAttribute_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ReadonlyAttribute
+  // refers_to_ReadonlyAttribute
   //
-  ReadonlyAttribute AttributeInstance_Impl::get_ReadonlyAttribute (void) const
+  ReadonlyAttribute AttributeInstance_Impl::refers_to_ReadonlyAttribute (void) const
   {
     return ReadonlyAttribute::_narrow (this->refers_to ());
   }

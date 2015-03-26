@@ -49,13 +49,16 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
+    static Resource _create (const Bridge_in parent);
     static Resource _create (const Node_in parent);
     static Resource _create (const Interconnect_in parent);
-    static Resource _create (const Bridge_in parent);
     ///@}
 
     // Default constructor.
@@ -74,9 +77,9 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
+    Bridge parent_Bridge (void);
     Node parent_Node (void);
     Interconnect parent_Interconnect (void);
-    Bridge parent_Bridge (void);
     ///@}
   };
 }

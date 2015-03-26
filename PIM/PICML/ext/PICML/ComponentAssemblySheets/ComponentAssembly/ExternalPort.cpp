@@ -23,11 +23,16 @@ namespace PICML
   const std::string ExternalPort_Impl::metaname ("ExternalPort");
 
   //
+  // is_abstract
+  //
+  const bool ExternalPort_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAssembly_in)
   //
   ExternalPort ExternalPort_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < ExternalPort > (parent, ExternalPort_Impl::metaname);
+    return ::GAME::Mga::create < ExternalPort > (parent, ExternalPort_Impl::metaname);
   }
 
   //
@@ -53,11 +58,19 @@ namespace PICML
   }
 
   //
-  // src_ExternalDelegate
+  // src_of_ExternalDelegate
   //
-  size_t ExternalPort_Impl::src_ExternalDelegate (std::vector <ExternalDelegate> & items) const
+  size_t ExternalPort_Impl::src_of_ExternalDelegate (std::vector <ExternalDelegate> & items) const
   {
     return this->in_connections <ExternalDelegate> (items);
+  }
+
+  //
+  // src_of_ExternalDelegate
+  //
+  GAME::Mga::Collection_T <ExternalDelegate> ExternalPort_Impl::src_of_ExternalDelegate (void) const
+  {
+    return this->in_connections <ExternalDelegate> ("src");
   }
 }
 

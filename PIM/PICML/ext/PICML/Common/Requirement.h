@@ -49,6 +49,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -84,14 +87,17 @@ namespace PICML
      */
     ///@{
 
+    /// Get the dst PackageConfSelectRequirement connection.
+    size_t dst_of_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
+    GAME::Mga::Collection_T <PackageConfSelectRequirement> dst_of_PackageConfSelectRequirement (void) const;
+
     /// Get the dst ArtifactDeployRequirement connection.
-    size_t dst_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const;
+    size_t dst_of_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const;
+    GAME::Mga::Collection_T <ArtifactDeployRequirement> dst_of_ArtifactDeployRequirement (void) const;
 
     /// Get the dst AssemblyselectRequirement connection.
-    size_t dst_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const;
-
-    /// Get the dst PackageConfSelectRequirement connection.
-    size_t dst_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
+    size_t dst_of_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const;
+    GAME::Mga::Collection_T <AssemblyselectRequirement> dst_of_AssemblyselectRequirement (void) const;
     ///@}
   };
 }

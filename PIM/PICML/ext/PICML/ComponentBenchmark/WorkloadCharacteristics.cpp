@@ -26,11 +26,16 @@ namespace PICML
   const std::string WorkloadCharacteristics_Impl::metaname ("WorkloadCharacteristics");
 
   //
-  // _create (const BenchmarkAnalysis_in)
+  // is_abstract
   //
-  WorkloadCharacteristics WorkloadCharacteristics_Impl::_create (const BenchmarkAnalysis_in parent)
+  const bool WorkloadCharacteristics_Impl::is_abstract = false;
+
+  //
+  // _create (const BenchmarkAnalysis_in, MetricsBase_in src, TaskSet_in dst)
+  //
+  WorkloadCharacteristics WorkloadCharacteristics_Impl::_create (const BenchmarkAnalysis_in parent, MetricsBase_in src, TaskSet_in dst)
   {
-    return ::GAME::Mga::create_object < WorkloadCharacteristics > (parent, WorkloadCharacteristics_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, WorkloadCharacteristics_Impl::metaname, src, dst);
   }
 
   //

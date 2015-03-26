@@ -8,19 +8,19 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/TargetRequiredRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Provideable.h"
-#include "PICML/InheritableTypes/Object.h"
 #include "PICML/PredefinedTypes/GenericObject.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
-#include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/TargetRequiredRequestPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/InterfaceDefinition/CollectionParameter.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
 #include "PICML/PathDiagram/ConnectedComponent.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -35,27 +35,24 @@ namespace PICML
   const std::string RequiredRequestPort_Impl::metaname ("RequiredRequestPort");
 
   //
-  // _create (const PortType_in)
+  // is_abstract
   //
-  RequiredRequestPort RequiredRequestPort_Impl::_create (const PortType_in parent)
-  {
-    return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
-  }
+  const bool RequiredRequestPort_Impl::is_abstract = false;
 
   //
   // _create (const ConnectorObject_in)
   //
   RequiredRequestPort RequiredRequestPort_Impl::_create (const ConnectorObject_in parent)
   {
-    return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
+    return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
-  // _create (const Component_in)
+  // _create (const PortType_in)
   //
-  RequiredRequestPort RequiredRequestPort_Impl::_create (const Component_in parent)
+  RequiredRequestPort RequiredRequestPort_Impl::_create (const PortType_in parent)
   {
-    return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
+    return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
@@ -63,7 +60,15 @@ namespace PICML
   //
   RequiredRequestPort RequiredRequestPort_Impl::_create (const ConnectedComponent_in parent)
   {
-    return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
+    return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
+  }
+
+  //
+  // _create (const Component_in)
+  //
+  RequiredRequestPort RequiredRequestPort_Impl::_create (const Component_in parent)
+  {
+    return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
@@ -71,7 +76,7 @@ namespace PICML
   //
   RequiredRequestPort RequiredRequestPort_Impl::_create (const Path_in parent)
   {
-    return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
+    return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
@@ -93,21 +98,21 @@ namespace PICML
   //
   bool RequiredRequestPort_Impl::Provideable_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_Provideable
+  // refers_to_Provideable
   //
-  void RequiredRequestPort_Impl::set_Provideable (Provideable_in item)
+  void RequiredRequestPort_Impl::refers_to_Provideable (Provideable_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Provideable
+  // refers_to_Provideable
   //
-  Provideable RequiredRequestPort_Impl::get_Provideable (void) const
+  Provideable RequiredRequestPort_Impl::refers_to_Provideable (void) const
   {
     return Provideable::_narrow (this->refers_to ());
   }

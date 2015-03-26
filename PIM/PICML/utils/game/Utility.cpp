@@ -1,6 +1,5 @@
-// $Id$
-
 #include "stdafx.h"
+
 #include "Utility.h"
 
 #include "game/mga/MetaBase.h"
@@ -11,8 +10,12 @@
 
 namespace PICML
 {
-
-std::string scope_impl (GAME::Mga::FCO_in named_type, const std::string & separator,  bool leading)
+//
+// scope
+//
+std::string scope (const GAME::Mga::FCO_in named_type,
+                   const std::string & separator,
+                   bool leading)
 {
   std::string scope;
   std::stack <GAME::Mga::Object> temp_stack;
@@ -43,42 +46,22 @@ std::string scope_impl (GAME::Mga::FCO_in named_type, const std::string & separa
   return scope;
 }
 
-std::string scope (NamedType_in named_type, const std::string & separator, bool leading)
+//
+// fq_type
+//
+std::string fq_type (const GAME::Mga::FCO_in named_type,
+                     const std::string & separator,
+                     bool leading)
 {
-  return scope_impl (named_type, separator, leading);
+  return
+    scope (named_type, separator, leading) +
+    named_type->name ();
 }
 
-std::string scope (Exception_in ex, const std::string & separator, bool leading)
-{
-  return scope_impl (ex, separator, leading);
-}
-
-std::string scope (Package_in package, const std::string & separator, bool leading)
-{
-  return scope_impl (package, separator, leading);
-}
-
-std::string fq_type_impl (GAME::Mga::FCO_in fco, const std::string & separator, bool leading)
-{
-  return scope_impl (fco, separator, leading) + fco->name ();
-}
-
-std::string fq_type (NamedType_in named_type, const std::string & separator, bool leading)
-{
-  return fq_type_impl (named_type, separator, leading);
-}
-
-std::string fq_type (Exception_in ex, const std::string & separator, bool leading)
-{
-  return fq_type_impl (ex, separator, leading);
-}
-
-std::string fq_type (Package_in package, const std::string & separator, bool leading)
-{
-  return fq_type_impl (package, separator, leading);
-}
-
-TemplatePackageInstance get_template_package_inst (const GAME::Mga::FCO_in type)
+//
+// get_template_package_inst
+//
+GAME::Mga::Model get_template_package_inst (const GAME::Mga::FCO_in type)
 {
   ::GAME::Mga::Model parent = type->parent_model ();
   static const std::string meta_File ("File");
@@ -100,7 +83,7 @@ TemplatePackageInstance get_template_package_inst (const GAME::Mga::FCO_in type)
   return GAME::Mga::Model ();
 }
 
-std::string repository_id (NamedType_in named_type)
+std::string repository_id (const PICML::NamedType_in named_type)
 {
   std::ostringstream ostr;
   ostr << "IDL:";
@@ -120,5 +103,6 @@ std::string repository_id (NamedType_in named_type)
   return ostr.str ();
 }
 
-
 }
+
+

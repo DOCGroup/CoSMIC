@@ -49,6 +49,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -82,11 +85,11 @@ namespace PICML
 
     bool has_ComplexTypeReference (void) const;
     ComplexTypeReference get_ComplexTypeReference (void) const;
-    size_t get_DataValueContainers (std::vector <DataValueContainer> & items) const;
-    ::GAME::Mga::Collection_T <DataValueContainer> get_DataValueContainers (void) const;
-
     size_t get_DataValues (std::vector <DataValue> & items) const;
     ::GAME::Mga::Collection_T <DataValue> get_DataValues (void) const;
+
+    size_t get_DataValueContainers (std::vector <DataValueContainer> & items) const;
+    ::GAME::Mga::Collection_T <DataValueContainer> get_DataValueContainers (void) const;
 
     ///@}
   };

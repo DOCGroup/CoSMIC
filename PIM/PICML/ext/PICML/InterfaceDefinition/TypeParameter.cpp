@@ -22,11 +22,16 @@ namespace PICML
   const std::string TypeParameter_Impl::metaname ("TypeParameter");
 
   //
+  // is_abstract
+  //
+  const bool TypeParameter_Impl::is_abstract = false;
+
+  //
   // _create (const Package_in)
   //
   TypeParameter TypeParameter_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < TypeParameter > (parent, TypeParameter_Impl::metaname);
+    return ::GAME::Mga::create < TypeParameter > (parent, TypeParameter_Impl::metaname);
   }
 
   //

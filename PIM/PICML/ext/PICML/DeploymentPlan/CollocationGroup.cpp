@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/DeploymentPlan/InstanceMapping.h"
 #include "PICML/DeploymentPlan/CollocationGroupMember.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.h"
 #include "PICML/DeploymentPlan/ComponentInstanceRef.h"
 #include "PICML/DeploymentPlan/ComponentFactoryRef.h"
-#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
-#include "PICML/DeploymentPlan/InstanceMapping.h"
-#include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,11 +28,16 @@ namespace PICML
   const std::string CollocationGroup_Impl::metaname ("CollocationGroup");
 
   //
+  // is_abstract
+  //
+  const bool CollocationGroup_Impl::is_abstract = false;
+
+  //
   // _create (const DeploymentPlan_in)
   //
   CollocationGroup CollocationGroup_Impl::_create (const DeploymentPlan_in parent)
   {
-    return ::GAME::Mga::create_object < CollocationGroup > (parent, CollocationGroup_Impl::metaname);
+    return ::GAME::Mga::create < CollocationGroup > (parent, CollocationGroup_Impl::metaname);
   }
 
   //
@@ -58,19 +63,43 @@ namespace PICML
   }
 
   //
-  // src_InstanceMapping
+  // src_of_InstanceMapping
   //
-  size_t CollocationGroup_Impl::src_InstanceMapping (std::vector <InstanceMapping> & items) const
+  size_t CollocationGroup_Impl::src_of_InstanceMapping (std::vector <InstanceMapping> & items) const
   {
     return this->in_connections <InstanceMapping> (items);
   }
 
   //
-  // dst_CollocationGroupProperty
+  // has_src_of_InstanceMapping
   //
-  size_t CollocationGroup_Impl::dst_CollocationGroupProperty (std::vector <CollocationGroupProperty> & items) const
+  bool CollocationGroup_Impl::has_src_of_InstanceMapping (void) const
+  {
+    return this->in_connections <InstanceMapping> ("src").count () == 1;
+  }
+
+  //
+  // src_of_InstanceMapping
+  //
+  InstanceMapping CollocationGroup_Impl::src_of_InstanceMapping (void) const
+  {
+    return this->in_connections <InstanceMapping> ("src").first ();
+  }
+
+  //
+  // dst_of_CollocationGroupProperty
+  //
+  size_t CollocationGroup_Impl::dst_of_CollocationGroupProperty (std::vector <CollocationGroupProperty> & items) const
   {
     return this->in_connections <CollocationGroupProperty> (items);
+  }
+
+  //
+  // dst_of_CollocationGroupProperty
+  //
+  GAME::Mga::Collection_T <CollocationGroupProperty> CollocationGroup_Impl::dst_of_CollocationGroupProperty (void) const
+  {
+    return this->in_connections <CollocationGroupProperty> ("dst");
   }
 
   //

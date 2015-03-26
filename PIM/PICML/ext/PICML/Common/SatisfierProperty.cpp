@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/DataType.h"
 #include "PICML/Common/RequirementSatisfier.h"
 #include "PICML/TargetElements/Resource.h"
 #include "PICML/TargetElements/SharedResource.h"
 #include "PICML/Common/Capability.h"
+#include "PICML/Common/DataType.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string SatisfierProperty_Impl::metaname ("SatisfierProperty");
 
   //
+  // is_abstract
+  //
+  const bool SatisfierProperty_Impl::is_abstract = false;
+
+  //
   // _create (const RequirementSatisfier_in)
   //
   SatisfierProperty SatisfierProperty_Impl::_create (const RequirementSatisfier_in parent)
   {
-    return ::GAME::Mga::create_object < SatisfierProperty > (parent, SatisfierProperty_Impl::metaname);
+    return ::GAME::Mga::create < SatisfierProperty > (parent, SatisfierProperty_Impl::metaname);
   }
 
   //

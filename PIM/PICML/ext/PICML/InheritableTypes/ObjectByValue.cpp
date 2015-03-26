@@ -24,6 +24,11 @@ namespace PICML
   const std::string ObjectByValue_Impl::metaname ("ObjectByValue");
 
   //
+  // is_abstract
+  //
+  const bool ObjectByValue_Impl::is_abstract = true;
+
+  //
   // get_FactoryOperations
   //
   size_t ObjectByValue_Impl::get_FactoryOperations (std::vector <FactoryOperation> & items) const

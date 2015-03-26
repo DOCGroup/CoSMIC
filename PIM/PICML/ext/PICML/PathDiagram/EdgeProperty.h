@@ -47,11 +47,14 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static EdgeProperty _create (const Path_in parent);
+    static EdgeProperty _create (const Path_in parent, Property_in src, Edge_in dst);
     ///@}
 
     // Default constructor.

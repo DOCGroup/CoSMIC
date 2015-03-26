@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,11 +28,16 @@ namespace PICML
   const std::string AssemblyConfigProperty_Impl::metaname ("AssemblyConfigProperty");
 
   //
-  // _create (const ComponentAssembly_in)
+  // is_abstract
   //
-  AssemblyConfigProperty AssemblyConfigProperty_Impl::_create (const ComponentAssembly_in parent)
+  const bool AssemblyConfigProperty_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentAssembly_in, AssemblyConfigPropertyEnd_in src, Property_in dst)
+  //
+  AssemblyConfigProperty AssemblyConfigProperty_Impl::_create (const ComponentAssembly_in parent, AssemblyConfigPropertyEnd_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < AssemblyConfigProperty > (parent, AssemblyConfigProperty_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, AssemblyConfigProperty_Impl::metaname, src, dst);
   }
 
   //

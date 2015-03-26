@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
-#include "PICML/Common/DataType.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
+#include "PICML/Common/DataType.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string ComponentPropertyDescription_Impl::metaname ("ComponentPropertyDescription");
 
   //
+  // is_abstract
+  //
+  const bool ComponentPropertyDescription_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentContainer_in)
   //
   ComponentPropertyDescription ComponentPropertyDescription_Impl::_create (const ComponentContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentPropertyDescription > (parent, ComponentPropertyDescription_Impl::metaname);
+    return ::GAME::Mga::create < ComponentPropertyDescription > (parent, ComponentPropertyDescription_Impl::metaname);
   }
 
   //
@@ -54,11 +59,19 @@ namespace PICML
   }
 
   //
-  // dst_ComponentProperty
+  // dst_of_ComponentProperty
   //
-  size_t ComponentPropertyDescription_Impl::dst_ComponentProperty (std::vector <ComponentProperty> & items) const
+  size_t ComponentPropertyDescription_Impl::dst_of_ComponentProperty (std::vector <ComponentProperty> & items) const
   {
     return this->in_connections <ComponentProperty> (items);
+  }
+
+  //
+  // dst_of_ComponentProperty
+  //
+  GAME::Mga::Collection_T <ComponentProperty> ComponentPropertyDescription_Impl::dst_of_ComponentProperty (void) const
+  {
+    return this->in_connections <ComponentProperty> ("dst");
   }
 
   //

@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
 #include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
 #include "PICML/ImplementationCommon/ComponentServantArtifact.h"
-#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string ArtifactDependsOn_Impl::metaname ("ArtifactDependsOn");
 
   //
-  // _create (const ArtifactContainer_in)
+  // is_abstract
   //
-  ArtifactDependsOn ArtifactDependsOn_Impl::_create (const ArtifactContainer_in parent)
+  const bool ArtifactDependsOn_Impl::is_abstract = false;
+
+  //
+  // _create (const ArtifactContainer_in, ImplementationArtifact_in src, ImplementationArtifactReference_in dst)
+  //
+  ArtifactDependsOn ArtifactDependsOn_Impl::_create (const ArtifactContainer_in parent, ImplementationArtifact_in src, ImplementationArtifactReference_in dst)
   {
-    return ::GAME::Mga::create_object < ArtifactDependsOn > (parent, ArtifactDependsOn_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ArtifactDependsOn_Impl::metaname, src, dst);
   }
 
   //

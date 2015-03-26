@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -79,7 +82,9 @@ namespace PICML
     ///@{
 
     /// Get the src InstanceMapping connection.
-    size_t src_InstanceMapping (std::vector <InstanceMapping> & items) const;
+    size_t src_of_InstanceMapping (std::vector <InstanceMapping> & items) const;
+    bool has_src_of_InstanceMapping (void) const;
+    InstanceMapping src_of_InstanceMapping (void) const;
     ///@}
 
     /**
@@ -88,7 +93,8 @@ namespace PICML
     ///@{
 
     /// Get the dst CollocationGroupProperty connection.
-    size_t dst_CollocationGroupProperty (std::vector <CollocationGroupProperty> & items) const;
+    size_t dst_of_CollocationGroupProperty (std::vector <CollocationGroupProperty> & items) const;
+    GAME::Mga::Collection_T <CollocationGroupProperty> dst_of_CollocationGroupProperty (void) const;
     ///@}
 
     /**

@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string AttributeValue_Impl::metaname ("AttributeValue");
 
   //
-  // _create (const ComponentAssembly_in)
+  // is_abstract
   //
-  AttributeValue AttributeValue_Impl::_create (const ComponentAssembly_in parent)
+  const bool AttributeValue_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentAssembly_in, AttributeInstance_in src, Property_in dst)
+  //
+  AttributeValue AttributeValue_Impl::_create (const ComponentAssembly_in parent, AttributeInstance_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < AttributeValue > (parent, AttributeValue_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, AttributeValue_Impl::metaname, src, dst);
   }
 
   //

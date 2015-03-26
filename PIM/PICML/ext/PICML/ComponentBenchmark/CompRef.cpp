@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/ComponentOperation.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string CompRef_Impl::metaname ("CompRef");
 
   //
+  // is_abstract
+  //
+  const bool CompRef_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   CompRef CompRef_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < CompRef > (parent, CompRef_Impl::metaname);
+    return ::GAME::Mga::create < CompRef > (parent, CompRef_Impl::metaname);
   }
 
   //
@@ -54,11 +59,19 @@ namespace PICML
   }
 
   //
-  // dst_ComponentOperation
+  // dst_of_ComponentOperation
   //
-  size_t CompRef_Impl::dst_ComponentOperation (std::vector <ComponentOperation> & items) const
+  size_t CompRef_Impl::dst_of_ComponentOperation (std::vector <ComponentOperation> & items) const
   {
     return this->in_connections <ComponentOperation> (items);
+  }
+
+  //
+  // dst_of_ComponentOperation
+  //
+  ComponentOperation CompRef_Impl::dst_of_ComponentOperation (void) const
+  {
+    return this->in_connections <ComponentOperation> ("dst").first ();
   }
 
   //
@@ -66,21 +79,21 @@ namespace PICML
   //
   bool CompRef_Impl::Component_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_Component
+  // refers_to_Component
   //
-  void CompRef_Impl::set_Component (Component_in item)
+  void CompRef_Impl::refers_to_Component (Component_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Component
+  // refers_to_Component
   //
-  Component CompRef_Impl::get_Component (void) const
+  Component CompRef_Impl::refers_to_Component (void) const
   {
     return Component::_narrow (this->refers_to ());
   }

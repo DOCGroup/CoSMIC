@@ -8,9 +8,6 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
-#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
-#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
@@ -19,6 +16,9 @@
 #include "PICML/ComponentBuild/ExecutorProject.h"
 #include "PICML/ComponentBuild/ServantProject.h"
 #include "PICML/ComponentBuild/StubProject.h"
+#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
+#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -32,11 +32,16 @@ namespace PICML
   const std::string ImplementationArtifactReference_Impl::metaname ("ImplementationArtifactReference");
 
   //
+  // is_abstract
+  //
+  const bool ImplementationArtifactReference_Impl::is_abstract = false;
+
+  //
   // _create (const ImplementationContainer_in)
   //
   ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
+    return ::GAME::Mga::create < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
   }
 
   //
@@ -44,7 +49,7 @@ namespace PICML
   //
   ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ArtifactContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
+    return ::GAME::Mga::create < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
   }
 
   //
@@ -52,7 +57,7 @@ namespace PICML
   //
   ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ExecutorProject_in parent)
   {
-    return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
+    return ::GAME::Mga::create < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
   }
 
   //
@@ -60,7 +65,7 @@ namespace PICML
   //
   ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ServantProject_in parent)
   {
-    return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
+    return ::GAME::Mga::create < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
   }
 
   //
@@ -68,7 +73,7 @@ namespace PICML
   //
   ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const StubProject_in parent)
   {
-    return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
+    return ::GAME::Mga::create < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
   }
 
   //
@@ -126,19 +131,35 @@ namespace PICML
   }
 
   //
-  // dst_MonolithprimaryArtifact
+  // dst_of_MonolithprimaryArtifact
   //
-  size_t ImplementationArtifactReference_Impl::dst_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const
+  size_t ImplementationArtifactReference_Impl::dst_of_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const
   {
     return this->in_connections <MonolithprimaryArtifact> (items);
   }
 
   //
-  // dst_ArtifactDependsOn
+  // dst_of_MonolithprimaryArtifact
   //
-  size_t ImplementationArtifactReference_Impl::dst_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const
+  GAME::Mga::Collection_T <MonolithprimaryArtifact> ImplementationArtifactReference_Impl::dst_of_MonolithprimaryArtifact (void) const
+  {
+    return this->in_connections <MonolithprimaryArtifact> ("dst");
+  }
+
+  //
+  // dst_of_ArtifactDependsOn
+  //
+  size_t ImplementationArtifactReference_Impl::dst_of_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const
   {
     return this->in_connections <ArtifactDependsOn> (items);
+  }
+
+  //
+  // dst_of_ArtifactDependsOn
+  //
+  GAME::Mga::Collection_T <ArtifactDependsOn> ImplementationArtifactReference_Impl::dst_of_ArtifactDependsOn (void) const
+  {
+    return this->in_connections <ArtifactDependsOn> ("dst");
   }
 
   //
@@ -146,21 +167,21 @@ namespace PICML
   //
   bool ImplementationArtifactReference_Impl::ImplementationArtifact_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_ImplementationArtifact
+  // refers_to_ImplementationArtifact
   //
-  void ImplementationArtifactReference_Impl::set_ImplementationArtifact (ImplementationArtifact_in item)
+  void ImplementationArtifactReference_Impl::refers_to_ImplementationArtifact (ImplementationArtifact_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ImplementationArtifact
+  // refers_to_ImplementationArtifact
   //
-  ImplementationArtifact ImplementationArtifactReference_Impl::get_ImplementationArtifact (void) const
+  ImplementationArtifact ImplementationArtifactReference_Impl::refers_to_ImplementationArtifact (void) const
   {
     return ImplementationArtifact::_narrow (this->refers_to ());
   }

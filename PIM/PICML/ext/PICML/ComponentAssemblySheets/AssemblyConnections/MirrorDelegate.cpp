@@ -10,8 +10,8 @@
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,11 +25,16 @@ namespace PICML
   const std::string MirrorDelegate_Impl::metaname ("MirrorDelegate");
 
   //
-  // _create (const ComponentAssembly_in)
+  // is_abstract
   //
-  MirrorDelegate MirrorDelegate_Impl::_create (const ComponentAssembly_in parent)
+  const bool MirrorDelegate_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentAssembly_in, MirrorPortInstanceBase_in src, MirrorPortDelegate_in dst)
+  //
+  MirrorDelegate MirrorDelegate_Impl::_create (const ComponentAssembly_in parent, MirrorPortInstanceBase_in src, MirrorPortDelegate_in dst)
   {
-    return ::GAME::Mga::create_object < MirrorDelegate > (parent, MirrorDelegate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, MirrorDelegate_Impl::metaname, src, dst);
   }
 
   //

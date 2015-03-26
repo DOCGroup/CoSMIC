@@ -49,6 +49,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -80,7 +83,9 @@ namespace PICML
     ///@{
 
     /// Get the dst MultiInput connection.
-    size_t dst_MultiInput (std::vector <MultiInput> & items) const;
+    size_t dst_of_MultiInput (std::vector <MultiInput> & items) const;
+    bool has_dst_of_MultiInput (void) const;
+    MultiInput dst_of_MultiInput (void) const;
     ///@}
   };
 }

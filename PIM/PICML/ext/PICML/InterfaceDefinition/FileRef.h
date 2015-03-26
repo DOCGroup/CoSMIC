@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -82,8 +85,8 @@ namespace PICML
      */
     ///@{
     bool File_is_nil (void) const;
-    File get_File (void) const;
-    void set_File (File_in item);
+    File refers_to_File (void) const;
+    void refers_to_File (File_in item);
     ///@}
   };
 }

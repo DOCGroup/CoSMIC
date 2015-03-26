@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/PackageConfiguration/PackageConfigurationReference.h"
-#include "PICML/TopLevelPackageDescription/TopLevelPackage.h"
 #include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
+#include "PICML/TopLevelPackageDescription/TopLevelPackage.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string package_Impl::metaname ("package");
 
   //
-  // _create (const TopLevelPackageContainer_in)
+  // is_abstract
   //
-  package package_Impl::_create (const TopLevelPackageContainer_in parent)
+  const bool package_Impl::is_abstract = false;
+
+  //
+  // _create (const TopLevelPackageContainer_in, TopLevelPackage_in src, PackageConfigurationReference_in dst)
+  //
+  package package_Impl::_create (const TopLevelPackageContainer_in parent, TopLevelPackage_in src, PackageConfigurationReference_in dst)
   {
-    return ::GAME::Mga::create_object < package > (parent, package_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, package_Impl::metaname, src, dst);
   }
 
   //

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "PICML/PackageConfiguration/PackageConfigurationReference.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string PackageConfSpecializedConfig_Impl::metaname ("PackageConfSpecializedConfig");
 
   //
-  // _create (const PackageConfigurationContainer_in)
+  // is_abstract
   //
-  PackageConfSpecializedConfig PackageConfSpecializedConfig_Impl::_create (const PackageConfigurationContainer_in parent)
+  const bool PackageConfSpecializedConfig_Impl::is_abstract = false;
+
+  //
+  // _create (const PackageConfigurationContainer_in, PackageConfiguration_in src, PackageConfigurationReference_in dst)
+  //
+  PackageConfSpecializedConfig PackageConfSpecializedConfig_Impl::_create (const PackageConfigurationContainer_in parent, PackageConfiguration_in src, PackageConfigurationReference_in dst)
   {
-    return ::GAME::Mga::create_object < PackageConfSpecializedConfig > (parent, PackageConfSpecializedConfig_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, PackageConfSpecializedConfig_Impl::metaname, src, dst);
   }
 
   //

@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -96,20 +99,29 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src PackageConfSelectRequirement connection.
-    size_t src_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
-
-    /// Get the src PackageConfBasePackage connection.
-    size_t src_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const;
-
-    /// Get the src PackageConfReference connection.
-    size_t src_PackageConfReference (std::vector <PackageConfReference> & items) const;
-
     /// Get the src PackageConfSpecializedConfig connection.
-    size_t src_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const;
+    size_t src_of_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const;
+    bool has_src_of_PackageConfSpecializedConfig (void) const;
+    PackageConfSpecializedConfig src_of_PackageConfSpecializedConfig (void) const;
 
     /// Get the src PackageConfConfigProperty connection.
-    size_t src_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const;
+    size_t src_of_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const;
+    bool has_src_of_PackageConfConfigProperty (void) const;
+    PackageConfConfigProperty src_of_PackageConfConfigProperty (void) const;
+
+    /// Get the src PackageConfReference connection.
+    size_t src_of_PackageConfReference (std::vector <PackageConfReference> & items) const;
+    bool has_src_of_PackageConfReference (void) const;
+    PackageConfReference src_of_PackageConfReference (void) const;
+
+    /// Get the src PackageConfSelectRequirement connection.
+    size_t src_of_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
+    GAME::Mga::Collection_T <PackageConfSelectRequirement> src_of_PackageConfSelectRequirement (void) const;
+
+    /// Get the src PackageConfBasePackage connection.
+    size_t src_of_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const;
+    bool has_src_of_PackageConfBasePackage (void) const;
+    PackageConfBasePackage src_of_PackageConfBasePackage (void) const;
     ///@}
   };
 }

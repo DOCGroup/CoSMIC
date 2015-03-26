@@ -44,6 +44,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     ExternalPortEnd_Impl (void);
 
@@ -65,7 +68,8 @@ namespace PICML
     ///@{
 
     /// Get the dst ExternalDelegate connection.
-    size_t dst_ExternalDelegate (std::vector <ExternalDelegate> & items) const;
+    size_t dst_of_ExternalDelegate (std::vector <ExternalDelegate> & items) const;
+    GAME::Mga::Collection_T <ExternalDelegate> dst_of_ExternalDelegate (void) const;
     ///@}
   };
 }

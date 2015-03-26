@@ -23,11 +23,16 @@ namespace PICML
   const std::string BranchState_Impl::metaname ("BranchState");
 
   //
+  // is_abstract
+  //
+  const bool BranchState_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   BranchState BranchState_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < BranchState > (parent, BranchState_Impl::metaname);
+    return ::GAME::Mga::create < BranchState > (parent, BranchState_Impl::metaname);
   }
 
   //
@@ -45,11 +50,19 @@ namespace PICML
   }
 
   //
-  // src_BranchTransition
+  // src_of_BranchTransition
   //
-  size_t BranchState_Impl::src_BranchTransition (std::vector <BranchTransition> & items) const
+  size_t BranchState_Impl::src_of_BranchTransition (std::vector <BranchTransition> & items) const
   {
     return this->in_connections <BranchTransition> (items);
+  }
+
+  //
+  // src_of_BranchTransition
+  //
+  GAME::Mga::Collection_T <BranchTransition> BranchState_Impl::src_of_BranchTransition (void) const
+  {
+    return this->in_connections <BranchTransition> ("src");
   }
 }
 

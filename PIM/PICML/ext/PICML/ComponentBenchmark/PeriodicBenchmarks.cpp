@@ -22,11 +22,16 @@ namespace PICML
   const std::string PeriodicBenchmarks_Impl::metaname ("PeriodicBenchmarks");
 
   //
+  // is_abstract
+  //
+  const bool PeriodicBenchmarks_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   PeriodicBenchmarks PeriodicBenchmarks_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < PeriodicBenchmarks > (parent, PeriodicBenchmarks_Impl::metaname);
+    return ::GAME::Mga::create < PeriodicBenchmarks > (parent, PeriodicBenchmarks_Impl::metaname);
   }
 
   //

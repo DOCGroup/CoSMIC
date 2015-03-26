@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,11 +23,16 @@ namespace PICML
   const std::string ImplementationDependency_Impl::metaname ("ImplementationDependency");
 
   //
+  // is_abstract
+  //
+  const bool ImplementationDependency_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentImplementationContainer_in)
   //
   ImplementationDependency ImplementationDependency_Impl::_create (const ComponentImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ImplementationDependency > (parent, ImplementationDependency_Impl::metaname);
+    return ::GAME::Mga::create < ImplementationDependency > (parent, ImplementationDependency_Impl::metaname);
   }
 
   //
@@ -53,11 +58,19 @@ namespace PICML
   }
 
   //
-  // dst_ImplementationDependsOn
+  // dst_of_ImplementationDependsOn
   //
-  size_t ImplementationDependency_Impl::dst_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const
+  size_t ImplementationDependency_Impl::dst_of_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const
   {
     return this->in_connections <ImplementationDependsOn> (items);
+  }
+
+  //
+  // dst_of_ImplementationDependsOn
+  //
+  GAME::Mga::Collection_T <ImplementationDependsOn> ImplementationDependency_Impl::dst_of_ImplementationDependsOn (void) const
+  {
+    return this->in_connections <ImplementationDependsOn> ("dst");
   }
 }
 

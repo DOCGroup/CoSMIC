@@ -27,11 +27,16 @@ namespace PICML
   const std::string ComponentServantArtifact_Impl::metaname ("ComponentServantArtifact");
 
   //
+  // is_abstract
+  //
+  const bool ComponentServantArtifact_Impl::is_abstract = false;
+
+  //
   // _create (const ImplementationContainer_in)
   //
   ComponentServantArtifact ComponentServantArtifact_Impl::_create (const ImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
+    return ::GAME::Mga::create < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
   }
 
   //
@@ -39,7 +44,7 @@ namespace PICML
   //
   ComponentServantArtifact ComponentServantArtifact_Impl::_create (const ArtifactContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
+    return ::GAME::Mga::create < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
   }
 
   //
@@ -47,7 +52,7 @@ namespace PICML
   //
   ComponentServantArtifact ComponentServantArtifact_Impl::_create (const ExecutorProject_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
+    return ::GAME::Mga::create < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
   }
 
   //
@@ -55,7 +60,7 @@ namespace PICML
   //
   ComponentServantArtifact ComponentServantArtifact_Impl::_create (const ServantProject_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
+    return ::GAME::Mga::create < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
   }
 
   //
@@ -63,7 +68,7 @@ namespace PICML
   //
   ComponentServantArtifact ComponentServantArtifact_Impl::_create (const StubProject_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
+    return ::GAME::Mga::create < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
   }
 
   //
@@ -85,21 +90,21 @@ namespace PICML
   //
   bool ComponentServantArtifact_Impl::ImplementationArtifact_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_ImplementationArtifact
+  // refers_to_ImplementationArtifact
   //
-  void ComponentServantArtifact_Impl::set_ImplementationArtifact (ImplementationArtifact_in item)
+  void ComponentServantArtifact_Impl::refers_to_ImplementationArtifact (ImplementationArtifact_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ImplementationArtifact
+  // refers_to_ImplementationArtifact
   //
-  ImplementationArtifact ComponentServantArtifact_Impl::get_ImplementationArtifact (void) const
+  ImplementationArtifact ComponentServantArtifact_Impl::refers_to_ImplementationArtifact (void) const
   {
     return ImplementationArtifact::_narrow (this->refers_to ());
   }

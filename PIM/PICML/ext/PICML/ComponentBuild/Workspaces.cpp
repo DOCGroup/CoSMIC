@@ -23,11 +23,16 @@ namespace PICML
   const std::string Workspaces_Impl::metaname ("Workspaces");
 
   //
+  // is_abstract
+  //
+  const bool Workspaces_Impl::is_abstract = false;
+
+  //
   // _create (const MPC_in)
   //
   Workspaces Workspaces_Impl::_create (const MPC_in parent)
   {
-    return ::GAME::Mga::create_object < Workspaces > (parent, Workspaces_Impl::metaname);
+    return ::GAME::Mga::create < Workspaces > (parent, Workspaces_Impl::metaname);
   }
 
   //

@@ -22,11 +22,16 @@ namespace PICML
   const std::string DoWhileState_Impl::metaname ("DoWhileState");
 
   //
+  // is_abstract
+  //
+  const bool DoWhileState_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   DoWhileState DoWhileState_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < DoWhileState > (parent, DoWhileState_Impl::metaname);
+    return ::GAME::Mga::create < DoWhileState > (parent, DoWhileState_Impl::metaname);
   }
 
   //

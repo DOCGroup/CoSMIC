@@ -23,11 +23,16 @@ namespace PICML
   const std::string ComponentAssemblyReference_Impl::metaname ("ComponentAssemblyReference");
 
   //
+  // is_abstract
+  //
+  const bool ComponentAssemblyReference_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAssembly_in)
   //
   ComponentAssemblyReference ComponentAssemblyReference_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentAssemblyReference > (parent, ComponentAssemblyReference_Impl::metaname);
+    return ::GAME::Mga::create < ComponentAssemblyReference > (parent, ComponentAssemblyReference_Impl::metaname);
   }
 
   //
@@ -35,7 +40,7 @@ namespace PICML
   //
   ComponentAssemblyReference ComponentAssemblyReference_Impl::_create (const DeploymentPlan_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentAssemblyReference > (parent, ComponentAssemblyReference_Impl::metaname);
+    return ::GAME::Mga::create < ComponentAssemblyReference > (parent, ComponentAssemblyReference_Impl::metaname);
   }
 
   //
@@ -65,21 +70,21 @@ namespace PICML
   //
   bool ComponentAssemblyReference_Impl::ComponentAssembly_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_ComponentAssembly
+  // refers_to_ComponentAssembly
   //
-  void ComponentAssemblyReference_Impl::set_ComponentAssembly (ComponentAssembly_in item)
+  void ComponentAssemblyReference_Impl::refers_to_ComponentAssembly (ComponentAssembly_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ComponentAssembly
+  // refers_to_ComponentAssembly
   //
-  ComponentAssembly ComponentAssemblyReference_Impl::get_ComponentAssembly (void) const
+  ComponentAssembly ComponentAssemblyReference_Impl::refers_to_ComponentAssembly (void) const
   {
     return ComponentAssembly::_narrow (this->refers_to ());
   }

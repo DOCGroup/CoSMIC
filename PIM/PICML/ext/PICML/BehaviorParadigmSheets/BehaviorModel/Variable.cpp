@@ -51,11 +51,16 @@ namespace PICML
   const std::string Variable_Impl::metaname ("Variable");
 
   //
+  // is_abstract
+  //
+  const bool Variable_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   Variable Variable_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < Variable > (parent, Variable_Impl::metaname);
+    return ::GAME::Mga::create < Variable > (parent, Variable_Impl::metaname);
   }
 
   //
@@ -85,21 +90,21 @@ namespace PICML
   //
   bool Variable_Impl::PredefinedType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_PredefinedType
+  // refers_to_PredefinedType
   //
-  void Variable_Impl::set_PredefinedType (PredefinedType_in item)
+  void Variable_Impl::refers_to_PredefinedType (PredefinedType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_PredefinedType
+  // refers_to_PredefinedType
   //
-  PredefinedType Variable_Impl::get_PredefinedType (void) const
+  PredefinedType Variable_Impl::refers_to_PredefinedType (void) const
   {
     return PredefinedType::_narrow (this->refers_to ());
   }

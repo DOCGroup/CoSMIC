@@ -8,14 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InterfaceDefinition/Package.h"
+#include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
+#include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
+#include "PICML/InterfaceDefinition/File.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/Object.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "PICML/InterfaceDefinition/ConstantType.h"
-#include "PICML/NamedTypes/Enum.h"
 #include "PICML/PredefinedTypes/CharType.h"
 #include "PICML/PredefinedTypes/Char.h"
 #include "PICML/PredefinedTypes/WideChar.h"
@@ -37,10 +40,7 @@
 #include "PICML/PredefinedTypes/FloatNumber.h"
 #include "PICML/PredefinedTypes/Boolean.h"
 #include "PICML/PredefinedTypes/Byte.h"
-#include "PICML/InterfaceDefinition/Package.h"
-#include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
-#include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
-#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/NamedTypes/Enum.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -54,19 +54,16 @@ namespace PICML
   const std::string Constant_Impl::metaname ("Constant");
 
   //
-  // _create (const HasOperations_in)
+  // is_abstract
   //
-  Constant Constant_Impl::_create (const HasOperations_in parent)
-  {
-    return ::GAME::Mga::create_object < Constant > (parent, Constant_Impl::metaname);
-  }
+  const bool Constant_Impl::is_abstract = false;
 
   //
   // _create (const Package_in)
   //
   Constant Constant_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < Constant > (parent, Constant_Impl::metaname);
+    return ::GAME::Mga::create < Constant > (parent, Constant_Impl::metaname);
   }
 
   //
@@ -74,7 +71,15 @@ namespace PICML
   //
   Constant Constant_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < Constant > (parent, Constant_Impl::metaname);
+    return ::GAME::Mga::create < Constant > (parent, Constant_Impl::metaname);
+  }
+
+  //
+  // _create (const HasOperations_in)
+  //
+  Constant Constant_Impl::_create (const HasOperations_in parent)
+  {
+    return ::GAME::Mga::create < Constant > (parent, Constant_Impl::metaname);
   }
 
   //
@@ -89,14 +94,6 @@ namespace PICML
       this_visitor->visit_Constant (this);
     else
       v->visit_Reference (this);
-  }
-
-  //
-  // parent_HasOperations
-  //
-  HasOperations Constant_Impl::parent_HasOperations (void)
-  {
-    return HasOperations::_narrow (this->parent ());
   }
 
   //
@@ -116,25 +113,33 @@ namespace PICML
   }
 
   //
+  // parent_HasOperations
+  //
+  HasOperations Constant_Impl::parent_HasOperations (void)
+  {
+    return HasOperations::_narrow (this->parent ());
+  }
+
+  //
   // ConstantType_is_nil
   //
   bool Constant_Impl::ConstantType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_ConstantType
+  // refers_to_ConstantType
   //
-  void Constant_Impl::set_ConstantType (ConstantType_in item)
+  void Constant_Impl::refers_to_ConstantType (ConstantType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ConstantType
+  // refers_to_ConstantType
   //
-  ConstantType Constant_Impl::get_ConstantType (void) const
+  ConstantType Constant_Impl::refers_to_ConstantType (void) const
   {
     return ConstantType::_narrow (this->refers_to ());
   }

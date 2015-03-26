@@ -49,6 +49,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -83,11 +86,11 @@ namespace PICML
 
     bool has_ReturnType (void) const;
     ReturnType get_ReturnType (void) const;
-    size_t get_OutParameters (std::vector <OutParameter> & items) const;
-    ::GAME::Mga::Collection_T <OutParameter> get_OutParameters (void) const;
-
     size_t get_InoutParameters (std::vector <InoutParameter> & items) const;
     ::GAME::Mga::Collection_T <InoutParameter> get_InoutParameters (void) const;
+
+    size_t get_OutParameters (std::vector <OutParameter> & items) const;
+    ::GAME::Mga::Collection_T <OutParameter> get_OutParameters (void) const;
 
     ///@}
   };

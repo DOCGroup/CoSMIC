@@ -26,11 +26,16 @@ namespace DQML
   const std::string TransportPriorityQosPolicy_Impl::metaname ("TransportPriorityQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool TransportPriorityQosPolicy_Impl::is_abstract = false;
+
+  //
   // _create (const DataWriterQos_in)
   //
   TransportPriorityQosPolicy TransportPriorityQosPolicy_Impl::_create (const DataWriterQos_in parent)
   {
-    return ::GAME::Mga::create_object < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
   }
 
   //
@@ -38,7 +43,7 @@ namespace DQML
   //
   TransportPriorityQosPolicy TransportPriorityQosPolicy_Impl::_create (const TopicQos_in parent)
   {
-    return ::GAME::Mga::create_object < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
   }
 
   //
@@ -46,7 +51,7 @@ namespace DQML
   //
   TransportPriorityQosPolicy TransportPriorityQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
   }
 
   //
@@ -80,19 +85,35 @@ namespace DQML
   }
 
   //
-  // dst_topic_transpri_Connection
+  // dst_of_topic_transpri_Connection
   //
-  size_t TransportPriorityQosPolicy_Impl::dst_topic_transpri_Connection (std::vector <topic_transpri_Connection> & items) const
+  size_t TransportPriorityQosPolicy_Impl::dst_of_topic_transpri_Connection (std::vector <topic_transpri_Connection> & items) const
   {
     return this->in_connections <topic_transpri_Connection> (items);
   }
 
   //
-  // dst_dw_transpri_Connection
+  // dst_of_topic_transpri_Connection
   //
-  size_t TransportPriorityQosPolicy_Impl::dst_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const
+  GAME::Mga::Collection_T <topic_transpri_Connection> TransportPriorityQosPolicy_Impl::dst_of_topic_transpri_Connection (void) const
+  {
+    return this->in_connections <topic_transpri_Connection> ("dst");
+  }
+
+  //
+  // dst_of_dw_transpri_Connection
+  //
+  size_t TransportPriorityQosPolicy_Impl::dst_of_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const
   {
     return this->in_connections <dw_transpri_Connection> (items);
+  }
+
+  //
+  // dst_of_dw_transpri_Connection
+  //
+  GAME::Mga::Collection_T <dw_transpri_Connection> TransportPriorityQosPolicy_Impl::dst_of_dw_transpri_Connection (void) const
+  {
+    return this->in_connections <dw_transpri_Connection> ("dst");
   }
 }
 

@@ -33,40 +33,41 @@ namespace Xml
 class PICML_XML_Export Data_Value_Visitor : public PICML::Visitor
 {
 public:
-  Data_Value_Visitor (const GAME::Xml::Fragment & frag, const std::string & value);
+  Data_Value_Visitor (GAME::Xml::Fragment frag);
+  Data_Value_Visitor (GAME::Xml::Fragment frag, const std::string & value);
 
   virtual ~Data_Value_Visitor (void);
 
   virtual void visit_DataType (PICML::DataType_in dt);
-  virtual void Visit_Boolean (PICML::Boolean_in b);
+  virtual void visit_Boolean (PICML::Boolean_in b);
 
-  virtual void Visit_Byte (PICML::Byte_in b);
+  virtual void visit_Byte (PICML::Byte_in b);
 
-  virtual void Visit_Char (PICML::Char_in );
-  virtual void Visit_WideChar (PICML::WideChar_in );
+  virtual void visit_Char (PICML::Char_in );
+  virtual void visit_WideChar (PICML::WideChar_in );
 
-  virtual void Visit_String (PICML::String_in s);
-  virtual void Visit_WideString (PICML::WideString_in s);
+  virtual void visit_String (PICML::String_in s);
+  virtual void visit_WideString (PICML::WideString_in s);
 
-  virtual void Visit_FloatNumber (PICML::FloatNumber_in fn);
-  virtual void Visit_DoubleNumber (PICML::DoubleNumber_in dn);
-  virtual void Visit_LongDoubleNumber (PICML::LongDoubleNumber_in dn);
+  virtual void visit_FloatNumber (PICML::FloatNumber_in fn);
+  virtual void visit_DoubleNumber (PICML::DoubleNumber_in dn);
+  virtual void visit_LongDoubleNumber (PICML::LongDoubleNumber_in dn);
 
-  virtual void Visit_ShortInteger (PICML::ShortInteger_in si);
-  virtual void Visit_LongInteger (PICML::LongInteger_in li);
-  virtual void Visit_LongLongInteger (PICML::LongLongInteger_in li);
+  virtual void visit_ShortInteger (PICML::ShortInteger_in si);
+  virtual void visit_LongInteger (PICML::LongInteger_in li);
+  virtual void visit_LongLongInteger (PICML::LongLongInteger_in li);
 
-  virtual void Visit_UnsignedShortInteger (PICML::UnsignedShortInteger_in si);
-  virtual void Visit_UnsignedLongInteger (PICML::UnsignedLongInteger_in li);
-  virtual void Visit_UnsignedLongLongInteger (PICML::UnsignedLongLongInteger_in li);
+  virtual void visit_UnsignedShortInteger (PICML::UnsignedShortInteger_in si);
+  virtual void visit_UnsignedLongInteger (PICML::UnsignedLongInteger_in li);
+  virtual void visit_UnsignedLongLongInteger (PICML::UnsignedLongLongInteger_in li);
 
-  virtual void Visit_Enum (PICML::Enum_in e);
+  virtual void visit_Enum (PICML::Enum_in e);
 
-  virtual void Visit_SimpleProperty (PICML::SimpleProperty_in prop);
-  virtual void Visit_ComplexProperty (PICML::ComplexProperty_in prop);
+  virtual void visit_SimpleProperty (PICML::SimpleProperty_in prop);
+  virtual void visit_ComplexProperty (PICML::ComplexProperty_in prop);
 
-  virtual void Visit_DataValueContainer (PICML::DataValueContainer_in c);
-  virtual void Visit_DataValue (PICML::DataValue_in v);
+  virtual void visit_DataValueContainer (PICML::DataValueContainer_in c);
+  virtual void visit_DataValue (PICML::DataValue_in v);
 
 private:
   enum container_t

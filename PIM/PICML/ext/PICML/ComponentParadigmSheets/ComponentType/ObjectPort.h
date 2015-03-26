@@ -46,6 +46,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     ObjectPort_Impl (void);
 
@@ -59,8 +62,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    PortType parent_PortType (void);
     ConnectorObject parent_ConnectorObject (void);
+    PortType parent_PortType (void);
     ///@}
   };
 }

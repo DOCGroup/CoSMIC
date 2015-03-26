@@ -3,8 +3,15 @@
 project (PICML_DeploymentPlanComponent): picml_xml, game_mga_interpreter, picml_game_mga, game_mga_utils, cosmic_lib {
   sharedname = PICML_DeploymentPlanComponent
 
+  after += PICML_Domain_Component
+  libs  += PICML_Domain_Component
+
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
+
+  Header_Files {
+    Deployment_Handler.h
+  }
 
   Source_Files {
     Deployment_Plan_Generator.idl
@@ -15,13 +22,10 @@ project (PICML_DeploymentPlanComponent): picml_xml, game_mga_interpreter, picml_
     Configuration.cpp
     Connection_Visitor.cpp
     Connector_Visitor.cpp
-    Data_Type_Visitor.cpp
-    Data_Value_Visitor.cpp
     Deployment_Domain_Visitor.cpp
+    Deployment_Plan_Visitor.cpp
     Locality_Manager.cpp
-    DeploymentPlanVisitor.cpp
     External_Reference_Visitor.cpp
-    XML_Document.cpp
   }
 
   Resource_Files {

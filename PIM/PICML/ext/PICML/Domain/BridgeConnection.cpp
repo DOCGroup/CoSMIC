@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/TargetElements/Interconnect.h"
 #include "PICML/TargetElements/Bridge.h"
 #include "PICML/Domain/Domain.h"
+#include "PICML/TargetElements/Interconnect.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string BridgeConnection_Impl::metaname ("BridgeConnection");
 
   //
-  // _create (const Domain_in)
+  // is_abstract
   //
-  BridgeConnection BridgeConnection_Impl::_create (const Domain_in parent)
+  const bool BridgeConnection_Impl::is_abstract = false;
+
+  //
+  // _create (const Domain_in, Interconnect_in src, Bridge_in dst)
+  //
+  BridgeConnection BridgeConnection_Impl::_create (const Domain_in parent, Interconnect_in src, Bridge_in dst)
   {
-    return ::GAME::Mga::create_object < BridgeConnection > (parent, BridgeConnection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, BridgeConnection_Impl::metaname, src, dst);
   }
 
   //

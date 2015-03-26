@@ -23,11 +23,16 @@ namespace PICML
   const std::string InEventPortInstance_Impl::metaname ("InEventPortInstance");
 
   //
+  // is_abstract
+  //
+  const bool InEventPortInstance_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentInstance_in)
   //
   InEventPortInstance InEventPortInstance_Impl::_create (const ComponentInstance_in parent)
   {
-    return ::GAME::Mga::create_object < InEventPortInstance > (parent, InEventPortInstance_Impl::metaname);
+    return ::GAME::Mga::create < InEventPortInstance > (parent, InEventPortInstance_Impl::metaname);
   }
 
   //
@@ -49,21 +54,21 @@ namespace PICML
   //
   bool InEventPortInstance_Impl::InEventPort_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_InEventPort
+  // refers_to_InEventPort
   //
-  void InEventPortInstance_Impl::set_InEventPort (InEventPort_in item)
+  void InEventPortInstance_Impl::refers_to_InEventPort (InEventPort_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_InEventPort
+  // refers_to_InEventPort
   //
-  InEventPort InEventPortInstance_Impl::get_InEventPort (void) const
+  InEventPort InEventPortInstance_Impl::refers_to_InEventPort (void) const
   {
     return InEventPort::_narrow (this->refers_to ());
   }

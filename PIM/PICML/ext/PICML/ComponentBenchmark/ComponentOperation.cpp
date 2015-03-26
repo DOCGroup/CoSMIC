@@ -24,11 +24,16 @@ namespace PICML
   const std::string ComponentOperation_Impl::metaname ("ComponentOperation");
 
   //
-  // _create (const BenchmarkAnalysis_in)
+  // is_abstract
   //
-  ComponentOperation ComponentOperation_Impl::_create (const BenchmarkAnalysis_in parent)
+  const bool ComponentOperation_Impl::is_abstract = false;
+
+  //
+  // _create (const BenchmarkAnalysis_in, OperationRef_in src, CompRef_in dst)
+  //
+  ComponentOperation ComponentOperation_Impl::_create (const BenchmarkAnalysis_in parent, OperationRef_in src, CompRef_in dst)
   {
-    return ::GAME::Mga::create_object < ComponentOperation > (parent, ComponentOperation_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ComponentOperation_Impl::metaname, src, dst);
   }
 
   //

@@ -1,6 +1,0 @@
-// $Id$
-
-project : udm, picmllib {
-  after += PICML_UDM_Utils
-  libs  += PICML_UDM_Utils
-}

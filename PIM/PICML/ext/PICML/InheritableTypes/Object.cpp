@@ -24,11 +24,16 @@ namespace PICML
   const std::string Object_Impl::metaname ("Object");
 
   //
+  // is_abstract
+  //
+  const bool Object_Impl::is_abstract = false;
+
+  //
   // _create (const Package_in)
   //
   Object Object_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < Object > (parent, Object_Impl::metaname);
+    return ::GAME::Mga::create < Object > (parent, Object_Impl::metaname);
   }
 
   //
@@ -36,7 +41,7 @@ namespace PICML
   //
   Object Object_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < Object > (parent, Object_Impl::metaname);
+    return ::GAME::Mga::create < Object > (parent, Object_Impl::metaname);
   }
 
   //

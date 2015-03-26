@@ -18,6 +18,11 @@ namespace DQML
   const std::string DomainEntity_Impl::metaname ("DomainEntity");
 
   //
+  // is_abstract
+  //
+  const bool DomainEntity_Impl::is_abstract = true;
+
+  //
   // parent_DDSQoS
   //
   DDSQoS DomainEntity_Impl::parent_DDSQoS (void)

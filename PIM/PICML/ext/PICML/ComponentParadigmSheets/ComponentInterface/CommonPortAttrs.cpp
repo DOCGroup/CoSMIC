@@ -15,5 +15,10 @@ namespace PICML
   // metaname
   //
   const std::string CommonPortAttrs_Impl::metaname ("CommonPortAttrs");
+
+  //
+  // is_abstract
+  //
+  const bool CommonPortAttrs_Impl::is_abstract = true;
 }
 

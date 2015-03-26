@@ -23,11 +23,16 @@ namespace DQML
   const std::string SubscriptionKeyQosPolicy_Impl::metaname ("SubscriptionKeyQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool SubscriptionKeyQosPolicy_Impl::is_abstract = false;
+
+  //
   // _create (const DataReaderQos_in)
   //
   SubscriptionKeyQosPolicy SubscriptionKeyQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
-    return ::GAME::Mga::create_object < SubscriptionKeyQosPolicy > (parent, SubscriptionKeyQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < SubscriptionKeyQosPolicy > (parent, SubscriptionKeyQosPolicy_Impl::metaname);
   }
 
   //
@@ -35,7 +40,7 @@ namespace DQML
   //
   SubscriptionKeyQosPolicy SubscriptionKeyQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < SubscriptionKeyQosPolicy > (parent, SubscriptionKeyQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < SubscriptionKeyQosPolicy > (parent, SubscriptionKeyQosPolicy_Impl::metaname);
   }
 
   //

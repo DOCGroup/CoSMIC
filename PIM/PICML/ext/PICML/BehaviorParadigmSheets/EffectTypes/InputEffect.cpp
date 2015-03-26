@@ -11,16 +11,16 @@
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/StateBase.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/State.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/LoopState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/WhileState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/DoWhileState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/ForState.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/State.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -34,12 +34,9 @@ namespace PICML
   const std::string InputEffect_Impl::metaname ("InputEffect");
 
   //
-  // _create (const BehaviorModel_in)
+  // is_abstract
   //
-  InputEffect InputEffect_Impl::_create (const BehaviorModel_in parent)
-  {
-    return ::GAME::Mga::create_object < InputEffect > (parent, InputEffect_Impl::metaname);
-  }
+  const bool InputEffect_Impl::is_abstract = false;
 
   //
   // accept

@@ -47,11 +47,14 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static PathProperty _create (const Paths_in parent);
+    static PathProperty _create (const Paths_in parent, Path_in src, Property_in dst);
     ///@}
 
     // Default constructor.

@@ -46,6 +46,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     ComponentImplementation_Impl (void);
 
@@ -68,13 +71,18 @@ namespace PICML
     ///@{
 
     /// Get the src Implements connection.
-    size_t src_Implements (std::vector <Implements> & items) const;
-
-    /// Get the src ImplementationDependsOn connection.
-    size_t src_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const;
+    size_t src_of_Implements (std::vector <Implements> & items) const;
+    bool has_src_of_Implements (void) const;
+    Implements src_of_Implements (void) const;
 
     /// Get the src ImplementationCapability connection.
-    size_t src_ImplementationCapability (std::vector <ImplementationCapability> & items) const;
+    size_t src_of_ImplementationCapability (std::vector <ImplementationCapability> & items) const;
+    bool has_src_of_ImplementationCapability (void) const;
+    ImplementationCapability src_of_ImplementationCapability (void) const;
+
+    /// Get the src ImplementationDependsOn connection.
+    size_t src_of_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const;
+    GAME::Mga::Collection_T <ImplementationDependsOn> src_of_ImplementationDependsOn (void) const;
     ///@}
   };
 }

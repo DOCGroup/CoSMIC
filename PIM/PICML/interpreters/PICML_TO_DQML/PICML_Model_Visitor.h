@@ -29,7 +29,7 @@ namespace PICML_To_DQML
 
     ~PICML_Model_Visitor (void);
 
-    void visit_RootFolder (GAME::Mga::RootFolder_in item);
+    void visit_RootFolder (PICML::RootFolder_in item);
     void visit_ComponentImplementations (PICML::ComponentImplementations_in item);
     void visit_ComponentImplementationContainer (PICML::ComponentImplementationContainer_in item);
 

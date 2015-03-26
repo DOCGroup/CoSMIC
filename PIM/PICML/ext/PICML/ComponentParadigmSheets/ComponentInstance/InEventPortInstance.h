@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export InEventPortInstance_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
-    public virtual PortInstance_Impl,
-    public virtual InEventPortEnd_Impl
+    public virtual InEventPortEnd_Impl,
+    public virtual PortInstance_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -50,6 +50,9 @@ namespace PICML
 
     /// Metaname for this extension class.
     static const std::string metaname;
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
 
     /**
      * @name Factory Methods
@@ -81,8 +84,8 @@ namespace PICML
      */
     ///@{
     bool InEventPort_is_nil (void) const;
-    InEventPort get_InEventPort (void) const;
-    void set_InEventPort (InEventPort_in item);
+    InEventPort refers_to_InEventPort (void) const;
+    void refers_to_InEventPort (InEventPort_in item);
     ///@}
   };
 }

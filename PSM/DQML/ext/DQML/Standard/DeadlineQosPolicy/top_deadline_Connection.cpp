@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/QoSPolicies/DeadlineQosPolicy.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/DDSEntities/Topic.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -24,11 +24,16 @@ namespace DQML
   const std::string top_deadline_Connection_Impl::metaname ("top_deadline_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // is_abstract
   //
-  top_deadline_Connection top_deadline_Connection_Impl::_create (const DDSQoS_in parent)
+  const bool top_deadline_Connection_Impl::is_abstract = false;
+
+  //
+  // _create (const DDSQoS_in, Topic_in src, DeadlineQosPolicy_in dst)
+  //
+  top_deadline_Connection top_deadline_Connection_Impl::_create (const DDSQoS_in parent, Topic_in src, DeadlineQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < top_deadline_Connection > (parent, top_deadline_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, top_deadline_Connection_Impl::metaname, src, dst);
   }
 
   //

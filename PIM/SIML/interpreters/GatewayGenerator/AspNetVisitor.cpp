@@ -231,8 +231,8 @@ bool
 AspNetVisitor::visitPort (const WSML::Port& object)
 {
   set<PortProxy> proxies = object->getOutPortProxyLinks();
-  for_each (proxies.begin(), proxies.end(),
-            bind (&PortProxyImpl::accept, _1, ref (this)));
+  for (PortProxy proxy : proxies)
+    proxy->accept (this);
   return true;
 }
 
@@ -245,8 +245,8 @@ AspNetVisitor::visitService(const Service& object)
   this->defName_ = def->getName();
   this->serviceName_ = moduleName;
   set<WSML::Port> ports = object->getPort();
-  for_each (ports.begin(), ports.end(),
-            bind (&WSML::PortImpl::accept, _1, ref (this)));
+  for (WSML::Port port : ports)
+    port->accept (this);
 
   string upperModuleName;
   transform (moduleName.begin(), moduleName.end(),

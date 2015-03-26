@@ -24,11 +24,16 @@ namespace DQML
   const std::string ShareQosPolicy_Impl::metaname ("ShareQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool ShareQosPolicy_Impl::is_abstract = false;
+
+  //
   // _create (const SubscriberQos_in)
   //
   ShareQosPolicy ShareQosPolicy_Impl::_create (const SubscriberQos_in parent)
   {
-    return ::GAME::Mga::create_object < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
   }
 
   //
@@ -36,7 +41,7 @@ namespace DQML
   //
   ShareQosPolicy ShareQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
-    return ::GAME::Mga::create_object < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
   }
 
   //
@@ -44,7 +49,7 @@ namespace DQML
   //
   ShareQosPolicy ShareQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
   }
 
   //

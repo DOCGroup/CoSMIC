@@ -2,6 +2,7 @@
 
 project (PICML_Domain_Component) : game_mga_interpreter, picml_xml, picml_game_mga, cosmic_lib {
   sharedname = PICML_Domain_Component
+  dynamicflags += DOMAIN_COMPONENT_BUILD_DLL
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

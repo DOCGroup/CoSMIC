@@ -47,12 +47,15 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static DataType _create (const ComponentPropertyDescription_in parent);
     static DataType _create (const SatisfierProperty_in parent);
+    static DataType _create (const ComponentPropertyDescription_in parent);
     ///@}
 
     // Default constructor.
@@ -71,8 +74,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    ComponentPropertyDescription parent_ComponentPropertyDescription (void);
     SatisfierProperty parent_SatisfierProperty (void);
+    ComponentPropertyDescription parent_ComponentPropertyDescription (void);
     ///@}
 
     /**
@@ -80,8 +83,8 @@ namespace PICML
      */
     ///@{
     bool MemberType_is_nil (void) const;
-    MemberType get_MemberType (void) const;
-    void set_MemberType (MemberType_in item);
+    MemberType refers_to_MemberType (void) const;
+    void refers_to_MemberType (MemberType_in item);
     ///@}
   };
 }

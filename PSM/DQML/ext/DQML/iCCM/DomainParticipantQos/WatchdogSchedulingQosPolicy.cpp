@@ -22,11 +22,16 @@ namespace DQML
   const std::string WatchdogSchedulingQosPolicy_Impl::metaname ("WatchdogSchedulingQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool WatchdogSchedulingQosPolicy_Impl::is_abstract = false;
+
+  //
   // _create (const Participant_in)
   //
   WatchdogSchedulingQosPolicy WatchdogSchedulingQosPolicy_Impl::_create (const Participant_in parent)
   {
-    return ::GAME::Mga::create_object < WatchdogSchedulingQosPolicy > (parent, WatchdogSchedulingQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < WatchdogSchedulingQosPolicy > (parent, WatchdogSchedulingQosPolicy_Impl::metaname);
   }
 
   //

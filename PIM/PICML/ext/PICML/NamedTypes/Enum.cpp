@@ -25,11 +25,16 @@ namespace PICML
   const std::string Enum_Impl::metaname ("Enum");
 
   //
+  // is_abstract
+  //
+  const bool Enum_Impl::is_abstract = false;
+
+  //
   // _create (const HasOperations_in)
   //
   Enum Enum_Impl::_create (const HasOperations_in parent)
   {
-    return ::GAME::Mga::create_object < Enum > (parent, Enum_Impl::metaname);
+    return ::GAME::Mga::create < Enum > (parent, Enum_Impl::metaname);
   }
 
   //
@@ -37,7 +42,7 @@ namespace PICML
   //
   Enum Enum_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < Enum > (parent, Enum_Impl::metaname);
+    return ::GAME::Mga::create < Enum > (parent, Enum_Impl::metaname);
   }
 
   //
@@ -45,7 +50,7 @@ namespace PICML
   //
   Enum Enum_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < Enum > (parent, Enum_Impl::metaname);
+    return ::GAME::Mga::create < Enum > (parent, Enum_Impl::metaname);
   }
 
   //

@@ -9,8 +9,8 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
-#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace DQML
   const std::string SubscriberConnection_Impl::metaname ("SubscriberConnection");
 
   //
-  // _create (const Participant_in)
+  // is_abstract
   //
-  SubscriberConnection SubscriberConnection_Impl::_create (const Participant_in parent)
+  const bool SubscriberConnection_Impl::is_abstract = false;
+
+  //
+  // _create (const Participant_in, DataReaderQos_in src, SubscriberQos_in dst)
+  //
+  SubscriberConnection SubscriberConnection_Impl::_create (const Participant_in parent, DataReaderQos_in src, SubscriberQos_in dst)
   {
-    return ::GAME::Mga::create_object < SubscriberConnection > (parent, SubscriberConnection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, SubscriberConnection_Impl::metaname, src, dst);
   }
 
   //

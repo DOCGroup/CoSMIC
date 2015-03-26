@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Publish.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,11 +28,16 @@ namespace PICML
   const std::string ConnectorInstance_Impl::metaname ("ConnectorInstance");
 
   //
+  // is_abstract
+  //
+  const bool ConnectorInstance_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAssembly_in)
   //
   ConnectorInstance ConnectorInstance_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < ConnectorInstance > (parent, ConnectorInstance_Impl::metaname);
+    return ::GAME::Mga::create < ConnectorInstance > (parent, ConnectorInstance_Impl::metaname);
   }
 
   //
@@ -58,35 +63,67 @@ namespace PICML
   }
 
   //
-  // src_Consume
+  // src_of_Consume
   //
-  size_t ConnectorInstance_Impl::src_Consume (std::vector <Consume> & items) const
+  size_t ConnectorInstance_Impl::src_of_Consume (std::vector <Consume> & items) const
   {
     return this->in_connections <Consume> (items);
   }
 
   //
-  // src_ConnectorToFacet
+  // src_of_Consume
   //
-  size_t ConnectorInstance_Impl::src_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const
+  GAME::Mga::Collection_T <Consume> ConnectorInstance_Impl::src_of_Consume (void) const
+  {
+    return this->in_connections <Consume> ("src");
+  }
+
+  //
+  // src_of_ConnectorToFacet
+  //
+  size_t ConnectorInstance_Impl::src_of_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const
   {
     return this->in_connections <ConnectorToFacet> (items);
   }
 
   //
-  // dst_Publish
+  // src_of_ConnectorToFacet
   //
-  size_t ConnectorInstance_Impl::dst_Publish (std::vector <Publish> & items) const
+  GAME::Mga::Collection_T <ConnectorToFacet> ConnectorInstance_Impl::src_of_ConnectorToFacet (void) const
+  {
+    return this->in_connections <ConnectorToFacet> ("src");
+  }
+
+  //
+  // dst_of_ConnectorToReceptacle
+  //
+  size_t ConnectorInstance_Impl::dst_of_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const
+  {
+    return this->in_connections <ConnectorToReceptacle> (items);
+  }
+
+  //
+  // dst_of_ConnectorToReceptacle
+  //
+  GAME::Mga::Collection_T <ConnectorToReceptacle> ConnectorInstance_Impl::dst_of_ConnectorToReceptacle (void) const
+  {
+    return this->in_connections <ConnectorToReceptacle> ("dst");
+  }
+
+  //
+  // dst_of_Publish
+  //
+  size_t ConnectorInstance_Impl::dst_of_Publish (std::vector <Publish> & items) const
   {
     return this->in_connections <Publish> (items);
   }
 
   //
-  // dst_ConnectorToReceptacle
+  // dst_of_Publish
   //
-  size_t ConnectorInstance_Impl::dst_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const
+  GAME::Mga::Collection_T <Publish> ConnectorInstance_Impl::dst_of_Publish (void) const
   {
-    return this->in_connections <ConnectorToReceptacle> (items);
+    return this->in_connections <Publish> ("dst");
   }
 
   //

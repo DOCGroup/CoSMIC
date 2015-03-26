@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/PublishesConnection.h"
 #include "DQML/iCCM/DomainQos/DomainQosFolder.h"
+#include "DQML/iCCM/DomainQos/PublishesConnection.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -24,11 +24,16 @@ namespace DQML
   const std::string Domain_Impl::metaname ("Domain");
 
   //
+  // is_abstract
+  //
+  const bool Domain_Impl::is_abstract = false;
+
+  //
   // _create (const DomainQosFolder_in)
   //
   Domain Domain_Impl::_create (const DomainQosFolder_in parent)
   {
-    return ::GAME::Mga::create_root_object < Domain > (parent, Domain_Impl::metaname);
+    return ::GAME::Mga::create < Domain > (parent, Domain_Impl::metaname);
   }
 
   //

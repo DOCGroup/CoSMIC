@@ -10,11 +10,11 @@
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/Object.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,11 +28,16 @@ namespace PICML
   const std::string Inherits_Impl::metaname ("Inherits");
 
   //
+  // is_abstract
+  //
+  const bool Inherits_Impl::is_abstract = false;
+
+  //
   // _create (const Inheritable_in)
   //
   Inherits Inherits_Impl::_create (const Inheritable_in parent)
   {
-    return ::GAME::Mga::create_object < Inherits > (parent, Inherits_Impl::metaname);
+    return ::GAME::Mga::create < Inherits > (parent, Inherits_Impl::metaname);
   }
 
   //
@@ -62,21 +67,21 @@ namespace PICML
   //
   bool Inherits_Impl::Inheritable_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_Inheritable
+  // refers_to_Inheritable
   //
-  void Inherits_Impl::set_Inheritable (Inheritable_in item)
+  void Inherits_Impl::refers_to_Inheritable (Inheritable_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Inheritable
+  // refers_to_Inheritable
   //
-  Inheritable Inherits_Impl::get_Inheritable (void) const
+  Inheritable Inherits_Impl::refers_to_Inheritable (void) const
   {
     return Inheritable::_narrow (this->refers_to ());
   }

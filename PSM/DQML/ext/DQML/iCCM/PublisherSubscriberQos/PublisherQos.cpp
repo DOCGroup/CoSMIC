@@ -8,11 +8,11 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/PublisherConnection.h"
-#include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
+#include "DQML/iCCM/DomainQos/PublisherConnection.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -27,11 +27,16 @@ namespace DQML
   const std::string PublisherQos_Impl::metaname ("PublisherQos");
 
   //
+  // is_abstract
+  //
+  const bool PublisherQos_Impl::is_abstract = false;
+
+  //
   // _create (const Participant_in)
   //
   PublisherQos PublisherQos_Impl::_create (const Participant_in parent)
   {
-    return ::GAME::Mga::create_object < PublisherQos > (parent, PublisherQos_Impl::metaname);
+    return ::GAME::Mga::create < PublisherQos > (parent, PublisherQos_Impl::metaname);
   }
 
   //
@@ -57,27 +62,19 @@ namespace DQML
   }
 
   //
-  // dst_PublisherConnection
+  // dst_of_PublisherConnection
   //
-  size_t PublisherQos_Impl::dst_PublisherConnection (std::vector <PublisherConnection> & items) const
+  size_t PublisherQos_Impl::dst_of_PublisherConnection (std::vector <PublisherConnection> & items) const
   {
     return this->in_connections <PublisherConnection> (items);
   }
 
   //
-  // has_PartitionQosPolicy
+  // dst_of_PublisherConnection
   //
-  bool PublisherQos_Impl::has_PartitionQosPolicy (void) const
+  GAME::Mga::Collection_T <PublisherConnection> PublisherQos_Impl::dst_of_PublisherConnection (void) const
   {
-    return this->children <PartitionQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_PartitionQosPolicy
-  //
-  PartitionQosPolicy PublisherQos_Impl::get_PartitionQosPolicy (void) const
-  {
-    return this->children <PartitionQosPolicy> ().first ();
+    return this->in_connections <PublisherConnection> ("dst");
   }
 
   //
@@ -94,6 +91,22 @@ namespace DQML
   EntityFactoryQosPolicy PublisherQos_Impl::get_EntityFactoryQosPolicy (void) const
   {
     return this->children <EntityFactoryQosPolicy> ().first ();
+  }
+
+  //
+  // has_PartitionQosPolicy
+  //
+  bool PublisherQos_Impl::has_PartitionQosPolicy (void) const
+  {
+    return this->children <PartitionQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_PartitionQosPolicy
+  //
+  PartitionQosPolicy PublisherQos_Impl::get_PartitionQosPolicy (void) const
+  {
+    return this->children <PartitionQosPolicy> ().first ();
   }
 
   //

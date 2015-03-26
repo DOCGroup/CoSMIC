@@ -49,6 +49,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -79,6 +82,9 @@ namespace PICML
      */
     ///@{
 
+    bool has_FileRef (void) const;
+    FileRef get_FileRef (void) const;
+
     bool has_ImplementationArtifactReference (void) const;
     ImplementationArtifactReference get_ImplementationArtifactReference (void) const;
 
@@ -87,9 +93,6 @@ namespace PICML
 
     bool has_ComponentServantArtifact (void) const;
     ComponentServantArtifact get_ComponentServantArtifact (void) const;
-
-    bool has_FileRef (void) const;
-    FileRef get_FileRef (void) const;
     ///@}
   };
 }

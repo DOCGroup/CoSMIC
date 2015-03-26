@@ -47,11 +47,14 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static MonolithDeployRequirement _create (const ImplementationContainer_in parent);
+    static MonolithDeployRequirement _create (const ImplementationContainer_in parent, MonolithicImplementationBase_in src, ImplementationRequirement_in dst);
     ///@}
 
     // Default constructor.

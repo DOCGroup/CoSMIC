@@ -26,11 +26,16 @@ namespace PICML
   const std::string ECRequirements_Impl::metaname ("ECRequirements");
 
   //
+  // is_abstract
+  //
+  const bool ECRequirements_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAssembly_in)
   //
   ECRequirements ECRequirements_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < ECRequirements > (parent, ECRequirements_Impl::metaname);
+    return ::GAME::Mga::create < ECRequirements > (parent, ECRequirements_Impl::metaname);
   }
 
   //
@@ -38,7 +43,7 @@ namespace PICML
   //
   ECRequirements ECRequirements_Impl::_create (const ArtifactContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ECRequirements > (parent, ECRequirements_Impl::metaname);
+    return ::GAME::Mga::create < ECRequirements > (parent, ECRequirements_Impl::metaname);
   }
 
   //
@@ -46,7 +51,7 @@ namespace PICML
   //
   ECRequirements ECRequirements_Impl::_create (const PackageConfigurationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ECRequirements > (parent, ECRequirements_Impl::metaname);
+    return ::GAME::Mga::create < ECRequirements > (parent, ECRequirements_Impl::metaname);
   }
 
   //

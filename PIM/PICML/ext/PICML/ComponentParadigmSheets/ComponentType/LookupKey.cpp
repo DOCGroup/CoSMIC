@@ -10,8 +10,8 @@
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/LookupKeyType.h"
-#include "PICML/InheritableTypes/ValueObject.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InheritableTypes/ValueObject.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,11 +25,16 @@ namespace PICML
   const std::string LookupKey_Impl::metaname ("LookupKey");
 
   //
+  // is_abstract
+  //
+  const bool LookupKey_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentFactory_in)
   //
   LookupKey LookupKey_Impl::_create (const ComponentFactory_in parent)
   {
-    return ::GAME::Mga::create_object < LookupKey > (parent, LookupKey_Impl::metaname);
+    return ::GAME::Mga::create < LookupKey > (parent, LookupKey_Impl::metaname);
   }
 
   //
@@ -59,21 +64,21 @@ namespace PICML
   //
   bool LookupKey_Impl::LookupKeyType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_LookupKeyType
+  // refers_to_LookupKeyType
   //
-  void LookupKey_Impl::set_LookupKeyType (LookupKeyType_in item)
+  void LookupKey_Impl::refers_to_LookupKeyType (LookupKeyType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_LookupKeyType
+  // refers_to_LookupKeyType
   //
-  LookupKeyType LookupKey_Impl::get_LookupKeyType (void) const
+  LookupKeyType LookupKey_Impl::refers_to_LookupKeyType (void) const
   {
     return LookupKeyType::_narrow (this->refers_to ());
   }

@@ -47,11 +47,14 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static InstanceMapping _create (const DeploymentPlan_in parent);
+    static InstanceMapping _create (const DeploymentPlan_in parent, CollocationGroup_in src, NodeReference_in dst);
     ///@}
 
     // Default constructor.

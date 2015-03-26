@@ -23,11 +23,16 @@ namespace PICML
   const std::string InEventPortDelegate_Impl::metaname ("InEventPortDelegate");
 
   //
+  // is_abstract
+  //
+  const bool InEventPortDelegate_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAssembly_in)
   //
   InEventPortDelegate InEventPortDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < InEventPortDelegate > (parent, InEventPortDelegate_Impl::metaname);
+    return ::GAME::Mga::create < InEventPortDelegate > (parent, InEventPortDelegate_Impl::metaname);
   }
 
   //
@@ -53,11 +58,19 @@ namespace PICML
   }
 
   //
-  // src_EventSinkDelegate
+  // src_of_EventSinkDelegate
   //
-  size_t InEventPortDelegate_Impl::src_EventSinkDelegate (std::vector <EventSinkDelegate> & items) const
+  size_t InEventPortDelegate_Impl::src_of_EventSinkDelegate (std::vector <EventSinkDelegate> & items) const
   {
     return this->in_connections <EventSinkDelegate> (items);
+  }
+
+  //
+  // src_of_EventSinkDelegate
+  //
+  GAME::Mga::Collection_T <EventSinkDelegate> InEventPortDelegate_Impl::src_of_EventSinkDelegate (void) const
+  {
+    return this->in_connections <EventSinkDelegate> ("src");
   }
 }
 

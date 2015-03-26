@@ -23,11 +23,16 @@ namespace PICML
   const std::string NameParameter_Impl::metaname ("NameParameter");
 
   //
+  // is_abstract
+  //
+  const bool NameParameter_Impl::is_abstract = false;
+
+  //
   // _create (const Package_in)
   //
   NameParameter NameParameter_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < NameParameter > (parent, NameParameter_Impl::metaname);
+    return ::GAME::Mga::create < NameParameter > (parent, NameParameter_Impl::metaname);
   }
 
   //

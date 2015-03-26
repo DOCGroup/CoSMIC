@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/QoSPolicies/ResourceLimitsQosPolicy.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/DDSEntities/Topic.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -24,11 +24,16 @@ namespace DQML
   const std::string topic_res_Connection_Impl::metaname ("topic_res_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // is_abstract
   //
-  topic_res_Connection topic_res_Connection_Impl::_create (const DDSQoS_in parent)
+  const bool topic_res_Connection_Impl::is_abstract = false;
+
+  //
+  // _create (const DDSQoS_in, Topic_in src, ResourceLimitsQosPolicy_in dst)
+  //
+  topic_res_Connection topic_res_Connection_Impl::_create (const DDSQoS_in parent, Topic_in src, ResourceLimitsQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < topic_res_Connection > (parent, topic_res_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, topic_res_Connection_Impl::metaname, src, dst);
   }
 
   //

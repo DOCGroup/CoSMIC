@@ -47,11 +47,14 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static ConnectorImplements _create (const ConnectorImplementationContainer_in parent);
+    static ConnectorImplements _create (const ConnectorImplementationContainer_in parent, ConnectorImplementation_in src, ConnectorType_in dst);
     ///@}
 
     // Default constructor.

@@ -23,11 +23,16 @@ namespace PICML
   const std::string ValueObject_Impl::metaname ("ValueObject");
 
   //
+  // is_abstract
+  //
+  const bool ValueObject_Impl::is_abstract = false;
+
+  //
   // _create (const Package_in)
   //
   ValueObject ValueObject_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < ValueObject > (parent, ValueObject_Impl::metaname);
+    return ::GAME::Mga::create < ValueObject > (parent, ValueObject_Impl::metaname);
   }
 
   //
@@ -35,7 +40,7 @@ namespace PICML
   //
   ValueObject ValueObject_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < ValueObject > (parent, ValueObject_Impl::metaname);
+    return ::GAME::Mga::create < ValueObject > (parent, ValueObject_Impl::metaname);
   }
 
   //

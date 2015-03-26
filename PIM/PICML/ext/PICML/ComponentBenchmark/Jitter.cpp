@@ -23,11 +23,16 @@ namespace PICML
   const std::string Jitter_Impl::metaname ("Jitter");
 
   //
+  // is_abstract
+  //
+  const bool Jitter_Impl::is_abstract = false;
+
+  //
   // _create (const MetricsBase_in)
   //
   Jitter Jitter_Impl::_create (const MetricsBase_in parent)
   {
-    return ::GAME::Mga::create_object < Jitter > (parent, Jitter_Impl::metaname);
+    return ::GAME::Mga::create < Jitter > (parent, Jitter_Impl::metaname);
   }
 
   //
@@ -35,7 +40,7 @@ namespace PICML
   //
   Jitter Jitter_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < Jitter > (parent, Jitter_Impl::metaname);
+    return ::GAME::Mga::create < Jitter > (parent, Jitter_Impl::metaname);
   }
 
   //

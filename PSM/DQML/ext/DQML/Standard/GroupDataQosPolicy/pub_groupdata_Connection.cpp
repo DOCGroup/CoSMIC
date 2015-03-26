@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/DDSEntities/Publisher.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -24,11 +24,16 @@ namespace DQML
   const std::string pub_groupdata_Connection_Impl::metaname ("pub_groupdata_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // is_abstract
   //
-  pub_groupdata_Connection pub_groupdata_Connection_Impl::_create (const DDSQoS_in parent)
+  const bool pub_groupdata_Connection_Impl::is_abstract = false;
+
+  //
+  // _create (const DDSQoS_in, Publisher_in src, GroupDataQosPolicy_in dst)
+  //
+  pub_groupdata_Connection pub_groupdata_Connection_Impl::_create (const DDSQoS_in parent, Publisher_in src, GroupDataQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < pub_groupdata_Connection > (parent, pub_groupdata_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, pub_groupdata_Connection_Impl::metaname, src, dst);
   }
 
   //

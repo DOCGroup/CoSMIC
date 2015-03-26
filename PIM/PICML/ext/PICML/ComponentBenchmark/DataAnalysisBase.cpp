@@ -21,6 +21,11 @@ namespace PICML
   const std::string DataAnalysisBase_Impl::metaname ("DataAnalysisBase");
 
   //
+  // is_abstract
+  //
+  const bool DataAnalysisBase_Impl::is_abstract = true;
+
+  //
   // parent_MetricsBase
   //
   MetricsBase DataAnalysisBase_Impl::parent_MetricsBase (void)

@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -100,17 +103,22 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src PackageConfigProperty connection.
-    size_t src_PackageConfigProperty (std::vector <PackageConfigProperty> & items) const;
+    /// Get the src Implementation connection.
+    size_t src_of_Implementation (std::vector <Implementation> & items) const;
+    GAME::Mga::Collection_T <Implementation> src_of_Implementation (void) const;
 
     /// Get the src PackageInfoProperty connection.
-    size_t src_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const;
+    size_t src_of_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const;
+    GAME::Mga::Collection_T <PackageInfoProperty> src_of_PackageInfoProperty (void) const;
 
-    /// Get the src Implementation connection.
-    size_t src_Implementation (std::vector <Implementation> & items) const;
+    /// Get the src PackageConfigProperty connection.
+    size_t src_of_PackageConfigProperty (std::vector <PackageConfigProperty> & items) const;
+    GAME::Mga::Collection_T <PackageConfigProperty> src_of_PackageConfigProperty (void) const;
 
     /// Get the src PackageInterface connection.
-    size_t src_PackageInterface (std::vector <PackageInterface> & items) const;
+    size_t src_of_PackageInterface (std::vector <PackageInterface> & items) const;
+    bool has_src_of_PackageInterface (void) const;
+    PackageInterface src_of_PackageInterface (void) const;
     ///@}
 
     /**
@@ -119,7 +127,8 @@ namespace PICML
     ///@{
 
     /// Get the dst PackageConfBasePackage connection.
-    size_t dst_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const;
+    size_t dst_of_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const;
+    GAME::Mga::Collection_T <PackageConfBasePackage> dst_of_PackageConfBasePackage (void) const;
     ///@}
   };
 }

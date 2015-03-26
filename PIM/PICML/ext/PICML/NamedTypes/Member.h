@@ -47,14 +47,17 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static Member _create (const Exception_in parent);
     static Member _create (const Aggregate_in parent);
     static Member _create (const ObjectByValue_in parent);
     static Member _create (const SwitchedAggregate_in parent);
+    static Member _create (const Exception_in parent);
     ///@}
 
     // Default constructor.
@@ -73,10 +76,10 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    Exception parent_Exception (void);
     Aggregate parent_Aggregate (void);
     ObjectByValue parent_ObjectByValue (void);
     SwitchedAggregate parent_SwitchedAggregate (void);
+    Exception parent_Exception (void);
     ///@}
 
     /**
@@ -85,10 +88,13 @@ namespace PICML
     ///@{
 
     /// Get the src MakeMemberPrivate connection.
-    size_t src_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const;
+    size_t src_of_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const;
+    bool has_src_of_MakeMemberPrivate (void) const;
+    MakeMemberPrivate src_of_MakeMemberPrivate (void) const;
 
     /// Get the src LabelConnection connection.
-    size_t src_LabelConnection (std::vector <LabelConnection> & items) const;
+    size_t src_of_LabelConnection (std::vector <LabelConnection> & items) const;
+    GAME::Mga::Collection_T <LabelConnection> src_of_LabelConnection (void) const;
     ///@}
 
     /**
@@ -97,7 +103,9 @@ namespace PICML
     ///@{
 
     /// Get the dst KeyMember connection.
-    size_t dst_KeyMember (std::vector <KeyMember> & items) const;
+    size_t dst_of_KeyMember (std::vector <KeyMember> & items) const;
+    bool has_dst_of_KeyMember (void) const;
+    KeyMember dst_of_KeyMember (void) const;
     ///@}
 
     /**
@@ -105,8 +113,8 @@ namespace PICML
      */
     ///@{
     bool MemberType_is_nil (void) const;
-    MemberType get_MemberType (void) const;
-    void set_MemberType (MemberType_in item);
+    MemberType refers_to_MemberType (void) const;
+    void refers_to_MemberType (MemberType_in item);
     ///@}
   };
 }

@@ -8,15 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -30,11 +30,16 @@ namespace PICML
   const std::string Consume_Impl::metaname ("Consume");
 
   //
-  // _create (const ComponentAssembly_in)
+  // is_abstract
   //
-  Consume Consume_Impl::_create (const ComponentAssembly_in parent)
+  const bool Consume_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentAssembly_in, ConnectorInstance_in src, ExtendPortEnd_in dst)
+  //
+  Consume Consume_Impl::_create (const ComponentAssembly_in parent, ConnectorInstance_in src, ExtendPortEnd_in dst)
   {
-    return ::GAME::Mga::create_object < Consume > (parent, Consume_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, Consume_Impl::metaname, src, dst);
   }
 
   //

@@ -49,6 +49,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -81,7 +84,8 @@ namespace PICML
     ///@{
 
     /// Get the src EventSinkDelegate connection.
-    size_t src_EventSinkDelegate (std::vector <EventSinkDelegate> & items) const;
+    size_t src_of_EventSinkDelegate (std::vector <EventSinkDelegate> & items) const;
+    GAME::Mga::Collection_T <EventSinkDelegate> src_of_EventSinkDelegate (void) const;
     ///@}
   };
 }

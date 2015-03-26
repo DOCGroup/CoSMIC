@@ -49,6 +49,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -94,11 +97,11 @@ namespace PICML
 
     bool has_ComponentInstanceType (void) const;
     ComponentInstanceType get_ComponentInstanceType (void) const;
-    size_t get_AttributeInstances (std::vector <AttributeInstance> & items) const;
-    ::GAME::Mga::Collection_T <AttributeInstance> get_AttributeInstances (void) const;
+    size_t get_MirrorPortInstances (std::vector <MirrorPortInstance> & items) const;
+    ::GAME::Mga::Collection_T <MirrorPortInstance> get_MirrorPortInstances (void) const;
 
-    size_t get_RequiredRequestPortInstances (std::vector <RequiredRequestPortInstance> & items) const;
-    ::GAME::Mga::Collection_T <RequiredRequestPortInstance> get_RequiredRequestPortInstances (void) const;
+    size_t get_OutEventPortInstances (std::vector <OutEventPortInstance> & items) const;
+    ::GAME::Mga::Collection_T <OutEventPortInstance> get_OutEventPortInstances (void) const;
 
     size_t get_InEventPortInstances (std::vector <InEventPortInstance> & items) const;
     ::GAME::Mga::Collection_T <InEventPortInstance> get_InEventPortInstances (void) const;
@@ -106,14 +109,14 @@ namespace PICML
     size_t get_ProvidedRequestPortInstances (std::vector <ProvidedRequestPortInstance> & items) const;
     ::GAME::Mga::Collection_T <ProvidedRequestPortInstance> get_ProvidedRequestPortInstances (void) const;
 
-    size_t get_OutEventPortInstances (std::vector <OutEventPortInstance> & items) const;
-    ::GAME::Mga::Collection_T <OutEventPortInstance> get_OutEventPortInstances (void) const;
-
-    size_t get_MirrorPortInstances (std::vector <MirrorPortInstance> & items) const;
-    ::GAME::Mga::Collection_T <MirrorPortInstance> get_MirrorPortInstances (void) const;
-
     size_t get_ExtendedPortInstances (std::vector <ExtendedPortInstance> & items) const;
     ::GAME::Mga::Collection_T <ExtendedPortInstance> get_ExtendedPortInstances (void) const;
+
+    size_t get_AttributeInstances (std::vector <AttributeInstance> & items) const;
+    ::GAME::Mga::Collection_T <AttributeInstance> get_AttributeInstances (void) const;
+
+    size_t get_RequiredRequestPortInstances (std::vector <RequiredRequestPortInstance> & items) const;
+    ::GAME::Mga::Collection_T <RequiredRequestPortInstance> get_RequiredRequestPortInstances (void) const;
 
     size_t get_SupportsInstances (std::vector <SupportsInstance> & items) const;
     ::GAME::Mga::Collection_T <SupportsInstance> get_SupportsInstances (void) const;

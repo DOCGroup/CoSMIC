@@ -24,11 +24,16 @@ namespace PICML
   const std::string WorkLoadOperationConnection_Impl::metaname ("WorkLoadOperationConnection");
 
   //
-  // _create (const BenchmarkAnalysis_in)
+  // is_abstract
   //
-  WorkLoadOperationConnection WorkLoadOperationConnection_Impl::_create (const BenchmarkAnalysis_in parent)
+  const bool WorkLoadOperationConnection_Impl::is_abstract = false;
+
+  //
+  // _create (const BenchmarkAnalysis_in, OperationRef_in src, Task_in dst)
+  //
+  WorkLoadOperationConnection WorkLoadOperationConnection_Impl::_create (const BenchmarkAnalysis_in parent, OperationRef_in src, Task_in dst)
   {
-    return ::GAME::Mga::create_object < WorkLoadOperationConnection > (parent, WorkLoadOperationConnection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, WorkLoadOperationConnection_Impl::metaname, src, dst);
   }
 
   //

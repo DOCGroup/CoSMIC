@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PackageConfiguration/PackageConfiguration.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/Common/Requirement.h"
 #include "PICML/RealTimeRequirements/RTRequirements.h"
 #include "PICML/EventChannelRequirements/ECRequirements.h"
-#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string PackageConfSelectRequirement_Impl::metaname ("PackageConfSelectRequirement");
 
   //
-  // _create (const PackageConfigurationContainer_in)
+  // is_abstract
   //
-  PackageConfSelectRequirement PackageConfSelectRequirement_Impl::_create (const PackageConfigurationContainer_in parent)
+  const bool PackageConfSelectRequirement_Impl::is_abstract = false;
+
+  //
+  // _create (const PackageConfigurationContainer_in, PackageConfiguration_in src, Requirement_in dst)
+  //
+  PackageConfSelectRequirement PackageConfSelectRequirement_Impl::_create (const PackageConfigurationContainer_in parent, PackageConfiguration_in src, Requirement_in dst)
   {
-    return ::GAME::Mga::create_object < PackageConfSelectRequirement > (parent, PackageConfSelectRequirement_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, PackageConfSelectRequirement_Impl::metaname, src, dst);
   }
 
   //

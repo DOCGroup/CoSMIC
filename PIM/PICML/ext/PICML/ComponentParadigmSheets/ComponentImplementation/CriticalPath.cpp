@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/PathDiagram/PathReference.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string CriticalPath_Impl::metaname ("CriticalPath");
 
   //
-  // _create (const ComponentImplementationContainer_in)
+  // is_abstract
   //
-  CriticalPath CriticalPath_Impl::_create (const ComponentImplementationContainer_in parent)
+  const bool CriticalPath_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentImplementationContainer_in, ComponentAssembly_in src, PathReference_in dst)
+  //
+  CriticalPath CriticalPath_Impl::_create (const ComponentImplementationContainer_in parent, ComponentAssembly_in src, PathReference_in dst)
   {
-    return ::GAME::Mga::create_object < CriticalPath > (parent, CriticalPath_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, CriticalPath_Impl::metaname, src, dst);
   }
 
   //

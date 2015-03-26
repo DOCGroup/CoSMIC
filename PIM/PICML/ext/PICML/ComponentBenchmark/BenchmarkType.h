@@ -44,6 +44,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     BenchmarkType_Impl (void);
 
@@ -66,7 +69,9 @@ namespace PICML
     ///@{
 
     /// Get the src BenchmarkCharacteristics connection.
-    size_t src_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const;
+    size_t src_of_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const;
+    bool has_src_of_BenchmarkCharacteristics (void) const;
+    BenchmarkCharacteristics src_of_BenchmarkCharacteristics (void) const;
     ///@}
   };
 }

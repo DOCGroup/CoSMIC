@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/DeploymentPlan/CollocationGroup.h"
-#include "PICML/TargetElements/NodeReference.h"
 #include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/TargetElements/NodeReference.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string InstanceMapping_Impl::metaname ("InstanceMapping");
 
   //
-  // _create (const DeploymentPlan_in)
+  // is_abstract
   //
-  InstanceMapping InstanceMapping_Impl::_create (const DeploymentPlan_in parent)
+  const bool InstanceMapping_Impl::is_abstract = false;
+
+  //
+  // _create (const DeploymentPlan_in, CollocationGroup_in src, NodeReference_in dst)
+  //
+  InstanceMapping InstanceMapping_Impl::_create (const DeploymentPlan_in parent, CollocationGroup_in src, NodeReference_in dst)
   {
-    return ::GAME::Mga::create_object < InstanceMapping > (parent, InstanceMapping_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, InstanceMapping_Impl::metaname, src, dst);
   }
 
   //

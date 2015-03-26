@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,11 +23,16 @@ namespace PICML
   const std::string Capability_Impl::metaname ("Capability");
 
   //
+  // is_abstract
+  //
+  const bool Capability_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentImplementationContainer_in)
   //
   Capability Capability_Impl::_create (const ComponentImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < Capability > (parent, Capability_Impl::metaname);
+    return ::GAME::Mga::create < Capability > (parent, Capability_Impl::metaname);
   }
 
   //
@@ -53,11 +58,19 @@ namespace PICML
   }
 
   //
-  // dst_ImplementationCapability
+  // dst_of_ImplementationCapability
   //
-  size_t Capability_Impl::dst_ImplementationCapability (std::vector <ImplementationCapability> & items) const
+  size_t Capability_Impl::dst_of_ImplementationCapability (std::vector <ImplementationCapability> & items) const
   {
     return this->in_connections <ImplementationCapability> (items);
+  }
+
+  //
+  // dst_of_ImplementationCapability
+  //
+  GAME::Mga::Collection_T <ImplementationCapability> Capability_Impl::dst_of_ImplementationCapability (void) const
+  {
+    return this->in_connections <ImplementationCapability> ("dst");
   }
 }
 

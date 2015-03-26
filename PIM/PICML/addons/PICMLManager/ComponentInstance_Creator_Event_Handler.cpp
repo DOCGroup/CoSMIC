@@ -126,20 +126,15 @@ handle_object_created (GAME::Mga::Object_in obj)
   // Create a component instance handler that will manage the
   // state of this model element. The instance handler will need
   // the Component model that is being observed.
-  std::vector <PICML::Implements> implements;
-
-  if (1 == impl->src_Implements (implements))
+  if (impl->has_src_of_Implements ())
   {
-    PICML::ComponentRef c_ref = implements.front ()->dst_ComponentRef ();
+    PICML::ComponentRef c_ref = impl->src_of_Implements ()->dst_ComponentRef ();
 
-    if (!c_ref.is_nil ())
-    {
-      // Register an observer for this component that will make updates
-      // to this component instance each time there is a change to the
-      // component interface.
-      PICML::Component comp = c_ref->get_Component ();
-      this->observer_->insert (comp, inst);
-    }
+    // Register an observer for this component that will make updates
+    // to this component instance each time there is a change to the
+    // component interface.
+    PICML::Component comp = c_ref->refers_to_Component ();
+    this->observer_->insert (comp, inst);
   }
 
 

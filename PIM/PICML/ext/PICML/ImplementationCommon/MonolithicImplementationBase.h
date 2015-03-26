@@ -46,6 +46,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     MonolithicImplementationBase_Impl (void);
 
@@ -67,13 +70,16 @@ namespace PICML
     ///@{
 
     /// Get the src MonolithExecParameter connection.
-    size_t src_MonolithExecParameter (std::vector <MonolithExecParameter> & items) const;
+    size_t src_of_MonolithExecParameter (std::vector <MonolithExecParameter> & items) const;
+    GAME::Mga::Collection_T <MonolithExecParameter> src_of_MonolithExecParameter (void) const;
 
     /// Get the src MonolithDeployRequirement connection.
-    size_t src_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const;
+    size_t src_of_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const;
+    GAME::Mga::Collection_T <MonolithDeployRequirement> src_of_MonolithDeployRequirement (void) const;
 
     /// Get the src MonolithprimaryArtifact connection.
-    size_t src_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const;
+    size_t src_of_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const;
+    GAME::Mga::Collection_T <MonolithprimaryArtifact> src_of_MonolithprimaryArtifact (void) const;
     ///@}
   };
 }

@@ -46,6 +46,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     ExtendedPortInstanceBase_Impl (void);
 
@@ -67,7 +70,9 @@ namespace PICML
     ///@{
 
     /// Get the src ExtendedDelegate connection.
-    size_t src_ExtendedDelegate (std::vector <ExtendedDelegate> & items) const;
+    size_t src_of_ExtendedDelegate (std::vector <ExtendedDelegate> & items) const;
+    bool has_src_of_ExtendedDelegate (void) const;
+    ExtendedDelegate src_of_ExtendedDelegate (void) const;
     ///@}
   };
 }

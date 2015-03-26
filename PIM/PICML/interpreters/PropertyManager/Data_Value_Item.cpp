@@ -10,8 +10,6 @@
 
 #include "resource.h"
 
-#include "game/mga/stlace.h"
-
 ///////////////////////////////////////////////////////////////////////////////
 // class PICML_Data_Value_Control_Selector
 

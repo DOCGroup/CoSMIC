@@ -8,26 +8,22 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/OperationTypes/OperationBase.h"
-#include "PICML/OperationTypes/OnewayOperation.h"
-#include "PICML/OperationTypes/HasExceptions.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
-#include "PICML/OperationTypes/LookupOperation.h"
-#include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/ComponentBenchmark/ComponentAnalyses.h"
 #include "PICML/ComponentBenchmark/BenchmarkType.h"
 #include "PICML/ComponentBenchmark/PeriodicBenchmarks.h"
 #include "PICML/ComponentBenchmark/FixedIterationBenchmarks.h"
 #include "PICML/ComponentBenchmark/TriggerBenchmarks.h"
 #include "PICML/ComponentBenchmark/Task.h"
 #include "PICML/ComponentBenchmark/TimeProbe.h"
+#include "PICML/ComponentBenchmark/DataAnalysisBase.h"
+#include "PICML/ComponentBenchmark/Jitter.h"
+#include "PICML/ComponentBenchmark/Maximum.h"
+#include "PICML/ComponentBenchmark/Minimum.h"
+#include "PICML/ComponentBenchmark/Average.h"
 #include "PICML/ComponentBenchmark/MetricsBase.h"
 #include "PICML/ComponentBenchmark/Throughput.h"
 #include "PICML/ComponentBenchmark/Latency.h"
 #include "PICML/InheritableTypes/Event.h"
-#include "PICML/ComponentBenchmark/ComponentAnalyses.h"
-#include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
-#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
-#include "PICML/ComponentBenchmark/TaskSet.h"
 #include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
 #include "PICML/ComponentBenchmark/OperationRef.h"
 #include "PICML/ComponentBenchmark/ComponentOperation.h"
@@ -36,11 +32,15 @@
 #include "PICML/ComponentBenchmark/TimerConnection.h"
 #include "PICML/ComponentBenchmark/TimerEventSinkConn.h"
 #include "PICML/ComponentBenchmark/EventRef.h"
-#include "PICML/ComponentBenchmark/DataAnalysisBase.h"
-#include "PICML/ComponentBenchmark/Jitter.h"
-#include "PICML/ComponentBenchmark/Maximum.h"
-#include "PICML/ComponentBenchmark/Minimum.h"
-#include "PICML/ComponentBenchmark/Average.h"
+#include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
+#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
+#include "PICML/ComponentBenchmark/TaskSet.h"
+#include "PICML/OperationTypes/OperationBase.h"
+#include "PICML/OperationTypes/OnewayOperation.h"
+#include "PICML/OperationTypes/HasExceptions.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/OperationTypes/LookupOperation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -54,11 +54,16 @@ namespace PICML
   const std::string BenchmarkAnalysis_Impl::metaname ("BenchmarkAnalysis");
 
   //
+  // is_abstract
+  //
+  const bool BenchmarkAnalysis_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAnalyses_in)
   //
   BenchmarkAnalysis BenchmarkAnalysis_Impl::_create (const ComponentAnalyses_in parent)
   {
-    return ::GAME::Mga::create_root_object < BenchmarkAnalysis > (parent, BenchmarkAnalysis_Impl::metaname);
+    return ::GAME::Mga::create < BenchmarkAnalysis > (parent, BenchmarkAnalysis_Impl::metaname);
   }
 
   //
@@ -81,70 +86,6 @@ namespace PICML
   ComponentAnalyses BenchmarkAnalysis_Impl::parent_ComponentAnalyses (void)
   {
     return ComponentAnalyses::_narrow (this->parent ());
-  }
-
-  //
-  // get_OnewayOperations
-  //
-  size_t BenchmarkAnalysis_Impl::get_OnewayOperations (std::vector <OnewayOperation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_OnewayOperations
-  //
-  ::GAME::Mga::Collection_T <OnewayOperation> BenchmarkAnalysis_Impl::get_OnewayOperations (void) const
-  {
-    return this->children <OnewayOperation> ();
-  }
-
-  //
-  // get_TwowayOperations
-  //
-  size_t BenchmarkAnalysis_Impl::get_TwowayOperations (std::vector <TwowayOperation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_TwowayOperations
-  //
-  ::GAME::Mga::Collection_T <TwowayOperation> BenchmarkAnalysis_Impl::get_TwowayOperations (void) const
-  {
-    return this->children <TwowayOperation> ();
-  }
-
-  //
-  // get_LookupOperations
-  //
-  size_t BenchmarkAnalysis_Impl::get_LookupOperations (std::vector <LookupOperation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_LookupOperations
-  //
-  ::GAME::Mga::Collection_T <LookupOperation> BenchmarkAnalysis_Impl::get_LookupOperations (void) const
-  {
-    return this->children <LookupOperation> ();
-  }
-
-  //
-  // get_FactoryOperations
-  //
-  size_t BenchmarkAnalysis_Impl::get_FactoryOperations (std::vector <FactoryOperation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_FactoryOperations
-  //
-  ::GAME::Mga::Collection_T <FactoryOperation> BenchmarkAnalysis_Impl::get_FactoryOperations (void) const
-  {
-    return this->children <FactoryOperation> ();
   }
 
   //
@@ -228,6 +169,70 @@ namespace PICML
   }
 
   //
+  // get_Jitters
+  //
+  size_t BenchmarkAnalysis_Impl::get_Jitters (std::vector <Jitter> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Jitters
+  //
+  ::GAME::Mga::Collection_T <Jitter> BenchmarkAnalysis_Impl::get_Jitters (void) const
+  {
+    return this->children <Jitter> ();
+  }
+
+  //
+  // get_Maximums
+  //
+  size_t BenchmarkAnalysis_Impl::get_Maximums (std::vector <Maximum> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Maximums
+  //
+  ::GAME::Mga::Collection_T <Maximum> BenchmarkAnalysis_Impl::get_Maximums (void) const
+  {
+    return this->children <Maximum> ();
+  }
+
+  //
+  // get_Minimums
+  //
+  size_t BenchmarkAnalysis_Impl::get_Minimums (std::vector <Minimum> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Minimums
+  //
+  ::GAME::Mga::Collection_T <Minimum> BenchmarkAnalysis_Impl::get_Minimums (void) const
+  {
+    return this->children <Minimum> ();
+  }
+
+  //
+  // get_Averages
+  //
+  size_t BenchmarkAnalysis_Impl::get_Averages (std::vector <Average> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Averages
+  //
+  ::GAME::Mga::Collection_T <Average> BenchmarkAnalysis_Impl::get_Averages (void) const
+  {
+    return this->children <Average> ();
+  }
+
+  //
   // get_Throughputs
   //
   size_t BenchmarkAnalysis_Impl::get_Throughputs (std::vector <Throughput> & items) const
@@ -273,54 +278,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <Event> BenchmarkAnalysis_Impl::get_Events (void) const
   {
     return this->children <Event> ();
-  }
-
-  //
-  // get_BenchmarkCharacteristicss
-  //
-  size_t BenchmarkAnalysis_Impl::get_BenchmarkCharacteristicss (std::vector <BenchmarkCharacteristics> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_BenchmarkCharacteristicss
-  //
-  ::GAME::Mga::Collection_T <BenchmarkCharacteristics> BenchmarkAnalysis_Impl::get_BenchmarkCharacteristicss (void) const
-  {
-    return this->children <BenchmarkCharacteristics> ();
-  }
-
-  //
-  // get_WorkloadCharacteristicss
-  //
-  size_t BenchmarkAnalysis_Impl::get_WorkloadCharacteristicss (std::vector <WorkloadCharacteristics> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_WorkloadCharacteristicss
-  //
-  ::GAME::Mga::Collection_T <WorkloadCharacteristics> BenchmarkAnalysis_Impl::get_WorkloadCharacteristicss (void) const
-  {
-    return this->children <WorkloadCharacteristics> ();
-  }
-
-  //
-  // get_TaskSets
-  //
-  size_t BenchmarkAnalysis_Impl::get_TaskSets (std::vector <TaskSet> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_TaskSets
-  //
-  ::GAME::Mga::Collection_T <TaskSet> BenchmarkAnalysis_Impl::get_TaskSets (void) const
-  {
-    return this->children <TaskSet> ();
   }
 
   //
@@ -452,67 +409,115 @@ namespace PICML
   }
 
   //
-  // get_Jitters
+  // get_BenchmarkCharacteristicss
   //
-  size_t BenchmarkAnalysis_Impl::get_Jitters (std::vector <Jitter> & items) const
+  size_t BenchmarkAnalysis_Impl::get_BenchmarkCharacteristicss (std::vector <BenchmarkCharacteristics> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Jitters
+  // get_BenchmarkCharacteristicss
   //
-  ::GAME::Mga::Collection_T <Jitter> BenchmarkAnalysis_Impl::get_Jitters (void) const
+  ::GAME::Mga::Collection_T <BenchmarkCharacteristics> BenchmarkAnalysis_Impl::get_BenchmarkCharacteristicss (void) const
   {
-    return this->children <Jitter> ();
+    return this->children <BenchmarkCharacteristics> ();
   }
 
   //
-  // get_Maximums
+  // get_WorkloadCharacteristicss
   //
-  size_t BenchmarkAnalysis_Impl::get_Maximums (std::vector <Maximum> & items) const
+  size_t BenchmarkAnalysis_Impl::get_WorkloadCharacteristicss (std::vector <WorkloadCharacteristics> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Maximums
+  // get_WorkloadCharacteristicss
   //
-  ::GAME::Mga::Collection_T <Maximum> BenchmarkAnalysis_Impl::get_Maximums (void) const
+  ::GAME::Mga::Collection_T <WorkloadCharacteristics> BenchmarkAnalysis_Impl::get_WorkloadCharacteristicss (void) const
   {
-    return this->children <Maximum> ();
+    return this->children <WorkloadCharacteristics> ();
   }
 
   //
-  // get_Minimums
+  // get_TaskSets
   //
-  size_t BenchmarkAnalysis_Impl::get_Minimums (std::vector <Minimum> & items) const
+  size_t BenchmarkAnalysis_Impl::get_TaskSets (std::vector <TaskSet> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Minimums
+  // get_TaskSets
   //
-  ::GAME::Mga::Collection_T <Minimum> BenchmarkAnalysis_Impl::get_Minimums (void) const
+  ::GAME::Mga::Collection_T <TaskSet> BenchmarkAnalysis_Impl::get_TaskSets (void) const
   {
-    return this->children <Minimum> ();
+    return this->children <TaskSet> ();
   }
 
   //
-  // get_Averages
+  // get_OnewayOperations
   //
-  size_t BenchmarkAnalysis_Impl::get_Averages (std::vector <Average> & items) const
+  size_t BenchmarkAnalysis_Impl::get_OnewayOperations (std::vector <OnewayOperation> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Averages
+  // get_OnewayOperations
   //
-  ::GAME::Mga::Collection_T <Average> BenchmarkAnalysis_Impl::get_Averages (void) const
+  ::GAME::Mga::Collection_T <OnewayOperation> BenchmarkAnalysis_Impl::get_OnewayOperations (void) const
   {
-    return this->children <Average> ();
+    return this->children <OnewayOperation> ();
+  }
+
+  //
+  // get_TwowayOperations
+  //
+  size_t BenchmarkAnalysis_Impl::get_TwowayOperations (std::vector <TwowayOperation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_TwowayOperations
+  //
+  ::GAME::Mga::Collection_T <TwowayOperation> BenchmarkAnalysis_Impl::get_TwowayOperations (void) const
+  {
+    return this->children <TwowayOperation> ();
+  }
+
+  //
+  // get_FactoryOperations
+  //
+  size_t BenchmarkAnalysis_Impl::get_FactoryOperations (std::vector <FactoryOperation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_FactoryOperations
+  //
+  ::GAME::Mga::Collection_T <FactoryOperation> BenchmarkAnalysis_Impl::get_FactoryOperations (void) const
+  {
+    return this->children <FactoryOperation> ();
+  }
+
+  //
+  // get_LookupOperations
+  //
+  size_t BenchmarkAnalysis_Impl::get_LookupOperations (std::vector <LookupOperation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_LookupOperations
+  //
+  ::GAME::Mga::Collection_T <LookupOperation> BenchmarkAnalysis_Impl::get_LookupOperations (void) const
+  {
+    return this->children <LookupOperation> ();
   }
 }
 

@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DomainQos/Domain.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace DQML
   const std::string PublishesConnection_Impl::metaname ("PublishesConnection");
 
   //
-  // _create (const Domain_in)
+  // is_abstract
   //
-  PublishesConnection PublishesConnection_Impl::_create (const Domain_in parent)
+  const bool PublishesConnection_Impl::is_abstract = false;
+
+  //
+  // _create (const Domain_in, DataWriterQos_in src, DataReaderQos_in dst)
+  //
+  PublishesConnection PublishesConnection_Impl::_create (const Domain_in parent, DataWriterQos_in src, DataReaderQos_in dst)
   {
-    return ::GAME::Mga::create_object < PublishesConnection > (parent, PublishesConnection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, PublishesConnection_Impl::metaname, src, dst);
   }
 
   //

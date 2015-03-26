@@ -48,6 +48,11 @@ namespace DQML
   typedef DomainParticipantFactory_Impl * DomainParticipantFactory_in;
   typedef ::GAME::Mga::Smart_Ptr <DomainParticipantFactory_Impl> DomainParticipantFactory;
 
+  // Forward declarations for dw_transpri_Connection
+  class dw_transpri_Connection_Impl;
+  typedef dw_transpri_Connection_Impl * dw_transpri_Connection_in;
+  typedef ::GAME::Mga::Smart_Ptr <dw_transpri_Connection_Impl> dw_transpri_Connection;
+
   // Forward declarations for pub_presqos_Connection
   class pub_presqos_Connection_Impl;
   typedef pub_presqos_Connection_Impl * pub_presqos_Connection_in;
@@ -57,11 +62,6 @@ namespace DQML
   class sub_presqos_Connection_Impl;
   typedef sub_presqos_Connection_Impl * sub_presqos_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <sub_presqos_Connection_Impl> sub_presqos_Connection;
-
-  // Forward declarations for dw_transpri_Connection
-  class dw_transpri_Connection_Impl;
-  typedef dw_transpri_Connection_Impl * dw_transpri_Connection_in;
-  typedef ::GAME::Mga::Smart_Ptr <dw_transpri_Connection_Impl> dw_transpri_Connection;
 
   // Forward declarations for DataWriterQos
   class DataWriterQos_Impl;
@@ -108,15 +108,15 @@ namespace DQML
   typedef dw_userdata_Connection_Impl * dw_userdata_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <dw_userdata_Connection_Impl> dw_userdata_Connection;
 
-  // Forward declarations for LivelinessQosPolicy
-  class LivelinessQosPolicy_Impl;
-  typedef LivelinessQosPolicy_Impl * LivelinessQosPolicy_in;
-  typedef ::GAME::Mga::Smart_Ptr <LivelinessQosPolicy_Impl> LivelinessQosPolicy;
-
   // Forward declarations for TransportPriorityQosPolicy
   class TransportPriorityQosPolicy_Impl;
   typedef TransportPriorityQosPolicy_Impl * TransportPriorityQosPolicy_in;
   typedef ::GAME::Mga::Smart_Ptr <TransportPriorityQosPolicy_Impl> TransportPriorityQosPolicy;
+
+  // Forward declarations for LivelinessQosPolicy
+  class LivelinessQosPolicy_Impl;
+  typedef LivelinessQosPolicy_Impl * LivelinessQosPolicy_in;
+  typedef ::GAME::Mga::Smart_Ptr <LivelinessQosPolicy_Impl> LivelinessQosPolicy;
 
   // Forward declarations for SubscriptionKeyQosPolicy
   class SubscriptionKeyQosPolicy_Impl;
@@ -127,11 +127,6 @@ namespace DQML
   class OwnershipQosPolicy_Impl;
   typedef OwnershipQosPolicy_Impl * OwnershipQosPolicy_in;
   typedef ::GAME::Mga::Smart_Ptr <OwnershipQosPolicy_Impl> OwnershipQosPolicy;
-
-  // Forward declarations for dr_deadline_Connection
-  class dr_deadline_Connection_Impl;
-  typedef dr_deadline_Connection_Impl * dr_deadline_Connection_in;
-  typedef ::GAME::Mga::Smart_Ptr <dr_deadline_Connection_Impl> dr_deadline_Connection;
 
   // Forward declarations for top_latency_Connection
   class top_latency_Connection_Impl;
@@ -147,6 +142,11 @@ namespace DQML
   class dr_sub_Connection_Impl;
   typedef dr_sub_Connection_Impl * dr_sub_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <dr_sub_Connection_Impl> dr_sub_Connection;
+
+  // Forward declarations for dr_deadline_Connection
+  class dr_deadline_Connection_Impl;
+  typedef dr_deadline_Connection_Impl * dr_deadline_Connection_in;
+  typedef ::GAME::Mga::Smart_Ptr <dr_deadline_Connection_Impl> dr_deadline_Connection;
 
   // Forward declarations for iCCM
   class iCCM_Impl;
@@ -218,15 +218,15 @@ namespace DQML
   typedef dw_lifespan_Connection_Impl * dw_lifespan_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <dw_lifespan_Connection_Impl> dw_lifespan_Connection;
 
-  // Forward declarations for dr_res_Connection
-  class dr_res_Connection_Impl;
-  typedef dr_res_Connection_Impl * dr_res_Connection_in;
-  typedef ::GAME::Mga::Smart_Ptr <dr_res_Connection_Impl> dr_res_Connection;
-
   // Forward declarations for dw_res_Connection
   class dw_res_Connection_Impl;
   typedef dw_res_Connection_Impl * dw_res_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <dw_res_Connection_Impl> dw_res_Connection;
+
+  // Forward declarations for dr_res_Connection
+  class dr_res_Connection_Impl;
+  typedef dr_res_Connection_Impl * dr_res_Connection_in;
+  typedef ::GAME::Mga::Smart_Ptr <dr_res_Connection_Impl> dr_res_Connection;
 
   // Forward declarations for dr_latency_Connection
   class dr_latency_Connection_Impl;
@@ -378,15 +378,15 @@ namespace DQML
   typedef PublishesConnection_Impl * PublishesConnection_in;
   typedef ::GAME::Mga::Smart_Ptr <PublishesConnection_Impl> PublishesConnection;
 
-  // Forward declarations for dw_dstOrder_Connection
-  class dw_dstOrder_Connection_Impl;
-  typedef dw_dstOrder_Connection_Impl * dw_dstOrder_Connection_in;
-  typedef ::GAME::Mga::Smart_Ptr <dw_dstOrder_Connection_Impl> dw_dstOrder_Connection;
-
   // Forward declarations for topic_dursvc_Connection
   class topic_dursvc_Connection_Impl;
   typedef topic_dursvc_Connection_Impl * topic_dursvc_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <topic_dursvc_Connection_Impl> topic_dursvc_Connection;
+
+  // Forward declarations for dw_dstOrder_Connection
+  class dw_dstOrder_Connection_Impl;
+  typedef dw_dstOrder_Connection_Impl * dw_dstOrder_Connection_in;
+  typedef ::GAME::Mga::Smart_Ptr <dw_dstOrder_Connection_Impl> dw_dstOrder_Connection;
 
   // Forward declarations for ReliabilityQosPolicy
   class ReliabilityQosPolicy_Impl;
@@ -428,6 +428,11 @@ namespace DQML
   typedef DurabilityQosPolicy_Impl * DurabilityQosPolicy_in;
   typedef ::GAME::Mga::Smart_Ptr <DurabilityQosPolicy_Impl> DurabilityQosPolicy;
 
+  // Forward declarations for dr_topic_Connection
+  class dr_topic_Connection_Impl;
+  typedef dr_topic_Connection_Impl * dr_topic_Connection_in;
+  typedef ::GAME::Mga::Smart_Ptr <dr_topic_Connection_Impl> dr_topic_Connection;
+
   // Forward declarations for dw_writerdatalifecycle_Connection
   class dw_writerdatalifecycle_Connection_Impl;
   typedef dw_writerdatalifecycle_Connection_Impl * dw_writerdatalifecycle_Connection_in;
@@ -437,11 +442,6 @@ namespace DQML
   class dp_topic_Connection_Impl;
   typedef dp_topic_Connection_Impl * dp_topic_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <dp_topic_Connection_Impl> dp_topic_Connection;
-
-  // Forward declarations for dr_topic_Connection
-  class dr_topic_Connection_Impl;
-  typedef dr_topic_Connection_Impl * dr_topic_Connection_in;
-  typedef ::GAME::Mga::Smart_Ptr <dr_topic_Connection_Impl> dr_topic_Connection;
 
   // Forward declarations for DestinationOrderQosPolicy
   class DestinationOrderQosPolicy_Impl;
@@ -473,50 +473,50 @@ namespace DQML
   typedef topic_liveliness_Connection_Impl * topic_liveliness_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <topic_liveliness_Connection_Impl> topic_liveliness_Connection;
 
-  // Forward declarations for dr_durqos_Connection
-  class dr_durqos_Connection_Impl;
-  typedef dr_durqos_Connection_Impl * dr_durqos_Connection_in;
-  typedef ::GAME::Mga::Smart_Ptr <dr_durqos_Connection_Impl> dr_durqos_Connection;
-
   // Forward declarations for dpf_dp_Connection
   class dpf_dp_Connection_Impl;
   typedef dpf_dp_Connection_Impl * dpf_dp_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <dpf_dp_Connection_Impl> dpf_dp_Connection;
+
+  // Forward declarations for dr_durqos_Connection
+  class dr_durqos_Connection_Impl;
+  typedef dr_durqos_Connection_Impl * dr_durqos_Connection_in;
+  typedef ::GAME::Mga::Smart_Ptr <dr_durqos_Connection_Impl> dr_durqos_Connection;
 
   // Forward declarations for sub_part_Connection
   class sub_part_Connection_Impl;
   typedef sub_part_Connection_Impl * sub_part_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <sub_part_Connection_Impl> sub_part_Connection;
 
-  // Forward declarations for dr_liveliness_Connection
-  class dr_liveliness_Connection_Impl;
-  typedef dr_liveliness_Connection_Impl * dr_liveliness_Connection_in;
-  typedef ::GAME::Mga::Smart_Ptr <dr_liveliness_Connection_Impl> dr_liveliness_Connection;
+  // Forward declarations for dr_reliability_Connection
+  class dr_reliability_Connection_Impl;
+  typedef dr_reliability_Connection_Impl * dr_reliability_Connection_in;
+  typedef ::GAME::Mga::Smart_Ptr <dr_reliability_Connection_Impl> dr_reliability_Connection;
 
   // Forward declarations for dw_liveliness_Connection
   class dw_liveliness_Connection_Impl;
   typedef dw_liveliness_Connection_Impl * dw_liveliness_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <dw_liveliness_Connection_Impl> dw_liveliness_Connection;
 
-  // Forward declarations for dr_reliability_Connection
-  class dr_reliability_Connection_Impl;
-  typedef dr_reliability_Connection_Impl * dr_reliability_Connection_in;
-  typedef ::GAME::Mga::Smart_Ptr <dr_reliability_Connection_Impl> dr_reliability_Connection;
+  // Forward declarations for dr_liveliness_Connection
+  class dr_liveliness_Connection_Impl;
+  typedef dr_liveliness_Connection_Impl * dr_liveliness_Connection_in;
+  typedef ::GAME::Mga::Smart_Ptr <dr_liveliness_Connection_Impl> dr_liveliness_Connection;
 
   // Forward declarations for EntityFactoryQosPolicy
   class EntityFactoryQosPolicy_Impl;
   typedef EntityFactoryQosPolicy_Impl * EntityFactoryQosPolicy_in;
   typedef ::GAME::Mga::Smart_Ptr <EntityFactoryQosPolicy_Impl> EntityFactoryQosPolicy;
 
-  // Forward declarations for dw_latency_Connection
-  class dw_latency_Connection_Impl;
-  typedef dw_latency_Connection_Impl * dw_latency_Connection_in;
-  typedef ::GAME::Mga::Smart_Ptr <dw_latency_Connection_Impl> dw_latency_Connection;
-
   // Forward declarations for dw_reliability_Connection
   class dw_reliability_Connection_Impl;
   typedef dw_reliability_Connection_Impl * dw_reliability_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <dw_reliability_Connection_Impl> dw_reliability_Connection;
+
+  // Forward declarations for dw_latency_Connection
+  class dw_latency_Connection_Impl;
+  typedef dw_latency_Connection_Impl * dw_latency_Connection_in;
+  typedef ::GAME::Mga::Smart_Ptr <dw_latency_Connection_Impl> dw_latency_Connection;
 
   // Forward declarations for DataWriter
   class DataWriter_Impl;
@@ -538,15 +538,15 @@ namespace DQML
   typedef PresentationQosPolicy_Impl * PresentationQosPolicy_in;
   typedef ::GAME::Mga::Smart_Ptr <PresentationQosPolicy_Impl> PresentationQosPolicy;
 
-  // Forward declarations for top_deadline_Connection
-  class top_deadline_Connection_Impl;
-  typedef top_deadline_Connection_Impl * top_deadline_Connection_in;
-  typedef ::GAME::Mga::Smart_Ptr <top_deadline_Connection_Impl> top_deadline_Connection;
-
   // Forward declarations for topic_res_Connection
   class topic_res_Connection_Impl;
   typedef topic_res_Connection_Impl * topic_res_Connection_in;
   typedef ::GAME::Mga::Smart_Ptr <topic_res_Connection_Impl> topic_res_Connection;
+
+  // Forward declarations for top_deadline_Connection
+  class top_deadline_Connection_Impl;
+  typedef top_deadline_Connection_Impl * top_deadline_Connection_in;
+  typedef ::GAME::Mga::Smart_Ptr <top_deadline_Connection_Impl> top_deadline_Connection;
 
   // Forward declarations for Publisher
   class Publisher_Impl;

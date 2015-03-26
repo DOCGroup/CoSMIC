@@ -23,11 +23,16 @@ namespace PICML
   const std::string Environment_Impl::metaname ("Environment");
 
   //
+  // is_abstract
+  //
+  const bool Environment_Impl::is_abstract = false;
+
+  //
   // _create (const TopLevelBehavior_in)
   //
   Environment Environment_Impl::_create (const TopLevelBehavior_in parent)
   {
-    return ::GAME::Mga::create_object < Environment > (parent, Environment_Impl::metaname);
+    return ::GAME::Mga::create < Environment > (parent, Environment_Impl::metaname);
   }
 
   //

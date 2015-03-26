@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -78,8 +81,8 @@ namespace PICML
      */
     ///@{
     bool RequiredRequestPort_is_nil (void) const;
-    RequiredRequestPort get_RequiredRequestPort (void) const;
-    void set_RequiredRequestPort (RequiredRequestPort_in item);
+    RequiredRequestPort refers_to_RequiredRequestPort (void) const;
+    void refers_to_RequiredRequestPort (RequiredRequestPort_in item);
     ///@}
   };
 }

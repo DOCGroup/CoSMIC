@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,11 +23,16 @@ namespace PICML
   const std::string ComponentInstanceType_Impl::metaname ("ComponentInstanceType");
 
   //
+  // is_abstract
+  //
+  const bool ComponentInstanceType_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentInstance_in)
   //
   ComponentInstanceType ComponentInstanceType_Impl::_create (const ComponentInstance_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentInstanceType > (parent, ComponentInstanceType_Impl::metaname);
+    return ::GAME::Mga::create < ComponentInstanceType > (parent, ComponentInstanceType_Impl::metaname);
   }
 
   //
@@ -57,21 +62,21 @@ namespace PICML
   //
   bool ComponentInstanceType_Impl::MonolithicImplementation_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_MonolithicImplementation
+  // refers_to_MonolithicImplementation
   //
-  void ComponentInstanceType_Impl::set_MonolithicImplementation (MonolithicImplementation_in item)
+  void ComponentInstanceType_Impl::refers_to_MonolithicImplementation (MonolithicImplementation_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_MonolithicImplementation
+  // refers_to_MonolithicImplementation
   //
-  MonolithicImplementation ComponentInstanceType_Impl::get_MonolithicImplementation (void) const
+  MonolithicImplementation ComponentInstanceType_Impl::refers_to_MonolithicImplementation (void) const
   {
     return MonolithicImplementation::_narrow (this->refers_to ());
   }

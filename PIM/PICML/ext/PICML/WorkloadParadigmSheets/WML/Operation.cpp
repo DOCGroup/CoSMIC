@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/OperationTypes/ParameterType.h"
-#include "PICML/OperationTypes/InParameter.h"
-#include "PICML/OperationTypes/OutParameter.h"
-#include "PICML/OperationTypes/InoutParameter.h"
-#include "PICML/OperationTypes/ReturnType.h"
-#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/ActionType.h"
+#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
+#include "PICML/OperationTypes/ParameterType.h"
+#include "PICML/OperationTypes/InoutParameter.h"
+#include "PICML/OperationTypes/OutParameter.h"
+#include "PICML/OperationTypes/InParameter.h"
+#include "PICML/OperationTypes/ReturnType.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,11 +28,16 @@ namespace PICML
   const std::string Operation_Impl::metaname ("Operation");
 
   //
+  // is_abstract
+  //
+  const bool Operation_Impl::is_abstract = false;
+
+  //
   // _create (const Worker_in)
   //
   Operation Operation_Impl::_create (const Worker_in parent)
   {
-    return ::GAME::Mga::create_object < Operation > (parent, Operation_Impl::metaname);
+    return ::GAME::Mga::create < Operation > (parent, Operation_Impl::metaname);
   }
 
   //
@@ -74,19 +79,19 @@ namespace PICML
   }
 
   //
-  // get_InParameters
+  // get_InoutParameters
   //
-  size_t Operation_Impl::get_InParameters (std::vector <InParameter> & items) const
+  size_t Operation_Impl::get_InoutParameters (std::vector <InoutParameter> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_InParameters
+  // get_InoutParameters
   //
-  ::GAME::Mga::Collection_T <InParameter> Operation_Impl::get_InParameters (void) const
+  ::GAME::Mga::Collection_T <InoutParameter> Operation_Impl::get_InoutParameters (void) const
   {
-    return this->children <InParameter> ();
+    return this->children <InoutParameter> ();
   }
 
   //
@@ -106,19 +111,19 @@ namespace PICML
   }
 
   //
-  // get_InoutParameters
+  // get_InParameters
   //
-  size_t Operation_Impl::get_InoutParameters (std::vector <InoutParameter> & items) const
+  size_t Operation_Impl::get_InParameters (std::vector <InParameter> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_InoutParameters
+  // get_InParameters
   //
-  ::GAME::Mga::Collection_T <InoutParameter> Operation_Impl::get_InoutParameters (void) const
+  ::GAME::Mga::Collection_T <InParameter> Operation_Impl::get_InParameters (void) const
   {
-    return this->children <InoutParameter> ();
+    return this->children <InParameter> ();
   }
 }
 

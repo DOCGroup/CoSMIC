@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string AttributeDelegate_Impl::metaname ("AttributeDelegate");
 
   //
-  // _create (const ComponentAssembly_in)
+  // is_abstract
   //
-  AttributeDelegate AttributeDelegate_Impl::_create (const ComponentAssembly_in parent)
+  const bool AttributeDelegate_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentAssembly_in, AttributeMapping_in src, AttributeInstance_in dst)
+  //
+  AttributeDelegate AttributeDelegate_Impl::_create (const ComponentAssembly_in parent, AttributeMapping_in src, AttributeInstance_in dst)
   {
-    return ::GAME::Mga::create_object < AttributeDelegate > (parent, AttributeDelegate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, AttributeDelegate_Impl::metaname, src, dst);
   }
 
   //

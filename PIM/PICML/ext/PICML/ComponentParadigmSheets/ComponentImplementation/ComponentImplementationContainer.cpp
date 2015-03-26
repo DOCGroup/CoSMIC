@@ -8,18 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
+#include "PICML/Common/Capability.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementations.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
 #include "PICML/Common/ImplementationDependency.h"
-#include "PICML/Common/Capability.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.h"
 #include "PICML/PathDiagram/PathReference.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -33,11 +33,16 @@ namespace PICML
   const std::string ComponentImplementationContainer_Impl::metaname ("ComponentImplementationContainer");
 
   //
+  // is_abstract
+  //
+  const bool ComponentImplementationContainer_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentImplementations_in)
   //
   ComponentImplementationContainer ComponentImplementationContainer_Impl::_create (const ComponentImplementations_in parent)
   {
-    return ::GAME::Mga::create_root_object < ComponentImplementationContainer > (parent, ComponentImplementationContainer_Impl::metaname);
+    return ::GAME::Mga::create < ComponentImplementationContainer > (parent, ComponentImplementationContainer_Impl::metaname);
   }
 
   //
@@ -63,22 +68,6 @@ namespace PICML
   }
 
   //
-  // has_ComponentRef
-  //
-  bool ComponentImplementationContainer_Impl::has_ComponentRef (void) const
-  {
-    return this->children <ComponentRef> ().count () == 1;
-  }
-
-  //
-  // get_ComponentRef
-  //
-  ComponentRef ComponentImplementationContainer_Impl::get_ComponentRef (void) const
-  {
-    return this->children <ComponentRef> ().first ();
-  }
-
-  //
   // has_Implements
   //
   bool ComponentImplementationContainer_Impl::has_Implements (void) const
@@ -92,6 +81,22 @@ namespace PICML
   Implements ComponentImplementationContainer_Impl::get_Implements (void) const
   {
     return this->children <Implements> ().first ();
+  }
+
+  //
+  // has_ComponentRef
+  //
+  bool ComponentImplementationContainer_Impl::has_ComponentRef (void) const
+  {
+    return this->children <ComponentRef> ().count () == 1;
+  }
+
+  //
+  // get_ComponentRef
+  //
+  ComponentRef ComponentImplementationContainer_Impl::get_ComponentRef (void) const
+  {
+    return this->children <ComponentRef> ().first ();
   }
 
   //
@@ -111,54 +116,6 @@ namespace PICML
   }
 
   //
-  // get_ComponentAssemblys
-  //
-  size_t ComponentImplementationContainer_Impl::get_ComponentAssemblys (std::vector <ComponentAssembly> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComponentAssemblys
-  //
-  ::GAME::Mga::Collection_T <ComponentAssembly> ComponentImplementationContainer_Impl::get_ComponentAssemblys (void) const
-  {
-    return this->children <ComponentAssembly> ();
-  }
-
-  //
-  // get_MonolithicImplementations
-  //
-  size_t ComponentImplementationContainer_Impl::get_MonolithicImplementations (std::vector <MonolithicImplementation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_MonolithicImplementations
-  //
-  ::GAME::Mga::Collection_T <MonolithicImplementation> ComponentImplementationContainer_Impl::get_MonolithicImplementations (void) const
-  {
-    return this->children <MonolithicImplementation> ();
-  }
-
-  //
-  // get_ImplementationDependencys
-  //
-  size_t ComponentImplementationContainer_Impl::get_ImplementationDependencys (std::vector <ImplementationDependency> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ImplementationDependencys
-  //
-  ::GAME::Mga::Collection_T <ImplementationDependency> ComponentImplementationContainer_Impl::get_ImplementationDependencys (void) const
-  {
-    return this->children <ImplementationDependency> ();
-  }
-
-  //
   // get_Capabilitys
   //
   size_t ComponentImplementationContainer_Impl::get_Capabilitys (std::vector <Capability> & items) const
@@ -175,19 +132,19 @@ namespace PICML
   }
 
   //
-  // get_ImplementationDependsOns
+  // get_ImplementationDependencys
   //
-  size_t ComponentImplementationContainer_Impl::get_ImplementationDependsOns (std::vector <ImplementationDependsOn> & items) const
+  size_t ComponentImplementationContainer_Impl::get_ImplementationDependencys (std::vector <ImplementationDependency> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ImplementationDependsOns
+  // get_ImplementationDependencys
   //
-  ::GAME::Mga::Collection_T <ImplementationDependsOn> ComponentImplementationContainer_Impl::get_ImplementationDependsOns (void) const
+  ::GAME::Mga::Collection_T <ImplementationDependency> ComponentImplementationContainer_Impl::get_ImplementationDependencys (void) const
   {
-    return this->children <ImplementationDependsOn> ();
+    return this->children <ImplementationDependency> ();
   }
 
   //
@@ -220,6 +177,54 @@ namespace PICML
   ::GAME::Mga::Collection_T <CriticalPath> ComponentImplementationContainer_Impl::get_CriticalPaths (void) const
   {
     return this->children <CriticalPath> ();
+  }
+
+  //
+  // get_ImplementationDependsOns
+  //
+  size_t ComponentImplementationContainer_Impl::get_ImplementationDependsOns (std::vector <ImplementationDependsOn> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ImplementationDependsOns
+  //
+  ::GAME::Mga::Collection_T <ImplementationDependsOn> ComponentImplementationContainer_Impl::get_ImplementationDependsOns (void) const
+  {
+    return this->children <ImplementationDependsOn> ();
+  }
+
+  //
+  // get_MonolithicImplementations
+  //
+  size_t ComponentImplementationContainer_Impl::get_MonolithicImplementations (std::vector <MonolithicImplementation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_MonolithicImplementations
+  //
+  ::GAME::Mga::Collection_T <MonolithicImplementation> ComponentImplementationContainer_Impl::get_MonolithicImplementations (void) const
+  {
+    return this->children <MonolithicImplementation> ();
+  }
+
+  //
+  // get_ComponentAssemblys
+  //
+  size_t ComponentImplementationContainer_Impl::get_ComponentAssemblys (std::vector <ComponentAssembly> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComponentAssemblys
+  //
+  ::GAME::Mga::Collection_T <ComponentAssembly> ComponentImplementationContainer_Impl::get_ComponentAssemblys (void) const
+  {
+    return this->children <ComponentAssembly> ();
   }
 }
 

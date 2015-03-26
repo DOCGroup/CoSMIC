@@ -51,14 +51,17 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static ProvidedRequestPort _create (const PortType_in parent);
     static ProvidedRequestPort _create (const ConnectorObject_in parent);
-    static ProvidedRequestPort _create (const Component_in parent);
+    static ProvidedRequestPort _create (const PortType_in parent);
     static ProvidedRequestPort _create (const ConnectedComponent_in parent);
+    static ProvidedRequestPort _create (const Component_in parent);
     static ProvidedRequestPort _create (const Path_in parent);
     ///@}
 
@@ -85,8 +88,8 @@ namespace PICML
      */
     ///@{
     bool Provideable_is_nil (void) const;
-    Provideable get_Provideable (void) const;
-    void set_Provideable (Provideable_in item);
+    Provideable refers_to_Provideable (void) const;
+    void refers_to_Provideable (Provideable_in item);
     ///@}
   };
 }

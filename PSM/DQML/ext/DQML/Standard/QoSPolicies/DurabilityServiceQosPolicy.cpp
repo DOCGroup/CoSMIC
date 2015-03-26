@@ -25,11 +25,16 @@ namespace DQML
   const std::string DurabilityServiceQosPolicy_Impl::metaname ("DurabilityServiceQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool DurabilityServiceQosPolicy_Impl::is_abstract = false;
+
+  //
   // _create (const TopicQos_in)
   //
   DurabilityServiceQosPolicy DurabilityServiceQosPolicy_Impl::_create (const TopicQos_in parent)
   {
-    return ::GAME::Mga::create_object < DurabilityServiceQosPolicy > (parent, DurabilityServiceQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < DurabilityServiceQosPolicy > (parent, DurabilityServiceQosPolicy_Impl::metaname);
   }
 
   //
@@ -37,7 +42,7 @@ namespace DQML
   //
   DurabilityServiceQosPolicy DurabilityServiceQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < DurabilityServiceQosPolicy > (parent, DurabilityServiceQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < DurabilityServiceQosPolicy > (parent, DurabilityServiceQosPolicy_Impl::metaname);
   }
 
   //
@@ -63,19 +68,35 @@ namespace DQML
   }
 
   //
-  // dst_topic_dursvc_Connection
+  // dst_of_topic_dursvc_Connection
   //
-  size_t DurabilityServiceQosPolicy_Impl::dst_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const
+  size_t DurabilityServiceQosPolicy_Impl::dst_of_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const
   {
     return this->in_connections <topic_dursvc_Connection> (items);
   }
 
   //
-  // dst_dw_dursvc_Connection
+  // dst_of_topic_dursvc_Connection
   //
-  size_t DurabilityServiceQosPolicy_Impl::dst_dw_dursvc_Connection (std::vector <dw_dursvc_Connection> & items) const
+  GAME::Mga::Collection_T <topic_dursvc_Connection> DurabilityServiceQosPolicy_Impl::dst_of_topic_dursvc_Connection (void) const
+  {
+    return this->in_connections <topic_dursvc_Connection> ("dst");
+  }
+
+  //
+  // dst_of_dw_dursvc_Connection
+  //
+  size_t DurabilityServiceQosPolicy_Impl::dst_of_dw_dursvc_Connection (std::vector <dw_dursvc_Connection> & items) const
   {
     return this->in_connections <dw_dursvc_Connection> (items);
+  }
+
+  //
+  // dst_of_dw_dursvc_Connection
+  //
+  GAME::Mga::Collection_T <dw_dursvc_Connection> DurabilityServiceQosPolicy_Impl::dst_of_dw_dursvc_Connection (void) const
+  {
+    return this->in_connections <dw_dursvc_Connection> ("dst");
   }
 }
 

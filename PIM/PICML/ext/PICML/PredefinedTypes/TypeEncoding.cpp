@@ -22,11 +22,16 @@ namespace PICML
   const std::string TypeEncoding_Impl::metaname ("TypeEncoding");
 
   //
+  // is_abstract
+  //
+  const bool TypeEncoding_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   TypeEncoding TypeEncoding_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < TypeEncoding > (parent, TypeEncoding_Impl::metaname);
+    return ::GAME::Mga::create < TypeEncoding > (parent, TypeEncoding_Impl::metaname);
   }
 
   //

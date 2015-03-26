@@ -44,6 +44,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     BehaviorModel_Impl (void);
 
@@ -63,11 +66,8 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_TerminalEffects (std::vector <TerminalEffect> & items) const;
-    ::GAME::Mga::Collection_T <TerminalEffect> get_TerminalEffects (void) const;
-
-    size_t get_TerminalTransitions (std::vector <TerminalTransition> & items) const;
-    ::GAME::Mga::Collection_T <TerminalTransition> get_TerminalTransitions (void) const;
+    size_t get_LoopTransitions (std::vector <LoopTransition> & items) const;
+    ::GAME::Mga::Collection_T <LoopTransition> get_LoopTransitions (void) const;
 
     size_t get_Finishs (std::vector <Finish> & items) const;
     ::GAME::Mga::Collection_T <Finish> get_Finishs (void) const;
@@ -75,38 +75,23 @@ namespace PICML
     size_t get_InputEffects (std::vector <InputEffect> & items) const;
     ::GAME::Mga::Collection_T <InputEffect> get_InputEffects (void) const;
 
-    size_t get_Effects (std::vector <Effect> & items) const;
-    ::GAME::Mga::Collection_T <Effect> get_Effects (void) const;
-
-    size_t get_LoopTransitions (std::vector <LoopTransition> & items) const;
-    ::GAME::Mga::Collection_T <LoopTransition> get_LoopTransitions (void) const;
-
-    size_t get_BranchTransitions (std::vector <BranchTransition> & items) const;
-    ::GAME::Mga::Collection_T <BranchTransition> get_BranchTransitions (void) const;
-
-    size_t get_Transitions (std::vector <Transition> & items) const;
-    ::GAME::Mga::Collection_T <Transition> get_Transitions (void) const;
+    size_t get_TerminalEffects (std::vector <TerminalEffect> & items) const;
+    ::GAME::Mga::Collection_T <TerminalEffect> get_TerminalEffects (void) const;
 
     size_t get_Variables (std::vector <Variable> & items) const;
     ::GAME::Mga::Collection_T <Variable> get_Variables (void) const;
 
-    size_t get_Terminals (std::vector <Terminal> & items) const;
-    ::GAME::Mga::Collection_T <Terminal> get_Terminals (void) const;
+    size_t get_Effects (std::vector <Effect> & items) const;
+    ::GAME::Mga::Collection_T <Effect> get_Effects (void) const;
 
-    size_t get_States (std::vector <State> & items) const;
-    ::GAME::Mga::Collection_T <State> get_States (void) const;
+    size_t get_Transitions (std::vector <Transition> & items) const;
+    ::GAME::Mga::Collection_T <Transition> get_Transitions (void) const;
 
-    size_t get_WhileStates (std::vector <WhileState> & items) const;
-    ::GAME::Mga::Collection_T <WhileState> get_WhileStates (void) const;
+    size_t get_TerminalTransitions (std::vector <TerminalTransition> & items) const;
+    ::GAME::Mga::Collection_T <TerminalTransition> get_TerminalTransitions (void) const;
 
-    size_t get_DoWhileStates (std::vector <DoWhileState> & items) const;
-    ::GAME::Mga::Collection_T <DoWhileState> get_DoWhileStates (void) const;
-
-    size_t get_ForStates (std::vector <ForState> & items) const;
-    ::GAME::Mga::Collection_T <ForState> get_ForStates (void) const;
-
-    size_t get_BranchStates (std::vector <BranchState> & items) const;
-    ::GAME::Mga::Collection_T <BranchState> get_BranchStates (void) const;
+    size_t get_BranchTransitions (std::vector <BranchTransition> & items) const;
+    ::GAME::Mga::Collection_T <BranchTransition> get_BranchTransitions (void) const;
 
     size_t get_MultiInputActions (std::vector <MultiInputAction> & items) const;
     ::GAME::Mga::Collection_T <MultiInputAction> get_MultiInputActions (void) const;
@@ -131,6 +116,24 @@ namespace PICML
 
     size_t get_QueryInputActions (std::vector <QueryInputAction> & items) const;
     ::GAME::Mga::Collection_T <QueryInputAction> get_QueryInputActions (void) const;
+
+    size_t get_Terminals (std::vector <Terminal> & items) const;
+    ::GAME::Mga::Collection_T <Terminal> get_Terminals (void) const;
+
+    size_t get_BranchStates (std::vector <BranchState> & items) const;
+    ::GAME::Mga::Collection_T <BranchState> get_BranchStates (void) const;
+
+    size_t get_WhileStates (std::vector <WhileState> & items) const;
+    ::GAME::Mga::Collection_T <WhileState> get_WhileStates (void) const;
+
+    size_t get_DoWhileStates (std::vector <DoWhileState> & items) const;
+    ::GAME::Mga::Collection_T <DoWhileState> get_DoWhileStates (void) const;
+
+    size_t get_ForStates (std::vector <ForState> & items) const;
+    ::GAME::Mga::Collection_T <ForState> get_ForStates (void) const;
+
+    size_t get_States (std::vector <State> & items) const;
+    ::GAME::Mga::Collection_T <State> get_States (void) const;
 
     ///@}
   };

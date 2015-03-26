@@ -47,11 +47,14 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static BenchmarkCharacteristics _create (const BenchmarkAnalysis_in parent);
+    static BenchmarkCharacteristics _create (const BenchmarkAnalysis_in parent, BenchmarkType_in src, MetricsBase_in dst);
     ///@}
 
     // Default constructor.

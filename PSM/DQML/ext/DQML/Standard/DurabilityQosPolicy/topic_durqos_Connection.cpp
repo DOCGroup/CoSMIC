@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/QoSPolicies/DurabilityQosPolicy.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/DDSEntities/Topic.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -24,11 +24,16 @@ namespace DQML
   const std::string topic_durqos_Connection_Impl::metaname ("topic_durqos_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // is_abstract
   //
-  topic_durqos_Connection topic_durqos_Connection_Impl::_create (const DDSQoS_in parent)
+  const bool topic_durqos_Connection_Impl::is_abstract = false;
+
+  //
+  // _create (const DDSQoS_in, Topic_in src, DurabilityQosPolicy_in dst)
+  //
+  topic_durqos_Connection topic_durqos_Connection_Impl::_create (const DDSQoS_in parent, Topic_in src, DurabilityQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < topic_durqos_Connection > (parent, topic_durqos_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, topic_durqos_Connection_Impl::metaname, src, dst);
   }
 
   //

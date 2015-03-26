@@ -18,11 +18,24 @@ namespace PICML
   const std::string ExternalPortEnd_Impl::metaname ("ExternalPortEnd");
 
   //
-  // dst_ExternalDelegate
+  // is_abstract
   //
-  size_t ExternalPortEnd_Impl::dst_ExternalDelegate (std::vector <ExternalDelegate> & items) const
+  const bool ExternalPortEnd_Impl::is_abstract = true;
+
+  //
+  // dst_of_ExternalDelegate
+  //
+  size_t ExternalPortEnd_Impl::dst_of_ExternalDelegate (std::vector <ExternalDelegate> & items) const
   {
     return this->in_connections <ExternalDelegate> (items);
+  }
+
+  //
+  // dst_of_ExternalDelegate
+  //
+  GAME::Mga::Collection_T <ExternalDelegate> ExternalPortEnd_Impl::dst_of_ExternalDelegate (void) const
+  {
+    return this->in_connections <ExternalDelegate> ("dst");
   }
 }
 

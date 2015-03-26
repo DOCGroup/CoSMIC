@@ -9,11 +9,11 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/Object.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
 
@@ -23,6 +23,11 @@ namespace PICML
   // metaname
   //
   const std::string NoInheritable_Impl::metaname ("NoInheritable");
+
+  //
+  // is_abstract
+  //
+  const bool NoInheritable_Impl::is_abstract = true;
 
   //
   // parent_HasOperations

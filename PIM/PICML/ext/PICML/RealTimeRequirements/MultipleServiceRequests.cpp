@@ -22,11 +22,16 @@ namespace PICML
   const std::string MultipleServiceRequests_Impl::metaname ("MultipleServiceRequests");
 
   //
+  // is_abstract
+  //
+  const bool MultipleServiceRequests_Impl::is_abstract = false;
+
+  //
   // _create (const ServiceProvider_in)
   //
   MultipleServiceRequests MultipleServiceRequests_Impl::_create (const ServiceProvider_in parent)
   {
-    return ::GAME::Mga::create_object < MultipleServiceRequests > (parent, MultipleServiceRequests_Impl::metaname);
+    return ::GAME::Mga::create < MultipleServiceRequests > (parent, MultipleServiceRequests_Impl::metaname);
   }
 
   //

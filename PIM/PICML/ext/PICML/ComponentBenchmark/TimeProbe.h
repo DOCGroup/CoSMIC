@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -79,10 +82,14 @@ namespace PICML
     ///@{
 
     /// Get the dst TimerConnection connection.
-    size_t dst_TimerConnection (std::vector <TimerConnection> & items) const;
+    size_t dst_of_TimerConnection (std::vector <TimerConnection> & items) const;
+    bool has_dst_of_TimerConnection (void) const;
+    TimerConnection dst_of_TimerConnection (void) const;
 
     /// Get the dst TimerEventSinkConn connection.
-    size_t dst_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const;
+    size_t dst_of_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const;
+    bool has_dst_of_TimerEventSinkConn (void) const;
+    TimerEventSinkConn dst_of_TimerEventSinkConn (void) const;
     ///@}
   };
 }

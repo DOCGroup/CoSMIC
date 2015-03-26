@@ -8,20 +8,20 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationCommon/Implemenation.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
-#include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
+#include "PICML/ImplementationCommon/Implemenation.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -35,11 +35,16 @@ namespace PICML
   const std::string InfoProperty_Impl::metaname ("InfoProperty");
 
   //
-  // _create (const ImplementationContainer_in)
+  // is_abstract
   //
-  InfoProperty InfoProperty_Impl::_create (const ImplementationContainer_in parent)
+  const bool InfoProperty_Impl::is_abstract = false;
+
+  //
+  // _create (const ImplementationContainer_in, Implemenation_in src, Property_in dst)
+  //
+  InfoProperty InfoProperty_Impl::_create (const ImplementationContainer_in parent, Implemenation_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < InfoProperty > (parent, InfoProperty_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, InfoProperty_Impl::metaname, src, dst);
   }
 
   //

@@ -23,11 +23,16 @@ namespace PICML
   const std::string RequiredRequestPortDelegate_Impl::metaname ("RequiredRequestPortDelegate");
 
   //
+  // is_abstract
+  //
+  const bool RequiredRequestPortDelegate_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAssembly_in)
   //
   RequiredRequestPortDelegate RequiredRequestPortDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < RequiredRequestPortDelegate > (parent, RequiredRequestPortDelegate_Impl::metaname);
+    return ::GAME::Mga::create < RequiredRequestPortDelegate > (parent, RequiredRequestPortDelegate_Impl::metaname);
   }
 
   //
@@ -53,11 +58,19 @@ namespace PICML
   }
 
   //
-  // src_ReceptacleDelegate
+  // src_of_ReceptacleDelegate
   //
-  size_t RequiredRequestPortDelegate_Impl::src_ReceptacleDelegate (std::vector <ReceptacleDelegate> & items) const
+  size_t RequiredRequestPortDelegate_Impl::src_of_ReceptacleDelegate (std::vector <ReceptacleDelegate> & items) const
   {
     return this->in_connections <ReceptacleDelegate> (items);
+  }
+
+  //
+  // src_of_ReceptacleDelegate
+  //
+  GAME::Mga::Collection_T <ReceptacleDelegate> RequiredRequestPortDelegate_Impl::src_of_ReceptacleDelegate (void) const
+  {
+    return this->in_connections <ReceptacleDelegate> ("src");
   }
 }
 

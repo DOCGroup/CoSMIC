@@ -49,6 +49,9 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -94,7 +97,8 @@ namespace DQML
     ///@{
 
     /// Get the dst dr_timebased_Connection connection.
-    size_t dst_dr_timebased_Connection (std::vector <dr_timebased_Connection> & items) const;
+    size_t dst_of_dr_timebased_Connection (std::vector <dr_timebased_Connection> & items) const;
+    GAME::Mga::Collection_T <dr_timebased_Connection> dst_of_dr_timebased_Connection (void) const;
     ///@}
   };
 }

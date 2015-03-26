@@ -11,19 +11,19 @@
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/StateBase.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/State.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/LoopState.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/WhileState.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/DoWhileState.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/ForState.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/StateBase.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/LoopState.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/WhileState.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/DoWhileState.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/ForState.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/State.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -37,12 +37,9 @@ namespace PICML
   const std::string Effect_Impl::metaname ("Effect");
 
   //
-  // _create (const BehaviorModel_in)
+  // is_abstract
   //
-  Effect Effect_Impl::_create (const BehaviorModel_in parent)
-  {
-    return ::GAME::Mga::create_object < Effect > (parent, Effect_Impl::metaname);
-  }
+  const bool Effect_Impl::is_abstract = false;
 
   //
   // accept

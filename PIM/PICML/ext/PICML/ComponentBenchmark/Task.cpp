@@ -23,11 +23,16 @@ namespace PICML
   const std::string Task_Impl::metaname ("Task");
 
   //
+  // is_abstract
+  //
+  const bool Task_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   Task Task_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < Task > (parent, Task_Impl::metaname);
+    return ::GAME::Mga::create < Task > (parent, Task_Impl::metaname);
   }
 
   //
@@ -53,11 +58,27 @@ namespace PICML
   }
 
   //
-  // dst_WorkLoadOperationConnection
+  // dst_of_WorkLoadOperationConnection
   //
-  size_t Task_Impl::dst_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const
+  size_t Task_Impl::dst_of_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const
   {
     return this->in_connections <WorkLoadOperationConnection> (items);
+  }
+
+  //
+  // has_dst_of_WorkLoadOperationConnection
+  //
+  bool Task_Impl::has_dst_of_WorkLoadOperationConnection (void) const
+  {
+    return this->in_connections <WorkLoadOperationConnection> ("dst").count () == 1;
+  }
+
+  //
+  // dst_of_WorkLoadOperationConnection
+  //
+  WorkLoadOperationConnection Task_Impl::dst_of_WorkLoadOperationConnection (void) const
+  {
+    return this->in_connections <WorkLoadOperationConnection> ("dst").first ();
   }
 }
 

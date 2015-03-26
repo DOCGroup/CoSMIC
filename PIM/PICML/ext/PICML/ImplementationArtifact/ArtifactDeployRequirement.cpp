@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/Common/Requirement.h"
 #include "PICML/RealTimeRequirements/RTRequirements.h"
 #include "PICML/EventChannelRequirements/ECRequirements.h"
-#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string ArtifactDeployRequirement_Impl::metaname ("ArtifactDeployRequirement");
 
   //
-  // _create (const ArtifactContainer_in)
+  // is_abstract
   //
-  ArtifactDeployRequirement ArtifactDeployRequirement_Impl::_create (const ArtifactContainer_in parent)
+  const bool ArtifactDeployRequirement_Impl::is_abstract = false;
+
+  //
+  // _create (const ArtifactContainer_in, ImplementationArtifact_in src, Requirement_in dst)
+  //
+  ArtifactDeployRequirement ArtifactDeployRequirement_Impl::_create (const ArtifactContainer_in parent, ImplementationArtifact_in src, Requirement_in dst)
   {
-    return ::GAME::Mga::create_object < ArtifactDeployRequirement > (parent, ArtifactDeployRequirement_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ArtifactDeployRequirement_Impl::metaname, src, dst);
   }
 
   //

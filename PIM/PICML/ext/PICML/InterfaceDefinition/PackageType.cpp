@@ -24,11 +24,16 @@ namespace PICML
   const std::string PackageType_Impl::metaname ("PackageType");
 
   //
+  // is_abstract
+  //
+  const bool PackageType_Impl::is_abstract = false;
+
+  //
   // _create (const TemplatePackageAlias_in)
   //
   PackageType PackageType_Impl::_create (const TemplatePackageAlias_in parent)
   {
-    return ::GAME::Mga::create_object < PackageType > (parent, PackageType_Impl::metaname);
+    return ::GAME::Mga::create < PackageType > (parent, PackageType_Impl::metaname);
   }
 
   //
@@ -36,7 +41,7 @@ namespace PICML
   //
   PackageType PackageType_Impl::_create (const TemplatePackageInstance_in parent)
   {
-    return ::GAME::Mga::create_object < PackageType > (parent, PackageType_Impl::metaname);
+    return ::GAME::Mga::create < PackageType > (parent, PackageType_Impl::metaname);
   }
 
   //
@@ -74,21 +79,21 @@ namespace PICML
   //
   bool PackageType_Impl::Package_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_Package
+  // refers_to_Package
   //
-  void PackageType_Impl::set_Package (Package_in item)
+  void PackageType_Impl::refers_to_Package (Package_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Package
+  // refers_to_Package
   //
-  Package PackageType_Impl::get_Package (void) const
+  Package PackageType_Impl::refers_to_Package (void) const
   {
     return Package::_narrow (this->refers_to ());
   }

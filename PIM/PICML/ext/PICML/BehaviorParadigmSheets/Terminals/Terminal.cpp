@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
+#include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
-#include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string Terminal_Impl::metaname ("Terminal");
 
   //
+  // is_abstract
+  //
+  const bool Terminal_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   Terminal Terminal_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < Terminal > (parent, Terminal_Impl::metaname);
+    return ::GAME::Mga::create < Terminal > (parent, Terminal_Impl::metaname);
   }
 
   //
@@ -56,19 +61,43 @@ namespace PICML
   }
 
   //
-  // src_TerminalEffect
+  // src_of_TerminalEffect
   //
-  size_t Terminal_Impl::src_TerminalEffect (std::vector <TerminalEffect> & items) const
+  size_t Terminal_Impl::src_of_TerminalEffect (std::vector <TerminalEffect> & items) const
   {
     return this->in_connections <TerminalEffect> (items);
   }
 
   //
-  // dst_TerminalTransition
+  // has_src_of_TerminalEffect
   //
-  size_t Terminal_Impl::dst_TerminalTransition (std::vector <TerminalTransition> & items) const
+  bool Terminal_Impl::has_src_of_TerminalEffect (void) const
+  {
+    return this->in_connections <TerminalEffect> ("src").count () == 1;
+  }
+
+  //
+  // src_of_TerminalEffect
+  //
+  TerminalEffect Terminal_Impl::src_of_TerminalEffect (void) const
+  {
+    return this->in_connections <TerminalEffect> ("src").first ();
+  }
+
+  //
+  // dst_of_TerminalTransition
+  //
+  size_t Terminal_Impl::dst_of_TerminalTransition (std::vector <TerminalTransition> & items) const
   {
     return this->in_connections <TerminalTransition> (items);
+  }
+
+  //
+  // dst_of_TerminalTransition
+  //
+  GAME::Mga::Collection_T <TerminalTransition> Terminal_Impl::dst_of_TerminalTransition (void) const
+  {
+    return this->in_connections <TerminalTransition> ("dst");
   }
 }
 

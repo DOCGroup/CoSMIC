@@ -22,11 +22,16 @@ namespace PICML
   const std::string TypeKind_Impl::metaname ("TypeKind");
 
   //
+  // is_abstract
+  //
+  const bool TypeKind_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   TypeKind TypeKind_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < TypeKind > (parent, TypeKind_Impl::metaname);
+    return ::GAME::Mga::create < TypeKind > (parent, TypeKind_Impl::metaname);
   }
 
   //

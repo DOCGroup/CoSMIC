@@ -22,11 +22,16 @@ namespace PICML
   const std::string OutputAction_Impl::metaname ("OutputAction");
 
   //
+  // is_abstract
+  //
+  const bool OutputAction_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   OutputAction OutputAction_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < OutputAction > (parent, OutputAction_Impl::metaname);
+    return ::GAME::Mga::create < OutputAction > (parent, OutputAction_Impl::metaname);
   }
 
   //

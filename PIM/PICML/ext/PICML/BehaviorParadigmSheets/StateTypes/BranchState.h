@@ -49,6 +49,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -80,7 +83,8 @@ namespace PICML
     ///@{
 
     /// Get the src BranchTransition connection.
-    size_t src_BranchTransition (std::vector <BranchTransition> & items) const;
+    size_t src_of_BranchTransition (std::vector <BranchTransition> & items) const;
+    GAME::Mga::Collection_T <BranchTransition> src_of_BranchTransition (void) const;
     ///@}
   };
 }

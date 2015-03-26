@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "PICML/InterfaceDefinition/ConstantType.h"
-#include "PICML/NamedTypes/Enum.h"
 #include "PICML/PredefinedTypes/CharType.h"
 #include "PICML/PredefinedTypes/Char.h"
 #include "PICML/PredefinedTypes/WideChar.h"
@@ -31,7 +31,7 @@
 #include "PICML/PredefinedTypes/FloatNumber.h"
 #include "PICML/PredefinedTypes/Boolean.h"
 #include "PICML/PredefinedTypes/Byte.h"
-#include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "PICML/NamedTypes/Enum.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -45,11 +45,16 @@ namespace PICML
   const std::string Discriminator_Impl::metaname ("Discriminator");
 
   //
+  // is_abstract
+  //
+  const bool Discriminator_Impl::is_abstract = false;
+
+  //
   // _create (const SwitchedAggregate_in)
   //
   Discriminator Discriminator_Impl::_create (const SwitchedAggregate_in parent)
   {
-    return ::GAME::Mga::create_object < Discriminator > (parent, Discriminator_Impl::metaname);
+    return ::GAME::Mga::create < Discriminator > (parent, Discriminator_Impl::metaname);
   }
 
   //
@@ -79,21 +84,21 @@ namespace PICML
   //
   bool Discriminator_Impl::ConstantType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_ConstantType
+  // refers_to_ConstantType
   //
-  void Discriminator_Impl::set_ConstantType (ConstantType_in item)
+  void Discriminator_Impl::refers_to_ConstantType (ConstantType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ConstantType
+  // refers_to_ConstantType
   //
-  ConstantType Discriminator_Impl::get_ConstantType (void) const
+  ConstantType Discriminator_Impl::refers_to_ConstantType (void) const
   {
     return ConstantType::_narrow (this->refers_to ());
   }

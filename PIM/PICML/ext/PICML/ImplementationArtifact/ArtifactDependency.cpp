@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,11 +23,16 @@ namespace PICML
   const std::string ArtifactDependency_Impl::metaname ("ArtifactDependency");
 
   //
-  // _create (const ArtifactContainer_in)
+  // is_abstract
   //
-  ArtifactDependency ArtifactDependency_Impl::_create (const ArtifactContainer_in parent)
+  const bool ArtifactDependency_Impl::is_abstract = false;
+
+  //
+  // _create (const ArtifactContainer_in, ImplementationArtifact_in src, ImplementationArtifact_in dst)
+  //
+  ArtifactDependency ArtifactDependency_Impl::_create (const ArtifactContainer_in parent, ImplementationArtifact_in src, ImplementationArtifact_in dst)
   {
-    return ::GAME::Mga::create_object < ArtifactDependency > (parent, ArtifactDependency_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ArtifactDependency_Impl::metaname, src, dst);
   }
 
   //

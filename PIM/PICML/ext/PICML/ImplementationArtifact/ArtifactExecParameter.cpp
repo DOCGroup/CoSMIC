@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string ArtifactExecParameter_Impl::metaname ("ArtifactExecParameter");
 
   //
-  // _create (const ArtifactContainer_in)
+  // is_abstract
   //
-  ArtifactExecParameter ArtifactExecParameter_Impl::_create (const ArtifactContainer_in parent)
+  const bool ArtifactExecParameter_Impl::is_abstract = false;
+
+  //
+  // _create (const ArtifactContainer_in, ImplementationArtifact_in src, Property_in dst)
+  //
+  ArtifactExecParameter ArtifactExecParameter_Impl::_create (const ArtifactContainer_in parent, ImplementationArtifact_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < ArtifactExecParameter > (parent, ArtifactExecParameter_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ArtifactExecParameter_Impl::metaname, src, dst);
   }
 
   //

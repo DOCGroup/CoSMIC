@@ -47,6 +47,9 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -73,7 +76,15 @@ namespace DQML
     iCCM parent_iCCM (void);
     ///@}
 
+    /**
+     * @name Folder Getters
+     */
+    ///@{
+
     size_t get_Domains (std::vector <Domain> & items) const;
+
+    ::GAME::Mga::Collection_T <Domain> get_Domains (void) const;
+    ///@}
   };
 }
 

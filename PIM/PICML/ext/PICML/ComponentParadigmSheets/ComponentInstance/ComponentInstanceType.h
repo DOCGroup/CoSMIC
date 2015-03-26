@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -78,8 +81,8 @@ namespace PICML
      */
     ///@{
     bool MonolithicImplementation_is_nil (void) const;
-    MonolithicImplementation get_MonolithicImplementation (void) const;
-    void set_MonolithicImplementation (MonolithicImplementation_in item);
+    MonolithicImplementation refers_to_MonolithicImplementation (void) const;
+    void refers_to_MonolithicImplementation (MonolithicImplementation_in item);
     ///@}
   };
 }

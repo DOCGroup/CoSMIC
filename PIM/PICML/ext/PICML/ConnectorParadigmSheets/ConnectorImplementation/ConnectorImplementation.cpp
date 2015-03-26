@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string ConnectorImplementation_Impl::metaname ("ConnectorImplementation");
 
   //
+  // is_abstract
+  //
+  const bool ConnectorImplementation_Impl::is_abstract = false;
+
+  //
   // _create (const ConnectorImplementationContainer_in)
   //
   ConnectorImplementation ConnectorImplementation_Impl::_create (const ConnectorImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ConnectorImplementation > (parent, ConnectorImplementation_Impl::metaname);
+    return ::GAME::Mga::create < ConnectorImplementation > (parent, ConnectorImplementation_Impl::metaname);
   }
 
   //
@@ -54,11 +59,27 @@ namespace PICML
   }
 
   //
-  // src_ConnectorImplements
+  // src_of_ConnectorImplements
   //
-  size_t ConnectorImplementation_Impl::src_ConnectorImplements (std::vector <ConnectorImplements> & items) const
+  size_t ConnectorImplementation_Impl::src_of_ConnectorImplements (std::vector <ConnectorImplements> & items) const
   {
     return this->in_connections <ConnectorImplements> (items);
+  }
+
+  //
+  // has_src_of_ConnectorImplements
+  //
+  bool ConnectorImplementation_Impl::has_src_of_ConnectorImplements (void) const
+  {
+    return this->in_connections <ConnectorImplements> ("src").count () == 1;
+  }
+
+  //
+  // src_of_ConnectorImplements
+  //
+  ConnectorImplements ConnectorImplementation_Impl::src_of_ConnectorImplements (void) const
+  {
+    return this->in_connections <ConnectorImplements> ("src").first ();
   }
 }
 

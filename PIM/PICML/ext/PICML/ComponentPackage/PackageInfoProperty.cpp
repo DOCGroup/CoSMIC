@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
-#include "PICML/ComponentPackage/ComponentPackage.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/ComponentPackage/ComponentPackage.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string PackageInfoProperty_Impl::metaname ("PackageInfoProperty");
 
   //
-  // _create (const PackageContainer_in)
+  // is_abstract
   //
-  PackageInfoProperty PackageInfoProperty_Impl::_create (const PackageContainer_in parent)
+  const bool PackageInfoProperty_Impl::is_abstract = false;
+
+  //
+  // _create (const PackageContainer_in, ComponentPackage_in src, Property_in dst)
+  //
+  PackageInfoProperty PackageInfoProperty_Impl::_create (const PackageContainer_in parent, ComponentPackage_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < PackageInfoProperty > (parent, PackageInfoProperty_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, PackageInfoProperty_Impl::metaname, src, dst);
   }
 
   //

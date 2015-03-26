@@ -22,11 +22,16 @@ namespace PICML
   const std::string LongDoubleNumber_Impl::metaname ("LongDoubleNumber");
 
   //
+  // is_abstract
+  //
+  const bool LongDoubleNumber_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   LongDoubleNumber LongDoubleNumber_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < LongDoubleNumber > (parent, LongDoubleNumber_Impl::metaname);
+    return ::GAME::Mga::create < LongDoubleNumber > (parent, LongDoubleNumber_Impl::metaname);
   }
 
   //

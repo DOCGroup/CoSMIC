@@ -44,6 +44,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     MetricsBase_Impl (void);
 
@@ -108,7 +111,9 @@ namespace PICML
     ///@{
 
     /// Get the src WorkloadCharacteristics connection.
-    size_t src_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const;
+    size_t src_of_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const;
+    bool has_src_of_WorkloadCharacteristics (void) const;
+    WorkloadCharacteristics src_of_WorkloadCharacteristics (void) const;
     ///@}
 
     /**
@@ -116,11 +121,14 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst BenchmarkCharacteristics connection.
-    size_t dst_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const;
-
     /// Get the dst MetricConnection connection.
-    size_t dst_MetricConnection (std::vector <MetricConnection> & items) const;
+    size_t dst_of_MetricConnection (std::vector <MetricConnection> & items) const;
+    MetricConnection dst_of_MetricConnection (void) const;
+
+    /// Get the dst BenchmarkCharacteristics connection.
+    size_t dst_of_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const;
+    bool has_dst_of_BenchmarkCharacteristics (void) const;
+    BenchmarkCharacteristics dst_of_BenchmarkCharacteristics (void) const;
     ///@}
 
     /**

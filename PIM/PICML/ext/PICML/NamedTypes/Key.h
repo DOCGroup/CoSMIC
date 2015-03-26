@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -79,7 +82,8 @@ namespace PICML
     ///@{
 
     /// Get the src KeyMember connection.
-    size_t src_KeyMember (std::vector <KeyMember> & items) const;
+    size_t src_of_KeyMember (std::vector <KeyMember> & items) const;
+    GAME::Mga::Collection_T <KeyMember> src_of_KeyMember (void) const;
     ///@}
   };
 }

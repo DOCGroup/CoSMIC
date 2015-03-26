@@ -23,11 +23,16 @@ namespace PICML
   const std::string ConnectorImplementationType_Impl::metaname ("ConnectorImplementationType");
 
   //
+  // is_abstract
+  //
+  const bool ConnectorImplementationType_Impl::is_abstract = false;
+
+  //
   // _create (const ConnectorInstance_in)
   //
   ConnectorImplementationType ConnectorImplementationType_Impl::_create (const ConnectorInstance_in parent)
   {
-    return ::GAME::Mga::create_object < ConnectorImplementationType > (parent, ConnectorImplementationType_Impl::metaname);
+    return ::GAME::Mga::create < ConnectorImplementationType > (parent, ConnectorImplementationType_Impl::metaname);
   }
 
   //
@@ -57,21 +62,21 @@ namespace PICML
   //
   bool ConnectorImplementationType_Impl::ConnectorImplementation_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_ConnectorImplementation
+  // refers_to_ConnectorImplementation
   //
-  void ConnectorImplementationType_Impl::set_ConnectorImplementation (ConnectorImplementation_in item)
+  void ConnectorImplementationType_Impl::refers_to_ConnectorImplementation (ConnectorImplementation_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ConnectorImplementation
+  // refers_to_ConnectorImplementation
   //
-  ConnectorImplementation ConnectorImplementationType_Impl::get_ConnectorImplementation (void) const
+  ConnectorImplementation ConnectorImplementationType_Impl::refers_to_ConnectorImplementation (void) const
   {
     return ConnectorImplementation::_narrow (this->refers_to ());
   }

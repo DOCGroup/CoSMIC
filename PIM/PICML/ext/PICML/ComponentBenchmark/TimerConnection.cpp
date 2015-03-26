@@ -24,11 +24,16 @@ namespace PICML
   const std::string TimerConnection_Impl::metaname ("TimerConnection");
 
   //
-  // _create (const BenchmarkAnalysis_in)
+  // is_abstract
   //
-  TimerConnection TimerConnection_Impl::_create (const BenchmarkAnalysis_in parent)
+  const bool TimerConnection_Impl::is_abstract = false;
+
+  //
+  // _create (const BenchmarkAnalysis_in, OperationRef_in src, TimeProbe_in dst)
+  //
+  TimerConnection TimerConnection_Impl::_create (const BenchmarkAnalysis_in parent, OperationRef_in src, TimeProbe_in dst)
   {
-    return ::GAME::Mga::create_object < TimerConnection > (parent, TimerConnection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, TimerConnection_Impl::metaname, src, dst);
   }
 
   //

@@ -22,11 +22,16 @@ namespace PICML
   const std::string DisplayNode_Impl::metaname ("DisplayNode");
 
   //
+  // is_abstract
+  //
+  const bool DisplayNode_Impl::is_abstract = false;
+
+  //
   // _create (const Path_in)
   //
   DisplayNode DisplayNode_Impl::_create (const Path_in parent)
   {
-    return ::GAME::Mga::create_object < DisplayNode > (parent, DisplayNode_Impl::metaname);
+    return ::GAME::Mga::create < DisplayNode > (parent, DisplayNode_Impl::metaname);
   }
 
   //

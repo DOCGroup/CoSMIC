@@ -22,11 +22,16 @@ namespace PICML
   const std::string ComponentInherits_Impl::metaname ("ComponentInherits");
 
   //
+  // is_abstract
+  //
+  const bool ComponentInherits_Impl::is_abstract = false;
+
+  //
   // _create (const Component_in)
   //
   ComponentInherits ComponentInherits_Impl::_create (const Component_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentInherits > (parent, ComponentInherits_Impl::metaname);
+    return ::GAME::Mga::create < ComponentInherits > (parent, ComponentInherits_Impl::metaname);
   }
 
   //
@@ -56,21 +61,21 @@ namespace PICML
   //
   bool ComponentInherits_Impl::Component_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_Component
+  // refers_to_Component
   //
-  void ComponentInherits_Impl::set_Component (Component_in item)
+  void ComponentInherits_Impl::refers_to_Component (Component_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Component
+  // refers_to_Component
   //
-  Component ComponentInherits_Impl::get_Component (void) const
+  Component ComponentInherits_Impl::refers_to_Component (void) const
   {
     return Component::_narrow (this->refers_to ());
   }

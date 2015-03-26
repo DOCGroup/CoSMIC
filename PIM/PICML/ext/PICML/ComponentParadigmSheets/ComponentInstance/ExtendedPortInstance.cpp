@@ -23,11 +23,16 @@ namespace PICML
   const std::string ExtendedPortInstance_Impl::metaname ("ExtendedPortInstance");
 
   //
+  // is_abstract
+  //
+  const bool ExtendedPortInstance_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentInstance_in)
   //
   ExtendedPortInstance ExtendedPortInstance_Impl::_create (const ComponentInstance_in parent)
   {
-    return ::GAME::Mga::create_object < ExtendedPortInstance > (parent, ExtendedPortInstance_Impl::metaname);
+    return ::GAME::Mga::create < ExtendedPortInstance > (parent, ExtendedPortInstance_Impl::metaname);
   }
 
   //
@@ -49,21 +54,21 @@ namespace PICML
   //
   bool ExtendedPortInstance_Impl::ExtendedPort_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_ExtendedPort
+  // refers_to_ExtendedPort
   //
-  void ExtendedPortInstance_Impl::set_ExtendedPort (ExtendedPort_in item)
+  void ExtendedPortInstance_Impl::refers_to_ExtendedPort (ExtendedPort_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ExtendedPort
+  // refers_to_ExtendedPort
   //
-  ExtendedPort ExtendedPortInstance_Impl::get_ExtendedPort (void) const
+  ExtendedPort ExtendedPortInstance_Impl::refers_to_ExtendedPort (void) const
   {
     return ExtendedPort::_narrow (this->refers_to ());
   }

@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
+#include "PICML/ComponentBuild/ExternalResources.h"
 #include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
 #include "PICML/ImplementationCommon/ComponentServantArtifact.h"
-#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
-#include "PICML/ImplementationArtifact/ArtifactDependency.h"
-#include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
-#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
-#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/ComponentBuild/Project.h"
-#include "PICML/ComponentBuild/ExternalResources.h"
+#include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
+#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
+#include "PICML/ImplementationArtifact/ArtifactDependency.h"
+#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
+#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -32,11 +32,16 @@ namespace PICML
   const std::string ImplementationArtifact_Impl::metaname ("ImplementationArtifact");
 
   //
+  // is_abstract
+  //
+  const bool ImplementationArtifact_Impl::is_abstract = false;
+
+  //
   // _create (const ArtifactContainer_in)
   //
   ImplementationArtifact ImplementationArtifact_Impl::_create (const ArtifactContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ImplementationArtifact > (parent, ImplementationArtifact_Impl::metaname);
+    return ::GAME::Mga::create < ImplementationArtifact > (parent, ImplementationArtifact_Impl::metaname);
   }
 
   //
@@ -44,7 +49,7 @@ namespace PICML
   //
   ImplementationArtifact ImplementationArtifact_Impl::_create (const Project_in parent)
   {
-    return ::GAME::Mga::create_object < ImplementationArtifact > (parent, ImplementationArtifact_Impl::metaname);
+    return ::GAME::Mga::create < ImplementationArtifact > (parent, ImplementationArtifact_Impl::metaname);
   }
 
   //
@@ -78,51 +83,99 @@ namespace PICML
   }
 
   //
-  // src_ArtifactDependsOn
+  // src_of_ArtifactInfoProperty
   //
-  size_t ImplementationArtifact_Impl::src_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const
-  {
-    return this->in_connections <ArtifactDependsOn> (items);
-  }
-
-  //
-  // src_ArtifactDependency
-  //
-  size_t ImplementationArtifact_Impl::src_ArtifactDependency (std::vector <ArtifactDependency> & items) const
-  {
-    return this->in_connections <ArtifactDependency> (items);
-  }
-
-  //
-  // src_ArtifactInfoProperty
-  //
-  size_t ImplementationArtifact_Impl::src_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const
+  size_t ImplementationArtifact_Impl::src_of_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const
   {
     return this->in_connections <ArtifactInfoProperty> (items);
   }
 
   //
-  // src_ArtifactExecParameter
+  // src_of_ArtifactInfoProperty
   //
-  size_t ImplementationArtifact_Impl::src_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const
+  GAME::Mga::Collection_T <ArtifactInfoProperty> ImplementationArtifact_Impl::src_of_ArtifactInfoProperty (void) const
   {
-    return this->in_connections <ArtifactExecParameter> (items);
+    return this->in_connections <ArtifactInfoProperty> ("src");
   }
 
   //
-  // src_ArtifactDeployRequirement
+  // src_of_ArtifactDependsOn
   //
-  size_t ImplementationArtifact_Impl::src_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const
+  size_t ImplementationArtifact_Impl::src_of_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const
+  {
+    return this->in_connections <ArtifactDependsOn> (items);
+  }
+
+  //
+  // src_of_ArtifactDependsOn
+  //
+  GAME::Mga::Collection_T <ArtifactDependsOn> ImplementationArtifact_Impl::src_of_ArtifactDependsOn (void) const
+  {
+    return this->in_connections <ArtifactDependsOn> ("src");
+  }
+
+  //
+  // src_of_ArtifactDependency
+  //
+  size_t ImplementationArtifact_Impl::src_of_ArtifactDependency (std::vector <ArtifactDependency> & items) const
+  {
+    return this->in_connections <ArtifactDependency> (items);
+  }
+
+  //
+  // src_of_ArtifactDependency
+  //
+  GAME::Mga::Collection_T <ArtifactDependency> ImplementationArtifact_Impl::src_of_ArtifactDependency (void) const
+  {
+    return this->in_connections <ArtifactDependency> ("src");
+  }
+
+  //
+  // src_of_ArtifactDeployRequirement
+  //
+  size_t ImplementationArtifact_Impl::src_of_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const
   {
     return this->in_connections <ArtifactDeployRequirement> (items);
   }
 
   //
-  // dst_ArtifactDependency
+  // src_of_ArtifactDeployRequirement
   //
-  size_t ImplementationArtifact_Impl::dst_ArtifactDependency (std::vector <ArtifactDependency> & items) const
+  GAME::Mga::Collection_T <ArtifactDeployRequirement> ImplementationArtifact_Impl::src_of_ArtifactDeployRequirement (void) const
+  {
+    return this->in_connections <ArtifactDeployRequirement> ("src");
+  }
+
+  //
+  // src_of_ArtifactExecParameter
+  //
+  size_t ImplementationArtifact_Impl::src_of_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const
+  {
+    return this->in_connections <ArtifactExecParameter> (items);
+  }
+
+  //
+  // src_of_ArtifactExecParameter
+  //
+  GAME::Mga::Collection_T <ArtifactExecParameter> ImplementationArtifact_Impl::src_of_ArtifactExecParameter (void) const
+  {
+    return this->in_connections <ArtifactExecParameter> ("src");
+  }
+
+  //
+  // dst_of_ArtifactDependency
+  //
+  size_t ImplementationArtifact_Impl::dst_of_ArtifactDependency (std::vector <ArtifactDependency> & items) const
   {
     return this->in_connections <ArtifactDependency> (items);
+  }
+
+  //
+  // dst_of_ArtifactDependency
+  //
+  GAME::Mga::Collection_T <ArtifactDependency> ImplementationArtifact_Impl::dst_of_ArtifactDependency (void) const
+  {
+    return this->in_connections <ArtifactDependency> ("dst");
   }
 }
 

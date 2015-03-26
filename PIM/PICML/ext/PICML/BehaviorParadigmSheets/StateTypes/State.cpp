@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/Transition.h"
+#include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string State_Impl::metaname ("State");
 
   //
+  // is_abstract
+  //
+  const bool State_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   State State_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < State > (parent, State_Impl::metaname);
+    return ::GAME::Mga::create < State > (parent, State_Impl::metaname);
   }
 
   //
@@ -46,19 +51,51 @@ namespace PICML
   }
 
   //
-  // src_TerminalTransition
+  // src_of_Transition
   //
-  size_t State_Impl::src_TerminalTransition (std::vector <TerminalTransition> & items) const
+  size_t State_Impl::src_of_Transition (std::vector <Transition> & items) const
+  {
+    return this->in_connections <Transition> (items);
+  }
+
+  //
+  // has_src_of_Transition
+  //
+  bool State_Impl::has_src_of_Transition (void) const
+  {
+    return this->in_connections <Transition> ("src").count () == 1;
+  }
+
+  //
+  // src_of_Transition
+  //
+  Transition State_Impl::src_of_Transition (void) const
+  {
+    return this->in_connections <Transition> ("src").first ();
+  }
+
+  //
+  // src_of_TerminalTransition
+  //
+  size_t State_Impl::src_of_TerminalTransition (std::vector <TerminalTransition> & items) const
   {
     return this->in_connections <TerminalTransition> (items);
   }
 
   //
-  // src_Transition
+  // has_src_of_TerminalTransition
   //
-  size_t State_Impl::src_Transition (std::vector <Transition> & items) const
+  bool State_Impl::has_src_of_TerminalTransition (void) const
   {
-    return this->in_connections <Transition> (items);
+    return this->in_connections <TerminalTransition> ("src").count () == 1;
+  }
+
+  //
+  // src_of_TerminalTransition
+  //
+  TerminalTransition State_Impl::src_of_TerminalTransition (void) const
+  {
+    return this->in_connections <TerminalTransition> ("src").first ();
   }
 }
 

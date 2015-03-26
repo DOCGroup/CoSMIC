@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/OperationTypes/OnewayOperation.h"
 #include "PICML/InterfaceDefinition/Exception.h"
+#include "PICML/OperationTypes/OnewayOperation.h"
 #include "PICML/OperationTypes/TwowayOperation.h"
 #include "PICML/InterfaceDefinition/Constant.h"
 #include "PICML/NamedTypes/NoInheritable.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
 #include "PICML/NamedTypes/Aggregate.h"
-#include "PICML/NamedTypes/Collection.h"
+#include "PICML/NamedTypes/Alias.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "PICML/NamedTypes/Enum.h"
-#include "PICML/NamedTypes/Alias.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/NamedTypes/Collection.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
 
@@ -30,20 +30,9 @@ namespace PICML
   const std::string HasOperations_Impl::metaname ("HasOperations");
 
   //
-  // get_OnewayOperations
+  // is_abstract
   //
-  size_t HasOperations_Impl::get_OnewayOperations (std::vector <OnewayOperation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_OnewayOperations
-  //
-  ::GAME::Mga::Collection_T <OnewayOperation> HasOperations_Impl::get_OnewayOperations (void) const
-  {
-    return this->children <OnewayOperation> ();
-  }
+  const bool HasOperations_Impl::is_abstract = true;
 
   //
   // get_Exceptions
@@ -59,6 +48,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <Exception> HasOperations_Impl::get_Exceptions (void) const
   {
     return this->children <Exception> ();
+  }
+
+  //
+  // get_OnewayOperations
+  //
+  size_t HasOperations_Impl::get_OnewayOperations (std::vector <OnewayOperation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_OnewayOperations
+  //
+  ::GAME::Mga::Collection_T <OnewayOperation> HasOperations_Impl::get_OnewayOperations (void) const
+  {
+    return this->children <OnewayOperation> ();
   }
 
   //
@@ -94,22 +99,6 @@ namespace PICML
   }
 
   //
-  // get_PortTypes
-  //
-  size_t HasOperations_Impl::get_PortTypes (std::vector <PortType> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PortTypes
-  //
-  ::GAME::Mga::Collection_T <PortType> HasOperations_Impl::get_PortTypes (void) const
-  {
-    return this->children <PortType> ();
-  }
-
-  //
   // get_Aggregates
   //
   size_t HasOperations_Impl::get_Aggregates (std::vector <Aggregate> & items) const
@@ -126,19 +115,19 @@ namespace PICML
   }
 
   //
-  // get_Collections
+  // get_Aliass
   //
-  size_t HasOperations_Impl::get_Collections (std::vector <Collection> & items) const
+  size_t HasOperations_Impl::get_Aliass (std::vector <Alias> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Collections
+  // get_Aliass
   //
-  ::GAME::Mga::Collection_T <Collection> HasOperations_Impl::get_Collections (void) const
+  ::GAME::Mga::Collection_T <Alias> HasOperations_Impl::get_Aliass (void) const
   {
-    return this->children <Collection> ();
+    return this->children <Alias> ();
   }
 
   //
@@ -174,19 +163,35 @@ namespace PICML
   }
 
   //
-  // get_Aliass
+  // get_PortTypes
   //
-  size_t HasOperations_Impl::get_Aliass (std::vector <Alias> & items) const
+  size_t HasOperations_Impl::get_PortTypes (std::vector <PortType> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Aliass
+  // get_PortTypes
   //
-  ::GAME::Mga::Collection_T <Alias> HasOperations_Impl::get_Aliass (void) const
+  ::GAME::Mga::Collection_T <PortType> HasOperations_Impl::get_PortTypes (void) const
   {
-    return this->children <Alias> ();
+    return this->children <PortType> ();
+  }
+
+  //
+  // get_Collections
+  //
+  size_t HasOperations_Impl::get_Collections (std::vector <Collection> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Collections
+  //
+  ::GAME::Mga::Collection_T <Collection> HasOperations_Impl::get_Collections (void) const
+  {
+    return this->children <Collection> ();
   }
 }
 

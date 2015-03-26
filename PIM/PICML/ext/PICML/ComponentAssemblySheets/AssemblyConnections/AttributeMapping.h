@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -78,14 +81,20 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src AttributeDelegate connection.
-    size_t src_AttributeDelegate (std::vector <AttributeDelegate> & items) const;
-
     /// Get the src AttributeMappingDelegate connection.
-    size_t src_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const;
+    size_t src_of_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const;
+    bool has_src_of_AttributeMappingDelegate (void) const;
+    AttributeMappingDelegate src_of_AttributeMappingDelegate (void) const;
+
+    /// Get the src AttributeDelegate connection.
+    size_t src_of_AttributeDelegate (std::vector <AttributeDelegate> & items) const;
+    bool has_src_of_AttributeDelegate (void) const;
+    AttributeDelegate src_of_AttributeDelegate (void) const;
 
     /// Get the src AttributeMappingValue connection.
-    size_t src_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const;
+    size_t src_of_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const;
+    bool has_src_of_AttributeMappingValue (void) const;
+    AttributeMappingValue src_of_AttributeMappingValue (void) const;
     ///@}
 
     /**
@@ -94,7 +103,9 @@ namespace PICML
     ///@{
 
     /// Get the dst AttributeMappingDelegate connection.
-    size_t dst_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const;
+    size_t dst_of_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const;
+    bool has_dst_of_AttributeMappingDelegate (void) const;
+    AttributeMappingDelegate dst_of_AttributeMappingDelegate (void) const;
     ///@}
 
     /**
@@ -102,8 +113,8 @@ namespace PICML
      */
     ///@{
     bool AttributeInstance_is_nil (void) const;
-    AttributeInstance get_AttributeInstance (void) const;
-    void set_AttributeInstance (AttributeInstance_in item);
+    AttributeInstance refers_to_AttributeInstance (void) const;
+    void refers_to_AttributeInstance (AttributeInstance_in item);
     ///@}
   };
 }

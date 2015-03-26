@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/OperationTypes/OperationBase.h"
-#include "PICML/OperationTypes/OnewayOperation.h"
-#include "PICML/OperationTypes/HasExceptions.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
-#include "PICML/OperationTypes/LookupOperation.h"
-#include "PICML/OperationTypes/FactoryOperation.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
 #include "PICML/ComponentBenchmark/ComponentOperation.h"
 #include "PICML/ComponentBenchmark/MetricConnection.h"
 #include "PICML/ComponentBenchmark/TimerConnection.h"
+#include "PICML/OperationTypes/OperationBase.h"
+#include "PICML/OperationTypes/OnewayOperation.h"
+#include "PICML/OperationTypes/HasExceptions.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/OperationTypes/LookupOperation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -32,11 +32,16 @@ namespace PICML
   const std::string OperationRef_Impl::metaname ("OperationRef");
 
   //
+  // is_abstract
+  //
+  const bool OperationRef_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   OperationRef OperationRef_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < OperationRef > (parent, OperationRef_Impl::metaname);
+    return ::GAME::Mga::create < OperationRef > (parent, OperationRef_Impl::metaname);
   }
 
   //
@@ -62,35 +67,99 @@ namespace PICML
   }
 
   //
-  // src_WorkLoadOperationConnection
+  // src_of_WorkLoadOperationConnection
   //
-  size_t OperationRef_Impl::src_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const
+  size_t OperationRef_Impl::src_of_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const
   {
     return this->in_connections <WorkLoadOperationConnection> (items);
   }
 
   //
-  // src_ComponentOperation
+  // has_src_of_WorkLoadOperationConnection
   //
-  size_t OperationRef_Impl::src_ComponentOperation (std::vector <ComponentOperation> & items) const
+  bool OperationRef_Impl::has_src_of_WorkLoadOperationConnection (void) const
+  {
+    return this->in_connections <WorkLoadOperationConnection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_WorkLoadOperationConnection
+  //
+  WorkLoadOperationConnection OperationRef_Impl::src_of_WorkLoadOperationConnection (void) const
+  {
+    return this->in_connections <WorkLoadOperationConnection> ("src").first ();
+  }
+
+  //
+  // src_of_ComponentOperation
+  //
+  size_t OperationRef_Impl::src_of_ComponentOperation (std::vector <ComponentOperation> & items) const
   {
     return this->in_connections <ComponentOperation> (items);
   }
 
   //
-  // src_MetricConnection
+  // has_src_of_ComponentOperation
   //
-  size_t OperationRef_Impl::src_MetricConnection (std::vector <MetricConnection> & items) const
+  bool OperationRef_Impl::has_src_of_ComponentOperation (void) const
+  {
+    return this->in_connections <ComponentOperation> ("src").count () == 1;
+  }
+
+  //
+  // src_of_ComponentOperation
+  //
+  ComponentOperation OperationRef_Impl::src_of_ComponentOperation (void) const
+  {
+    return this->in_connections <ComponentOperation> ("src").first ();
+  }
+
+  //
+  // src_of_MetricConnection
+  //
+  size_t OperationRef_Impl::src_of_MetricConnection (std::vector <MetricConnection> & items) const
   {
     return this->in_connections <MetricConnection> (items);
   }
 
   //
-  // src_TimerConnection
+  // has_src_of_MetricConnection
   //
-  size_t OperationRef_Impl::src_TimerConnection (std::vector <TimerConnection> & items) const
+  bool OperationRef_Impl::has_src_of_MetricConnection (void) const
+  {
+    return this->in_connections <MetricConnection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_MetricConnection
+  //
+  MetricConnection OperationRef_Impl::src_of_MetricConnection (void) const
+  {
+    return this->in_connections <MetricConnection> ("src").first ();
+  }
+
+  //
+  // src_of_TimerConnection
+  //
+  size_t OperationRef_Impl::src_of_TimerConnection (std::vector <TimerConnection> & items) const
   {
     return this->in_connections <TimerConnection> (items);
+  }
+
+  //
+  // has_src_of_TimerConnection
+  //
+  bool OperationRef_Impl::has_src_of_TimerConnection (void) const
+  {
+    return this->in_connections <TimerConnection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_TimerConnection
+  //
+  TimerConnection OperationRef_Impl::src_of_TimerConnection (void) const
+  {
+    return this->in_connections <TimerConnection> ("src").first ();
   }
 
   //
@@ -98,21 +167,21 @@ namespace PICML
   //
   bool OperationRef_Impl::OperationBase_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_OperationBase
+  // refers_to_OperationBase
   //
-  void OperationRef_Impl::set_OperationBase (OperationBase_in item)
+  void OperationRef_Impl::refers_to_OperationBase (OperationBase_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_OperationBase
+  // refers_to_OperationBase
   //
-  OperationBase OperationRef_Impl::get_OperationBase (void) const
+  OperationBase OperationRef_Impl::refers_to_OperationBase (void) const
   {
     return OperationBase::_narrow (this->refers_to ());
   }

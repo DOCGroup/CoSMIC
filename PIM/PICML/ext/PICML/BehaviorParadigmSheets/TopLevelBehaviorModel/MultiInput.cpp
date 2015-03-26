@@ -10,10 +10,10 @@
 #include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInputBase.h"
-#include "PICML/BehaviorParadigmSheets/InputHooks/Environment.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInputBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/Environment.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,11 +27,16 @@ namespace PICML
   const std::string MultiInput_Impl::metaname ("MultiInput");
 
   //
-  // _create (const TopLevelBehavior_in)
+  // is_abstract
   //
-  MultiInput MultiInput_Impl::_create (const TopLevelBehavior_in parent)
+  const bool MultiInput_Impl::is_abstract = false;
+
+  //
+  // _create (const TopLevelBehavior_in, MultiInputBase_in src, MultiInputAction_in dst)
+  //
+  MultiInput MultiInput_Impl::_create (const TopLevelBehavior_in parent, MultiInputBase_in src, MultiInputAction_in dst)
   {
-    return ::GAME::Mga::create_object < MultiInput > (parent, MultiInput_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, MultiInput_Impl::metaname, src, dst);
   }
 
   //

@@ -41,13 +41,9 @@ Participant_File_Locator::~Participant_File_Locator (void)
 //
 // visit_RootFolder
 //
-void Participant_File_Locator::visit_RootFolder (GAME::Mga::RootFolder_in item)
+void Participant_File_Locator::visit_RootFolder (DQML::RootFolder_in item)
 {
-  std::vector <DQML::iCCM> iccm_folders;
-
-  item->folders (iccm_folders);
-
-  for (auto & iccm_folder : iccm_folders)
+  for (auto & iccm_folder : item->get_iCCM ())
     iccm_folder->accept (this);
 }
 
@@ -56,12 +52,8 @@ void Participant_File_Locator::visit_RootFolder (GAME::Mga::RootFolder_in item)
 //
 void Participant_File_Locator::visit_iCCM (DQML::iCCM_in item)
 {
-  std::vector <DQML::DomainQosFolder> qos_folders;
-  item->folders (qos_folders);
-
-  for (auto & qos_folder : qos_folders)
+  for (auto & qos_folder : item->get_DomainQosFolders ())
     qos_folder->accept (this);
-
 }
 
 //
@@ -70,8 +62,7 @@ void Participant_File_Locator::visit_iCCM (DQML::iCCM_in item)
 void Participant_File_Locator::
 visit_DomainQosFolder (DQML::DomainQosFolder_in item)
 {
-  GAME::Mga::Collection_T <DQML::Domain> domains = item->children <DQML::Domain> ();
-  for (auto & domain : domains)
+  for (auto & domain : item->get_Domains ())
     domain->accept (this);
 }
 
@@ -82,8 +73,7 @@ void Participant_File_Locator::visit_Domain (DQML::Domain_in item)
 {
   this->domain_ = item->name ();
 
-  GAME::Mga::Collection_T <DQML::Participant> participants = item->get_Participants ();
-  for (auto & participant : participants)
+  for (auto & participant : item->get_Participants ())
     participant->accept (this);
 }
 

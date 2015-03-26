@@ -19,6 +19,11 @@ namespace PICML
   const std::string DataValueBase_Impl::metaname ("DataValueBase");
 
   //
+  // is_abstract
+  //
+  const bool DataValueBase_Impl::is_abstract = true;
+
+  //
   // parent_ComplexProperty
   //
   ComplexProperty DataValueBase_Impl::parent_ComplexProperty (void)

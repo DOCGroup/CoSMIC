@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
-#include "PICML/Common/Capability.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/Common/Capability.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string ImplementationCapability_Impl::metaname ("ImplementationCapability");
 
   //
-  // _create (const ComponentImplementationContainer_in)
+  // is_abstract
   //
-  ImplementationCapability ImplementationCapability_Impl::_create (const ComponentImplementationContainer_in parent)
+  const bool ImplementationCapability_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentImplementationContainer_in, ComponentImplementation_in src, Capability_in dst)
+  //
+  ImplementationCapability ImplementationCapability_Impl::_create (const ComponentImplementationContainer_in parent, ComponentImplementation_in src, Capability_in dst)
   {
-    return ::GAME::Mga::create_object < ImplementationCapability > (parent, ImplementationCapability_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ImplementationCapability_Impl::metaname, src, dst);
   }
 
   //

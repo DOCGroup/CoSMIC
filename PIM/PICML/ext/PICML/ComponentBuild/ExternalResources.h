@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -79,7 +82,8 @@ namespace PICML
     ///@{
 
     /// Get the dst ExtResourceConn connection.
-    size_t dst_ExtResourceConn (std::vector <ExtResourceConn> & items) const;
+    size_t dst_of_ExtResourceConn (std::vector <ExtResourceConn> & items) const;
+    GAME::Mga::Collection_T <ExtResourceConn> dst_of_ExtResourceConn (void) const;
     ///@}
 
     /**
@@ -87,8 +91,8 @@ namespace PICML
      */
     ///@{
     bool ImplementationArtifact_is_nil (void) const;
-    ImplementationArtifact get_ImplementationArtifact (void) const;
-    void set_ImplementationArtifact (ImplementationArtifact_in item);
+    ImplementationArtifact refers_to_ImplementationArtifact (void) const;
+    void refers_to_ImplementationArtifact (ImplementationArtifact_in item);
     ///@}
   };
 }

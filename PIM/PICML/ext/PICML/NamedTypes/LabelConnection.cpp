@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
 #include "PICML/NamedTypes/Label.h"
-#include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,11 +25,16 @@ namespace PICML
   const std::string LabelConnection_Impl::metaname ("LabelConnection");
 
   //
-  // _create (const SwitchedAggregate_in)
+  // is_abstract
   //
-  LabelConnection LabelConnection_Impl::_create (const SwitchedAggregate_in parent)
+  const bool LabelConnection_Impl::is_abstract = false;
+
+  //
+  // _create (const SwitchedAggregate_in, Member_in src, Label_in dst)
+  //
+  LabelConnection LabelConnection_Impl::_create (const SwitchedAggregate_in parent, Member_in src, Label_in dst)
   {
-    return ::GAME::Mga::create_object < LabelConnection > (parent, LabelConnection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, LabelConnection_Impl::metaname, src, dst);
   }
 
   //

@@ -8,29 +8,29 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ExternalPort.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExternalPortEnd.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -44,11 +44,16 @@ namespace PICML
   const std::string ExternalDelegate_Impl::metaname ("ExternalDelegate");
 
   //
-  // _create (const ComponentAssembly_in)
+  // is_abstract
   //
-  ExternalDelegate ExternalDelegate_Impl::_create (const ComponentAssembly_in parent)
+  const bool ExternalDelegate_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentAssembly_in, ExternalPort_in src, ExternalPortEnd_in dst)
+  //
+  ExternalDelegate ExternalDelegate_Impl::_create (const ComponentAssembly_in parent, ExternalPort_in src, ExternalPortEnd_in dst)
   {
-    return ::GAME::Mga::create_object < ExternalDelegate > (parent, ExternalDelegate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ExternalDelegate_Impl::metaname, src, dst);
   }
 
   //

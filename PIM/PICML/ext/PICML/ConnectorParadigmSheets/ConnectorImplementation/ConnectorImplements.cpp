@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string ConnectorImplements_Impl::metaname ("ConnectorImplements");
 
   //
-  // _create (const ConnectorImplementationContainer_in)
+  // is_abstract
   //
-  ConnectorImplements ConnectorImplements_Impl::_create (const ConnectorImplementationContainer_in parent)
+  const bool ConnectorImplements_Impl::is_abstract = false;
+
+  //
+  // _create (const ConnectorImplementationContainer_in, ConnectorImplementation_in src, ConnectorType_in dst)
+  //
+  ConnectorImplements ConnectorImplements_Impl::_create (const ConnectorImplementationContainer_in parent, ConnectorImplementation_in src, ConnectorType_in dst)
   {
-    return ::GAME::Mga::create_object < ConnectorImplements > (parent, ConnectorImplements_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ConnectorImplements_Impl::metaname, src, dst);
   }
 
   //

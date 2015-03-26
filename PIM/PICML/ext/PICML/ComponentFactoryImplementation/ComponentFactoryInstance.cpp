@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
 #include "PICML/DeploymentPlan/ComponentFactoryRef.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string ComponentFactoryInstance_Impl::metaname ("ComponentFactoryInstance");
 
   //
+  // is_abstract
+  //
+  const bool ComponentFactoryInstance_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentFactoryImplementationContainer_in)
   //
   ComponentFactoryInstance ComponentFactoryInstance_Impl::_create (const ComponentFactoryImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentFactoryInstance > (parent, ComponentFactoryInstance_Impl::metaname);
+    return ::GAME::Mga::create < ComponentFactoryInstance > (parent, ComponentFactoryInstance_Impl::metaname);
   }
 
   //
@@ -58,21 +63,21 @@ namespace PICML
   //
   bool ComponentFactoryInstance_Impl::ComponentFactory_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_ComponentFactory
+  // refers_to_ComponentFactory
   //
-  void ComponentFactoryInstance_Impl::set_ComponentFactory (ComponentFactory_in item)
+  void ComponentFactoryInstance_Impl::refers_to_ComponentFactory (ComponentFactory_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ComponentFactory
+  // refers_to_ComponentFactory
   //
-  ComponentFactory ComponentFactoryInstance_Impl::get_ComponentFactory (void) const
+  ComponentFactory ComponentFactoryInstance_Impl::refers_to_ComponentFactory (void) const
   {
     return ComponentFactory::_narrow (this->refers_to ());
   }

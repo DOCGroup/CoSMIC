@@ -1,11 +1,8 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "IDL_Generator_Visitor.h"
 #include "IDL_Generator_File.h"
 
-#include "Utils/Utils.h"
-#include "boost/bind.hpp"
+#include "game/mga/Utils.h"
 
 #include <algorithm>
 #include <fstream>
@@ -28,53 +25,44 @@ IDL_Generator_Visitor::~IDL_Generator_Visitor (void)
 }
 
 //
-// Visit_RootFolder
+// visit_RootFolder
 //
 void IDL_Generator_Visitor::
-Visit_RootFolder (const PICML::RootFolder & folder)
+visit_RootFolder (PICML::RootFolder_in folder)
 {
-  std::vector <PICML::InterfaceDefinitions> folders = folder.InterfaceDefinitions_children ();
-
-  std::for_each (folders.begin (),
-                 folders.end (),
-                 boost::bind (&PICML::InterfaceDefinitions::Accept, 
-                              _1,
-                              boost::ref (*this)));
+  for (auto folder : folder->get_InterfaceDefinitions ())
+    folder->accept (this);
 }
 
 //
-// Visit_InterfaceDefinitions
+// visit_InterfaceDefinitions
 //
 void IDL_Generator_Visitor::
-Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions & folder)
+visit_InterfaceDefinitions (PICML::InterfaceDefinitions_in folder)
 {
-  std::vector <PICML::File> files = folder.File_children ();
-  std::for_each (files.begin (),
-                 files.end (),
-                 boost::bind (&PICML::File::Accept, 
-                              _1, 
-                              boost::ref (*this)));
+  for (auto file : folder->get_Files ())
+    file->accept (this);
 }
 
 //
-// Visit_File
+// visit_File
 //
-void IDL_Generator_Visitor::Visit_File (const PICML::File & file)
+void IDL_Generator_Visitor::visit_File (PICML::File_in file)
 {
   // Construct the name of the IDL file. Make sure to include the
   // path of the IDL file.
   std::string filename (this->outdir_);
-  const std::string path (file.Path ());
+  const std::string path (file->Path ());
 
   if (!path.empty ())
   {
     // Make sure the path existing before creating the file.
     filename += "/" + path;
-    ::Utils::CreatePath (filename);
+    GAME::Utils::create_path (filename);
   }
 
   // Make sure the path exists.
-  filename += "/" + std::string (file.name ()) + ".idl";
+  filename += "/" + file->name () + ".idl";
 
   // Open the target file for writing.
   std::ofstream outfile (filename.c_str ());

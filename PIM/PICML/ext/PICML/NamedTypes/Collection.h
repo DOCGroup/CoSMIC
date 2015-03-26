@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/NamedTypes/NoInheritable.h"
 #include "PICML/Common/ComplexType.h"
+#include "PICML/NamedTypes/NoInheritable.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export Collection_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
-    public virtual NoInheritable_Impl,
-    public virtual ComplexType_Impl
+    public virtual ComplexType_Impl,
+    public virtual NoInheritable_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -50,6 +50,9 @@ namespace PICML
 
     /// Metaname for this extension class.
     static const std::string metaname;
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
 
     /**
      * @name Factory Methods
@@ -97,8 +100,8 @@ namespace PICML
      */
     ///@{
     bool MemberType_is_nil (void) const;
-    MemberType get_MemberType (void) const;
-    void set_MemberType (MemberType_in item);
+    MemberType refers_to_MemberType (void) const;
+    void refers_to_MemberType (MemberType_in item);
     ///@}
   };
 }

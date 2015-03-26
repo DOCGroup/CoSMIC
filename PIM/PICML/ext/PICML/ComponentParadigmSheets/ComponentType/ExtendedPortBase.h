@@ -44,6 +44,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     ExtendedPortBase_Impl (void);
 
@@ -57,8 +60,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    Component parent_Component (void);
     ConnectorObject parent_ConnectorObject (void);
+    Component parent_Component (void);
     ///@}
 
     /**
@@ -66,8 +69,8 @@ namespace PICML
      */
     ///@{
     bool PortType_is_nil (void) const;
-    PortType get_PortType (void) const;
-    void set_PortType (PortType_in item);
+    PortType refers_to_PortType (void) const;
+    void refers_to_PortType (PortType_in item);
     ///@}
   };
 }

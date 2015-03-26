@@ -26,11 +26,16 @@ namespace PICML
   const std::string MetricConnection_Impl::metaname ("MetricConnection");
 
   //
-  // _create (const BenchmarkAnalysis_in)
+  // is_abstract
   //
-  MetricConnection MetricConnection_Impl::_create (const BenchmarkAnalysis_in parent)
+  const bool MetricConnection_Impl::is_abstract = false;
+
+  //
+  // _create (const BenchmarkAnalysis_in, OperationRef_in src, MetricsBase_in dst)
+  //
+  MetricConnection MetricConnection_Impl::_create (const BenchmarkAnalysis_in parent, OperationRef_in src, MetricsBase_in dst)
   {
-    return ::GAME::Mga::create_object < MetricConnection > (parent, MetricConnection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, MetricConnection_Impl::metaname, src, dst);
   }
 
   //

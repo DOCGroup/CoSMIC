@@ -18,11 +18,24 @@ namespace PICML
   const std::string Manageable_Impl::metaname ("Manageable");
 
   //
-  // dst_ManagesComponent
+  // is_abstract
   //
-  size_t Manageable_Impl::dst_ManagesComponent (std::vector <ManagesComponent> & items) const
+  const bool Manageable_Impl::is_abstract = true;
+
+  //
+  // dst_of_ManagesComponent
+  //
+  size_t Manageable_Impl::dst_of_ManagesComponent (std::vector <ManagesComponent> & items) const
   {
     return this->in_connections <ManagesComponent> (items);
+  }
+
+  //
+  // dst_of_ManagesComponent
+  //
+  GAME::Mga::Collection_T <ManagesComponent> Manageable_Impl::dst_of_ManagesComponent (void) const
+  {
+    return this->in_connections <ManagesComponent> ("dst");
   }
 }
 

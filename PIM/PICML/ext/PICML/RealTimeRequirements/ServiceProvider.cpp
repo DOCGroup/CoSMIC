@@ -24,11 +24,16 @@ namespace PICML
   const std::string ServiceProvider_Impl::metaname ("ServiceProvider");
 
   //
+  // is_abstract
+  //
+  const bool ServiceProvider_Impl::is_abstract = false;
+
+  //
   // _create (const RTRequirements_in)
   //
   ServiceProvider ServiceProvider_Impl::_create (const RTRequirements_in parent)
   {
-    return ::GAME::Mga::create_object < ServiceProvider > (parent, ServiceProvider_Impl::metaname);
+    return ::GAME::Mga::create < ServiceProvider > (parent, ServiceProvider_Impl::metaname);
   }
 
   //

@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -79,7 +82,9 @@ namespace PICML
     ///@{
 
     /// Get the dst ConnectorImplements connection.
-    size_t dst_ConnectorImplements (std::vector <ConnectorImplements> & items) const;
+    size_t dst_of_ConnectorImplements (std::vector <ConnectorImplements> & items) const;
+    bool has_dst_of_ConnectorImplements (void) const;
+    ConnectorImplements dst_of_ConnectorImplements (void) const;
     ///@}
 
     /**
@@ -87,8 +92,8 @@ namespace PICML
      */
     ///@{
     bool ConnectorObject_is_nil (void) const;
-    ConnectorObject get_ConnectorObject (void) const;
-    void set_ConnectorObject (ConnectorObject_in item);
+    ConnectorObject refers_to_ConnectorObject (void) const;
+    void refers_to_ConnectorObject (ConnectorObject_in item);
     ///@}
   };
 }

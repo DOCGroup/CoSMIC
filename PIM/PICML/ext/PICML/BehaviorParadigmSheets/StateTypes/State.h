@@ -49,6 +49,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -79,11 +82,15 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src TerminalTransition connection.
-    size_t src_TerminalTransition (std::vector <TerminalTransition> & items) const;
-
     /// Get the src Transition connection.
-    size_t src_Transition (std::vector <Transition> & items) const;
+    size_t src_of_Transition (std::vector <Transition> & items) const;
+    bool has_src_of_Transition (void) const;
+    Transition src_of_Transition (void) const;
+
+    /// Get the src TerminalTransition connection.
+    size_t src_of_TerminalTransition (std::vector <TerminalTransition> & items) const;
+    bool has_src_of_TerminalTransition (void) const;
+    TerminalTransition src_of_TerminalTransition (void) const;
     ///@}
   };
 }

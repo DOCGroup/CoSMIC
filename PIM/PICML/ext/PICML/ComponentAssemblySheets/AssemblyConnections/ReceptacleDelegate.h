@@ -47,11 +47,14 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static ReceptacleDelegate _create (const ComponentAssembly_in parent);
+    static ReceptacleDelegate _create (const ComponentAssembly_in parent, RequiredRequestPortDelegate_in src, RequiredRequestPortEnd_in dst);
     ///@}
 
     // Default constructor.

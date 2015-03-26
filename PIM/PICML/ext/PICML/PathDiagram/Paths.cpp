@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
-#include "PICML/PathDiagram/Path.h"
-#include "PICML/PathDiagram/PathProperty.h"
 #include "PICML/PathDiagram/PathDiagrams.h"
+#include "PICML/PathDiagram/PathProperty.h"
+#include "PICML/PathDiagram/Path.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,11 +27,16 @@ namespace PICML
   const std::string Paths_Impl::metaname ("Paths");
 
   //
+  // is_abstract
+  //
+  const bool Paths_Impl::is_abstract = false;
+
+  //
   // _create (const PathDiagrams_in)
   //
   Paths Paths_Impl::_create (const PathDiagrams_in parent)
   {
-    return ::GAME::Mga::create_root_object < Paths > (parent, Paths_Impl::metaname);
+    return ::GAME::Mga::create < Paths > (parent, Paths_Impl::metaname);
   }
 
   //
@@ -57,35 +62,19 @@ namespace PICML
   }
 
   //
-  // get_ComplexPropertys
+  // get_PathPropertys
   //
-  size_t Paths_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  size_t Paths_Impl::get_PathPropertys (std::vector <PathProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ComplexPropertys
+  // get_PathPropertys
   //
-  ::GAME::Mga::Collection_T <ComplexProperty> Paths_Impl::get_ComplexPropertys (void) const
+  ::GAME::Mga::Collection_T <PathProperty> Paths_Impl::get_PathPropertys (void) const
   {
-    return this->children <ComplexProperty> ();
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  size_t Paths_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  ::GAME::Mga::Collection_T <SimpleProperty> Paths_Impl::get_SimplePropertys (void) const
-  {
-    return this->children <SimpleProperty> ();
+    return this->children <PathProperty> ();
   }
 
   //
@@ -105,19 +94,35 @@ namespace PICML
   }
 
   //
-  // get_PathPropertys
+  // get_SimplePropertys
   //
-  size_t Paths_Impl::get_PathPropertys (std::vector <PathProperty> & items) const
+  size_t Paths_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_PathPropertys
+  // get_SimplePropertys
   //
-  ::GAME::Mga::Collection_T <PathProperty> Paths_Impl::get_PathPropertys (void) const
+  ::GAME::Mga::Collection_T <SimpleProperty> Paths_Impl::get_SimplePropertys (void) const
   {
-    return this->children <PathProperty> ();
+    return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t Paths_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> Paths_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 }
 

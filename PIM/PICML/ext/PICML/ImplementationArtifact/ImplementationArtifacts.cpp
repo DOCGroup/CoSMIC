@@ -22,6 +22,11 @@ namespace PICML
   const std::string ImplementationArtifacts_Impl::metaname ("ImplementationArtifacts");
 
   //
+  // is_abstract
+  //
+  const bool ImplementationArtifacts_Impl::is_abstract = false;
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   ImplementationArtifacts ImplementationArtifacts_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

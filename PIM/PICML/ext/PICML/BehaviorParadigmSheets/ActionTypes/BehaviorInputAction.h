@@ -44,6 +44,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     BehaviorInputAction_Impl (void);
 
@@ -66,7 +69,9 @@ namespace PICML
     ///@{
 
     /// Get the src InputEffect connection.
-    size_t src_InputEffect (std::vector <InputEffect> & items) const;
+    size_t src_of_InputEffect (std::vector <InputEffect> & items) const;
+    bool has_src_of_InputEffect (void) const;
+    InputEffect src_of_InputEffect (void) const;
     ///@}
 
     /**
@@ -75,18 +80,20 @@ namespace PICML
     ///@{
 
     /// Get the dst Finish connection.
-    size_t dst_Finish (std::vector <Finish> & items) const;
+    size_t dst_of_Finish (std::vector <Finish> & items) const;
+    bool has_dst_of_Finish (void) const;
+    Finish dst_of_Finish (void) const;
     ///@}
 
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
-    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
-
     size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
     ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
+
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
 
     ///@}
   };

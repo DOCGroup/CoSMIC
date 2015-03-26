@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/Common/Requirement.h"
 #include "PICML/RealTimeRequirements/RTRequirements.h"
 #include "PICML/EventChannelRequirements/ECRequirements.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,11 +28,16 @@ namespace PICML
   const std::string AssemblyselectRequirement_Impl::metaname ("AssemblyselectRequirement");
 
   //
-  // _create (const ComponentAssembly_in)
+  // is_abstract
   //
-  AssemblyselectRequirement AssemblyselectRequirement_Impl::_create (const ComponentAssembly_in parent)
+  const bool AssemblyselectRequirement_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentAssembly_in, AssemblyConfigPropertyEnd_in src, Requirement_in dst)
+  //
+  AssemblyselectRequirement AssemblyselectRequirement_Impl::_create (const ComponentAssembly_in parent, AssemblyConfigPropertyEnd_in src, Requirement_in dst)
   {
-    return ::GAME::Mga::create_object < AssemblyselectRequirement > (parent, AssemblyselectRequirement_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, AssemblyselectRequirement_Impl::metaname, src, dst);
   }
 
   //

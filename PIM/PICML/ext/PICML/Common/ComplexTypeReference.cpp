@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/DataValueContainer.h"
 #include "PICML/Common/ComplexType.h"
 #include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/NamedTypes/Collection.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/DataValueContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string ComplexTypeReference_Impl::metaname ("ComplexTypeReference");
 
   //
+  // is_abstract
+  //
+  const bool ComplexTypeReference_Impl::is_abstract = false;
+
+  //
   // _create (const ComplexProperty_in)
   //
   ComplexTypeReference ComplexTypeReference_Impl::_create (const ComplexProperty_in parent)
   {
-    return ::GAME::Mga::create_object < ComplexTypeReference > (parent, ComplexTypeReference_Impl::metaname);
+    return ::GAME::Mga::create < ComplexTypeReference > (parent, ComplexTypeReference_Impl::metaname);
   }
 
   //
@@ -38,7 +43,7 @@ namespace PICML
   //
   ComplexTypeReference ComplexTypeReference_Impl::_create (const DataValueContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ComplexTypeReference > (parent, ComplexTypeReference_Impl::metaname);
+    return ::GAME::Mga::create < ComplexTypeReference > (parent, ComplexTypeReference_Impl::metaname);
   }
 
   //
@@ -76,21 +81,21 @@ namespace PICML
   //
   bool ComplexTypeReference_Impl::ComplexType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_ComplexType
+  // refers_to_ComplexType
   //
-  void ComplexTypeReference_Impl::set_ComplexType (ComplexType_in item)
+  void ComplexTypeReference_Impl::refers_to_ComplexType (ComplexType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ComplexType
+  // refers_to_ComplexType
   //
-  ComplexType ComplexTypeReference_Impl::get_ComplexType (void) const
+  ComplexType ComplexTypeReference_Impl::refers_to_ComplexType (void) const
   {
     return ComplexType::_narrow (this->refers_to ());
   }

@@ -23,11 +23,16 @@ namespace PICML
   const std::string PeriodicEvent_Impl::metaname ("PeriodicEvent");
 
   //
+  // is_abstract
+  //
+  const bool PeriodicEvent_Impl::is_abstract = false;
+
+  //
   // _create (const TopLevelBehavior_in)
   //
   PeriodicEvent PeriodicEvent_Impl::_create (const TopLevelBehavior_in parent)
   {
-    return ::GAME::Mga::create_object < PeriodicEvent > (parent, PeriodicEvent_Impl::metaname);
+    return ::GAME::Mga::create < PeriodicEvent > (parent, PeriodicEvent_Impl::metaname);
   }
 
   //

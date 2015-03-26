@@ -22,11 +22,16 @@ namespace PICML
   const std::string ForState_Impl::metaname ("ForState");
 
   //
+  // is_abstract
+  //
+  const bool ForState_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   ForState ForState_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < ForState > (parent, ForState_Impl::metaname);
+    return ::GAME::Mga::create < ForState > (parent, ForState_Impl::metaname);
   }
 
   //

@@ -72,18 +72,15 @@ void Component_Observer_Event_Handler::insert_all (ComponentInstance_in inst)
   if (type.is_nil ())
     return;
 
-  MonolithicImplementation impl = type->get_MonolithicImplementation ();
+  MonolithicImplementation impl = type->refers_to_MonolithicImplementation ();
   if (impl.is_nil ())
     return;
 
-  std::vector <Implements> implements;
-  impl->src_Implements (implements);
-
-  if (implements.empty ())
+  if (!impl->has_src_of_Implements ())
     return;
 
-  ComponentRef ref = implements.front ()->dst_ComponentRef ();
-  Component comp = ref->get_Component ();
+  ComponentRef ref = impl->src_of_Implements ()->dst_ComponentRef ();
+  Component comp = ref->refers_to_Component ();
 
   if (!comp.is_nil ())
     this->insert (comp, inst);

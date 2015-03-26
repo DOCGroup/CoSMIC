@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/Member.h"
-#include "PICML/NamedTypes/ArrayMember.h"
-#include "PICML/InheritableTypes/PrivateFlag.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/NamedTypes/Member.h"
+#include "PICML/NamedTypes/ArrayMember.h"
+#include "PICML/InheritableTypes/PrivateFlag.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,11 +27,16 @@ namespace PICML
   const std::string MakeMemberPrivate_Impl::metaname ("MakeMemberPrivate");
 
   //
-  // _create (const ObjectByValue_in)
+  // is_abstract
   //
-  MakeMemberPrivate MakeMemberPrivate_Impl::_create (const ObjectByValue_in parent)
+  const bool MakeMemberPrivate_Impl::is_abstract = false;
+
+  //
+  // _create (const ObjectByValue_in, Member_in src, PrivateFlag_in dst)
+  //
+  MakeMemberPrivate MakeMemberPrivate_Impl::_create (const ObjectByValue_in parent, Member_in src, PrivateFlag_in dst)
   {
-    return ::GAME::Mga::create_object < MakeMemberPrivate > (parent, MakeMemberPrivate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, MakeMemberPrivate_Impl::metaname, src, dst);
   }
 
   //

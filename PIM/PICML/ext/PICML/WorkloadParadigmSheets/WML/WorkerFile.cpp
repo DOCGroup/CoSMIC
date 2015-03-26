@@ -23,11 +23,16 @@ namespace PICML
   const std::string WorkerFile_Impl::metaname ("WorkerFile");
 
   //
+  // is_abstract
+  //
+  const bool WorkerFile_Impl::is_abstract = false;
+
+  //
   // _create (const WorkerLibrary_in)
   //
   WorkerFile WorkerFile_Impl::_create (const WorkerLibrary_in parent)
   {
-    return ::GAME::Mga::create_object < WorkerFile > (parent, WorkerFile_Impl::metaname);
+    return ::GAME::Mga::create < WorkerFile > (parent, WorkerFile_Impl::metaname);
   }
 
   //

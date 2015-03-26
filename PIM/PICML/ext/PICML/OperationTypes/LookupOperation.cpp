@@ -23,11 +23,16 @@ namespace PICML
   const std::string LookupOperation_Impl::metaname ("LookupOperation");
 
   //
+  // is_abstract
+  //
+  const bool LookupOperation_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentFactory_in)
   //
   LookupOperation LookupOperation_Impl::_create (const ComponentFactory_in parent)
   {
-    return ::GAME::Mga::create_object < LookupOperation > (parent, LookupOperation_Impl::metaname);
+    return ::GAME::Mga::create < LookupOperation > (parent, LookupOperation_Impl::metaname);
   }
 
   //
@@ -35,7 +40,7 @@ namespace PICML
   //
   LookupOperation LookupOperation_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < LookupOperation > (parent, LookupOperation_Impl::metaname);
+    return ::GAME::Mga::create < LookupOperation > (parent, LookupOperation_Impl::metaname);
   }
 
   //

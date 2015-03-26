@@ -22,11 +22,16 @@ namespace PICML
   const std::string ECRole_Impl::metaname ("ECRole");
 
   //
+  // is_abstract
+  //
+  const bool ECRole_Impl::is_abstract = false;
+
+  //
   // _create (const ECRequirements_in)
   //
   ECRole ECRole_Impl::_create (const ECRequirements_in parent)
   {
-    return ::GAME::Mga::create_object < ECRole > (parent, ECRole_Impl::metaname);
+    return ::GAME::Mga::create < ECRole > (parent, ECRole_Impl::metaname);
   }
 
   //

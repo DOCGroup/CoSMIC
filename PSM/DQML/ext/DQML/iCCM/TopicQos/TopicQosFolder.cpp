@@ -23,11 +23,16 @@ namespace DQML
   const std::string TopicQosFolder_Impl::metaname ("TopicQosFolder");
 
   //
+  // is_abstract
+  //
+  const bool TopicQosFolder_Impl::is_abstract = false;
+
+  //
   // _create (const iCCM_in)
   //
   TopicQosFolder TopicQosFolder_Impl::_create (const iCCM_in parent)
   {
-    return ::GAME::Mga::create_folder < TopicQosFolder > (parent, TopicQosFolder_Impl::metaname);
+    return ::GAME::Mga::create < TopicQosFolder > (parent, TopicQosFolder_Impl::metaname);
   }
 
   //
@@ -58,6 +63,14 @@ namespace DQML
   size_t TopicQosFolder_Impl::get_TopicQoss (std::vector <TopicQos> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_TopicQoss
+  //
+  ::GAME::Mga::Collection_T <TopicQos> TopicQosFolder_Impl::get_TopicQoss (void) const
+  {
+    return this->children <TopicQos> ();
   }
 }
 

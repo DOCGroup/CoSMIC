@@ -22,11 +22,16 @@ namespace PICML
   const std::string GenericValueObject_Impl::metaname ("GenericValueObject");
 
   //
+  // is_abstract
+  //
+  const bool GenericValueObject_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   GenericValueObject GenericValueObject_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < GenericValueObject > (parent, GenericValueObject_Impl::metaname);
+    return ::GAME::Mga::create < GenericValueObject > (parent, GenericValueObject_Impl::metaname);
   }
 
   //

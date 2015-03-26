@@ -23,11 +23,16 @@ namespace PICML
   const std::string Average_Impl::metaname ("Average");
 
   //
+  // is_abstract
+  //
+  const bool Average_Impl::is_abstract = false;
+
+  //
   // _create (const MetricsBase_in)
   //
   Average Average_Impl::_create (const MetricsBase_in parent)
   {
-    return ::GAME::Mga::create_object < Average > (parent, Average_Impl::metaname);
+    return ::GAME::Mga::create < Average > (parent, Average_Impl::metaname);
   }
 
   //
@@ -35,7 +40,7 @@ namespace PICML
   //
   Average Average_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < Average > (parent, Average_Impl::metaname);
+    return ::GAME::Mga::create < Average > (parent, Average_Impl::metaname);
   }
 
   //

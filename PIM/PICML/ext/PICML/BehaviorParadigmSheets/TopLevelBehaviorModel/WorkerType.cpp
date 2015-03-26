@@ -24,11 +24,16 @@ namespace PICML
   const std::string WorkerType_Impl::metaname ("WorkerType");
 
   //
+  // is_abstract
+  //
+  const bool WorkerType_Impl::is_abstract = false;
+
+  //
   // _create (const TopLevelBehavior_in)
   //
   WorkerType WorkerType_Impl::_create (const TopLevelBehavior_in parent)
   {
-    return ::GAME::Mga::create_object < WorkerType > (parent, WorkerType_Impl::metaname);
+    return ::GAME::Mga::create < WorkerType > (parent, WorkerType_Impl::metaname);
   }
 
   //
@@ -58,21 +63,21 @@ namespace PICML
   //
   bool WorkerType_Impl::Worker_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_Worker
+  // refers_to_Worker
   //
-  void WorkerType_Impl::set_Worker (Worker_in item)
+  void WorkerType_Impl::refers_to_Worker (Worker_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Worker
+  // refers_to_Worker
   //
-  Worker WorkerType_Impl::get_Worker (void) const
+  Worker WorkerType_Impl::refers_to_Worker (void) const
   {
     return Worker::_narrow (this->refers_to ());
   }

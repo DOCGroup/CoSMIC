@@ -46,6 +46,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     MirrorPortInstanceBase_Impl (void);
 
@@ -67,7 +70,9 @@ namespace PICML
     ///@{
 
     /// Get the src MirrorDelegate connection.
-    size_t src_MirrorDelegate (std::vector <MirrorDelegate> & items) const;
+    size_t src_of_MirrorDelegate (std::vector <MirrorDelegate> & items) const;
+    bool has_src_of_MirrorDelegate (void) const;
+    MirrorDelegate src_of_MirrorDelegate (void) const;
     ///@}
   };
 }

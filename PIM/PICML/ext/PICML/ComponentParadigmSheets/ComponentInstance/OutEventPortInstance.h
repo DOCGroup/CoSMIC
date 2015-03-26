@@ -51,6 +51,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -81,8 +84,8 @@ namespace PICML
      */
     ///@{
     bool OutEventPort_is_nil (void) const;
-    OutEventPort get_OutEventPort (void) const;
-    void set_OutEventPort (OutEventPort_in item);
+    OutEventPort refers_to_OutEventPort (void) const;
+    void refers_to_OutEventPort (OutEventPort_in item);
     ///@}
   };
 }

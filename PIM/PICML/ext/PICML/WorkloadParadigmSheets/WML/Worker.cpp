@@ -9,10 +9,10 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
-#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerFile.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string Worker_Impl::metaname ("Worker");
 
   //
+  // is_abstract
+  //
+  const bool Worker_Impl::is_abstract = false;
+
+  //
   // _create (const WorkerPackageBase_in)
   //
   Worker Worker_Impl::_create (const WorkerPackageBase_in parent)
   {
-    return ::GAME::Mga::create_object < Worker > (parent, Worker_Impl::metaname);
+    return ::GAME::Mga::create < Worker > (parent, Worker_Impl::metaname);
   }
 
   //

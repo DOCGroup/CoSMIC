@@ -47,11 +47,14 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static BridgeConnection _create (const Domain_in parent);
+    static BridgeConnection _create (const Domain_in parent, Interconnect_in src, Bridge_in dst);
     ///@}
 
     // Default constructor.

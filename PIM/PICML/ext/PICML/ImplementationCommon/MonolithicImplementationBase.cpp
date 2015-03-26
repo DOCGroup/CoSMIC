@@ -20,27 +20,56 @@ namespace PICML
   const std::string MonolithicImplementationBase_Impl::metaname ("MonolithicImplementationBase");
 
   //
-  // src_MonolithExecParameter
+  // is_abstract
   //
-  size_t MonolithicImplementationBase_Impl::src_MonolithExecParameter (std::vector <MonolithExecParameter> & items) const
+  const bool MonolithicImplementationBase_Impl::is_abstract = true;
+
+  //
+  // src_of_MonolithExecParameter
+  //
+  size_t MonolithicImplementationBase_Impl::src_of_MonolithExecParameter (std::vector <MonolithExecParameter> & items) const
   {
     return this->in_connections <MonolithExecParameter> (items);
   }
 
   //
-  // src_MonolithDeployRequirement
+  // src_of_MonolithExecParameter
   //
-  size_t MonolithicImplementationBase_Impl::src_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const
+  GAME::Mga::Collection_T <MonolithExecParameter> MonolithicImplementationBase_Impl::src_of_MonolithExecParameter (void) const
+  {
+    return this->in_connections <MonolithExecParameter> ("src");
+  }
+
+  //
+  // src_of_MonolithDeployRequirement
+  //
+  size_t MonolithicImplementationBase_Impl::src_of_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const
   {
     return this->in_connections <MonolithDeployRequirement> (items);
   }
 
   //
-  // src_MonolithprimaryArtifact
+  // src_of_MonolithDeployRequirement
   //
-  size_t MonolithicImplementationBase_Impl::src_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const
+  GAME::Mga::Collection_T <MonolithDeployRequirement> MonolithicImplementationBase_Impl::src_of_MonolithDeployRequirement (void) const
+  {
+    return this->in_connections <MonolithDeployRequirement> ("src");
+  }
+
+  //
+  // src_of_MonolithprimaryArtifact
+  //
+  size_t MonolithicImplementationBase_Impl::src_of_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const
   {
     return this->in_connections <MonolithprimaryArtifact> (items);
+  }
+
+  //
+  // src_of_MonolithprimaryArtifact
+  //
+  GAME::Mga::Collection_T <MonolithprimaryArtifact> MonolithicImplementationBase_Impl::src_of_MonolithprimaryArtifact (void) const
+  {
+    return this->in_connections <MonolithprimaryArtifact> ("src");
   }
 }
 

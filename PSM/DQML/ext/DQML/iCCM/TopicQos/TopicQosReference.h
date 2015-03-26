@@ -47,12 +47,15 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static TopicQosReference _create (const DataWriterQos_in parent);
     static TopicQosReference _create (const DataReaderQos_in parent);
+    static TopicQosReference _create (const DataWriterQos_in parent);
     ///@}
 
     // Default constructor.
@@ -71,8 +74,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    DataWriterQos parent_DataWriterQos (void);
     DataReaderQos parent_DataReaderQos (void);
+    DataWriterQos parent_DataWriterQos (void);
     ///@}
 
     /**
@@ -80,8 +83,8 @@ namespace DQML
      */
     ///@{
     bool TopicQos_is_nil (void) const;
-    TopicQos get_TopicQos (void) const;
-    void set_TopicQos (TopicQos_in item);
+    TopicQos refers_to_TopicQos (void) const;
+    void refers_to_TopicQos (TopicQos_in item);
     ///@}
   };
 }

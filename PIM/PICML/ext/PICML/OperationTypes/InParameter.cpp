@@ -12,8 +12,8 @@
 #include "PICML/OperationTypes/OnewayOperation.h"
 #include "PICML/OperationTypes/HasExceptions.h"
 #include "PICML/OperationTypes/TwowayOperation.h"
-#include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,11 +28,16 @@ namespace PICML
   const std::string InParameter_Impl::metaname ("InParameter");
 
   //
+  // is_abstract
+  //
+  const bool InParameter_Impl::is_abstract = false;
+
+  //
   // _create (const OperationBase_in)
   //
   InParameter InParameter_Impl::_create (const OperationBase_in parent)
   {
-    return ::GAME::Mga::create_object < InParameter > (parent, InParameter_Impl::metaname);
+    return ::GAME::Mga::create < InParameter > (parent, InParameter_Impl::metaname);
   }
 
   //
@@ -40,7 +45,7 @@ namespace PICML
   //
   InParameter InParameter_Impl::_create (const Operation_in parent)
   {
-    return ::GAME::Mga::create_object < InParameter > (parent, InParameter_Impl::metaname);
+    return ::GAME::Mga::create < InParameter > (parent, InParameter_Impl::metaname);
   }
 
   //

@@ -9,8 +9,8 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/Standard/Main/DDSQoS.h"
-#include "DQML/Standard/DDSEntities/Publisher.h"
 #include "DQML/Standard/DDSEntities/DataWriter.h"
+#include "DQML/Standard/DDSEntities/Publisher.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace DQML
   const std::string dw_pub_Connection_Impl::metaname ("dw_pub_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // is_abstract
   //
-  dw_pub_Connection dw_pub_Connection_Impl::_create (const DDSQoS_in parent)
+  const bool dw_pub_Connection_Impl::is_abstract = false;
+
+  //
+  // _create (const DDSQoS_in, Publisher_in src, DataWriter_in dst)
+  //
+  dw_pub_Connection dw_pub_Connection_Impl::_create (const DDSQoS_in parent, Publisher_in src, DataWriter_in dst)
   {
-    return ::GAME::Mga::create_object < dw_pub_Connection > (parent, dw_pub_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, dw_pub_Connection_Impl::metaname, src, dst);
   }
 
   //

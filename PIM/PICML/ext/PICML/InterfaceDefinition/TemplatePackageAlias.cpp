@@ -25,11 +25,16 @@ namespace PICML
   const std::string TemplatePackageAlias_Impl::metaname ("TemplatePackageAlias");
 
   //
+  // is_abstract
+  //
+  const bool TemplatePackageAlias_Impl::is_abstract = false;
+
+  //
   // _create (const Package_in)
   //
   TemplatePackageAlias TemplatePackageAlias_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < TemplatePackageAlias > (parent, TemplatePackageAlias_Impl::metaname);
+    return ::GAME::Mga::create < TemplatePackageAlias > (parent, TemplatePackageAlias_Impl::metaname);
   }
 
   //
@@ -37,7 +42,7 @@ namespace PICML
   //
   TemplatePackageAlias TemplatePackageAlias_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < TemplatePackageAlias > (parent, TemplatePackageAlias_Impl::metaname);
+    return ::GAME::Mga::create < TemplatePackageAlias > (parent, TemplatePackageAlias_Impl::metaname);
   }
 
   //

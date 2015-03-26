@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -78,8 +81,8 @@ namespace PICML
      */
     ///@{
     bool LookupKeyType_is_nil (void) const;
-    LookupKeyType get_LookupKeyType (void) const;
-    void set_LookupKeyType (LookupKeyType_in item);
+    LookupKeyType refers_to_LookupKeyType (void) const;
+    void refers_to_LookupKeyType (LookupKeyType_in item);
     ///@}
   };
 }

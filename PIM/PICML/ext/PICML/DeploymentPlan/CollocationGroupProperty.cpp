@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
 #include "PICML/DeploymentPlan/CollocationGroup.h"
 #include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string CollocationGroupProperty_Impl::metaname ("CollocationGroupProperty");
 
   //
-  // _create (const DeploymentPlan_in)
+  // is_abstract
   //
-  CollocationGroupProperty CollocationGroupProperty_Impl::_create (const DeploymentPlan_in parent)
+  const bool CollocationGroupProperty_Impl::is_abstract = false;
+
+  //
+  // _create (const DeploymentPlan_in, Property_in src, CollocationGroup_in dst)
+  //
+  CollocationGroupProperty CollocationGroupProperty_Impl::_create (const DeploymentPlan_in parent, Property_in src, CollocationGroup_in dst)
   {
-    return ::GAME::Mga::create_object < CollocationGroupProperty > (parent, CollocationGroupProperty_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, CollocationGroupProperty_Impl::metaname, src, dst);
   }
 
   //

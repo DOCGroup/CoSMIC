@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/TargetElements/Resource.h"
-#include "PICML/Domain/BridgeConnection.h"
 #include "PICML/Domain/Domain.h"
+#include "PICML/Domain/BridgeConnection.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string Bridge_Impl::metaname ("Bridge");
 
   //
+  // is_abstract
+  //
+  const bool Bridge_Impl::is_abstract = false;
+
+  //
   // _create (const Domain_in)
   //
   Bridge Bridge_Impl::_create (const Domain_in parent)
   {
-    return ::GAME::Mga::create_object < Bridge > (parent, Bridge_Impl::metaname);
+    return ::GAME::Mga::create < Bridge > (parent, Bridge_Impl::metaname);
   }
 
   //
@@ -54,11 +59,19 @@ namespace PICML
   }
 
   //
-  // dst_BridgeConnection
+  // dst_of_BridgeConnection
   //
-  size_t Bridge_Impl::dst_BridgeConnection (std::vector <BridgeConnection> & items) const
+  size_t Bridge_Impl::dst_of_BridgeConnection (std::vector <BridgeConnection> & items) const
   {
     return this->in_connections <BridgeConnection> (items);
+  }
+
+  //
+  // dst_of_BridgeConnection
+  //
+  GAME::Mga::Collection_T <BridgeConnection> Bridge_Impl::dst_of_BridgeConnection (void) const
+  {
+    return this->in_connections <BridgeConnection> ("dst");
   }
 
   //

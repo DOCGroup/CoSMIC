@@ -23,11 +23,16 @@ namespace PICML
   const std::string MirrorPortInstance_Impl::metaname ("MirrorPortInstance");
 
   //
+  // is_abstract
+  //
+  const bool MirrorPortInstance_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentInstance_in)
   //
   MirrorPortInstance MirrorPortInstance_Impl::_create (const ComponentInstance_in parent)
   {
-    return ::GAME::Mga::create_object < MirrorPortInstance > (parent, MirrorPortInstance_Impl::metaname);
+    return ::GAME::Mga::create < MirrorPortInstance > (parent, MirrorPortInstance_Impl::metaname);
   }
 
   //
@@ -49,21 +54,21 @@ namespace PICML
   //
   bool MirrorPortInstance_Impl::MirrorPort_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_MirrorPort
+  // refers_to_MirrorPort
   //
-  void MirrorPortInstance_Impl::set_MirrorPort (MirrorPort_in item)
+  void MirrorPortInstance_Impl::refers_to_MirrorPort (MirrorPort_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_MirrorPort
+  // refers_to_MirrorPort
   //
-  MirrorPort MirrorPortInstance_Impl::get_MirrorPort (void) const
+  MirrorPort MirrorPortInstance_Impl::refers_to_MirrorPort (void) const
   {
     return MirrorPort::_narrow (this->refers_to ());
   }

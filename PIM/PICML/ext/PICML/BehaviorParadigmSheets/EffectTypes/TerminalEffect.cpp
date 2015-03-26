@@ -13,12 +13,12 @@
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/BehaviorParadigmSheets/Terminals/Terminal.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/StateBase.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/State.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/LoopState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/WhileState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/DoWhileState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/ForState.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/State.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -32,12 +32,9 @@ namespace PICML
   const std::string TerminalEffect_Impl::metaname ("TerminalEffect");
 
   //
-  // _create (const BehaviorModel_in)
+  // is_abstract
   //
-  TerminalEffect TerminalEffect_Impl::_create (const BehaviorModel_in parent)
-  {
-    return ::GAME::Mga::create_object < TerminalEffect > (parent, TerminalEffect_Impl::metaname);
-  }
+  const bool TerminalEffect_Impl::is_abstract = false;
 
   //
   // accept

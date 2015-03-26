@@ -24,11 +24,16 @@ namespace DQML
   const std::string TimeBasedFilterQosPolicy_Impl::metaname ("TimeBasedFilterQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool TimeBasedFilterQosPolicy_Impl::is_abstract = false;
+
+  //
   // _create (const DataReaderQos_in)
   //
   TimeBasedFilterQosPolicy TimeBasedFilterQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
-    return ::GAME::Mga::create_object < TimeBasedFilterQosPolicy > (parent, TimeBasedFilterQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < TimeBasedFilterQosPolicy > (parent, TimeBasedFilterQosPolicy_Impl::metaname);
   }
 
   //
@@ -36,7 +41,7 @@ namespace DQML
   //
   TimeBasedFilterQosPolicy TimeBasedFilterQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < TimeBasedFilterQosPolicy > (parent, TimeBasedFilterQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < TimeBasedFilterQosPolicy > (parent, TimeBasedFilterQosPolicy_Impl::metaname);
   }
 
   //
@@ -62,11 +67,19 @@ namespace DQML
   }
 
   //
-  // dst_dr_timebased_Connection
+  // dst_of_dr_timebased_Connection
   //
-  size_t TimeBasedFilterQosPolicy_Impl::dst_dr_timebased_Connection (std::vector <dr_timebased_Connection> & items) const
+  size_t TimeBasedFilterQosPolicy_Impl::dst_of_dr_timebased_Connection (std::vector <dr_timebased_Connection> & items) const
   {
     return this->in_connections <dr_timebased_Connection> (items);
+  }
+
+  //
+  // dst_of_dr_timebased_Connection
+  //
+  GAME::Mga::Collection_T <dr_timebased_Connection> TimeBasedFilterQosPolicy_Impl::dst_of_dr_timebased_Connection (void) const
+  {
+    return this->in_connections <dr_timebased_Connection> ("dst");
   }
 }
 

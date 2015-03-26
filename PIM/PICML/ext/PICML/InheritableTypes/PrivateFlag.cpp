@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,11 +25,16 @@ namespace PICML
   const std::string PrivateFlag_Impl::metaname ("PrivateFlag");
 
   //
+  // is_abstract
+  //
+  const bool PrivateFlag_Impl::is_abstract = false;
+
+  //
   // _create (const ObjectByValue_in)
   //
   PrivateFlag PrivateFlag_Impl::_create (const ObjectByValue_in parent)
   {
-    return ::GAME::Mga::create_object < PrivateFlag > (parent, PrivateFlag_Impl::metaname);
+    return ::GAME::Mga::create < PrivateFlag > (parent, PrivateFlag_Impl::metaname);
   }
 
   //
@@ -55,11 +60,19 @@ namespace PICML
   }
 
   //
-  // dst_MakeMemberPrivate
+  // dst_of_MakeMemberPrivate
   //
-  size_t PrivateFlag_Impl::dst_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const
+  size_t PrivateFlag_Impl::dst_of_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const
   {
     return this->in_connections <MakeMemberPrivate> (items);
+  }
+
+  //
+  // dst_of_MakeMemberPrivate
+  //
+  MakeMemberPrivate PrivateFlag_Impl::dst_of_MakeMemberPrivate (void) const
+  {
+    return this->in_connections <MakeMemberPrivate> ("dst").first ();
   }
 }
 

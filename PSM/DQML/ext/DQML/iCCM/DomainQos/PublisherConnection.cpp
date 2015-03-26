@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
-#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace DQML
   const std::string PublisherConnection_Impl::metaname ("PublisherConnection");
 
   //
-  // _create (const Participant_in)
+  // is_abstract
   //
-  PublisherConnection PublisherConnection_Impl::_create (const Participant_in parent)
+  const bool PublisherConnection_Impl::is_abstract = false;
+
+  //
+  // _create (const Participant_in, DataWriterQos_in src, PublisherQos_in dst)
+  //
+  PublisherConnection PublisherConnection_Impl::_create (const Participant_in parent, DataWriterQos_in src, PublisherQos_in dst)
   {
-    return ::GAME::Mga::create_object < PublisherConnection > (parent, PublisherConnection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, PublisherConnection_Impl::metaname, src, dst);
   }
 
   //

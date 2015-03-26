@@ -34,12 +34,10 @@ Topic_Locator::~Topic_Locator (void)
 //
 void Topic_Locator::visit_Participant (DQML::Participant_in item)
 {
-  GAME::Mga::Collection_T <DQML::DataReaderQos> readers = item->get_DataReaderQoss ();
-  for (auto & reader : readers)
+  for (auto & reader : item->get_DataReaderQoss ())
     reader->accept (this);
 
-  GAME::Mga::Collection_T <DQML::DataWriterQos> writers = item->get_DataWriterQoss ();
-  for (auto & writer : writers)
+  for (auto & writer : item->get_DataWriterQoss ())
     writer->accept (this);
 }
 
@@ -49,7 +47,7 @@ void Topic_Locator::visit_Participant (DQML::Participant_in item)
 void Topic_Locator::visit_DataReaderQos (DQML::DataReaderQos_in item)
 {
   if (item->has_TopicQosReference ())
-    this->topics_.insert (item->get_TopicQosReference ()->get_TopicQos ());
+    this->topics_.insert (item->get_TopicQosReference ()->refers_to_TopicQos ());
 }
 
 //
@@ -58,7 +56,7 @@ void Topic_Locator::visit_DataReaderQos (DQML::DataReaderQos_in item)
 void Topic_Locator::visit_DataWriterQos (DQML::DataWriterQos_in item)
 {
   if (item->has_TopicQosReference ())
-    this->topics_.insert (item->get_TopicQosReference ()->get_TopicQos ());
+    this->topics_.insert (item->get_TopicQosReference ()->refers_to_TopicQos ());
 }
 
 }

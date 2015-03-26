@@ -10,9 +10,9 @@
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string FacetDelegate_Impl::metaname ("FacetDelegate");
 
   //
-  // _create (const ComponentAssembly_in)
+  // is_abstract
   //
-  FacetDelegate FacetDelegate_Impl::_create (const ComponentAssembly_in parent)
+  const bool FacetDelegate_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentAssembly_in, ProvidedRequestPortDelegate_in src, ProvidedRequestPortEnd_in dst)
+  //
+  FacetDelegate FacetDelegate_Impl::_create (const ComponentAssembly_in parent, ProvidedRequestPortDelegate_in src, ProvidedRequestPortEnd_in dst)
   {
-    return ::GAME::Mga::create_object < FacetDelegate > (parent, FacetDelegate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, FacetDelegate_Impl::metaname, src, dst);
   }
 
   //

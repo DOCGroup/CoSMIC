@@ -23,11 +23,16 @@ namespace PICML
   const std::string ExtendedPortDelegate_Impl::metaname ("ExtendedPortDelegate");
 
   //
+  // is_abstract
+  //
+  const bool ExtendedPortDelegate_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAssembly_in)
   //
   ExtendedPortDelegate ExtendedPortDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < ExtendedPortDelegate > (parent, ExtendedPortDelegate_Impl::metaname);
+    return ::GAME::Mga::create < ExtendedPortDelegate > (parent, ExtendedPortDelegate_Impl::metaname);
   }
 
   //
@@ -53,11 +58,19 @@ namespace PICML
   }
 
   //
-  // dst_ExtendedDelegate
+  // dst_of_ExtendedDelegate
   //
-  size_t ExtendedPortDelegate_Impl::dst_ExtendedDelegate (std::vector <ExtendedDelegate> & items) const
+  size_t ExtendedPortDelegate_Impl::dst_of_ExtendedDelegate (std::vector <ExtendedDelegate> & items) const
   {
     return this->in_connections <ExtendedDelegate> (items);
+  }
+
+  //
+  // dst_of_ExtendedDelegate
+  //
+  GAME::Mga::Collection_T <ExtendedDelegate> ExtendedPortDelegate_Impl::dst_of_ExtendedDelegate (void) const
+  {
+    return this->in_connections <ExtendedDelegate> ("dst");
   }
 }
 

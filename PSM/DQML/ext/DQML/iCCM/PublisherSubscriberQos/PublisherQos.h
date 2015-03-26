@@ -47,6 +47,9 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -79,7 +82,8 @@ namespace DQML
     ///@{
 
     /// Get the dst PublisherConnection connection.
-    size_t dst_PublisherConnection (std::vector <PublisherConnection> & items) const;
+    size_t dst_of_PublisherConnection (std::vector <PublisherConnection> & items) const;
+    GAME::Mga::Collection_T <PublisherConnection> dst_of_PublisherConnection (void) const;
     ///@}
 
     /**
@@ -87,11 +91,11 @@ namespace DQML
      */
     ///@{
 
-    bool has_PartitionQosPolicy (void) const;
-    PartitionQosPolicy get_PartitionQosPolicy (void) const;
-
     bool has_EntityFactoryQosPolicy (void) const;
     EntityFactoryQosPolicy get_EntityFactoryQosPolicy (void) const;
+
+    bool has_PartitionQosPolicy (void) const;
+    PartitionQosPolicy get_PartitionQosPolicy (void) const;
 
     bool has_GroupDataQosPolicy (void) const;
     GroupDataQosPolicy get_GroupDataQosPolicy (void) const;

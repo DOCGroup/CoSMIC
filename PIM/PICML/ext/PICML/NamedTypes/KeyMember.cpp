@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
 #include "PICML/NamedTypes/Key.h"
-#include "PICML/NamedTypes/Aggregate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,11 +25,16 @@ namespace PICML
   const std::string KeyMember_Impl::metaname ("KeyMember");
 
   //
-  // _create (const Aggregate_in)
+  // is_abstract
   //
-  KeyMember KeyMember_Impl::_create (const Aggregate_in parent)
+  const bool KeyMember_Impl::is_abstract = false;
+
+  //
+  // _create (const Aggregate_in, Key_in src, Member_in dst)
+  //
+  KeyMember KeyMember_Impl::_create (const Aggregate_in parent, Key_in src, Member_in dst)
   {
-    return ::GAME::Mga::create_object < KeyMember > (parent, KeyMember_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, KeyMember_Impl::metaname, src, dst);
   }
 
   //

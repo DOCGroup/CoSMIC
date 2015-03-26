@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/SubscriberConnection.h"
-#include "DQML/Standard/QoSPolicies/ShareQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/ShareQosPolicy.h"
+#include "DQML/iCCM/DomainQos/SubscriberConnection.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,11 +28,16 @@ namespace DQML
   const std::string SubscriberQos_Impl::metaname ("SubscriberQos");
 
   //
+  // is_abstract
+  //
+  const bool SubscriberQos_Impl::is_abstract = false;
+
+  //
   // _create (const Participant_in)
   //
   SubscriberQos SubscriberQos_Impl::_create (const Participant_in parent)
   {
-    return ::GAME::Mga::create_object < SubscriberQos > (parent, SubscriberQos_Impl::metaname);
+    return ::GAME::Mga::create < SubscriberQos > (parent, SubscriberQos_Impl::metaname);
   }
 
   //
@@ -58,43 +63,19 @@ namespace DQML
   }
 
   //
-  // dst_SubscriberConnection
+  // dst_of_SubscriberConnection
   //
-  size_t SubscriberQos_Impl::dst_SubscriberConnection (std::vector <SubscriberConnection> & items) const
+  size_t SubscriberQos_Impl::dst_of_SubscriberConnection (std::vector <SubscriberConnection> & items) const
   {
     return this->in_connections <SubscriberConnection> (items);
   }
 
   //
-  // has_ShareQosPolicy
+  // dst_of_SubscriberConnection
   //
-  bool SubscriberQos_Impl::has_ShareQosPolicy (void) const
+  GAME::Mga::Collection_T <SubscriberConnection> SubscriberQos_Impl::dst_of_SubscriberConnection (void) const
   {
-    return this->children <ShareQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_ShareQosPolicy
-  //
-  ShareQosPolicy SubscriberQos_Impl::get_ShareQosPolicy (void) const
-  {
-    return this->children <ShareQosPolicy> ().first ();
-  }
-
-  //
-  // has_PartitionQosPolicy
-  //
-  bool SubscriberQos_Impl::has_PartitionQosPolicy (void) const
-  {
-    return this->children <PartitionQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_PartitionQosPolicy
-  //
-  PartitionQosPolicy SubscriberQos_Impl::get_PartitionQosPolicy (void) const
-  {
-    return this->children <PartitionQosPolicy> ().first ();
+    return this->in_connections <SubscriberConnection> ("dst");
   }
 
   //
@@ -111,6 +92,22 @@ namespace DQML
   EntityFactoryQosPolicy SubscriberQos_Impl::get_EntityFactoryQosPolicy (void) const
   {
     return this->children <EntityFactoryQosPolicy> ().first ();
+  }
+
+  //
+  // has_PartitionQosPolicy
+  //
+  bool SubscriberQos_Impl::has_PartitionQosPolicy (void) const
+  {
+    return this->children <PartitionQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_PartitionQosPolicy
+  //
+  PartitionQosPolicy SubscriberQos_Impl::get_PartitionQosPolicy (void) const
+  {
+    return this->children <PartitionQosPolicy> ().first ();
   }
 
   //
@@ -143,6 +140,22 @@ namespace DQML
   PresentationQosPolicy SubscriberQos_Impl::get_PresentationQosPolicy (void) const
   {
     return this->children <PresentationQosPolicy> ().first ();
+  }
+
+  //
+  // has_ShareQosPolicy
+  //
+  bool SubscriberQos_Impl::has_ShareQosPolicy (void) const
+  {
+    return this->children <ShareQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_ShareQosPolicy
+  //
+  ShareQosPolicy SubscriberQos_Impl::get_ShareQosPolicy (void) const
+  {
+    return this->children <ShareQosPolicy> ().first ();
   }
 }
 

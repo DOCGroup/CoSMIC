@@ -9,11 +9,11 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/Object.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,11 +28,16 @@ namespace PICML
   const std::string OnewayOperation_Impl::metaname ("OnewayOperation");
 
   //
+  // is_abstract
+  //
+  const bool OnewayOperation_Impl::is_abstract = false;
+
+  //
   // _create (const HasOperations_in)
   //
   OnewayOperation OnewayOperation_Impl::_create (const HasOperations_in parent)
   {
-    return ::GAME::Mga::create_object < OnewayOperation > (parent, OnewayOperation_Impl::metaname);
+    return ::GAME::Mga::create < OnewayOperation > (parent, OnewayOperation_Impl::metaname);
   }
 
   //
@@ -40,7 +45,7 @@ namespace PICML
   //
   OnewayOperation OnewayOperation_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < OnewayOperation > (parent, OnewayOperation_Impl::metaname);
+    return ::GAME::Mga::create < OnewayOperation > (parent, OnewayOperation_Impl::metaname);
   }
 
   //

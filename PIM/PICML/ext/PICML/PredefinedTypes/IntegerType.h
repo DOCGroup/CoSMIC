@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/InterfaceDefinition/ConstantType.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
+#include "PICML/InterfaceDefinition/ConstantType.h"
 #include "game/mga/Atom.h"
 
 namespace PICML
@@ -35,8 +35,8 @@ namespace PICML
    */
   class PICML_Export IntegerType_Impl :
     public virtual ::GAME::Mga::Atom_Impl,
-    public virtual ConstantType_Impl,
-    public virtual PredefinedType_Impl
+    public virtual PredefinedType_Impl,
+    public virtual ConstantType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -47,6 +47,9 @@ namespace PICML
 
     /// Metaname for this extension class.
     static const std::string metaname;
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
 
     // Default constructor.
     IntegerType_Impl (void);

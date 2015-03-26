@@ -23,11 +23,16 @@ namespace PICML
   const std::string CollectionParameter_Impl::metaname ("CollectionParameter");
 
   //
+  // is_abstract
+  //
+  const bool CollectionParameter_Impl::is_abstract = false;
+
+  //
   // _create (const Package_in)
   //
   CollectionParameter CollectionParameter_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < CollectionParameter > (parent, CollectionParameter_Impl::metaname);
+    return ::GAME::Mga::create < CollectionParameter > (parent, CollectionParameter_Impl::metaname);
   }
 
   //
@@ -49,21 +54,21 @@ namespace PICML
   //
   bool CollectionParameter_Impl::NameParameter_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_NameParameter
+  // refers_to_NameParameter
   //
-  void CollectionParameter_Impl::set_NameParameter (NameParameter_in item)
+  void CollectionParameter_Impl::refers_to_NameParameter (NameParameter_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_NameParameter
+  // refers_to_NameParameter
   //
-  NameParameter CollectionParameter_Impl::get_NameParameter (void) const
+  NameParameter CollectionParameter_Impl::refers_to_NameParameter (void) const
   {
     return NameParameter::_narrow (this->refers_to ());
   }

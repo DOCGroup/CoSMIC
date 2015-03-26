@@ -25,11 +25,16 @@ namespace PICML
   const std::string ExtendedDelegate_Impl::metaname ("ExtendedDelegate");
 
   //
-  // _create (const ComponentAssembly_in)
+  // is_abstract
   //
-  ExtendedDelegate ExtendedDelegate_Impl::_create (const ComponentAssembly_in parent)
+  const bool ExtendedDelegate_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentAssembly_in, ExtendedPortInstanceBase_in src, ExtendedPortDelegate_in dst)
+  //
+  ExtendedDelegate ExtendedDelegate_Impl::_create (const ComponentAssembly_in parent, ExtendedPortInstanceBase_in src, ExtendedPortDelegate_in dst)
   {
-    return ::GAME::Mga::create_object < ExtendedDelegate > (parent, ExtendedDelegate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ExtendedDelegate_Impl::metaname, src, dst);
   }
 
   //

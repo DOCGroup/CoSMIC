@@ -23,11 +23,16 @@ namespace PICML
   const std::string TargetRequiredRequestPort_Impl::metaname ("TargetRequiredRequestPort");
 
   //
+  // is_abstract
+  //
+  const bool TargetRequiredRequestPort_Impl::is_abstract = false;
+
+  //
   // _create (const CallAction_in)
   //
   TargetRequiredRequestPort TargetRequiredRequestPort_Impl::_create (const CallAction_in parent)
   {
-    return ::GAME::Mga::create_object < TargetRequiredRequestPort > (parent, TargetRequiredRequestPort_Impl::metaname);
+    return ::GAME::Mga::create < TargetRequiredRequestPort > (parent, TargetRequiredRequestPort_Impl::metaname);
   }
 
   //
@@ -57,21 +62,21 @@ namespace PICML
   //
   bool TargetRequiredRequestPort_Impl::RequiredRequestPort_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_RequiredRequestPort
+  // refers_to_RequiredRequestPort
   //
-  void TargetRequiredRequestPort_Impl::set_RequiredRequestPort (RequiredRequestPort_in item)
+  void TargetRequiredRequestPort_Impl::refers_to_RequiredRequestPort (RequiredRequestPort_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_RequiredRequestPort
+  // refers_to_RequiredRequestPort
   //
-  RequiredRequestPort TargetRequiredRequestPort_Impl::get_RequiredRequestPort (void) const
+  RequiredRequestPort TargetRequiredRequestPort_Impl::refers_to_RequiredRequestPort (void) const
   {
     return RequiredRequestPort::_narrow (this->refers_to ());
   }

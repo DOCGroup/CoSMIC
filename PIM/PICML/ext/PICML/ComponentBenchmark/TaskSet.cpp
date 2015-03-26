@@ -24,11 +24,16 @@ namespace PICML
   const std::string TaskSet_Impl::metaname ("TaskSet");
 
   //
+  // is_abstract
+  //
+  const bool TaskSet_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   TaskSet TaskSet_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < TaskSet > (parent, TaskSet_Impl::metaname);
+    return ::GAME::Mga::create < TaskSet > (parent, TaskSet_Impl::metaname);
   }
 
   //
@@ -54,11 +59,19 @@ namespace PICML
   }
 
   //
-  // dst_WorkloadCharacteristics
+  // dst_of_WorkloadCharacteristics
   //
-  size_t TaskSet_Impl::dst_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const
+  size_t TaskSet_Impl::dst_of_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const
   {
     return this->in_connections <WorkloadCharacteristics> (items);
+  }
+
+  //
+  // dst_of_WorkloadCharacteristics
+  //
+  WorkloadCharacteristics TaskSet_Impl::dst_of_WorkloadCharacteristics (void) const
+  {
+    return this->in_connections <WorkloadCharacteristics> ("dst").first ();
   }
 
   //

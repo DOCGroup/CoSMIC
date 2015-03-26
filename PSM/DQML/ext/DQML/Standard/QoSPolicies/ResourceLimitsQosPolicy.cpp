@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,11 +28,24 @@ namespace DQML
   const std::string ResourceLimitsQosPolicy_Impl::metaname ("ResourceLimitsQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool ResourceLimitsQosPolicy_Impl::is_abstract = false;
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  {
+    return ::GAME::Mga::create < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
+  }
+
+  //
   // _create (const DataWriterQos_in)
   //
   ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const DataWriterQos_in parent)
   {
-    return ::GAME::Mga::create_object < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
   }
 
   //
@@ -40,15 +53,7 @@ namespace DQML
   //
   ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const TopicQos_in parent)
   {
-    return ::GAME::Mga::create_object < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
-  }
-
-  //
-  // _create (const DataReaderQos_in)
-  //
-  ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const DataReaderQos_in parent)
-  {
-    return ::GAME::Mga::create_object < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
   }
 
   //
@@ -56,7 +61,7 @@ namespace DQML
   //
   ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
   }
 
   //
@@ -71,6 +76,14 @@ namespace DQML
       this_visitor->visit_ResourceLimitsQosPolicy (this);
     else
       v->visit_Atom (this);
+  }
+
+  //
+  // parent_DataReaderQos
+  //
+  DataReaderQos ResourceLimitsQosPolicy_Impl::parent_DataReaderQos (void)
+  {
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //
@@ -90,35 +103,51 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
+  // dst_of_topic_res_Connection
   //
-  DataReaderQos ResourceLimitsQosPolicy_Impl::parent_DataReaderQos (void)
-  {
-    return DataReaderQos::_narrow (this->parent ());
-  }
-
-  //
-  // dst_dw_res_Connection
-  //
-  size_t ResourceLimitsQosPolicy_Impl::dst_dw_res_Connection (std::vector <dw_res_Connection> & items) const
-  {
-    return this->in_connections <dw_res_Connection> (items);
-  }
-
-  //
-  // dst_topic_res_Connection
-  //
-  size_t ResourceLimitsQosPolicy_Impl::dst_topic_res_Connection (std::vector <topic_res_Connection> & items) const
+  size_t ResourceLimitsQosPolicy_Impl::dst_of_topic_res_Connection (std::vector <topic_res_Connection> & items) const
   {
     return this->in_connections <topic_res_Connection> (items);
   }
 
   //
-  // dst_dr_res_Connection
+  // dst_of_topic_res_Connection
   //
-  size_t ResourceLimitsQosPolicy_Impl::dst_dr_res_Connection (std::vector <dr_res_Connection> & items) const
+  GAME::Mga::Collection_T <topic_res_Connection> ResourceLimitsQosPolicy_Impl::dst_of_topic_res_Connection (void) const
+  {
+    return this->in_connections <topic_res_Connection> ("dst");
+  }
+
+  //
+  // dst_of_dr_res_Connection
+  //
+  size_t ResourceLimitsQosPolicy_Impl::dst_of_dr_res_Connection (std::vector <dr_res_Connection> & items) const
   {
     return this->in_connections <dr_res_Connection> (items);
+  }
+
+  //
+  // dst_of_dr_res_Connection
+  //
+  GAME::Mga::Collection_T <dr_res_Connection> ResourceLimitsQosPolicy_Impl::dst_of_dr_res_Connection (void) const
+  {
+    return this->in_connections <dr_res_Connection> ("dst");
+  }
+
+  //
+  // dst_of_dw_res_Connection
+  //
+  size_t ResourceLimitsQosPolicy_Impl::dst_of_dw_res_Connection (std::vector <dw_res_Connection> & items) const
+  {
+    return this->in_connections <dw_res_Connection> (items);
+  }
+
+  //
+  // dst_of_dw_res_Connection
+  //
+  GAME::Mga::Collection_T <dw_res_Connection> ResourceLimitsQosPolicy_Impl::dst_of_dw_res_Connection (void) const
+  {
+    return this->in_connections <dw_res_Connection> ("dst");
   }
 }
 

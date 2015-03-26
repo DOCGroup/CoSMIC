@@ -44,6 +44,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     ComponentLib_Impl (void);
 
@@ -90,7 +93,8 @@ namespace PICML
     ///@{
 
     /// Get the src ExtResourceConn connection.
-    size_t src_ExtResourceConn (std::vector <ExtResourceConn> & items) const;
+    size_t src_of_ExtResourceConn (std::vector <ExtResourceConn> & items) const;
+    GAME::Mga::Collection_T <ExtResourceConn> src_of_ExtResourceConn (void) const;
     ///@}
   };
 }

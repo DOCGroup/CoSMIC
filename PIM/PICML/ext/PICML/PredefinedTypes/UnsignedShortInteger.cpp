@@ -22,11 +22,16 @@ namespace PICML
   const std::string UnsignedShortInteger_Impl::metaname ("UnsignedShortInteger");
 
   //
+  // is_abstract
+  //
+  const bool UnsignedShortInteger_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   UnsignedShortInteger UnsignedShortInteger_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < UnsignedShortInteger > (parent, UnsignedShortInteger_Impl::metaname);
+    return ::GAME::Mga::create < UnsignedShortInteger > (parent, UnsignedShortInteger_Impl::metaname);
   }
 
   //

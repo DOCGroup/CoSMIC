@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
 
 namespace PICML
 {
@@ -22,6 +22,11 @@ namespace PICML
   // metaname
   //
   const std::string StateBase_Impl::metaname ("StateBase");
+
+  //
+  // is_abstract
+  //
+  const bool StateBase_Impl::is_abstract = true;
 
   //
   // parent_BehaviorModel
@@ -32,35 +37,75 @@ namespace PICML
   }
 
   //
-  // src_Finish
+  // src_of_Finish
   //
-  size_t StateBase_Impl::src_Finish (std::vector <Finish> & items) const
+  size_t StateBase_Impl::src_of_Finish (std::vector <Finish> & items) const
   {
     return this->in_connections <Finish> (items);
   }
 
   //
-  // dst_TerminalEffect
+  // src_of_Finish
   //
-  size_t StateBase_Impl::dst_TerminalEffect (std::vector <TerminalEffect> & items) const
+  GAME::Mga::Collection_T <Finish> StateBase_Impl::src_of_Finish (void) const
   {
-    return this->in_connections <TerminalEffect> (items);
+    return this->in_connections <Finish> ("src");
   }
 
   //
-  // dst_InputEffect
+  // dst_of_InputEffect
   //
-  size_t StateBase_Impl::dst_InputEffect (std::vector <InputEffect> & items) const
+  size_t StateBase_Impl::dst_of_InputEffect (std::vector <InputEffect> & items) const
   {
     return this->in_connections <InputEffect> (items);
   }
 
   //
-  // dst_Effect
+  // dst_of_InputEffect
   //
-  size_t StateBase_Impl::dst_Effect (std::vector <Effect> & items) const
+  GAME::Mga::Collection_T <InputEffect> StateBase_Impl::dst_of_InputEffect (void) const
+  {
+    return this->in_connections <InputEffect> ("dst");
+  }
+
+  //
+  // dst_of_TerminalEffect
+  //
+  size_t StateBase_Impl::dst_of_TerminalEffect (std::vector <TerminalEffect> & items) const
+  {
+    return this->in_connections <TerminalEffect> (items);
+  }
+
+  //
+  // has_dst_of_TerminalEffect
+  //
+  bool StateBase_Impl::has_dst_of_TerminalEffect (void) const
+  {
+    return this->in_connections <TerminalEffect> ("dst").count () == 1;
+  }
+
+  //
+  // dst_of_TerminalEffect
+  //
+  TerminalEffect StateBase_Impl::dst_of_TerminalEffect (void) const
+  {
+    return this->in_connections <TerminalEffect> ("dst").first ();
+  }
+
+  //
+  // dst_of_Effect
+  //
+  size_t StateBase_Impl::dst_of_Effect (std::vector <Effect> & items) const
   {
     return this->in_connections <Effect> (items);
+  }
+
+  //
+  // dst_of_Effect
+  //
+  GAME::Mga::Collection_T <Effect> StateBase_Impl::dst_of_Effect (void) const
+  {
+    return this->in_connections <Effect> ("dst");
   }
 }
 

@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
-#include "PICML/Common/ImplementationDependency.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/Common/ImplementationDependency.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string ImplementationDependsOn_Impl::metaname ("ImplementationDependsOn");
 
   //
-  // _create (const ComponentImplementationContainer_in)
+  // is_abstract
   //
-  ImplementationDependsOn ImplementationDependsOn_Impl::_create (const ComponentImplementationContainer_in parent)
+  const bool ImplementationDependsOn_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentImplementationContainer_in, ComponentImplementation_in src, ImplementationDependency_in dst)
+  //
+  ImplementationDependsOn ImplementationDependsOn_Impl::_create (const ComponentImplementationContainer_in parent, ComponentImplementation_in src, ImplementationDependency_in dst)
   {
-    return ::GAME::Mga::create_object < ImplementationDependsOn > (parent, ImplementationDependsOn_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ImplementationDependsOn_Impl::metaname, src, dst);
   }
 
   //

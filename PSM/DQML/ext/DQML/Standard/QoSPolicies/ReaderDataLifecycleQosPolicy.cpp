@@ -24,11 +24,16 @@ namespace DQML
   const std::string ReaderDataLifecycleQosPolicy_Impl::metaname ("ReaderDataLifecycleQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool ReaderDataLifecycleQosPolicy_Impl::is_abstract = false;
+
+  //
   // _create (const DataReaderQos_in)
   //
   ReaderDataLifecycleQosPolicy ReaderDataLifecycleQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
-    return ::GAME::Mga::create_object < ReaderDataLifecycleQosPolicy > (parent, ReaderDataLifecycleQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < ReaderDataLifecycleQosPolicy > (parent, ReaderDataLifecycleQosPolicy_Impl::metaname);
   }
 
   //
@@ -36,7 +41,7 @@ namespace DQML
   //
   ReaderDataLifecycleQosPolicy ReaderDataLifecycleQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < ReaderDataLifecycleQosPolicy > (parent, ReaderDataLifecycleQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < ReaderDataLifecycleQosPolicy > (parent, ReaderDataLifecycleQosPolicy_Impl::metaname);
   }
 
   //
@@ -62,11 +67,19 @@ namespace DQML
   }
 
   //
-  // dst_dr_readerdatalifecycle_Connection
+  // dst_of_dr_readerdatalifecycle_Connection
   //
-  size_t ReaderDataLifecycleQosPolicy_Impl::dst_dr_readerdatalifecycle_Connection (std::vector <dr_readerdatalifecycle_Connection> & items) const
+  size_t ReaderDataLifecycleQosPolicy_Impl::dst_of_dr_readerdatalifecycle_Connection (std::vector <dr_readerdatalifecycle_Connection> & items) const
   {
     return this->in_connections <dr_readerdatalifecycle_Connection> (items);
+  }
+
+  //
+  // dst_of_dr_readerdatalifecycle_Connection
+  //
+  GAME::Mga::Collection_T <dr_readerdatalifecycle_Connection> ReaderDataLifecycleQosPolicy_Impl::dst_of_dr_readerdatalifecycle_Connection (void) const
+  {
+    return this->in_connections <dr_readerdatalifecycle_Connection> ("dst");
   }
 }
 

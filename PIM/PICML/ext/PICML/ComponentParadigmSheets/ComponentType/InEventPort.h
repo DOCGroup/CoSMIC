@@ -17,9 +17,9 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInputBase.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleInputBase.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -39,9 +39,9 @@ namespace PICML
    */
   class PICML_Export InEventPort_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
+    public virtual EventPort_Impl,
     public virtual QueryInputBase_Impl,
-    public virtual SingleInputBase_Impl,
-    public virtual EventPort_Impl
+    public virtual SingleInputBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -53,12 +53,15 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static InEventPort _create (const Component_in parent);
     static InEventPort _create (const ConnectedComponent_in parent);
+    static InEventPort _create (const Component_in parent);
     static InEventPort _create (const Path_in parent);
     ///@}
 
@@ -85,8 +88,8 @@ namespace PICML
      */
     ///@{
     bool EventType_is_nil (void) const;
-    EventType get_EventType (void) const;
-    void set_EventType (EventType_in item);
+    EventType refers_to_EventType (void) const;
+    void refers_to_EventType (EventType_in item);
     ///@}
   };
 }

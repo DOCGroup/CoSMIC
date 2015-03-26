@@ -7,23 +7,10 @@ workspace (cosmic) {
 
   PIM/PICML/PICML.mwc
 
-  exclude (!prop:windows) {
-    // PIM/SIML/interpreters/Interpreters.mwc
-    // PIM/POSAML/interpreters/interpreters.mwc
-    // PSM/CQML/interpreters/Interpreters.mwc
-    // PSM/DQML/interpreters
-  }
-
   exclude (!wix) {
     $(COSMIC_ROOT)/bin
     $(COSMIC_ROOT)/docs
     $(COSMIC_ROOT)/includes
-
-    // PIM/POSAML/examples
-    // PIM/POSAML/paradigms
-
-    // PSM/CQML/examples
-    // PSM/CQML/paradigms
   }
 
   PSM/DQML/examples

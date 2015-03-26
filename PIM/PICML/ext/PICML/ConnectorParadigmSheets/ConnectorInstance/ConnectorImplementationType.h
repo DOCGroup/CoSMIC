@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -78,8 +81,8 @@ namespace PICML
      */
     ///@{
     bool ConnectorImplementation_is_nil (void) const;
-    ConnectorImplementation get_ConnectorImplementation (void) const;
-    void set_ConnectorImplementation (ConnectorImplementation_in item);
+    ConnectorImplementation refers_to_ConnectorImplementation (void) const;
+    void refers_to_ConnectorImplementation (ConnectorImplementation_in item);
     ///@}
   };
 }

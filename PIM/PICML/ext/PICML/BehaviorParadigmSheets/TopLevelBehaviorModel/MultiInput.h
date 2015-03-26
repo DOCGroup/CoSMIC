@@ -47,11 +47,14 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static MultiInput _create (const TopLevelBehavior_in parent);
+    static MultiInput _create (const TopLevelBehavior_in parent, MultiInputBase_in src, MultiInputAction_in dst);
     ///@}
 
     // Default constructor.

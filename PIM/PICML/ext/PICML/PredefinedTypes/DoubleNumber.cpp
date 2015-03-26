@@ -22,11 +22,16 @@ namespace PICML
   const std::string DoubleNumber_Impl::metaname ("DoubleNumber");
 
   //
+  // is_abstract
+  //
+  const bool DoubleNumber_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   DoubleNumber DoubleNumber_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < DoubleNumber > (parent, DoubleNumber_Impl::metaname);
+    return ::GAME::Mga::create < DoubleNumber > (parent, DoubleNumber_Impl::metaname);
   }
 
   //

@@ -22,11 +22,16 @@ namespace PICML
   const std::string FixedIterationBenchmarks_Impl::metaname ("FixedIterationBenchmarks");
 
   //
+  // is_abstract
+  //
+  const bool FixedIterationBenchmarks_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   FixedIterationBenchmarks FixedIterationBenchmarks_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < FixedIterationBenchmarks > (parent, FixedIterationBenchmarks_Impl::metaname);
+    return ::GAME::Mga::create < FixedIterationBenchmarks > (parent, FixedIterationBenchmarks_Impl::metaname);
   }
 
   //

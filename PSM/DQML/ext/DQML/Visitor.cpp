@@ -60,6 +60,13 @@ namespace DQML
   }
 
   //
+  // visit_dw_transpri_Connection
+  //
+  void Visitor::visit_dw_transpri_Connection (dw_transpri_Connection_in item)
+  {
+  }
+
+  //
   // visit_pub_presqos_Connection
   //
   void Visitor::visit_pub_presqos_Connection (pub_presqos_Connection_in item)
@@ -70,13 +77,6 @@ namespace DQML
   // visit_sub_presqos_Connection
   //
   void Visitor::visit_sub_presqos_Connection (sub_presqos_Connection_in item)
-  {
-  }
-
-  //
-  // visit_dw_transpri_Connection
-  //
-  void Visitor::visit_dw_transpri_Connection (dw_transpri_Connection_in item)
   {
   }
 
@@ -144,16 +144,16 @@ namespace DQML
   }
 
   //
-  // visit_LivelinessQosPolicy
+  // visit_TransportPriorityQosPolicy
   //
-  void Visitor::visit_LivelinessQosPolicy (LivelinessQosPolicy_in item)
+  void Visitor::visit_TransportPriorityQosPolicy (TransportPriorityQosPolicy_in item)
   {
   }
 
   //
-  // visit_TransportPriorityQosPolicy
+  // visit_LivelinessQosPolicy
   //
-  void Visitor::visit_TransportPriorityQosPolicy (TransportPriorityQosPolicy_in item)
+  void Visitor::visit_LivelinessQosPolicy (LivelinessQosPolicy_in item)
   {
   }
 
@@ -168,13 +168,6 @@ namespace DQML
   // visit_OwnershipQosPolicy
   //
   void Visitor::visit_OwnershipQosPolicy (OwnershipQosPolicy_in item)
-  {
-  }
-
-  //
-  // visit_dr_deadline_Connection
-  //
-  void Visitor::visit_dr_deadline_Connection (dr_deadline_Connection_in item)
   {
   }
 
@@ -196,6 +189,13 @@ namespace DQML
   // visit_dr_sub_Connection
   //
   void Visitor::visit_dr_sub_Connection (dr_sub_Connection_in item)
+  {
+  }
+
+  //
+  // visit_dr_deadline_Connection
+  //
+  void Visitor::visit_dr_deadline_Connection (dr_deadline_Connection_in item)
   {
   }
 
@@ -291,16 +291,16 @@ namespace DQML
   }
 
   //
-  // visit_dr_res_Connection
+  // visit_dw_res_Connection
   //
-  void Visitor::visit_dr_res_Connection (dr_res_Connection_in item)
+  void Visitor::visit_dw_res_Connection (dw_res_Connection_in item)
   {
   }
 
   //
-  // visit_dw_res_Connection
+  // visit_dr_res_Connection
   //
-  void Visitor::visit_dw_res_Connection (dw_res_Connection_in item)
+  void Visitor::visit_dr_res_Connection (dr_res_Connection_in item)
   {
   }
 
@@ -515,16 +515,16 @@ namespace DQML
   }
 
   //
-  // visit_dw_dstOrder_Connection
+  // visit_topic_dursvc_Connection
   //
-  void Visitor::visit_dw_dstOrder_Connection (dw_dstOrder_Connection_in item)
+  void Visitor::visit_topic_dursvc_Connection (topic_dursvc_Connection_in item)
   {
   }
 
   //
-  // visit_topic_dursvc_Connection
+  // visit_dw_dstOrder_Connection
   //
-  void Visitor::visit_topic_dursvc_Connection (topic_dursvc_Connection_in item)
+  void Visitor::visit_dw_dstOrder_Connection (dw_dstOrder_Connection_in item)
   {
   }
 
@@ -585,6 +585,13 @@ namespace DQML
   }
 
   //
+  // visit_dr_topic_Connection
+  //
+  void Visitor::visit_dr_topic_Connection (dr_topic_Connection_in item)
+  {
+  }
+
+  //
   // visit_dw_writerdatalifecycle_Connection
   //
   void Visitor::visit_dw_writerdatalifecycle_Connection (dw_writerdatalifecycle_Connection_in item)
@@ -595,13 +602,6 @@ namespace DQML
   // visit_dp_topic_Connection
   //
   void Visitor::visit_dp_topic_Connection (dp_topic_Connection_in item)
-  {
-  }
-
-  //
-  // visit_dr_topic_Connection
-  //
-  void Visitor::visit_dr_topic_Connection (dr_topic_Connection_in item)
   {
   }
 
@@ -648,16 +648,16 @@ namespace DQML
   }
 
   //
-  // visit_dr_durqos_Connection
+  // visit_dpf_dp_Connection
   //
-  void Visitor::visit_dr_durqos_Connection (dr_durqos_Connection_in item)
+  void Visitor::visit_dpf_dp_Connection (dpf_dp_Connection_in item)
   {
   }
 
   //
-  // visit_dpf_dp_Connection
+  // visit_dr_durqos_Connection
   //
-  void Visitor::visit_dpf_dp_Connection (dpf_dp_Connection_in item)
+  void Visitor::visit_dr_durqos_Connection (dr_durqos_Connection_in item)
   {
   }
 
@@ -669,9 +669,9 @@ namespace DQML
   }
 
   //
-  // visit_dr_liveliness_Connection
+  // visit_dr_reliability_Connection
   //
-  void Visitor::visit_dr_liveliness_Connection (dr_liveliness_Connection_in item)
+  void Visitor::visit_dr_reliability_Connection (dr_reliability_Connection_in item)
   {
   }
 
@@ -683,9 +683,9 @@ namespace DQML
   }
 
   //
-  // visit_dr_reliability_Connection
+  // visit_dr_liveliness_Connection
   //
-  void Visitor::visit_dr_reliability_Connection (dr_reliability_Connection_in item)
+  void Visitor::visit_dr_liveliness_Connection (dr_liveliness_Connection_in item)
   {
   }
 
@@ -697,16 +697,16 @@ namespace DQML
   }
 
   //
-  // visit_dw_latency_Connection
+  // visit_dw_reliability_Connection
   //
-  void Visitor::visit_dw_latency_Connection (dw_latency_Connection_in item)
+  void Visitor::visit_dw_reliability_Connection (dw_reliability_Connection_in item)
   {
   }
 
   //
-  // visit_dw_reliability_Connection
+  // visit_dw_latency_Connection
   //
-  void Visitor::visit_dw_reliability_Connection (dw_reliability_Connection_in item)
+  void Visitor::visit_dw_latency_Connection (dw_latency_Connection_in item)
   {
   }
 
@@ -739,16 +739,16 @@ namespace DQML
   }
 
   //
-  // visit_top_deadline_Connection
+  // visit_topic_res_Connection
   //
-  void Visitor::visit_top_deadline_Connection (top_deadline_Connection_in item)
+  void Visitor::visit_topic_res_Connection (topic_res_Connection_in item)
   {
   }
 
   //
-  // visit_topic_res_Connection
+  // visit_top_deadline_Connection
   //
-  void Visitor::visit_topic_res_Connection (topic_res_Connection_in item)
+  void Visitor::visit_top_deadline_Connection (top_deadline_Connection_in item)
   {
   }
 

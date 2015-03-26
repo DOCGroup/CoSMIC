@@ -44,6 +44,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     ImplementationContainer_Impl (void);
 
@@ -63,11 +66,8 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
-    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
-
-    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
-    ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
+    size_t get_InfoPropertys (std::vector <InfoProperty> & items) const;
+    ::GAME::Mga::Collection_T <InfoProperty> get_InfoPropertys (void) const;
 
     size_t get_ImplementationRequirements (std::vector <ImplementationRequirement> & items) const;
     ::GAME::Mga::Collection_T <ImplementationRequirement> get_ImplementationRequirements (void) const;
@@ -93,8 +93,11 @@ namespace PICML
     size_t get_ComponentServantArtifacts (std::vector <ComponentServantArtifact> & items) const;
     ::GAME::Mga::Collection_T <ComponentServantArtifact> get_ComponentServantArtifacts (void) const;
 
-    size_t get_InfoPropertys (std::vector <InfoProperty> & items) const;
-    ::GAME::Mga::Collection_T <InfoProperty> get_InfoPropertys (void) const;
+    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
+    ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
+
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
 
     ///@}
   };

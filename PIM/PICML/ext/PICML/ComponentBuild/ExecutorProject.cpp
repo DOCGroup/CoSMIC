@@ -25,11 +25,16 @@ namespace PICML
   const std::string ExecutorProject_Impl::metaname ("ExecutorProject");
 
   //
+  // is_abstract
+  //
+  const bool ExecutorProject_Impl::is_abstract = false;
+
+  //
   // _create (const Project_in)
   //
   ExecutorProject ExecutorProject_Impl::_create (const Project_in parent)
   {
-    return ::GAME::Mga::create_object < ExecutorProject > (parent, ExecutorProject_Impl::metaname);
+    return ::GAME::Mga::create < ExecutorProject > (parent, ExecutorProject_Impl::metaname);
   }
 
   //

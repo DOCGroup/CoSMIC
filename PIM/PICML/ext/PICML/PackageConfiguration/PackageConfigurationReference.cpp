@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
 #include "PICML/TopLevelPackageDescription/package.h"
 #include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
+#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,11 +25,16 @@ namespace PICML
   const std::string PackageConfigurationReference_Impl::metaname ("PackageConfigurationReference");
 
   //
+  // is_abstract
+  //
+  const bool PackageConfigurationReference_Impl::is_abstract = false;
+
+  //
   // _create (const TopLevelPackageContainer_in)
   //
   PackageConfigurationReference PackageConfigurationReference_Impl::_create (const TopLevelPackageContainer_in parent)
   {
-    return ::GAME::Mga::create_object < PackageConfigurationReference > (parent, PackageConfigurationReference_Impl::metaname);
+    return ::GAME::Mga::create < PackageConfigurationReference > (parent, PackageConfigurationReference_Impl::metaname);
   }
 
   //
@@ -55,19 +60,35 @@ namespace PICML
   }
 
   //
-  // dst_PackageConfSpecializedConfig
+  // dst_of_PackageConfSpecializedConfig
   //
-  size_t PackageConfigurationReference_Impl::dst_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const
+  size_t PackageConfigurationReference_Impl::dst_of_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const
   {
     return this->in_connections <PackageConfSpecializedConfig> (items);
   }
 
   //
-  // dst_package
+  // dst_of_PackageConfSpecializedConfig
   //
-  size_t PackageConfigurationReference_Impl::dst_package (std::vector <package> & items) const
+  GAME::Mga::Collection_T <PackageConfSpecializedConfig> PackageConfigurationReference_Impl::dst_of_PackageConfSpecializedConfig (void) const
+  {
+    return this->in_connections <PackageConfSpecializedConfig> ("dst");
+  }
+
+  //
+  // dst_of_package
+  //
+  size_t PackageConfigurationReference_Impl::dst_of_package (std::vector <package> & items) const
   {
     return this->in_connections <package> (items);
+  }
+
+  //
+  // dst_of_package
+  //
+  package PackageConfigurationReference_Impl::dst_of_package (void) const
+  {
+    return this->in_connections <package> ("dst").first ();
   }
 
   //
@@ -75,21 +96,21 @@ namespace PICML
   //
   bool PackageConfigurationReference_Impl::PackageConfiguration_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_PackageConfiguration
+  // refers_to_PackageConfiguration
   //
-  void PackageConfigurationReference_Impl::set_PackageConfiguration (PackageConfiguration_in item)
+  void PackageConfigurationReference_Impl::refers_to_PackageConfiguration (PackageConfiguration_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_PackageConfiguration
+  // refers_to_PackageConfiguration
   //
-  PackageConfiguration PackageConfigurationReference_Impl::get_PackageConfiguration (void) const
+  PackageConfiguration PackageConfigurationReference_Impl::refers_to_PackageConfiguration (void) const
   {
     return PackageConfiguration::_narrow (this->refers_to ());
   }

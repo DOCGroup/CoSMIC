@@ -51,6 +51,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -81,8 +84,8 @@ namespace PICML
      */
     ///@{
     bool MirrorPort_is_nil (void) const;
-    MirrorPort get_MirrorPort (void) const;
-    void set_MirrorPort (MirrorPort_in item);
+    MirrorPort refers_to_MirrorPort (void) const;
+    void refers_to_MirrorPort (MirrorPort_in item);
     ///@}
   };
 }

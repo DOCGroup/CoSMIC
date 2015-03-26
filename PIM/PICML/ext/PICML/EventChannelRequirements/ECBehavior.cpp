@@ -22,11 +22,16 @@ namespace PICML
   const std::string ECBehavior_Impl::metaname ("ECBehavior");
 
   //
+  // is_abstract
+  //
+  const bool ECBehavior_Impl::is_abstract = false;
+
+  //
   // _create (const ECRequirements_in)
   //
   ECBehavior ECBehavior_Impl::_create (const ECRequirements_in parent)
   {
-    return ::GAME::Mga::create_object < ECBehavior > (parent, ECBehavior_Impl::metaname);
+    return ::GAME::Mga::create < ECBehavior > (parent, ECBehavior_Impl::metaname);
   }
 
   //

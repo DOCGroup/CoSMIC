@@ -23,11 +23,16 @@ namespace PICML
   const std::string WorkerPackage_Impl::metaname ("WorkerPackage");
 
   //
+  // is_abstract
+  //
+  const bool WorkerPackage_Impl::is_abstract = false;
+
+  //
   // _create (const WorkerPackage_in)
   //
   WorkerPackage WorkerPackage_Impl::_create (const WorkerPackage_in parent)
   {
-    return ::GAME::Mga::create_object < WorkerPackage > (parent, WorkerPackage_Impl::metaname);
+    return ::GAME::Mga::create < WorkerPackage > (parent, WorkerPackage_Impl::metaname);
   }
 
   //
@@ -35,7 +40,7 @@ namespace PICML
   //
   WorkerPackage WorkerPackage_Impl::_create (const WorkerFile_in parent)
   {
-    return ::GAME::Mga::create_object < WorkerPackage > (parent, WorkerPackage_Impl::metaname);
+    return ::GAME::Mga::create < WorkerPackage > (parent, WorkerPackage_Impl::metaname);
   }
 
   //

@@ -46,6 +46,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     LoopState_Impl (void);
 
@@ -79,7 +82,9 @@ namespace PICML
     ///@{
 
     /// Get the src LoopTransition connection.
-    size_t src_LoopTransition (std::vector <LoopTransition> & items) const;
+    size_t src_of_LoopTransition (std::vector <LoopTransition> & items) const;
+    bool has_src_of_LoopTransition (void) const;
+    LoopTransition src_of_LoopTransition (void) const;
     ///@}
   };
 }

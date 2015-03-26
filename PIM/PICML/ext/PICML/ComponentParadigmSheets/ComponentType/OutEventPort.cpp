@@ -8,15 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventType.h"
-#include "PICML/InheritableTypes/Event.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
-#include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/InterfaceDefinition/CollectionParameter.h"
+#include "PICML/InheritableTypes/Event.h"
 #include "PICML/PathDiagram/ConnectedComponent.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -31,19 +31,24 @@ namespace PICML
   const std::string OutEventPort_Impl::metaname ("OutEventPort");
 
   //
-  // _create (const Component_in)
+  // is_abstract
   //
-  OutEventPort OutEventPort_Impl::_create (const Component_in parent)
-  {
-    return ::GAME::Mga::create_object < OutEventPort > (parent, OutEventPort_Impl::metaname);
-  }
+  const bool OutEventPort_Impl::is_abstract = false;
 
   //
   // _create (const ConnectedComponent_in)
   //
   OutEventPort OutEventPort_Impl::_create (const ConnectedComponent_in parent)
   {
-    return ::GAME::Mga::create_object < OutEventPort > (parent, OutEventPort_Impl::metaname);
+    return ::GAME::Mga::create < OutEventPort > (parent, OutEventPort_Impl::metaname);
+  }
+
+  //
+  // _create (const Component_in)
+  //
+  OutEventPort OutEventPort_Impl::_create (const Component_in parent)
+  {
+    return ::GAME::Mga::create < OutEventPort > (parent, OutEventPort_Impl::metaname);
   }
 
   //
@@ -51,7 +56,7 @@ namespace PICML
   //
   OutEventPort OutEventPort_Impl::_create (const Path_in parent)
   {
-    return ::GAME::Mga::create_object < OutEventPort > (parent, OutEventPort_Impl::metaname);
+    return ::GAME::Mga::create < OutEventPort > (parent, OutEventPort_Impl::metaname);
   }
 
   //
@@ -73,21 +78,21 @@ namespace PICML
   //
   bool OutEventPort_Impl::EventType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_EventType
+  // refers_to_EventType
   //
-  void OutEventPort_Impl::set_EventType (EventType_in item)
+  void OutEventPort_Impl::refers_to_EventType (EventType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_EventType
+  // refers_to_EventType
   //
-  EventType OutEventPort_Impl::get_EventType (void) const
+  EventType OutEventPort_Impl::refers_to_EventType (void) const
   {
     return EventType::_narrow (this->refers_to ());
   }

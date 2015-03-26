@@ -16,5 +16,10 @@ namespace PICML
   // metaname
   //
   const std::string SignedIntegerType_Impl::metaname ("SignedIntegerType");
+
+  //
+  // is_abstract
+  //
+  const bool SignedIntegerType_Impl::is_abstract = true;
 }
 

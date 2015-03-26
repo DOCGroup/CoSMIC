@@ -22,11 +22,16 @@ namespace PICML
   const std::string EnumValue_Impl::metaname ("EnumValue");
 
   //
+  // is_abstract
+  //
+  const bool EnumValue_Impl::is_abstract = false;
+
+  //
   // _create (const Enum_in)
   //
   EnumValue EnumValue_Impl::_create (const Enum_in parent)
   {
-    return ::GAME::Mga::create_object < EnumValue > (parent, EnumValue_Impl::metaname);
+    return ::GAME::Mga::create < EnumValue > (parent, EnumValue_Impl::metaname);
   }
 
   //

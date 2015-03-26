@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,11 +27,16 @@ namespace PICML
   const std::string ConnectorToFacet_Impl::metaname ("ConnectorToFacet");
 
   //
-  // _create (const ComponentAssembly_in)
+  // is_abstract
   //
-  ConnectorToFacet ConnectorToFacet_Impl::_create (const ComponentAssembly_in parent)
+  const bool ConnectorToFacet_Impl::is_abstract = false;
+
+  //
+  // _create (const ComponentAssembly_in, ConnectorInstance_in src, ProvidedRequestPortEnd_in dst)
+  //
+  ConnectorToFacet ConnectorToFacet_Impl::_create (const ComponentAssembly_in parent, ConnectorInstance_in src, ProvidedRequestPortEnd_in dst)
   {
-    return ::GAME::Mga::create_object < ConnectorToFacet > (parent, ConnectorToFacet_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ConnectorToFacet_Impl::metaname, src, dst);
   }
 
   //

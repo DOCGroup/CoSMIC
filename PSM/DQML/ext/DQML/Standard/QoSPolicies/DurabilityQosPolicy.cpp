@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.h"
-#include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
-#include "DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.h"
+#include "DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.h"
+#include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,11 +28,24 @@ namespace DQML
   const std::string DurabilityQosPolicy_Impl::metaname ("DurabilityQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool DurabilityQosPolicy_Impl::is_abstract = false;
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  {
+    return ::GAME::Mga::create < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
+  }
+
+  //
   // _create (const DataWriterQos_in)
   //
   DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const DataWriterQos_in parent)
   {
-    return ::GAME::Mga::create_object < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
   }
 
   //
@@ -40,15 +53,7 @@ namespace DQML
   //
   DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const TopicQos_in parent)
   {
-    return ::GAME::Mga::create_object < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
-  }
-
-  //
-  // _create (const DataReaderQos_in)
-  //
-  DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
-  {
-    return ::GAME::Mga::create_object < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
   }
 
   //
@@ -56,7 +61,7 @@ namespace DQML
   //
   DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
   }
 
   //
@@ -71,6 +76,14 @@ namespace DQML
       this_visitor->visit_DurabilityQosPolicy (this);
     else
       v->visit_Atom (this);
+  }
+
+  //
+  // parent_DataReaderQos
+  //
+  DataReaderQos DurabilityQosPolicy_Impl::parent_DataReaderQos (void)
+  {
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //
@@ -90,35 +103,51 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
+  // dst_of_dw_durqos_Connection
   //
-  DataReaderQos DurabilityQosPolicy_Impl::parent_DataReaderQos (void)
-  {
-    return DataReaderQos::_narrow (this->parent ());
-  }
-
-  //
-  // dst_dw_durqos_Connection
-  //
-  size_t DurabilityQosPolicy_Impl::dst_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const
+  size_t DurabilityQosPolicy_Impl::dst_of_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const
   {
     return this->in_connections <dw_durqos_Connection> (items);
   }
 
   //
-  // dst_dr_durqos_Connection
+  // dst_of_dw_durqos_Connection
   //
-  size_t DurabilityQosPolicy_Impl::dst_dr_durqos_Connection (std::vector <dr_durqos_Connection> & items) const
+  GAME::Mga::Collection_T <dw_durqos_Connection> DurabilityQosPolicy_Impl::dst_of_dw_durqos_Connection (void) const
+  {
+    return this->in_connections <dw_durqos_Connection> ("dst");
+  }
+
+  //
+  // dst_of_topic_durqos_Connection
+  //
+  size_t DurabilityQosPolicy_Impl::dst_of_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const
+  {
+    return this->in_connections <topic_durqos_Connection> (items);
+  }
+
+  //
+  // dst_of_topic_durqos_Connection
+  //
+  GAME::Mga::Collection_T <topic_durqos_Connection> DurabilityQosPolicy_Impl::dst_of_topic_durqos_Connection (void) const
+  {
+    return this->in_connections <topic_durqos_Connection> ("dst");
+  }
+
+  //
+  // dst_of_dr_durqos_Connection
+  //
+  size_t DurabilityQosPolicy_Impl::dst_of_dr_durqos_Connection (std::vector <dr_durqos_Connection> & items) const
   {
     return this->in_connections <dr_durqos_Connection> (items);
   }
 
   //
-  // dst_topic_durqos_Connection
+  // dst_of_dr_durqos_Connection
   //
-  size_t DurabilityQosPolicy_Impl::dst_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const
+  GAME::Mga::Collection_T <dr_durqos_Connection> DurabilityQosPolicy_Impl::dst_of_dr_durqos_Connection (void) const
   {
-    return this->in_connections <topic_durqos_Connection> (items);
+    return this->in_connections <dr_durqos_Connection> ("dst");
   }
 }
 

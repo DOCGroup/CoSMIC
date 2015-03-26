@@ -23,11 +23,16 @@ namespace PICML
   const std::string CallAction_Impl::metaname ("CallAction");
 
   //
+  // is_abstract
+  //
+  const bool CallAction_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   CallAction CallAction_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < CallAction > (parent, CallAction_Impl::metaname);
+    return ::GAME::Mga::create < CallAction > (parent, CallAction_Impl::metaname);
   }
 
   //

@@ -22,11 +22,16 @@ namespace PICML
   const std::string Latency_Impl::metaname ("Latency");
 
   //
+  // is_abstract
+  //
+  const bool Latency_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   Latency Latency_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < Latency > (parent, Latency_Impl::metaname);
+    return ::GAME::Mga::create < Latency > (parent, Latency_Impl::metaname);
   }
 
   //

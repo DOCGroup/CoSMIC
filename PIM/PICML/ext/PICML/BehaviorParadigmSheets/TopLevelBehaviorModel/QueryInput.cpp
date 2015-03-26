@@ -10,9 +10,9 @@
 #include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInputBase.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string QueryInput_Impl::metaname ("QueryInput");
 
   //
-  // _create (const TopLevelBehavior_in)
+  // is_abstract
   //
-  QueryInput QueryInput_Impl::_create (const TopLevelBehavior_in parent)
+  const bool QueryInput_Impl::is_abstract = false;
+
+  //
+  // _create (const TopLevelBehavior_in, QueryInputBase_in src, QueryInputAction_in dst)
+  //
+  QueryInput QueryInput_Impl::_create (const TopLevelBehavior_in parent, QueryInputBase_in src, QueryInputAction_in dst)
   {
-    return ::GAME::Mga::create_object < QueryInput > (parent, QueryInput_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, QueryInput_Impl::metaname, src, dst);
   }
 
   //

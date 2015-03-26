@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentPackage/ComponentPackage.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
+#include "PICML/ComponentPackage/ComponentPackage.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string PackageInterface_Impl::metaname ("PackageInterface");
 
   //
-  // _create (const PackageContainer_in)
+  // is_abstract
   //
-  PackageInterface PackageInterface_Impl::_create (const PackageContainer_in parent)
+  const bool PackageInterface_Impl::is_abstract = false;
+
+  //
+  // _create (const PackageContainer_in, ComponentPackage_in src, ComponentRef_in dst)
+  //
+  PackageInterface PackageInterface_Impl::_create (const PackageContainer_in parent, ComponentPackage_in src, ComponentRef_in dst)
   {
-    return ::GAME::Mga::create_object < PackageInterface > (parent, PackageInterface_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, PackageInterface_Impl::metaname, src, dst);
   }
 
   //

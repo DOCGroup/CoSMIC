@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -79,7 +82,8 @@ namespace PICML
     ///@{
 
     /// Get the dst LabelConnection connection.
-    size_t dst_LabelConnection (std::vector <LabelConnection> & items) const;
+    size_t dst_of_LabelConnection (std::vector <LabelConnection> & items) const;
+    LabelConnection dst_of_LabelConnection (void) const;
     ///@}
   };
 }

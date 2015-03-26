@@ -49,14 +49,17 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static ArrayMember _create (const Exception_in parent);
     static ArrayMember _create (const Aggregate_in parent);
     static ArrayMember _create (const ObjectByValue_in parent);
     static ArrayMember _create (const SwitchedAggregate_in parent);
+    static ArrayMember _create (const Exception_in parent);
     ///@}
 
     // Default constructor.

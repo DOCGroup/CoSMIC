@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
-#include "PICML/PathDiagram/Edge.h"
 #include "PICML/PathDiagram/Path.h"
+#include "PICML/PathDiagram/Edge.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string EdgeProperty_Impl::metaname ("EdgeProperty");
 
   //
-  // _create (const Path_in)
+  // is_abstract
   //
-  EdgeProperty EdgeProperty_Impl::_create (const Path_in parent)
+  const bool EdgeProperty_Impl::is_abstract = false;
+
+  //
+  // _create (const Path_in, Property_in src, Edge_in dst)
+  //
+  EdgeProperty EdgeProperty_Impl::_create (const Path_in parent, Property_in src, Edge_in dst)
   {
-    return ::GAME::Mga::create_object < EdgeProperty > (parent, EdgeProperty_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, EdgeProperty_Impl::metaname, src, dst);
   }
 
   //

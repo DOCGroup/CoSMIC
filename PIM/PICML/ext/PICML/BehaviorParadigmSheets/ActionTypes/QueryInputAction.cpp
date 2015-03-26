@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,11 +28,16 @@ namespace PICML
   const std::string QueryInputAction_Impl::metaname ("QueryInputAction");
 
   //
+  // is_abstract
+  //
+  const bool QueryInputAction_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   QueryInputAction QueryInputAction_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < QueryInputAction > (parent, QueryInputAction_Impl::metaname);
+    return ::GAME::Mga::create < QueryInputAction > (parent, QueryInputAction_Impl::metaname);
   }
 
   //
@@ -58,27 +63,27 @@ namespace PICML
   }
 
   //
-  // dst_QueryInput
+  // dst_of_QueryInput
   //
-  size_t QueryInputAction_Impl::dst_QueryInput (std::vector <QueryInput> & items) const
+  size_t QueryInputAction_Impl::dst_of_QueryInput (std::vector <QueryInput> & items) const
   {
     return this->in_connections <QueryInput> (items);
   }
 
   //
-  // get_ComplexPropertys
+  // has_dst_of_QueryInput
   //
-  size_t QueryInputAction_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  bool QueryInputAction_Impl::has_dst_of_QueryInput (void) const
   {
-    return this->children (items);
+    return this->in_connections <QueryInput> ("dst").count () == 1;
   }
 
   //
-  // get_ComplexPropertys
+  // dst_of_QueryInput
   //
-  ::GAME::Mga::Collection_T <ComplexProperty> QueryInputAction_Impl::get_ComplexPropertys (void) const
+  QueryInput QueryInputAction_Impl::dst_of_QueryInput (void) const
   {
-    return this->children <ComplexProperty> ();
+    return this->in_connections <QueryInput> ("dst").first ();
   }
 
   //
@@ -95,6 +100,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <SimpleProperty> QueryInputAction_Impl::get_SimplePropertys (void) const
   {
     return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t QueryInputAction_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> QueryInputAction_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 }
 

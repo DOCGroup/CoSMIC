@@ -22,6 +22,11 @@ namespace PICML
   const std::string PackageConfigurations_Impl::metaname ("PackageConfigurations");
 
   //
+  // is_abstract
+  //
+  const bool PackageConfigurations_Impl::is_abstract = false;
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   PackageConfigurations PackageConfigurations_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

@@ -23,11 +23,16 @@ namespace PICML
   const std::string MirrorPortDelegate_Impl::metaname ("MirrorPortDelegate");
 
   //
+  // is_abstract
+  //
+  const bool MirrorPortDelegate_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAssembly_in)
   //
   MirrorPortDelegate MirrorPortDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < MirrorPortDelegate > (parent, MirrorPortDelegate_Impl::metaname);
+    return ::GAME::Mga::create < MirrorPortDelegate > (parent, MirrorPortDelegate_Impl::metaname);
   }
 
   //
@@ -53,11 +58,19 @@ namespace PICML
   }
 
   //
-  // dst_MirrorDelegate
+  // dst_of_MirrorDelegate
   //
-  size_t MirrorPortDelegate_Impl::dst_MirrorDelegate (std::vector <MirrorDelegate> & items) const
+  size_t MirrorPortDelegate_Impl::dst_of_MirrorDelegate (std::vector <MirrorDelegate> & items) const
   {
     return this->in_connections <MirrorDelegate> (items);
+  }
+
+  //
+  // dst_of_MirrorDelegate
+  //
+  GAME::Mga::Collection_T <MirrorDelegate> MirrorPortDelegate_Impl::dst_of_MirrorDelegate (void) const
+  {
+    return this->in_connections <MirrorDelegate> ("dst");
   }
 }
 

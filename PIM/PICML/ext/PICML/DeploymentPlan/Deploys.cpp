@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "PICML/DeploymentPlan/ComponentInstanceRef.h"
 #include "PICML/DeploymentPlan/ComponentFactoryRef.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,16 @@ namespace PICML
   const std::string Deploys_Impl::metaname ("Deploys");
 
   //
-  // _create (const DeploymentPlan_in)
+  // is_abstract
   //
-  Deploys Deploys_Impl::_create (const DeploymentPlan_in parent)
+  const bool Deploys_Impl::is_abstract = false;
+
+  //
+  // _create (const DeploymentPlan_in, ComponentFactoryRef_in src, ComponentInstanceRef_in dst)
+  //
+  Deploys Deploys_Impl::_create (const DeploymentPlan_in parent, ComponentFactoryRef_in src, ComponentInstanceRef_in dst)
   {
-    return ::GAME::Mga::create_object < Deploys > (parent, Deploys_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, Deploys_Impl::metaname, src, dst);
   }
 
   //

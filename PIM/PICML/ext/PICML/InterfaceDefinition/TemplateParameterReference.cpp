@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
-#include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/NameParameter.h"
+#include "PICML/InterfaceDefinition/CollectionParameter.h"
+#include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,11 +26,16 @@ namespace PICML
   const std::string TemplateParameterReference_Impl::metaname ("TemplateParameterReference");
 
   //
+  // is_abstract
+  //
+  const bool TemplateParameterReference_Impl::is_abstract = false;
+
+  //
   // _create (const TemplatePackageAlias_in)
   //
   TemplateParameterReference TemplateParameterReference_Impl::_create (const TemplatePackageAlias_in parent)
   {
-    return ::GAME::Mga::create_object < TemplateParameterReference > (parent, TemplateParameterReference_Impl::metaname);
+    return ::GAME::Mga::create < TemplateParameterReference > (parent, TemplateParameterReference_Impl::metaname);
   }
 
   //
@@ -60,21 +65,21 @@ namespace PICML
   //
   bool TemplateParameterReference_Impl::TemplateParameter_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //
-  // set_TemplateParameter
+  // refers_to_TemplateParameter
   //
-  void TemplateParameterReference_Impl::set_TemplateParameter (TemplateParameter_in item)
+  void TemplateParameterReference_Impl::refers_to_TemplateParameter (TemplateParameter_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_TemplateParameter
+  // refers_to_TemplateParameter
   //
-  TemplateParameter TemplateParameterReference_Impl::get_TemplateParameter (void) const
+  TemplateParameter TemplateParameterReference_Impl::refers_to_TemplateParameter (void) const
   {
     return TemplateParameter::_narrow (this->refers_to ());
   }

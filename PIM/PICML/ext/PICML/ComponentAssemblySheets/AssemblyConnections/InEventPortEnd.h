@@ -46,6 +46,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     InEventPortEnd_Impl (void);
 
@@ -67,10 +70,12 @@ namespace PICML
     ///@{
 
     /// Get the dst SendsTo connection.
-    size_t dst_SendsTo (std::vector <SendsTo> & items) const;
+    size_t dst_of_SendsTo (std::vector <SendsTo> & items) const;
+    GAME::Mga::Collection_T <SendsTo> dst_of_SendsTo (void) const;
 
     /// Get the dst EventSinkDelegate connection.
-    size_t dst_EventSinkDelegate (std::vector <EventSinkDelegate> & items) const;
+    size_t dst_of_EventSinkDelegate (std::vector <EventSinkDelegate> & items) const;
+    GAME::Mga::Collection_T <EventSinkDelegate> dst_of_EventSinkDelegate (void) const;
     ///@}
   };
 }

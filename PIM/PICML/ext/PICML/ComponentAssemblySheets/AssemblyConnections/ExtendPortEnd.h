@@ -46,6 +46,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     ExtendPortEnd_Impl (void);
 
@@ -67,7 +70,9 @@ namespace PICML
     ///@{
 
     /// Get the src Publish connection.
-    size_t src_Publish (std::vector <Publish> & items) const;
+    size_t src_of_Publish (std::vector <Publish> & items) const;
+    bool has_src_of_Publish (void) const;
+    Publish src_of_Publish (void) const;
     ///@}
 
     /**
@@ -76,7 +81,9 @@ namespace PICML
     ///@{
 
     /// Get the dst Consume connection.
-    size_t dst_Consume (std::vector <Consume> & items) const;
+    size_t dst_of_Consume (std::vector <Consume> & items) const;
+    bool has_dst_of_Consume (void) const;
+    Consume dst_of_Consume (void) const;
     ///@}
   };
 }

@@ -44,6 +44,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     StateBase_Impl (void);
 
@@ -66,7 +69,8 @@ namespace PICML
     ///@{
 
     /// Get the src Finish connection.
-    size_t src_Finish (std::vector <Finish> & items) const;
+    size_t src_of_Finish (std::vector <Finish> & items) const;
+    GAME::Mga::Collection_T <Finish> src_of_Finish (void) const;
     ///@}
 
     /**
@@ -74,14 +78,18 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst TerminalEffect connection.
-    size_t dst_TerminalEffect (std::vector <TerminalEffect> & items) const;
-
     /// Get the dst InputEffect connection.
-    size_t dst_InputEffect (std::vector <InputEffect> & items) const;
+    size_t dst_of_InputEffect (std::vector <InputEffect> & items) const;
+    GAME::Mga::Collection_T <InputEffect> dst_of_InputEffect (void) const;
+
+    /// Get the dst TerminalEffect connection.
+    size_t dst_of_TerminalEffect (std::vector <TerminalEffect> & items) const;
+    bool has_dst_of_TerminalEffect (void) const;
+    TerminalEffect dst_of_TerminalEffect (void) const;
 
     /// Get the dst Effect connection.
-    size_t dst_Effect (std::vector <Effect> & items) const;
+    size_t dst_of_Effect (std::vector <Effect> & items) const;
+    GAME::Mga::Collection_T <Effect> dst_of_Effect (void) const;
     ///@}
   };
 }

@@ -16,5 +16,10 @@ namespace PICML
   // metaname
   //
   const std::string StringType_Impl::metaname ("StringType");
+
+  //
+  // is_abstract
+  //
+  const bool StringType_Impl::is_abstract = true;
 }
 

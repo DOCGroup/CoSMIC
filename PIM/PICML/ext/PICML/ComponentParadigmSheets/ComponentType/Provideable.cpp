@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 
 namespace PICML
 {
@@ -17,5 +17,10 @@ namespace PICML
   // metaname
   //
   const std::string Provideable_Impl::metaname ("Provideable");
+
+  //
+  // is_abstract
+  //
+  const bool Provideable_Impl::is_abstract = true;
 }
 

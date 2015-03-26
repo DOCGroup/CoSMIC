@@ -9,8 +9,8 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/Standard/SchedulingQosPolicy/SchedulingQosPolicy.h"
-#include "DQML/iCCM/DomainParticipantQos/WatchdogSchedulingQosPolicy.h"
 #include "DQML/iCCM/DomainParticipantQos/ListenerSchedulingQosPolicy.h"
+#include "DQML/iCCM/DomainParticipantQos/WatchdogSchedulingQosPolicy.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -25,11 +25,16 @@ namespace DQML
   const std::string SchedulingClassQosPolicy_Impl::metaname ("SchedulingClassQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool SchedulingClassQosPolicy_Impl::is_abstract = false;
+
+  //
   // _create (const SchedulingQosPolicy_in)
   //
   SchedulingClassQosPolicy SchedulingClassQosPolicy_Impl::_create (const SchedulingQosPolicy_in parent)
   {
-    return ::GAME::Mga::create_object < SchedulingClassQosPolicy > (parent, SchedulingClassQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < SchedulingClassQosPolicy > (parent, SchedulingClassQosPolicy_Impl::metaname);
   }
 
   //
@@ -37,7 +42,7 @@ namespace DQML
   //
   SchedulingClassQosPolicy SchedulingClassQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < SchedulingClassQosPolicy > (parent, SchedulingClassQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < SchedulingClassQosPolicy > (parent, SchedulingClassQosPolicy_Impl::metaname);
   }
 
   //

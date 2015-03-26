@@ -47,12 +47,15 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static DstEdge _create (const Path_in parent);
-    static DstEdge _create (const ConnectedComponent_in parent);
+    static DstEdge _create (const ConnectedComponent_in parent, GraphVertex_in src, Edge_in dst);
+    static DstEdge _create (const Path_in parent, GraphVertex_in src, Edge_in dst);
     ///@}
 
     // Default constructor.
@@ -71,8 +74,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    Path parent_Path (void);
     ConnectedComponent parent_ConnectedComponent (void);
+    Path parent_Path (void);
     ///@}
     GraphVertex src_GraphVertex (void) const;
     Edge dst_Edge (void) const;
