@@ -18,7 +18,7 @@ If you have problems with the installation, please send mail to:
 cosmic-users@list.isis.vanderbilt.edu
 
 Minimum Requirements
-============================
+---------------------------------
 You need to have administrator privileges to install CoSMIC. The following
 are the minimum system requirements for installing CoSMIC:
 
@@ -26,19 +26,19 @@ are the minimum system requirements for installing CoSMIC:
 2. Generic Modeling Environment (GME) version (10.8.18)
 
 Building from Sources
-============================
+---------------------------------
 1. Visual Studio 2012 (or better)
 2. GAME (master)
 
 Environment Setup
--------------------
+---------------------------------
 
     set GAME_ROOT=[location of GAME]
     set COSMIC_ROOT=[location of CoSMIC]
     set PATH=%PATH%;%GAME_ROOT%\bin;%GAME_ROOT%\lib;%COSMIC_ROOT%\bin;%COSMIC_ROOT%\lib
 
 Quick Build
--------------------
+---------------------------------
 
     mwc.pl -type [vc11 or better] CoSMIC_GAME.mwc
     devenv /useenv CoSMIC_GAME.sln
