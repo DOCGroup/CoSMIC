@@ -11,7 +11,8 @@
 #include "boost/bind.hpp"
 #include <algorithm>
 
-#include "Utils/Utils.h"
+//#include "Utils/Utils.h"
+#include "game/mga/Utils.h"
 
 namespace DQML_iCCM
 {
@@ -83,7 +84,7 @@ void Participant_File_Locator::visit_Domain (DQML::Domain_in item)
 void Participant_File_Locator::visit_Participant (DQML::Participant_in item)
 {
   const std::string pathname = this->path_ + "/" + this->domain_;
-  Utils::CreatePath (pathname);
+  GAME::Utils::create_path (pathname);
 
   Participant_File file;
   file.generate (pathname, item);
@@ -117,7 +118,8 @@ generate (const std::string & path, DQML::Participant_in participant)
   const std::string filename = path + "/" + participant->name () + ".dpq";
 
   // Create a new document and populate its contents.
-  GAME::Xml::LS_Document document;
+  GAME::Xml::LS_Document document ("http://cuts.cs.iupui.edu/iccm", "dds:participant");
+  document->setXmlVersion (String ("1.0"));
   Participant_Visitor visitor (document);
   participant->accept (&visitor);
 

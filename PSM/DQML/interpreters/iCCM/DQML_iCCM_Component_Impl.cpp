@@ -14,7 +14,7 @@
 #include "game/mga/component/Interpreter_T.h"
 
 #include <iostream>
-#include "Utils/Utils.h"
+//#include "Utils/Utils.h"
 
 GAME_DECLARE_INTERPRETER (DQML_iCCM_Component, DQML_iCCM_Component_Impl);
 

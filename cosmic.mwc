@@ -16,4 +16,5 @@ workspace (cosmic) {
   PSM/DQML/examples
   PSM/DQML/paradigms
   PSM/DQML/ext
+  PSM/DQML/interpreters
 }
