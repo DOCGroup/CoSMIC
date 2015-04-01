@@ -8,6 +8,8 @@ workspace (CoSMIC_Release_Build) {
   exclude (!prop:windows) {
     cmdline += -value_template 'gme_register=HKLM'
 
-    $(COSMIC_ROOT)/cosmic.mwc
+  avoids += udm
+
+    $(COSMIC_ROOT)/CoSMIC_GAME.mwc
   }
 }
