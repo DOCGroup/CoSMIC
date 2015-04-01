@@ -24,12 +24,12 @@ You need to have administrator privileges to install CoSMIC. The following
 are the minimum system requirements for installing CoSMIC:
 
 1. Windows 2000, Windows XP, Windows Server 2003, Windows XP 64-bit
-2. Generic Modeling Environment (GME) version (10.8.18)
+2. Generic Modeling Environment (GME) version (14.7.28, or better)
 
 Building from Sources
 ---------------------------------
 1. Visual Studio 2012 (or better)
-2. GAME (master)
+2. GAME (v1.0.0, or better)
 
 Environment Setup
 ---------------------------------
