@@ -26,10 +26,6 @@ namespace DQML_iCCM
   Participant_Visitor::Participant_Visitor (GAME::Xml::Document & doc)
     : doc_ (doc)
   {
-    // Create the document, which includes setting the XML version.
-    this->doc_.create ("http://cuts.cs.iupui.edu/iccm", "dds:participant");
-    this->doc_->setXmlVersion (String ("1.0"));
-
     this->current_ = this->doc_.root ();
 
     this->current_->setAttributeNS (String ("http://www.w3.org/2000/xmlns/"),
@@ -60,7 +56,7 @@ namespace DQML_iCCM
     auto collection = item->children <T> ();
     if (collection.count () != 0)
     {
-      Swap_Fragment f (this->current_, this->current_.create_element (label));
+      Swap_Fragment f (this->current_, this->current_.append_element (label));
       collection.first ()->accept (this);
     }
   }
@@ -124,7 +120,7 @@ namespace DQML_iCCM
   void Participant_Visitor::
     visit_TopicQos (DQML::TopicQos_in item)
   {
-    Swap_Fragment topic (this->current_, this->current_.create_element ("topic"));
+    Swap_Fragment topic (this->current_, this->current_.append_element ("topic"));
     topic.set_attribute ("name", item->name ());
 
     //<xsd:element name="topic_data" type="TopicDataQosPolicy" minOccurs="0" maxOccurs="1" />
@@ -173,7 +169,7 @@ namespace DQML_iCCM
   void Participant_Visitor::
     visit_PublisherQos (DQML::PublisherQos_in item)
   {
-    Fragment publisher (this->current_.create_element ("publisher"));
+    Fragment publisher (this->current_.append_element ("publisher"));
     publisher.set_attribute ("name", item->name ());
 
     //<xsd:element name="presentation" type="PresentationQosPolicy" minOccurs="0" maxOccurs="1" />
@@ -195,7 +191,7 @@ namespace DQML_iCCM
   void Participant_Visitor::
     visit_SubscriberQos (DQML::SubscriberQos_in item)
   {
-    Fragment subscriber (this->current_.create_element ("subscriber"));
+    Fragment subscriber (this->current_.append_element ("subscriber"));
     subscriber.set_attribute ("name", item->name ());
 
     //<xsd:element name="presentation" type="PresentationQosPolicy" minOccurs="0" maxOccurs="1" />
@@ -219,7 +215,7 @@ namespace DQML_iCCM
   //
   void Participant_Visitor::visit_DataWriterQos (DQML::DataWriterQos_in item)
   {
-    Fragment writer (this->current_.create_element ("datawriter"));
+    Fragment writer (this->current_.append_element ("datawriter"));
     writer.set_attribute ("name", item->name ());
     writer.set_attribute ("topic_name", item->topic_name ());
     writer.set_attribute ("isinstance", item->IsInstance ());
@@ -287,7 +283,7 @@ namespace DQML_iCCM
   //
   void Participant_Visitor::visit_DataReaderQos (DQML::DataReaderQos_in item)
   {
-    Fragment reader (this->current_.create_element ("datareader"));
+    Fragment reader (this->current_.append_element ("datareader"));
     reader.set_attribute ("name", item->name ());
     reader.set_attribute ("isprivate", item->isprivate ());
 
@@ -360,7 +356,7 @@ namespace DQML_iCCM
     boost::split (parts , str , boost::is_any_of ("."));
     for (std::string part : parts)
     {
-      Fragment item_string (this->current_.create_element ("item"));
+      Fragment item_string (this->current_.append_element ("item"));
       item_string->setTextContent (String (part));
     }
   }
@@ -506,7 +502,7 @@ namespace DQML_iCCM
   void Participant_Visitor::
   visit_SchedulingPriorityQosPolicy (DQML::SchedulingPriorityQosPolicy_in item)
   {
-    Fragment scheduling_priority (this->current_.create_element ("scheduling_priority_kind"));
+    Fragment scheduling_priority (this->current_.append_element ("scheduling_priority_kind"));
     scheduling_priority.set_attribute ("kind", item->scheduling_priority_kind ());
   }
 
@@ -516,7 +512,7 @@ namespace DQML_iCCM
   void Participant_Visitor::
   visit_SchedulingClassQosPolicy (DQML::SchedulingClassQosPolicy_in item)
   {
-    Fragment scheduling_class (this->current_.create_element ("scheduling_class"));
+    Fragment scheduling_class (this->current_.append_element ("scheduling_class"));
     scheduling_class.set_attribute ("kind", item->scheduling_class_kind ());
   }
 
@@ -570,7 +566,7 @@ namespace DQML_iCCM
   visit_SubscriptionKeyQosPolicy (DQML::SubscriptionKeyQosPolicy_in item)
   {      
     // <name><item></item><item></item></name>
-    Swap_Fragment f (this->current_, this->current_.create_element ("name"));
+    Swap_Fragment f (this->current_, this->current_.append_element ("name"));
     this->stringseq_splitter (item->key_list ());
   }
 
@@ -602,7 +598,7 @@ namespace DQML_iCCM
   visit_PartitionQosPolicy (DQML::PartitionQosPolicy_in item)
   {
     // <name><item></item><item></item></name>
-    Swap_Fragment f (this->current_, this->current_.create_element ("name"));
+    Swap_Fragment f (this->current_, this->current_.append_element ("name"));
     this->stringseq_splitter (item->partition_name ());
   }
 

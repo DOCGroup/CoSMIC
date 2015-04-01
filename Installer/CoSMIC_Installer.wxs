@@ -80,7 +80,7 @@
                     DiskId="1" />
 
               <File Name="README"
-                    Source="$(env.COSMIC_ROOT)/README"
+                    Source="$(env.COSMIC_ROOT)/README.md"
                     DiskId="1" />
 
               <File Name="RELEASE_NOTES"
@@ -154,7 +154,7 @@
 
       <!-- gather all the third-party components -->
       <ComponentRef Id="xerces" />
-      <ComponentRef Id="UDM" />
+      <!-- <ComponentRef Id="UDM" /> -->
 
       <!-- include the VC merge modules -->
       <FeatureRef Id="vc_merge_modules" />
@@ -180,5 +180,5 @@
 
   <!-- third-party library includes -->
   <?include includes\xerces.wxi ?>
-  <?include includes\udm.wxi ?>
+  <!-- <?include includes\udm.wxi ?> -->
 </Wix>

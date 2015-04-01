@@ -1,5 +1,10 @@
 // $Id$
 
-workspace (CoSMIC_GAME) : cosmic {
+workspace (CoSMIC_GAME) {
+  cmdline += -feature_file $COSMIC_ROOT/default.features \
+             -include $COSMIC_ROOT/MPC/config \
+             -include $GAME_ROOT/MPC/config
+
+  $(COSMIC_ROOT)/cosmic.mwc
   $(GAME_ROOT)/GAME.mwc
 }
