@@ -8,7 +8,7 @@
 #include <map>
 #include <string>
 
-class NodeAssigner 
+class NodeAssigner
 {
   public:
     virtual ~NodeAssigner () {};
@@ -21,7 +21,7 @@ class RandomNodeAssigner : public NodeAssigner
 {
   public:
 	
-	RandomNodeAssigner (std::vector <std::string> const & nodes, 
+	RandomNodeAssigner (std::vector <std::string> const & nodes,
 	                    std::set <std::string> const & components);
     ~RandomNodeAssigner();
     virtual void compute_assignment (const std::map <std::string, std::string> &known_mapping);

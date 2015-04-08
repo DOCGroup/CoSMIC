@@ -8,11 +8,11 @@
 #endif
 
 namespace PICMLCadena_Xchange_embedded_EIProperties
-{ 
+{
 	 class  RootContainer;
 };
 namespace cadena_scenario
-{ 
+{
 	 class  ESSConnection;
 	 class  FRConnection;
 	 class  EventSink;

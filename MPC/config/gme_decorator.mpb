@@ -1,5 +1,3 @@
-// $Id$
-
 project : mfc, register {
   macros += _WINDLL _USRDLL _ATL_DLL
   libout = $(COSMIC_ROOT)/lib
@@ -28,7 +26,7 @@ project : mfc, register {
   Header_Files {
 
   }
-  
+ 
   specific (wix) {
     install_location = bin
   }

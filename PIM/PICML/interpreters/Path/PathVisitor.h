@@ -1,5 +1,3 @@
-// $Id$
-
 #ifndef PACKAGE_VISITOR_H
 #define PACKAGE_VISITOR_H
 
@@ -30,15 +28,15 @@ namespace PICML
     Component_Port_Vertex () {};
 
     std::string vertex_name_;
-    
+   
     Udm::Object the_component_;
 
     PICML::MgaObject the_port_;
 
     bool is_drawn;
-    
+   
     DisplayNode node_;
-    
+   
     std::string display_label_;
   };
 

@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "PICML_TO_DQML_Component.h"
 #include "PICML_TO_DQML_Component_Impl.h"
@@ -51,7 +49,7 @@ invoke_ex (GAME::Mga::Project project,
   // Select the target output directory. If no directory is
   // selected, then we need to return control to the client.
   const char * prompt = "Select target output directory for DQML file:";
-  std::string path = project.connstr ();   
+  std::string path = project.connstr ();  
   int i = path.find ("=");
   path = path.substr (i + 1 , path.find_last_of ("/\\") - i);
   if ( ! GAME::Utils::get_path (prompt, path, path))
@@ -69,7 +67,7 @@ invoke_ex (GAME::Mga::Project project,
     project.root_folder ()->accept (&PICML_mv);
 
     DQML_mf.save_And_Close ();
-    
+   
     t_readonly.commit();
     ::AfxMessageBox ("Successfully generated DQML Model file.", MB_OK);
   }

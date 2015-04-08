@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "game/mga/component/Component_Module.h"
 #include "Deployment_Plan_Generator_i.c"

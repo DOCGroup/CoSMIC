@@ -49,7 +49,7 @@ OptionCategory::option(const char* name)
 /**
  * Traverses the contained options and categories, calls the write methods,
  * inserts the returning nodes to the current node as children.
- * 
+ *
  * @see DescribedItem::write.
  */
 xercesc::DOMElement*
@@ -61,7 +61,7 @@ OptionCategory::write(xercesc::DOMDocument* doc) const
   xercesc::DOMElement* element = DescribedItem::write(doc);
 
   // Traverse the contained categories and call write methods.
-  // 
+  //
   for (const_category_iterator c_iter = begin_categories();
        c_iter != end_categories(); ++c_iter)
     {

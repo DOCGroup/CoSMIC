@@ -1,5 +1,3 @@
-// $Id$
-
 #include "ace/config.h"
 #include "Utils/Utils.h"
 #include "PackageVisitor.h"
@@ -2064,7 +2062,6 @@ CreateAssemblyConnections (vector <ComponentAssembly> & assemblies)
 //  visited.erase (port);
 //  return;
 //}
-//
 //
 //
 //void PackageVisitor::

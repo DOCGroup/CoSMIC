@@ -4,8 +4,6 @@
 /**
  * @file      Property_Manager_Dialog_ListCtrl.h
  *
- * $Id$
- *
  * @author    James H. Hill
  */
 //=============================================================================

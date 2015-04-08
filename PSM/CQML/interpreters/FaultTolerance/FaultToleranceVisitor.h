@@ -30,12 +30,12 @@ namespace CQML
 		  ComponentAdder *comp_addr_;
           std::string output_path_;
           //std::map <std::string, Injector *> plan_injector_map_;
-/***************************************************************************/	  
+/***************************************************************************/	 
 	  // The const auto_ptr idiom by Hurb Sutter.
 	  // The const auto_ptr is the only owner of the singleton framework pointer
 	  // See Tom Cargill's ownership patterns in PLoPD2.
 	  // that will be deleted at the end. As a side effect of making this member
-	  // a const member, compiler can not generate a copy-constructor for 
+	  // a const member, compiler can not generate a copy-constructor for
 	  // the FaultToleranceVisitor class because std::auto_ptr uses move semantics. Therefore,
 	  // a protected copy-constructor is declared to supress automatic generation
 	  // of the copy-constructor.
@@ -51,7 +51,7 @@ namespace CQML
 } // namespace CQML
 
 /*
-  class Composite 
+  class Composite
     {
       public:
         virtual ~Composite() {};
@@ -59,7 +59,7 @@ namespace CQML
         virtual Composite *add_composite (Composite *) = 0;
         virtual Composite *set_parent (Composite *);
       private:
-        const Composite *parent_; 
+        const Composite *parent_;
     };
 
   class SRG : public Composite

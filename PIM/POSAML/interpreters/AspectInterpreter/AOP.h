@@ -15,7 +15,7 @@ public:
   BOOL process_root_model();
 
 private:
-  
+ 
   void initialize(BON::Project &project);
   BOOL iterate_model(std::set<BON::Model> &model_set);
   BOOL process_aspect_feature(std::string aspect_name);
@@ -32,7 +32,7 @@ private:
   BOOL getMembersOfSet(BON::FCO &dst, BON::Model &model);
   BOOL process_main_pointcut(BON::Model &model);
   BOOL getRelationBetweenSets(BON::FCO &dst, std::string connection);
-  BOOL is_pointcut_connected_to_advice (BON::Atom &iterObj, 
+  BOOL is_pointcut_connected_to_advice (BON::Atom &iterObj,
                                            std::string pointcutName);
 
   void close_aspect_file();

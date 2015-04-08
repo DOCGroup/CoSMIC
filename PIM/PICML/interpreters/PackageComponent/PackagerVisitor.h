@@ -1,5 +1,3 @@
-// $Id$
-
 #ifndef PACKAGER_VISITOR_H
 #define PACKAGER_VISITOR_H
 

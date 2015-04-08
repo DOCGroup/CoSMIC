@@ -4,8 +4,6 @@
 /**
  * @file        BE_ComponentImplementationGenerator.h
  *
- * $Id$
- *
  * @author      James H. Hill
  */
 //=============================================================================

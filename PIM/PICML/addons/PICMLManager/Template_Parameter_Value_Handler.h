@@ -4,8 +4,6 @@
 /**
  *  @file       Template_Parameter_Value_Handler.h
  *
- *  $Id$
- *
  *  @author     James H. Hill
  */
 //=============================================================================

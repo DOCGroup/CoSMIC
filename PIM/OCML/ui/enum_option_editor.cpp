@@ -1,5 +1,3 @@
-// $Id$
-
 #include "enum_option_editor.hpp"
 
 using namespace OCML;
@@ -12,7 +10,7 @@ Enum_Option_Editor::Enum_Option_Editor(wxWindow* parent, Enum_Option* enum_optio
   editor_->Show(true);
   editor_->add_focus_listener(this);
   editor_->add_select_listener(this);
-  panel()->GetSizer()->Add(editor_, 1, 0, 
+  panel()->GetSizer()->Add(editor_, 1, 0,
                            /*wxALL | wxADJUST_MINSIZE | wxEXPAND,*/ 2);
 
   std::string default_line;
@@ -41,22 +39,22 @@ Enum_Option_Editor::Enum_Option_Editor(wxWindow* parent, Enum_Option* enum_optio
     {
       editor_->SetValue(default_line.c_str());
     }
-    
+   
   editor_->enable_events();
-    
+   
   panel()->GetSizer()->SetSizeHints(panel());
 }
 
 Enum_Option_Editor::~Enum_Option_Editor()
 {
-}    
+}   
 
 void
 Enum_Option_Editor::add_focus_listener(Enum_Option_Editor_Focus_Listener* l)
 {
   focus_listeners_.push_back(l);
 }
-    
+   
 void
 Enum_Option_Editor::enum_edit_focus_gain(EnumEditControl*)
 {
@@ -70,7 +68,7 @@ void
 Enum_Option_Editor::enum_edit_focus_lost(EnumEditControl*)
 {
   // Nothing to do here
-}    
+}   
 
 void
 Enum_Option_Editor::enum_edit_selected(std::string value, void*)

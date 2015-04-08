@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Validation.h"
 #include "game/mga/Model.h"

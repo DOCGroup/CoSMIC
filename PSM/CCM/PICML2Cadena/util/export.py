@@ -86,7 +86,7 @@ Then try to run this script again. If it still doesn\'t work, please obtain a cl
 of the whole PICML2Cadena directory from the CVS and then run this script again.'
         sys.exit(-1)
 
-        
+       
 
 greinvocationcommand = 'gre.exe'+ space +quotes+transformations_fullpath+'PICML2Cadena_Configuration.mga'+quotes
 greinvocationcommand += space+quotes+'PICML_File='+picml_file+quotes

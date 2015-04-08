@@ -1,5 +1,3 @@
-// $Id$
-
 #ifndef INTEGER_OPTION_EDITOR_HPP
 #define INTEGER_OPTION_EDITOR_HPP
 
@@ -17,7 +15,7 @@ namespace OCML
   public:
     virtual void integer_editor_focused(Integer_Option_Editor* editor) = 0;
   };
-    
+   
   class Integer_Option_Editor: public Option_Editor,
                                public Integer_Edit_Control_Focus_Listener,
                                public Integer_Edit_Control_Value_Change_Listener
@@ -25,11 +23,11 @@ namespace OCML
   public:
     Integer_Option_Editor(wxWindow* parent, Option_Interface* option);
     virtual ~Integer_Option_Editor();
-    
+   
     virtual void unfocus();
 
     void add_focus_listener(Integer_Option_Editor_Focus_Listener* l);
-    
+   
     virtual void integer_edit_focus_gain(Integer_Edit_Control* control);
     virtual void integer_edit_focus_lost(Integer_Edit_Control* control);
     virtual void integer_edit_value_changed(Integer_Edit_Control* control);

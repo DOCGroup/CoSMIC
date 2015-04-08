@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "dr_res_Connection.h"
 

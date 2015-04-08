@@ -1,8 +1,6 @@
 /**
  * @file Boolean_Edit_Control.hpp
  *
- * $Id$
- *
  * Definition of the boolean edit control.
  *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
@@ -59,15 +57,15 @@ public:
   void add_click_listener(Boolean_Edit_Control_Click_Listener* l);
   /// Registers the given FocusListener as a focus listener for this widget.
   void add_focus_listener(Boolean_Edit_Control_Focus_Listener* l);
-    
+   
 private:
   /// The container for the click listeners.
   std::list<Boolean_Edit_Control_Click_Listener*> click_listeners_;
   /// The container for the focus listeners.
   std::list<Boolean_Edit_Control_Focus_Listener*> focus_listeners_;
-    
+   
   // Declares WXWindow event table.
   DECLARE_EVENT_TABLE()
-};    
+};   
 
 #endif // BOOLEAN_EDIT_CONTROL_HPP

@@ -1,5 +1,3 @@
-// $Id$
-
 project (CQML_examples) {
   specific {
     install_location  = paradigms CQML examples

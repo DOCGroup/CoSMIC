@@ -54,10 +54,10 @@ int main(int, char*[])
 
   // Assign values to options.
   std::cout << "Assigning values by defining rules..." << std::endl;
-  assign_values(category.get(), engine); 
+  assign_values(category.get(), engine);
   std::cout << "Assigned." << std::endl;
   std::cout << std::endl;
-  
+ 
   // Delete listeners and unregister them.
   std::cout << "Deleting listeners and unregistering them..." << std::endl;
   delete_listeners(listeners.get(), engine);

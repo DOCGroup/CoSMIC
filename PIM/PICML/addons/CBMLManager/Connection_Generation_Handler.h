@@ -4,8 +4,6 @@
 /**
  * @file        Connection_Generation_Handler.h
  *
- * $Id$
- *
  * @author      James H. Hill
  */
 //=============================================================================

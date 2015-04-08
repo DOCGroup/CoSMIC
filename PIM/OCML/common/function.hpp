@@ -3,8 +3,6 @@
 /**
  * @file XercesHelpers.hpp
  *
- * $Id$
- *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
  */
 

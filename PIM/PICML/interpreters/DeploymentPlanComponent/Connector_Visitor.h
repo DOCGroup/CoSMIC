@@ -4,8 +4,6 @@
 /**
  * @file        Connector_Visitor.h
  *
- * $Id$
- *
  * @author      James H. Hill
  */
 //=============================================================================
@@ -34,7 +32,7 @@ public:
   /**
    * Initializing constructor.
    */
-  Connector_Visitor (Deployment_Handler * handler, 
+  Connector_Visitor (Deployment_Handler * handler,
                      GAME::Xml::Document document,
                      std::vector <GAME::Xml::Fragment> & conns);
 

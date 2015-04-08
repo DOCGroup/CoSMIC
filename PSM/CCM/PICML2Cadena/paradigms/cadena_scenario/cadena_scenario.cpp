@@ -357,19 +357,19 @@ namespace cadena_scenario {
 		Uml::SetClass(Scenario::meta, umldiagram, "Scenario");
 		Uml::SetClass(ScenarioElement::meta, umldiagram, "ScenarioElement");
 		Uml::SetClass(PortConnection::meta, umldiagram, "PortConnection");
-		//composition child roles 
+		//composition child roles
 		Uml::SetParentRole(ComponentPort::meta_ComponentInstance_parent,ComponentPort::meta,ComponentInstance::meta, "", "");
 		Uml::SetParentRole(Property::meta_properties_ScenarioElement_parent,Property::meta,ScenarioElement::meta, "properties", "");
 		Uml::SetParentRole(ComponentInstance::meta_Scenario_parent,ComponentInstance::meta,Scenario::meta, "", "");
 		Uml::SetParentRole(Scenario::meta_Scenarios_parent,Scenario::meta,Scenarios::meta, "", "");
 		Uml::SetParentRole(PortConnection::meta_Scenario_parent,PortConnection::meta,Scenario::meta, "", "");
-		// composition parentroles 
+		// composition parentroles
 		Uml::SetChildRole(Scenarios::meta_Scenario_children,Scenarios::meta,Scenario::meta, "", "");
 		Uml::SetChildRole(ComponentInstance::meta_ComponentPort_children,ComponentInstance::meta,ComponentPort::meta, "", "");
 		Uml::SetChildRole(Scenario::meta_ComponentInstance_children,Scenario::meta,ComponentInstance::meta, "", "");
 		Uml::SetChildRole(Scenario::meta_PortConnection_children,Scenario::meta,PortConnection::meta, "", "");
 		Uml::SetChildRole(ScenarioElement::meta_properties,ScenarioElement::meta,Property::meta, "", "properties");
-		// Association roles 
+		// Association roles
 		Uml::SetAssocRole(ESSConnection::meta_sources,ESSConnection::meta,EventSource::meta, "sinksConnections");
 		Uml::SetAssocRole(ESSConnection::meta_sinks,ESSConnection::meta,EventSink::meta, "sourcesConnections");
 

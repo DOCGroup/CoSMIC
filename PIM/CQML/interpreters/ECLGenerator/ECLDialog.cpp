@@ -21,7 +21,7 @@ ECLDialog::~ECLDialog()
 {
 }
 
-BOOL ECLDialog::OnInitDialog() 
+BOOL ECLDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	

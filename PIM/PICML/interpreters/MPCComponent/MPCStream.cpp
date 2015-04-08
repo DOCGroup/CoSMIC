@@ -103,7 +103,7 @@ MPCStream::dependent_project (PICML::ImplementationArtifact_in artifact,
   // if so include them in the after list
   for (PICML::ArtifactDependsOn dependency : artifact->src_of_ArtifactDependsOn ())
   {
-    PICML::ImplementationArtifactReference impl_ref = 
+    PICML::ImplementationArtifactReference impl_ref =
       dependency->dst_ImplementationArtifactReference ();
 
     try
@@ -130,7 +130,7 @@ MPCStream::dependent_project (PICML::ImplementationArtifact_in artifact,
       // Indicates that this artifact is not present in the
       // folder
       // continue;
-    }   
+    }  
   }
 
   return ret_val;

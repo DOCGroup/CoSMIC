@@ -1,5 +1,3 @@
-// $Id$
-
 #ifndef BGML_VISITOR_H
 #define BGML_VISITOR_H
 

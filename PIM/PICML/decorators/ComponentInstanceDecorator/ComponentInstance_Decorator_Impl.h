@@ -4,8 +4,6 @@
 /**
  *  @file       ComponentInstance_Decorator_Impl.h
  *
- *  $Id$
- *
  *  @author     James H. Hill
  */
 //=============================================================================

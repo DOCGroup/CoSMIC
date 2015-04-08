@@ -1,8 +1,5 @@
 /* -*- C++ -*- */
 
-/**
- * $Id$
- */
 
 #ifndef LOAD_LIBRARY_HPP
 #define LOAD_LIBRARY_HPP

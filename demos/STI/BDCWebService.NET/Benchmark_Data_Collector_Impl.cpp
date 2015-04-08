@@ -195,7 +195,7 @@ namespace SLICE
   }
 
 
-  System::Int32 Benchmark_Data_Collector::bind_to_path(cli::array<CUTSPath_Element^>^ path, 
+  System::Int32 Benchmark_Data_Collector::bind_to_path(cli::array<CUTSPath_Element^>^ path,
                                                        System::UInt16 flags)
   {
     try

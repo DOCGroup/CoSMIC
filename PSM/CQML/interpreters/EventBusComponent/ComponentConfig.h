@@ -5,7 +5,7 @@
 
 
 // COM UUID-s, names and ProgID
-                      
+                     
 #define TYPELIB_UUID "323315dc-6376-4e3b-a60f-3ae8307c5bad"
 #define TYPELIB_NAME "MGA Interpreter TypeLibrary (EventBusComponent)"
 #define COCLASS_UUID "d019f067-40e2-445f-833c-439eb3878ba5"

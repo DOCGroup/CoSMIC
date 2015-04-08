@@ -1,10 +1,8 @@
-// $Id$
-
 project (ocml_configurator_ui): wxwindows, xerces, boost_base {
   requires += xerces2
   after += ocml_engine
   sharedname = ocml_configurator_ui
-  includes += .. 
+  includes += ..
   macros += _USRDLL WXMAKINGDLL
   dynamicflags += CONFIGURATOR_UI_BUILD_DLL
   libout = $(COSMIC_ROOT)/lib

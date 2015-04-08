@@ -12,7 +12,7 @@
 #include"CQML/CQML.h"
 #include<string> // STL
 
-// Udm Libraries 
+// Udm Libraries
 #define META_NAMESPACE CQML
 //#define _ACCESS_MEMORY
 

@@ -1,5 +1,3 @@
-// $Id$
-
 #include <winsock2.h>
 #include <windows.h>
 #include <msiquery.h>
@@ -29,7 +27,7 @@ static void SendErrorMsg (MSIHANDLE hInstall,
 // get_msi_property
 //
 static int get_msi_property (MSIHANDLE install,
-                             const char * name, 
+                             const char * name,
                              std::string & value)
 {
   TCHAR * buffer = 0;

@@ -20,7 +20,7 @@ KindDialog::~KindDialog()
 {
 }
 
-BOOL KindDialog::OnInitDialog() 
+BOOL KindDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 

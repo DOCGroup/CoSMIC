@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "topic_durqos_Connection.h"
 

@@ -32,14 +32,14 @@ class SOAP_CMAC CUTS_x002eBenchmark_USCOREData_USCORECollector : public soap
 
   virtual int dispatch();
 
-  virtual int execution_USCOREtime (int path_USCOREid, 
+  virtual int execution_USCOREtime (int path_USCOREid,
                                     struct SLICE__execution_USCOREtimeResponse& _param_1);
 
-  virtual int unbind_USCOREto_USCOREpath (int path_USCOREid, 
+  virtual int unbind_USCOREto_USCOREpath (int path_USCOREid,
                                           struct SLICE__unbind_USCOREto_USCOREpathResponse& _param_1);
 
-  virtual int bind_USCOREto_USCOREpath (CUTS_x002e_USCORESE_USCOREPath_USCORESequence* path, 
-                                        unsigned short flags, 
+  virtual int bind_USCOREto_USCOREpath (CUTS_x002e_USCORESE_USCOREPath_USCORESequence* path,
+                                        unsigned short flags,
                                         int& _USCOREreturn);
 
   ;

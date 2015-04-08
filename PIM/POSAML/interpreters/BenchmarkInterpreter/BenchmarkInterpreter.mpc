@@ -1,5 +1,3 @@
-// $Id$
-
 project (BenchmarkInterpreter): gme_bon2_component, xerces, cosmic_lib {
 
   sharedname = BenchmarkInterpreter

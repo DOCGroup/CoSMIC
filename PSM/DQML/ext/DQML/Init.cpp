@@ -1,5 +1,3 @@
-// $Id$
-
 #include "stdafx.h"
 #include "Impl_Factory.h"
 #include "game/mga/Init_T.h"

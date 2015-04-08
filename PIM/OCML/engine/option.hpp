@@ -1,8 +1,6 @@
 /**
  * @file option.hpp
  *
- * $Id$
- *
  * Defines options with values.
  *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>

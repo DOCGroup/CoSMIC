@@ -1,6 +1,4 @@
 // -*- C++ -*-
-// $Id$
-
 #include "StdAfx.h"
 #include "ComponentInstance_Creator_Event_Handler.h"
 #include "Component_Observer_Event_Handler.h"

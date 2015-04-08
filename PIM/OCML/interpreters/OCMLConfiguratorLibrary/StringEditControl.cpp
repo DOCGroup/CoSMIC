@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StringEditControl.hpp"
 
 StringEditControl::StringEditControl(wxWindow* parent)

@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Single_Deployment_Event_Handler.h"
 

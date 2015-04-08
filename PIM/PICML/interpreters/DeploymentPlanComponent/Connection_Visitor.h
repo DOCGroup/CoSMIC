@@ -4,8 +4,6 @@
 /**
  * @file        Connection_Visitor.h
  *
- * $Id$
- *
  * @author      James H. Hill
  */
 //=============================================================================
@@ -74,7 +72,7 @@ public:
 private:
   /// Helper method for creating a connection.
   void create_connection (const std::string & name,
-                          GAME::Xml::Fragment ep1, 
+                          GAME::Xml::Fragment ep1,
                           GAME::Xml::Fragment ep2,
                           bool is_local);
 

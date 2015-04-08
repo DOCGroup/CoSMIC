@@ -1,6 +1,4 @@
 // -*- MPC -*-
-// $Id$
-
 project (Typedef_Expected) : taoclient {
   exename = Typedef_Expected
   install = .

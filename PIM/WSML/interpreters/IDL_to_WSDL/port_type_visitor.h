@@ -43,7 +43,7 @@ public:
   virtual int visit_component (AST_Component *node);
   virtual int visit_operation (AST_Operation *node);
   virtual int visit_attribute (AST_Attribute *node);
-  
+ 
 private:
   void finish_operation (AST_Decl *node,
                          DOMElement *elem,

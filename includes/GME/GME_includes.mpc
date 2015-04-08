@@ -1,5 +1,3 @@
-// $Id$
-
 project (GME_includes) {
   specific {
     install_location  = includes GME

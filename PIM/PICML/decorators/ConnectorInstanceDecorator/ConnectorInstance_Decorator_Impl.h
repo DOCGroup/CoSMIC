@@ -4,8 +4,6 @@
 /**
  *  @file       ConnectorInstance_Decorator_Impl.h
  *
- *  $Id$
- *
  *  @author     James H. Hill
  */
 //=============================================================================

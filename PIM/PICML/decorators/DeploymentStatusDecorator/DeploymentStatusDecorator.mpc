@@ -1,5 +1,3 @@
-// $Id$
-
 project (PICML_DeploymentStatusDecorator) : game_graphics, game_mga_decorator, cosmic_lib {
   sharedname = PICML_DeploymentStatusDecorator
 

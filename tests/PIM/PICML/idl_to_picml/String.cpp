@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StringC.h"
 #include "ace/Log_Msg.h"
 #include <typeinfo.h>

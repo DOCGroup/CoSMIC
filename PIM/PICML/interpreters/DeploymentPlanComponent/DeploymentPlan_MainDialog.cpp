@@ -153,7 +153,7 @@ void Deployment_Plan_Dialog::OnClick_Browse (void)
   std::string outdir;
 
   if (GAME::Utils::get_path ("Select output directory for deployment plan(s)",
-                             outdir,                      
+                             outdir,                     
                              std::string (temp)))
   {
     this->SetDlgItemText (IDC_OUTPUT_DIR, outdir.c_str ());

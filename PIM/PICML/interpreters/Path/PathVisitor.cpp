@@ -1,5 +1,3 @@
-// $Id$
-
 #include "Utils/xercesc/XercesString.h"
 #include "PathVisitor.h"
 
@@ -1488,7 +1486,7 @@ namespace PICML
 
             //Component_Port_Vertex start (*in_event_port_iter, extract_uuid (*iter));
 
-            Component_Port_Vertex 
+            Component_Port_Vertex
               start (*in_event_port_iter, in_event_port_iter->getPath (".", false, true, "name", true)),
               end (*out_event_port_iter, out_event_port_iter->getPath (".", false, true, "name", true));
 
@@ -1513,7 +1511,7 @@ namespace PICML
 
             std::string connection = start_vertex + "-" + end_vertex;
 
-            Component_Port_Vertex 
+            Component_Port_Vertex
               start (*in_event_port_iter, in_event_port_iter->getPath (".", false, true, "name", true)),
               end (*reqd_request_port_iter, reqd_request_port_iter->getPath (".", false, true, "name", true));
 
@@ -1574,7 +1572,7 @@ namespace PICML
 
             std::string connection = start_vertex + "-" + end_vertex;
 
-            Component_Port_Vertex 
+            Component_Port_Vertex
               start (*prov_request_port_iter, prov_request_port_iter->getPath (".", false, true, "name", true)),
               end (*reqd_request_port_iter, reqd_request_port_iter->getPath (".", false, true, "name", true));
 
@@ -2101,7 +2099,7 @@ namespace PICML
 
     //  std::string connection = start_vertex + "-" + end_vertex;
 
-    //  Component_Port_Vertex 
+    //  Component_Port_Vertex
     //    start (sender, sender.getPath (".", false, true, "name", true)),
     //    end (consumer, consumer.getPath (".", false, true, "name", true));
 
@@ -2252,11 +2250,11 @@ namespace PICML
     std::vector < size_type > ordered_vertices (dtime.size ());
     boost::integer_range < size_type > r (0, dtime.size ());
 
-    std::copy (r.begin(), 
-               r.end(), 
+    std::copy (r.begin(),
+               r.end(),
                ordered_vertices.begin ());
 
-    std::sort (ordered_vertices.begin(), 
+    std::sort (ordered_vertices.begin(),
                ordered_vertices.end(),
                boost::indirect_cmp < Iiter, std::less < size_type > > (&dtime[0]));
 

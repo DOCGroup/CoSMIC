@@ -16,7 +16,7 @@ void List_Command::execute(const std::vector<std::string>&)
   ACE_DEBUG ((LM_DEBUG, "Fetching the root category\n"));
   OCML::Option_Category* root = env_.category();
   ACE_DEBUG ((LM_DEBUG, "Name of the root category: %s\n", root->name().c_str()));
- 
+
   ACE_DEBUG ((LM_DEBUG, "Printing contained categories\n"));
   this->list("categories", root->begin_categories(), root->end_categories());
   ACE_DEBUG ((LM_DEBUG, "Printing contained options\n"));
@@ -38,15 +38,15 @@ void Change_Category_Command::execute(const std::vector<std::string>& params)
       env_.go_root();
       return;
     }
-  
+ 
   if (params[0] == std::string(".."))
     {
       env_.go_up();
       return;
     }
-  
+ 
   OCML::Option_Category* root = env_.category();
-  
+ 
   for (OCML::Option_Category::category_iterator iter=root->begin_categories();
        iter != root->end_categories(); ++iter)
     {
@@ -56,7 +56,7 @@ void Change_Category_Command::execute(const std::vector<std::string>& params)
           return;
         }
     }
-  
+ 
   std::string message = std::string("Unknown category: ")+params[0];
   throw Parse_Error(message.c_str());
 }

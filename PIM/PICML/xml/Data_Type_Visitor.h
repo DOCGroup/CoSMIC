@@ -4,8 +4,6 @@
 /**
  * @file      Data_Type_Visitor.h
  *
- * $Id$
- *
  * @author    James H. Hill
  */
 //=============================================================================
@@ -66,7 +64,7 @@ public:
   virtual void visit_Aggregate (PICML::Aggregate_in a);
 
   virtual void visit_Member (PICML::Member_in m);
-  
+ 
   virtual void visit_SimpleProperty (PICML::SimpleProperty_in prop);
   virtual void visit_ComplexProperty (PICML::ComplexProperty_in prop);
 

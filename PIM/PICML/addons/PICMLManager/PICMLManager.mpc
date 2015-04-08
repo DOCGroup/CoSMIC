@@ -1,5 +1,3 @@
-// $Id$
-
 project (PICML_Model_Intelligence): game_dialogs, game_mga_component, game_manip, \
                                     picml_game_utils, picml_game_mga, boost_base, \
                                     cosmic_lib {

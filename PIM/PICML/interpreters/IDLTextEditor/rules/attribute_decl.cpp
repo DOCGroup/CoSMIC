@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "attribute_decl_impl.hpp"
 

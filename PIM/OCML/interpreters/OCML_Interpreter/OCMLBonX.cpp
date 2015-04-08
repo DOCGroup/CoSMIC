@@ -23,25 +23,25 @@ IMPLEMENT_BONEXTENSION( OCML_BON::String_Option, "String_Option" );
 namespace OCML_BON
 {
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string Described_ItemImpl::getDescription() 
+std::string Described_ItemImpl::getDescription()
 {
 	return FCOImpl::getAttribute("Description")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string Described_ItemImpl::getTitle() 
+std::string Described_ItemImpl::getTitle()
 {
 	return FCOImpl::getAttribute("Title")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Described_ItemImpl::setDescription( const std::string& val)
 {
@@ -50,7 +50,7 @@ void Described_ItemImpl::setDescription( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Described_ItemImpl::setTitle( const std::string& val)
 {
@@ -185,16 +185,16 @@ std::set<String_Option> Option_CategoryImpl::getString_Option()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string OptionImpl::getParameter_Name() 
+std::string OptionImpl::getParameter_Name()
 {
 	return FCOImpl::getAttribute("Parameter_Name")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void OptionImpl::setParameter_Name( const std::string& val)
 {
@@ -203,16 +203,16 @@ void OptionImpl::setParameter_Name( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool Option_ItemImpl::isItem_Default_Value() 
+bool Option_ItemImpl::isItem_Default_Value()
 {
 	return FCOImpl::getAttribute("Item_Default_Value")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Option_ItemImpl::setItem_Default_Value( bool val)
 {
@@ -255,16 +255,16 @@ std::set<Flag_Item> Flag_OptionImpl::getFlag_Item()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool Boolean_OptionImpl::isBoolean_Default_Value() 
+bool Boolean_OptionImpl::isBoolean_Default_Value()
 {
 	return FCOImpl::getAttribute("Boolean_Default_Value")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Boolean_OptionImpl::setBoolean_Default_Value( bool val)
 {
@@ -273,16 +273,16 @@ void Boolean_OptionImpl::setBoolean_Default_Value( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string Integer_OptionImpl::getInteger_Default_Value() 
+std::string Integer_OptionImpl::getInteger_Default_Value()
 {
 	return FCOImpl::getAttribute("Integer_Default_Value")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Integer_OptionImpl::setInteger_Default_Value( const std::string& val)
 {
@@ -291,16 +291,16 @@ void Integer_OptionImpl::setInteger_Default_Value( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string String_OptionImpl::getString_Default_Value() 
+std::string String_OptionImpl::getString_Default_Value()
 {
 	return FCOImpl::getAttribute("String_Default_Value")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void String_OptionImpl::setString_Default_Value( const std::string& val)
 {

@@ -102,7 +102,7 @@ namespace OCML
         return constraint_engine->define_equality_rule(defn, value);
       }
     };
- 
+
     struct do_define_not_rule_t
     {
       template <typename Arg>
@@ -118,7 +118,7 @@ namespace OCML
         return constraint_engine->define_not_rule(index);
       }
     };
- 
+
     struct do_define_if_rule_t
     {
       template <typename Arg1, typename Arg2>
@@ -134,7 +134,7 @@ namespace OCML
         return constraint_engine->define_if_rule(index1, index2);
       }
     };
- 
+
     struct do_define_iff_rule_t
     {
       template <typename Arg1, typename Arg2>
@@ -150,7 +150,7 @@ namespace OCML
         return constraint_engine->define_iff_rule(index1, index2);
       }
     };
- 
+
     struct do_define_and_rule_t
     {
       template <typename Arg>
@@ -166,7 +166,7 @@ namespace OCML
         return constraint_engine->define_and_rule(indexes);
       }
     };
- 
+
     struct do_define_or_rule_t
     {
       template <typename Arg>
@@ -182,7 +182,7 @@ namespace OCML
         return constraint_engine->define_or_rule(indexes);
       }
     };
- 
+
     extern phoenix::function<do_find_rule_t> do_find_rule;
     extern phoenix::function<do_push_back_t> do_push_back;
     extern phoenix::function<do_define_equality_rule_t> do_define_equality_rule;
@@ -194,7 +194,7 @@ namespace OCML
     extern phoenix::function<do_define_selection_rule_t>
       do_define_selection_rule;
   } // namespace Rule_Parser
- 
+
 } // namespace OCML
 
 #endif // OCML_RULE_PARSER_ACTIONS_HPP

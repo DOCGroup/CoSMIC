@@ -40,14 +40,14 @@ class service_visitor : public idl_to_wsdl_visitor
 public:
   service_visitor (DOMElement *sub_tree);
   virtual ~service_visitor (void);
-  
+ 
   virtual int visit_component (AST_Component *node);
-  
+ 
 private:
   void gen_port (AST_Component *node, const char *comp_port_name);
   void map_ports (AST_Component *node,
                   ACE_Unbounded_Queue<AST_Component::port_description> &list);
-  
+ 
 private:
   DOMElement *service_elem_;
 };

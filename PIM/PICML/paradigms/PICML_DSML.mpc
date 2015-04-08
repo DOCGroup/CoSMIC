@@ -1,5 +1,3 @@
-// $Id$
-
 project (PICML_paradigm_icons) {
   specific (wix) {
     no_binary         = 1

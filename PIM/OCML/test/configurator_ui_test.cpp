@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
   std::ifstream f(value_file.c_str());
   std::copy(std::istream_iterator<char>(f), std::istream_iterator<char>(),
             std::back_inserter(values));
- 
+
   Configurator_Dialog dlg;
   std::string new_values = dlg.show(tree_file, values, rule_file);
   std::cout << new_values;

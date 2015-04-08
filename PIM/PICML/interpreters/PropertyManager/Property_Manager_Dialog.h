@@ -6,8 +6,6 @@
  *
  * Main dialog for the Property Manager interpreter
  *
- * $Id$
- *
  * @author    James H. Hill
  */
 //=============================================================================

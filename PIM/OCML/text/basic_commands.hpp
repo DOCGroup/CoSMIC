@@ -29,7 +29,7 @@ class Helper: public Command
 {
 public:
   Helper(Application* app);
-  
+ 
   virtual void execute(const std::vector<std::string>&);
 
 private:

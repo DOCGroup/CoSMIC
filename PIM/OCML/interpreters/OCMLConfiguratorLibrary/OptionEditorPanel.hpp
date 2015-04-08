@@ -18,7 +18,7 @@ namespace OCML
   public:
     virtual void editor_focused(OptionEditor* editor) = 0;
   };
-    
+   
   /**
    * Creates a panel and inserts corresponding wxWindows into the panel for
    * the options contained in the given option category.

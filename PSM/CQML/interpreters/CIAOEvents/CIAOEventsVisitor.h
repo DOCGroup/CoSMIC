@@ -1,5 +1,3 @@
-// $Id$
-
 #ifndef CIAO_EVENTS_VISITOR_H
 #define CIAO_EVENTS_VISITOR_H
 

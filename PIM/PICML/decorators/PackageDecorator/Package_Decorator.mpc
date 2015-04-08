@@ -1,5 +1,3 @@
-// $Id$
-
 project (PICML_Package_Decorator) : \
   game_graphics, game_mga_decorator, cosmic_lib {
 

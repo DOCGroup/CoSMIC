@@ -1,5 +1,3 @@
-// $Id$
-
 #include <sstream>
 #include "TreeParser.hpp"
 
@@ -158,7 +156,7 @@ OptionTreeParser::parse_enum_option(DOMNode* node)
         {
           std::pair<std::string, bool> item =
             parse_enum_item(children->item(i));
-          
+         
           result->add_item(item.first.c_str(), item.second);
         }
     }
@@ -177,7 +175,7 @@ OptionTreeParser::parse_enum_item(DOMNode* node)
     attributes->getNamedItem(name_tag)->getNodeValue();
   XMLUnicodeString default_value =
     attributes->getNamedItem(default_tag)->getNodeValue();
-  
+ 
   result.first = name.str();
   result.second = (default_value.str() == "true");
 

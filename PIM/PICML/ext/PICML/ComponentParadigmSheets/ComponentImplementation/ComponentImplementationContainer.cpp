@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "ComponentImplementationContainer.h"
 

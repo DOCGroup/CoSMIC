@@ -46,4 +46,4 @@ project (common_test): xerces {
   Source_Files {
     common_test.cpp
   }
-} 
+}

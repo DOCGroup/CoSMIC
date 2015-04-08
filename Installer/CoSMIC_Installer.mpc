@@ -1,5 +1,3 @@
-// $Id$
-
 project (Custom_Actions) : acedefaults {
   sharedname    = Custom_Actions
   dynamicflags += CUSTOM_ACTIONS_BUILD_DLL

@@ -26,7 +26,7 @@ namespace CQML
   {
   public:
     SecurityQoSVisitor (const std::string& outputPath);
-    
+   
     // Helpers
     inline void populateObj2Op2RightsMap(CQML::Object object);
     inline void populatePoliciesMap(CQML::Policy policy);
@@ -53,14 +53,14 @@ namespace CQML
     template <class OperationType>
     void populate_operation_set (const OperationType& operation)
       {
-        OperationClassificationConn op_class_conn = operation.dstOperationClassificationConn ();        
+        OperationClassificationConn op_class_conn = operation.dstOperationClassificationConn ();       
          // Check if this operation has rights assigned to it
         if (Udm::null != op_class_conn) // YES
           {
             RequiredRights r = op_class_conn.dstOperationClassificationConn_end ();
             this->opn_set_.insert(std::make_pair (operation, r));
           }
-        else if (this->obj_req_rights_cache_ != Udm::null)// NO: Take interface rights if available 
+        else if (this->obj_req_rights_cache_ != Udm::null)// NO: Take interface rights if available
           {
             this->opn_set_.insert(std::make_pair (operation, this->obj_req_rights_cache_));
           }
@@ -79,7 +79,7 @@ namespace CQML
             rule.Accept (*this);
           }
       }
-    
+   
     // Lord Of the Rings..
     virtual void Visit_RootFolder(const RootFolder&);
 
@@ -97,7 +97,7 @@ namespace CQML
     //virtual void Visit_AttributeValue(const AttributeValue&);
     //virtual void Visit_AttributeDelegate(const AttributeDelegate&);
 
-    virtual void Visit_Security(const Security&);    
+    virtual void Visit_Security(const Security&);   
 
     virtual void Visit_RBAC(const RBAC&);
     virtual void Visit_Realm(const Realm&){};
@@ -144,7 +144,7 @@ namespace CQML
     RequiredRights obj_req_rights_cache_;
     SecurityQoSRequirements secqos_req_;
     SecurityQoSDumper secqos_dumper_;
-    std::string outputPath_;  
+    std::string outputPath_; 
     // Global set of operations that is populated per interface
     Operation2RightsSet opn_set_;
     RuleSet rule_set_;

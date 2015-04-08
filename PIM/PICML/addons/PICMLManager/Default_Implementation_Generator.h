@@ -4,8 +4,6 @@
 /**
  * @file      Default_Implementation_Generator.h
  *
- * $Id$
- *
  * @author    James H. Hill
  */
 //=============================================================================

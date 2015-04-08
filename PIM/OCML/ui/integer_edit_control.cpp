@@ -1,5 +1,3 @@
-// $Id$
-
 #include "integer_edit_control.hpp"
 
 Integer_Edit_Control::Integer_Edit_Control(wxWindow* parent)
@@ -27,7 +25,7 @@ Integer_Edit_Control::on_focus_gain(wxFocusEvent&)
 	 iter = focus_listeners_.begin();
        iter != focus_listeners_.end(); ++iter)
     (*iter)->integer_edit_focus_gain(this);
-}    
+}   
 
 void
 Integer_Edit_Control::on_focus_lost(wxFocusEvent&)
@@ -36,7 +34,7 @@ Integer_Edit_Control::on_focus_lost(wxFocusEvent&)
 	 iter = focus_listeners_.begin();
        iter != focus_listeners_.end(); ++iter)
     (*iter)->integer_edit_focus_lost(this);
-}    
+}   
 
 void
 Integer_Edit_Control::on_text_change(wxCommandEvent&)

@@ -1,5 +1,3 @@
-// $Id$
-
 #ifndef _TREE_PARSER_HPP_
 #define _TREE_PARSER_HPP_
 
@@ -18,11 +16,11 @@ namespace OCML
     class UnknownOptionKind: public std::exception {
     public:
       UnknownOptionKind(const std::string& msg);
-    
+   
       virtual ~UnknownOptionKind() throw();
-    
+   
       virtual const char* what() const throw();
-    
+   
     private:
       std::string msg_;
     };

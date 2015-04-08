@@ -20,7 +20,7 @@
 */
 
 #include "BON2Component.h"
-#include <strstream> 
+#include <strstream>
 
 namespace BON
 {
@@ -101,12 +101,12 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 	std::set<BON::Atom> atoms;
 
   //All models in the diagram, saved as the same order as in the diagram
-  std::set<BON::Model> models; 
+  std::set<BON::Model> models;
 
 	filename = root->getName ();
 	filename = filename + ".xml";
 	ofstream outf;
-  
+ 
   outf.open (filename.c_str ());
 
 	outf << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << endl << endl;
@@ -215,10 +215,10 @@ void Federated_ECImpl::check (std::set<BON::Atom> &atoms, std::set<BON::Model> &
 
 void Federated_ECImpl::writeFile (std::set<BON::Atom> &atoms, std::set<BON::Model> &models, ofstream &outf)
 {
-  
+ 
   // each host has a strstream corresponding to it, which outputs
   // XML elments <hostcollocation>.
-  std::strstream* host_str = new std::strstream[models.size ()]; 
+  std::strstream* host_str = new std::strstream[models.size ()];
 
   // Iterate over each "site" to create the beginning part of the <hostcollocation> element,
   // which contains the name of each site as the "id" attribute of <hostcollocation> element.
@@ -246,10 +246,10 @@ void Federated_ECImpl::writeFile (std::set<BON::Atom> &atoms, std::set<BON::Mode
           // Get the parent Site Node reference and site name.
           BON::Model parentSite = (*it)->getParentModel ();
           std::string localSiteName = parentSite->getName ().c_str ();
-          
-          
+         
+         
           // Get the Source (Remote) event channel name
-          std::multiset<BON::ConnectionEnd> srcs = 
+          std::multiset<BON::ConnectionEnd> srcs =
             BON::ConnectionEnd (*it) -> getConnEnds (MON::Connection (), "src");
 
           if (int(srcs.size ()) != 1)
@@ -258,14 +258,14 @@ void Federated_ECImpl::writeFile (std::set<BON::Atom> &atoms, std::set<BON::Mode
               break;
             }
 
-          std::multiset<BON::ConnectionEnd>::iterator src_it = srcs.begin (); 
+          std::multiset<BON::ConnectionEnd>::iterator src_it = srcs.begin ();
           std::string srcEcName = BON::FCO (*src_it)->getName().c_str ();
 
           // Get the remote Site name
           std::string remoteSiteName = BON::FCO (*src_it)->getParentModel()->getName().c_str();
 
           // Get the Destination (local) event channel name
-          std::multiset<BON::ConnectionEnd> dsts = 
+          std::multiset<BON::ConnectionEnd> dsts =
             BON::ConnectionEnd (*it) -> getConnEnds (MON::Connection (), "dst");
 
           if (int(dsts.size ()) != 1)
@@ -274,7 +274,7 @@ void Federated_ECImpl::writeFile (std::set<BON::Atom> &atoms, std::set<BON::Mode
               break;
             }
 
-          std::multiset<BON::ConnectionEnd>::iterator dst_it = dsts.begin (); 
+          std::multiset<BON::ConnectionEnd>::iterator dst_it = dsts.begin ();
           std::string dstEcName = BON::FCO (*dst_it)->getName ();
 
 
@@ -308,7 +308,7 @@ void Federated_ECImpl::writeFile (std::set<BON::Atom> &atoms, std::set<BON::Mode
       host_str[siteID] << "\t\t</extension>"<< endl;
       host_str[siteID] << "\t\t<destination>" << site_name << "</destination>" << endl;
       host_str[siteID] << "\t</hostcollocation>" << endl << endl;
-  
+ 
       outf << host_str[siteID].str ();
     }
   }

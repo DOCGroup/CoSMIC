@@ -1,5 +1,3 @@
-// $Id$
-
 #include "stdafx.h"
 #include "resource.h"
 #include "Property_Manager_Dialog.h"

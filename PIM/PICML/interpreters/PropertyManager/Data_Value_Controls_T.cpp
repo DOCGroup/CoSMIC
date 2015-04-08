@@ -1,5 +1,3 @@
-// $Id$
-
 #include "game/mga/Attribute.h"
 
 void DDX_Text (CDataExchange * , int , GAME::Mga::Reference & );

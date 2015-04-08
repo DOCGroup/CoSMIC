@@ -97,7 +97,7 @@ std::multiset<BON::FCO> Associated_OptionImpl::getSelect_AssociationEnds()
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Select_Association> Associated_OptionImpl::getSelect_AssociationLinks()
 {
@@ -134,25 +134,25 @@ std::multiset<BON::FCO> Associated_OptionImpl::getSelect_AssociationSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string Described_ItemImpl::getDescription() 
+std::string Described_ItemImpl::getDescription()
 {
 	return FCOImpl::getAttribute("Description")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string Described_ItemImpl::getTitle() 
+std::string Described_ItemImpl::getTitle()
 {
 	return FCOImpl::getAttribute("Title")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Described_ItemImpl::setDescription( const std::string& val)
 {
@@ -161,7 +161,7 @@ void Described_ItemImpl::setDescription( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Described_ItemImpl::setTitle( const std::string& val)
 {
@@ -296,16 +296,16 @@ std::set<String_Option> Option_CategoryImpl::getString_Option()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string OptionImpl::getParameter_Name() 
+std::string OptionImpl::getParameter_Name()
 {
 	return FCOImpl::getAttribute("Parameter_Name")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void OptionImpl::setParameter_Name( const std::string& val)
 {
@@ -314,16 +314,16 @@ void OptionImpl::setParameter_Name( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool Option_ItemImpl::isItem_Default_Value() 
+bool Option_ItemImpl::isItem_Default_Value()
 {
 	return FCOImpl::getAttribute("Item_Default_Value")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Option_ItemImpl::setItem_Default_Value( bool val)
 {
@@ -410,7 +410,7 @@ std::multiset<BON::FCO> Atom_Option_ReferenceImpl::getComparison_AssociationEnds
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Comparison_Association> Atom_Option_ReferenceImpl::getComparison_AssociationLinks()
 {
@@ -447,16 +447,16 @@ std::multiset<BON::FCO> Atom_Option_ReferenceImpl::getComparison_AssociationSrcs
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool Boolean_OptionImpl::isBoolean_Default_Value() 
+bool Boolean_OptionImpl::isBoolean_Default_Value()
 {
 	return FCOImpl::getAttribute("Boolean_Default_Value")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Boolean_OptionImpl::setBoolean_Default_Value( bool val)
 {
@@ -465,16 +465,16 @@ void Boolean_OptionImpl::setBoolean_Default_Value( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string Integer_OptionImpl::getInteger_Default_Value() 
+std::string Integer_OptionImpl::getInteger_Default_Value()
 {
 	return FCOImpl::getAttribute("Integer_Default_Value")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Integer_OptionImpl::setInteger_Default_Value( const std::string& val)
 {
@@ -483,16 +483,16 @@ void Integer_OptionImpl::setInteger_Default_Value( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string String_OptionImpl::getString_Default_Value() 
+std::string String_OptionImpl::getString_Default_Value()
 {
 	return FCOImpl::getAttribute("String_Default_Value")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void String_OptionImpl::setString_Default_Value( const std::string& val)
 {
@@ -545,7 +545,7 @@ std::multiset<BON::FCO> Boolean_Option_ReferenceImpl::getBoolean_Equality_Associ
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Boolean_Equality_Association> Boolean_Option_ReferenceImpl::getBoolean_Equality_AssociationLinks()
 {
@@ -582,7 +582,7 @@ std::multiset<BON::FCO> Boolean_Option_ReferenceImpl::getBoolean_Equality_Associ
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 Boolean_Option Boolean_Option_ReferenceImpl::getBoolean_Option()
 {
@@ -592,7 +592,7 @@ Boolean_Option Boolean_Option_ReferenceImpl::getBoolean_Option()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 Enum_Option Enum_Option_ReferenceImpl::getEnum_Option()
 {
@@ -602,7 +602,7 @@ Enum_Option Enum_Option_ReferenceImpl::getEnum_Option()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 Flag_Option Flag_Option_ReferenceImpl::getFlag_Option()
 {
@@ -656,7 +656,7 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getInteger_Equality_Associ
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Integer_Equality_Association> Integer_Option_ReferenceImpl::getInteger_Equality_AssociationLinks()
 {
@@ -737,7 +737,7 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMax_AssociationEnds()
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Max_Association> Integer_Option_ReferenceImpl::getMax_AssociationLinks()
 {
@@ -818,7 +818,7 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMin_AssociationEnds()
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Min_Association> Integer_Option_ReferenceImpl::getMin_AssociationLinks()
 {
@@ -899,7 +899,7 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getRange_AssociationEnds()
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Range_Association> Integer_Option_ReferenceImpl::getRange_AssociationLinks()
 {
@@ -936,7 +936,7 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getRange_AssociationSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 Integer_Option Integer_Option_ReferenceImpl::getInteger_Option()
 {
@@ -990,7 +990,7 @@ std::multiset<BON::FCO> String_Option_ReferenceImpl::getString_Equality_Associat
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<String_Equality_Association> String_Option_ReferenceImpl::getString_Equality_AssociationLinks()
 {
@@ -1027,7 +1027,7 @@ std::multiset<BON::FCO> String_Option_ReferenceImpl::getString_Equality_Associat
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 String_Option String_Option_ReferenceImpl::getString_Option()
 {
@@ -1538,16 +1538,16 @@ BON::ConnectionEnd Select_AssociationImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool Boolean_Equality_AssociationImpl::isBoolean_Value() 
+bool Boolean_Equality_AssociationImpl::isBoolean_Value()
 {
 	return FCOImpl::getAttribute("Boolean_Value")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Boolean_Equality_AssociationImpl::setBoolean_Value( bool val)
 {
@@ -1586,16 +1586,16 @@ BON::FCO Boolean_Equality_AssociationImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long Integer_Equality_AssociationImpl::getInteger_Value() 
+long Integer_Equality_AssociationImpl::getInteger_Value()
 {
 	return FCOImpl::getAttribute("Integer_Value")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Integer_Equality_AssociationImpl::setInteger_Value( const long val)
 {
@@ -1634,16 +1634,16 @@ BON::FCO Integer_Equality_AssociationImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long Max_AssociationImpl::getMaximum() 
+long Max_AssociationImpl::getMaximum()
 {
 	return FCOImpl::getAttribute("Maximum")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Max_AssociationImpl::setMaximum( const long val)
 {
@@ -1682,16 +1682,16 @@ BON::FCO Max_AssociationImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long Min_AssociationImpl::getMinimum() 
+long Min_AssociationImpl::getMinimum()
 {
 	return FCOImpl::getAttribute("Minimum")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Min_AssociationImpl::setMinimum( const long val)
 {
@@ -1730,25 +1730,25 @@ BON::FCO Min_AssociationImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long Range_AssociationImpl::getMaximum() 
+long Range_AssociationImpl::getMaximum()
 {
 	return FCOImpl::getAttribute("Maximum")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long Range_AssociationImpl::getMinimum() 
+long Range_AssociationImpl::getMinimum()
 {
 	return FCOImpl::getAttribute("Minimum")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Range_AssociationImpl::setMaximum( const long val)
 {
@@ -1757,7 +1757,7 @@ void Range_AssociationImpl::setMaximum( const long val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Range_AssociationImpl::setMinimum( const long val)
 {
@@ -1796,16 +1796,16 @@ BON::FCO Range_AssociationImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string String_Equality_AssociationImpl::getString_Value() 
+std::string String_Equality_AssociationImpl::getString_Value()
 {
 	return FCOImpl::getAttribute("String_Value")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void String_Equality_AssociationImpl::setString_Value( const std::string& val)
 {
@@ -1888,7 +1888,7 @@ std::multiset<BON::FCO> Expression_BoxImpl::getBoolean_Equality_AssociationEnds(
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Boolean_Equality_Association> Expression_BoxImpl::getBoolean_Equality_AssociationLinks()
 {
@@ -1969,7 +1969,7 @@ std::multiset<BON::FCO> Expression_BoxImpl::getInteger_Equality_AssociationEnds(
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Integer_Equality_Association> Expression_BoxImpl::getInteger_Equality_AssociationLinks()
 {
@@ -2050,7 +2050,7 @@ std::multiset<Expression_Box> Expression_BoxImpl::getLogical_AssociationEnds()
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Logical_Association> Expression_BoxImpl::getLogical_AssociationLinks()
 {
@@ -2131,7 +2131,7 @@ std::multiset<BON::FCO> Expression_BoxImpl::getMax_AssociationEnds()
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Max_Association> Expression_BoxImpl::getMax_AssociationLinks()
 {
@@ -2212,7 +2212,7 @@ std::multiset<BON::FCO> Expression_BoxImpl::getMin_AssociationEnds()
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Min_Association> Expression_BoxImpl::getMin_AssociationLinks()
 {
@@ -2293,7 +2293,7 @@ std::multiset<BON::FCO> Expression_BoxImpl::getRange_AssociationEnds()
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Range_Association> Expression_BoxImpl::getRange_AssociationLinks()
 {
@@ -2348,7 +2348,7 @@ std::multiset<BON::ConnectionEnd> Expression_BoxImpl::getSelect_AssociationEnds(
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Select_Association> Expression_BoxImpl::getSelect_AssociationLinks()
 {
@@ -2419,7 +2419,7 @@ std::multiset<BON::FCO> Expression_BoxImpl::getString_Equality_AssociationEnds()
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<String_Equality_Association> Expression_BoxImpl::getString_Equality_AssociationLinks()
 {
@@ -2500,7 +2500,7 @@ std::multiset<Expression_Box> Logical_ExpressionImpl::getLogical_AssociationEnds
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Logical_Association> Logical_ExpressionImpl::getLogical_AssociationLinks()
 {
@@ -2581,7 +2581,7 @@ std::multiset<BON::FCO> EqualImpl::getComparison_AssociationEnds()
 }
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Comparison_Association> EqualImpl::getComparison_AssociationLinks()
 {

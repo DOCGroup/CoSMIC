@@ -1,5 +1,3 @@
-// $Id$
-
 project (RTConfigurationComponent): cqmllib, gme_udm_component {
   sharedname = RTConfigurationComponent
 

@@ -2,7 +2,7 @@
 /**
 * @file       Component_Asm_Visitor.h
 *
-* $Id$
+*
 *
 * @author     Hossein Karimy
 */
@@ -22,7 +22,7 @@ namespace PICML_To_DQML
   {
   public:
     Component_Asm_Visitor (DQML_Model_Factory & factory, GAME::Mga::Object current_node);
-    
+   
     ~Component_Asm_Visitor(void);
 
     void visit_ComponentAssembly (PICML::ComponentAssembly_in item);
@@ -32,7 +32,7 @@ namespace PICML_To_DQML
     void visit_OutEventPortInstance (PICML::OutEventPortInstance_in item);
     void visit_InEventPort (PICML::InEventPort_in item);
     void visit_OutEventPort (PICML::OutEventPort_in item);
-                                    
+                                   
   private :
     DQML_Model_Factory & factory_;
     GAME::Mga::Object current_node_;
@@ -41,4 +41,4 @@ namespace PICML_To_DQML
   };
 }
 
-#endif  // !defined _COMPONENT_ASM_VISITOR_H_ 
+#endif  // !defined _COMPONENT_ASM_VISITOR_H_

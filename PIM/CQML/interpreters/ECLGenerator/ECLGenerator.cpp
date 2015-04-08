@@ -10,7 +10,7 @@
 #include <iostream>
 
 namespace /// anonymous
-{ 
+{
 
 bool Compound::operator < (Compound const & c) const
 {
@@ -76,7 +76,7 @@ struct MGAInstance
 		         std::string const & name);
 	void add_child (MGAInstance const & child);
 	bool operator < (MGAInstance const & m) const;
-		 
+		
 };
 
 MGAInstance::
@@ -110,7 +110,7 @@ struct MGAInstanceTree
 	MGAInstance root;
 };
 
-} /// namespace anonymous 
+} /// namespace anonymous
 
 ECLGenerator::ECLGenerator(
 	const BON::Project& project,
@@ -151,7 +151,7 @@ get_sample_mapping (NodeToCompMapping & node2comp, CompToNodeMapping & comp2node
 	}
 }
 
-void ECLGenerator::generate (NodeToCompMapping const & node2comp, 
+void ECLGenerator::generate (NodeToCompMapping const & node2comp,
 					         CompToNodeMapping const & comp2node,
 							 std::string const & plan_name)
 {
@@ -175,27 +175,27 @@ std::string ECLGenerator::add_slash_r (std::string const & s)
 	return retval;
 }
 
-std::string ECLGenerator::gen_ECL (NodeToCompMapping const & node2comp, 
+std::string ECLGenerator::gen_ECL (NodeToCompMapping const & node2comp,
 					               CompToNodeMapping const & comp2node,
 								   std::string const & plan_name)
 {
 	std::string SPACE3 = "   ";
 	std::ostringstream 	outputECL;
-    outputECL << "defines Deploy, Placement, Association;" 
+    outputECL << "defines Deploy, Placement, Association;"
 		      << std::endl;
 	outputECL << "strategy Association "
-	          << "(dp, host, comp : model) {" 
+	          << "(dp, host, comp : model) {"
 			  << std::endl;
-    outputECL << SPACE3 
+    outputECL << SPACE3
 		      << "dp.addConnection (\"PlacementConn\", comp, host);"
 		      << std::endl << "}" << std::endl;
 	outputECL << "strategy Placement () {" << std::endl;
-	outputECL << SPACE3 
+	outputECL << SPACE3
 		      << "declare dp : model;" << std::endl;
-	outputECL << SPACE3 
+	outputECL << SPACE3
 		      << "dp := rootFolder().findModel (\""
-			  << plan_name 
-			  << "\");" 
+			  << plan_name
+			  << "\");"
 			  << std::endl;
 
 	for (NodeToCompMapping::const_iterator i (node2comp.begin());
@@ -260,7 +260,7 @@ void ECLGenerator::print_sequence (Iter begin, Iter end)
 }
 
 std::list <std::string> ECLGenerator::
-composition_sequence (std::string const & begin, 
+composition_sequence (std::string const & begin,
                       std::string const & end)
 {
 	std::map <std::string, std::string> parent;
@@ -322,16 +322,16 @@ void ECLGenerator::parse_compound (Compound const & comp)
 }
 
 template <class Comp>
-void ECLGenerator::push_adj (std::set <Comp> const & set, 
+void ECLGenerator::push_adj (std::set <Comp> const & set,
 							 std::string const & name)
 {
-	for (std::set<Comp>::const_iterator it = set.begin(); 
-		 it != set.end(); 
-		 ++it ) 
+	for (std::set<Comp>::const_iterator it = set.begin();
+		 it != set.end();
+		 ++it )
 	{
 		Compound c = { it->ref(), it->name() };
-		con_graph_[name].insert (c); 
-		if (is_compound (*it) && 
+		con_graph_[name].insert (c);
+		if (is_compound (*it) &&
 			(con_graph_.find (it->name()) == con_graph_.end()))
 		{
 			compound_queue_.push (c);
@@ -386,7 +386,7 @@ void ECLGenerator::push_model_adj (MON::Model model, std::string const & name)
 	{
 		std::string vertex = "vertex = " + i->first + ":";
 		bon_project_->consoleMsg (vertex, MSG_ERROR);
-		for (std::set <Compound>::const_iterator iter 
+		for (std::set <Compound>::const_iterator iter
 			  = con_graph_[i->first].begin ();
 			 iter != con_graph_[i->first].end ();
 			++iter)

@@ -4,8 +4,6 @@
 /**
  * @file      Configurator.idl
  *
- * $Id$
- *
  * @author    James H. Hill
  */
 //=============================================================================
@@ -20,12 +18,12 @@ interface IConfigurator : IUnknown
 {
   /// Set the name of the implementation folder.
   HRESULT setImplementationFolder ([in] BSTR name);
-  
+ 
   /// Set the name of the artifact folder.
   HRESULT setArtifactFolder ([in] BSTR name);
 
   /// Reset to the default configuration.
   HRESULT resetConfiguration ();
-};   
+};  
 
 #endif  // !defined _PICML_MANAGER_CONFIGURATOR_IDL_

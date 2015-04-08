@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "topic_dstOrder_Connection.h"
 

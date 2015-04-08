@@ -1,8 +1,6 @@
 /**
  * @file StringEditControl.hpp
  *
- * $Id$
- *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
  *
  * Definition of the string edit control.
@@ -55,13 +53,13 @@ public:
 public:
   /// Constructor.
   StringEditControl(wxWindow* parent);
-    
+   
   /// Registers the given FocusListener as a focus listener.
   void add_focus_listener(StringEditControlFocusListener* l);
 
   /// Registers the given ValueChangeListener as a change listener.
   void add_value_change_listener(StringEditControlValueChangeListener* l);
-    
+   
 private:
   /// The container for the focus listeners.
   std::list<StringEditControlFocusListener*> focus_listeners_;
@@ -71,6 +69,6 @@ private:
 
   // Declares WXWindow event table.
   DECLARE_EVENT_TABLE()
-};    
+};   
 
 #endif // STRING_EDIT_CONTROL_HPP

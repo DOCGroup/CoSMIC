@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "game/mga/decorator/Decorator_Module.h"
 #include "Package_Decorator_i.c"

@@ -1,5 +1,3 @@
-// $Id$
-
 project (PICML_GAME_Utils) : acelib, picml_game_mga, cosmic_lib {
   sharedname    = PICML_GAME_Utils
   dynamicflags += PICML_GAME_UTILS_BUILD_DLL

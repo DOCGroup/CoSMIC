@@ -1,5 +1,3 @@
-// $Id$
-
 #include "Scope.h"
 #include <stack>
 

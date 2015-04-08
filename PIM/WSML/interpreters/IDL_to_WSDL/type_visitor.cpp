@@ -69,31 +69,31 @@ type_visitor::visit_valuetype (AST_ValueType *node)
 {
   // Fetch from DOM tree, from table, or create.
   DOMElement *elem = this->process_node (node, "xsd:complexType");
-  
+ 
   // Fetch from DOM tree if imported.
   DOMElement *seq = 0;
-  
+ 
   if (NOT_SEEN == this->node_status_)
-    {  
+    { 
       ACE_CString name (node->full_name ());
       be_global->to_wsdl_name (name);
       elem->setAttribute (X ("name"), X (name.c_str ()));
-      
+     
       seq = this->doc_->createElement (X ("xsd:sequence"));
       elem->appendChild (seq);
-    
+   
       DOMElement *attr = this->doc_->createElement (X ("xsd:attribute"));
       attr->setAttribute (X ("name"), X ("id"));
       attr->setAttribute (X ("type"), X ("xsd:ID"));
       attr->setAttribute (X ("use"), X ("optional"));
       elem->appendChild (attr);
     }
-  
+ 
   if (DONE != this->node_status_)
     {
       seq = dynamic_cast<DOMElement *> (elem->getFirstChild ());
       type_visitor scope_visitor (seq);
-      
+     
       if (scope_visitor.visit_scope (node) != 0)
         {
           ACE_ERROR_RETURN ((LM_ERROR,
@@ -101,7 +101,7 @@ type_visitor::visit_valuetype (AST_ValueType *node)
                               "codegen for scope failed\n"),
                             -1);
         }
-        
+       
       this->gen_inherited_vt_members (node, scope_visitor);
     }
 
@@ -132,25 +132,25 @@ type_visitor::visit_structure (AST_Structure *node)
 {
   // Fetch from DOM tree, from table, or create.
   DOMElement *elem = this->process_node (node, "xsd:complexType");
-  
+ 
   // Fetch from DOM tree if imported.
   DOMElement *seq = 0;
-  
+ 
   if (NOT_SEEN == this->node_status_)
-    {  
+    { 
       ACE_CString name (node->full_name ());
       be_global->to_wsdl_name (name);
       elem->setAttribute (X ("name"), X (name.c_str ()));
-      
+     
       seq = this->doc_->createElement (X ("xsd:sequence"));
       elem->appendChild (seq);
     }
-  
+ 
   if (DONE != this->node_status_)
     {
       seq = dynamic_cast<DOMElement *> (elem->getFirstChild ());
       type_visitor scope_visitor (seq);
-      
+     
       if (scope_visitor.visit_scope (node) != 0)
         {
           ACE_ERROR_RETURN ((LM_ERROR,
@@ -173,7 +173,7 @@ type_visitor::visit_exception (AST_Exception *node)
                           "codegen for exception failed\n"),
                         -1);
     }
-    
+   
   return 0;
 }
 
@@ -183,13 +183,13 @@ type_visitor::visit_enum (AST_Enum *node)
   // Fetch from DOM tree, from table, or create.
   DOMElement *elem = this->process_node (node, "xsd:simpleType");
   DOMElement *restriction = 0;
-  
+ 
   if (NOT_SEEN == this->node_status_)
     {
       ACE_CString name (node->full_name ());
       be_global->to_wsdl_name (name);
       elem->setAttribute (X ("name"), X (name.c_str ()));
-      
+     
       // Enum values go inside this.
       restriction =
         this->doc_->createElement (X ("xsd:restriction"));
@@ -201,7 +201,7 @@ type_visitor::visit_enum (AST_Enum *node)
     {
       restriction = dynamic_cast<DOMElement *> (elem->getFirstChild ());
       type_visitor scope_visitor (restriction);
-      
+     
       if (scope_visitor.visit_scope (node) != 0)
         {
           ACE_ERROR_RETURN ((LM_ERROR,
@@ -222,32 +222,32 @@ type_visitor::visit_field (AST_Field *node)
   bool vt_member =
     AST_Decl::NT_valuetype == nt || AST_Decl::NT_eventtype == nt;
   DOMElement *sub_tree_holder = this->sub_tree_;
-  
+ 
   if (vt_member)
     {
       DOMElement *choice = this->doc_->createElement (X ("xsd:choice"));
       this->sub_tree_->appendChild (choice);
       this->sub_tree_ = choice;
     }
-  
+ 
   DOMElement *elem = this->doc_->createElement (X ("xsd:element"));
   this->sub_tree_->appendChild (elem);
-  
+ 
   elem->setAttribute (X ("name"),
                       X (node->local_name ()->get_string ()));
   elem->setAttribute (X ("minOccurs"), X ("1"));
   elem->setAttribute (X ("maxOccurs"), X ("1"));
-  
+ 
   ACE_CString ft_name;
   this->type_name (ft_name, ft, true);
   elem->setAttribute (X ("type"), X (ft_name.c_str ()));
-      
-  // Not sure if this is the only case where 'nillable' appears.          
+     
+  // Not sure if this is the only case where 'nillable' appears.         
   if (AST_Decl::NT_string == nt)
     {
       elem->setAttribute (X ("nillable"), X ("true"));
     }
-    
+   
   if (vt_member)
     {
       DOMElement *vt_ref =
@@ -258,7 +258,7 @@ type_visitor::visit_field (AST_Field *node)
       vt_ref->setAttribute (X ("type"), X ("corba:_VALUEREF"));
       this->sub_tree_->appendChild (vt_ref);
     }
-  
+ 
   this->sub_tree_ = sub_tree_holder;
   return 0;
 }
@@ -268,20 +268,20 @@ type_visitor::visit_union (AST_Union *node)
 {
   // Fetch from DOM tree, from table, or create.
   DOMElement *elem = this->process_node (node, "xsd:complexType");
-  
+ 
   // Fetch from DOM tree if imported.
   DOMElement *seq = 0;
   DOMElement *choice = 0;
-  
+ 
   if (NOT_SEEN == this->node_status_)
-    {  
+    { 
       ACE_CString name (node->full_name ());
       be_global->to_wsdl_name (name);
       elem->setAttribute (X ("name"), X (name.c_str ()));
-      
+     
       seq = this->doc_->createElement (X ("xsd:sequence"));
       elem->appendChild (seq);
-      
+     
       DOMElement *disc = this->doc_->createElement (X ("xsd:element"));
       disc->setAttribute (X ("name"), X ("discriminator"));
       AST_Type *dt = node->disc_type ();
@@ -289,19 +289,19 @@ type_visitor::visit_union (AST_Union *node)
       this->type_name (disc_name, dt);
       disc->setAttribute (X ("type"), X (disc_name.c_str ()));
       seq->appendChild (disc);
-      
+     
       choice = this->doc_->createElement (X ("xsd:choice"));
       seq->appendChild (choice);
     }
-  
+ 
   if (DONE != this->node_status_)
     {
       seq = dynamic_cast<DOMElement *> (elem->getFirstChild ());
       choice = dynamic_cast<DOMElement *> (seq->getLastChild ());
-      
+     
       type_visitor scope_visitor (choice);
       scope_visitor.current_union_ = node;
-      
+     
       if (scope_visitor.visit_scope (node) != 0)
         {
           ACE_ERROR_RETURN ((LM_ERROR,
@@ -323,7 +323,7 @@ type_visitor::visit_union_branch (AST_UnionBranch *node)
     {
       this->label_list_ += (0 == i ? "" : ", ");
       AST_UnionLabel *ul = node->label (i);
-    
+   
       if (ul->label_kind () == AST_UnionLabel::UL_default)
         {
           this->label_list_ += "default case";
@@ -342,27 +342,27 @@ type_visitor::visit_union_branch (AST_UnionBranch *node)
                             -1);
         }
     }
-    
+   
   DOMComment *comment =
     this->doc_->createComment (X (this->label_list_.c_str ()));
   this->sub_tree_->appendChild (comment);
-  
+ 
   DOMElement *member = this->doc_->createElement (X ("xsd:element"));
   member->setAttribute (X ("name"), X (node->local_name ()->get_string ()));
-  
+ 
   ACE_CString tname;
   AST_Type *ft = node->field_type ();
   this->type_name (tname, ft);
   member->setAttribute (X ("type"), X (tname.c_str ()));
-  
+ 
   member->setAttribute (X ("minOccurs"), X ("0"));
   member->setAttribute (X ("maxOccurs"), X ("1"));
-                
+               
   if (AST_Type::VARIABLE == ft->size_type ())
     {
       member->setAttribute (X ("nillable"), X ("true"));
     }
-  
+ 
   this->sub_tree_->appendChild (member);
 
   return 0;
@@ -417,14 +417,14 @@ type_visitor::visit_enum_val (AST_EnumVal *node)
   if (X ("xsd:restriction") == this->sub_tree_->getTagName ())
     {
       DOMElement *elem = this->process_node (node, "xsd:enumeration");
-      
+     
       if (NOT_SEEN == this->node_status_)
         {
           elem->setAttribute (X ("value"),
                               X (node->local_name ()->get_string ()));
         }
     }
-    
+   
   return 0;
 }
 
@@ -439,7 +439,7 @@ type_visitor::visit_sequence (AST_Sequence *node)
 {
   // Fetch from DOM tree, from table, or create.
   DOMElement *elem = this->process_node (this->alias_, "xsd:complexType");
-  
+ 
   if (NOT_SEEN == this->node_status_)
     {
       this->gen_seq_array_common (elem,
@@ -448,7 +448,7 @@ type_visitor::visit_sequence (AST_Sequence *node)
                                   false,
                                   0);
     }
-    
+   
   return 0;
 }
 
@@ -461,10 +461,10 @@ type_visitor::visit_typedef (AST_Typedef *node)
   DOMElement *elem = 0;
   DOMElement *td_elem = 0;
   DOMElement *restriction = 0;
-      
+     
   ACE_CString name (node->full_name ());
   be_global->to_wsdl_name (name);
-  
+ 
   ACE_CString bt_name;
   this->type_name (bt_name, bt);
   bool complex_type = false;
@@ -487,7 +487,7 @@ type_visitor::visit_typedef (AST_Typedef *node)
       default:
         break;
     }
-  
+ 
   if (NOT_SEEN == this->node_status_)
     {
       elem->setAttribute (X ("name"), X (name.c_str ()));
@@ -495,7 +495,7 @@ type_visitor::visit_typedef (AST_Typedef *node)
       restriction->setAttribute (X ("base"), X (bt_name.c_str ()));
       td_elem->appendChild (restriction);
     }
-    
+   
   if (DONE != this->node_status_ && complex_type)
     {
       // TODO
@@ -514,43 +514,43 @@ type_visitor::gen_seq_array_common (DOMElement *elem,
   ACE_CString name;
   this->type_name (name, this->alias_, false);
   elem->setAttribute (X ("name"), X (name.c_str ()));
-  
+ 
   DOMElement *content =
     this->doc_->createElement (X ("complexContent"));
   elem->appendChild (content);
-  
+ 
   DOMElement *restriction =
     this->doc_->createElement (X ("xsd:restriction"));
   restriction->setAttribute (X ("base"), X ("soap-enc:Array"));
   content->appendChild (restriction);
-  
+ 
   DOMElement *seq = this->doc_->createElement (X ("xsd:sequence"));
   restriction->appendChild (seq);
-  
+ 
   DOMElement *item = this->doc_->createElement (X ("xsd:element"));
   item->setAttribute (X ("name"), X ("item"));
-  
+ 
   // Can't be 0 for an array, parser would catch it.
   unsigned long max_size = size->ev ()->u.ulval;
   ACE_CString bound (
       0 == max_size
         ? "unbounded"
         : this->expr_val_to_string (size->ev ()));
-         
+        
   item->setAttribute (X ("minOccurs"), X (is_array ? bound.c_str () : "0"));
   item->setAttribute (X ("maxOccurs"), X (bound.c_str ()));
-  
+ 
   ACE_CString tname;
   this->type_name (tname, base_type);
   item->setAttribute (X ("type"), X (tname.c_str ()));
-  
+ 
   seq->appendChild (item);
-  
+ 
   DOMElement *attr = this->doc_->createElement (X ("xsd:attribute"));
   attr->setAttribute (X ("ref"), X ("soap-enc:arrayType"));
   tname += "[]";
   attr->setAttribute (X ("wsdl:arrayType"), X (tname.c_str ()));
-  
+ 
   restriction->appendChild (attr);
 }
 
@@ -672,7 +672,7 @@ type_visitor::gen_inherited_vt_members (AST_ValueType *node,
                                         type_visitor &visitor)
 {
   AST_ValueType *parent = node->inherits_concrete ();
-  
+ 
   if (0 != parent)
     {
       if (0 != visitor.visit_scope (parent))
@@ -681,7 +681,7 @@ type_visitor::gen_inherited_vt_members (AST_ValueType *node,
                       "type_visitor::gen_inherited_vt_members - "
                       "codegen for base valuetype failed\n"));
         }
-        
+       
       this->gen_inherited_vt_members (parent, visitor);
     }
 }

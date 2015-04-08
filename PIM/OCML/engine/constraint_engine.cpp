@@ -11,7 +11,7 @@ namespace OCML
   Constraint_Value_Change_Listener::~Constraint_Value_Change_Listener()
   {
   }
- 
+
   void Constraint_Value_Change_Listener::set_value(Option_Reference* reference)
   {
     bool changed = false;
@@ -42,7 +42,7 @@ namespace OCML
       value_changed(flag_, value_.get());
     }
   }
-  
+ 
   /*
    * Constraint engine methods.
    */
@@ -100,7 +100,7 @@ namespace OCML
     // Reset the transaction data.
     inserted_rules_.clear();
     deleted_rules_.clear();
- 
+
     // Return the result of the validation to the caller.
     return result;
   }

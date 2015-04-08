@@ -1,5 +1,3 @@
-// $Id$
-
 #include "spirit_helpers.hpp"  // include this first
 
 #include <iostream>
@@ -117,7 +115,7 @@ namespace OCML
     xercesc::DOMDocument *value_doc = 0;
     value_doc =
       system_.parse_string(parser.get(), "OCMLValues", values, size);
-  
+ 
     Option_Value_Parser::parse_xml(root_.get(), interfaces_, value_doc);
   }
 
@@ -166,7 +164,7 @@ namespace OCML
          iter != category->end_options(); ++iter)
     {
       interfaces_[*iter] =
-        Option_Interface_Factory::create_interface(constraint_engine_.get(), *iter); 
+        Option_Interface_Factory::create_interface(constraint_engine_.get(), *iter);
     }
 
     for (Option_Category::category_iterator iter = category->begin_categories();
@@ -198,8 +196,8 @@ namespace OCML
 
     return result;
   }
- 
-  xercesc::DOMElement* 
+
+  xercesc::DOMElement*
   Configurator::write_category(const Option_Category* category,
                                xercesc::DOMDocument* doc) const
   {
@@ -255,12 +253,12 @@ namespace OCML
       new_doc(system_.impl()->createDocument(0, XMLUnicodeString("test"), 0));
     XercesAutoPtr<xercesc::DOMWriter> writer(system_.impl()->createDOMWriter());
 
-    /// @todo: auto_ptr for node. 
-    xercesc::DOMNode* node = write_category(root_.get(), new_doc.get()); 
+    /// @todo: auto_ptr for node.
+    xercesc::DOMNode* node = write_category(root_.get(), new_doc.get());
     XMLUnicodeString result;
     if (node)
       result = writer->writeToString(*node);
-  
+ 
     return result.str();
   }
 

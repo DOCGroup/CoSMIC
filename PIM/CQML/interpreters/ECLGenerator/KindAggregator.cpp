@@ -16,7 +16,7 @@ namespace CQML
 
   // ctor that takes a list of kinds and aggregates them collectively
   template <class T>
-  KindAggregator<T>::KindAggregator (const BON::Project& project, 
+  KindAggregator<T>::KindAggregator (const BON::Project& project,
     const std::list<std::string>& kindlist)
     : bon_project_ (project),
     kindlist_ (kindlist)
@@ -29,7 +29,7 @@ namespace CQML
   }
 
   template <class T>
-  void 
+  void
     KindAggregator<T>::insert (std::string instance_name, T kind_instance)
   {
     m_kind_instances_.insert (
@@ -38,7 +38,7 @@ namespace CQML
 
 
   template <class T>
-  typename KindAggregator<T>::KindMap 
+  typename KindAggregator<T>::KindMap
     KindAggregator<T>::aggregate()
   {
     try
@@ -49,14 +49,14 @@ namespace CQML
       for_each (this->kindlist_.begin (),
         this->kindlist_.end (),
         insertKindInstances <std::string> (this));
-    } 
+    }
     catch (MON::Exception& ex)
     {
       this->bon_project_->consoleMsg (
         /*this->kindname_+std::string(" kind does not exist in this model.")+*/
         ex.getErrorMessage(), MSG_ERROR);	
 	  throw;
-    } 
+    }
     catch (...)
     {
       this->bon_project_->consoleMsg ("Unknown exception.", MSG_ERROR);
@@ -67,7 +67,7 @@ namespace CQML
   }
 
   template <class T>
-  typename KindAggregator<T>::KindMap 
+  typename KindAggregator<T>::KindMap
     KindAggregator<T>::getKindMap ()
   {
     return this->m_kind_instances_;

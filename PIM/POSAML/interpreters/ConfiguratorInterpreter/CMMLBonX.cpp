@@ -53,7 +53,7 @@ std::multiset<Reactor> AbstractEventHandlerImpl::getDispatchesSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Dispatches> AbstractEventHandlerImpl::getInDispatchesLinks()
 {
@@ -71,7 +71,7 @@ std::set<Dispatches> AbstractEventHandlerImpl::getInDispatchesLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 AbstractEventHandlerImpl::EventType_Type AbstractEventHandlerImpl::getEventType()
 {
@@ -87,7 +87,7 @@ AbstractEventHandlerImpl::EventType_Type AbstractEventHandlerImpl::getEventType(
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void AbstractEventHandlerImpl::setEventType( AbstractEventHandlerImpl::EventType_Type val)
 {
@@ -141,7 +141,7 @@ std::multiset<End_Points> Acceptor_PatternImpl::getEnd_Point_ConnectionSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<End_Point_Connection> Acceptor_PatternImpl::getInEnd_Point_ConnectionLinks()
 {
@@ -159,7 +159,7 @@ std::set<End_Point_Connection> Acceptor_PatternImpl::getInEnd_Point_ConnectionLi
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Reactor_Acceptor_Connection> Acceptor_PatternImpl::getInReactor_Acceptor_ConnectionLinks()
 {
@@ -417,7 +417,7 @@ std::set<Thread_Queue> MiddlewareImpl::getThread_Queue()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Reactor_Concurrency_Connection> Reactor_PatternImpl::getInReactor_Concurrency_ConnectionLinks()
 {
@@ -435,7 +435,7 @@ std::set<Reactor_Concurrency_Connection> Reactor_PatternImpl::getInReactor_Concu
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Reactor_Thread_Queue_Connection> Reactor_PatternImpl::getInReactor_Thread_Queue_ConnectionLinks()
 {
@@ -453,7 +453,7 @@ std::set<Reactor_Thread_Queue_Connection> Reactor_PatternImpl::getInReactor_Thre
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Reactor_Type_Connection> Reactor_PatternImpl::getInReactor_Type_ConnectionLinks()
 {
@@ -471,7 +471,7 @@ std::set<Reactor_Type_Connection> Reactor_PatternImpl::getInReactor_Type_Connect
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Reactor_Acceptor_Connection> Reactor_PatternImpl::getOutReactor_Acceptor_ConnectionLinks()
 {
@@ -667,16 +667,16 @@ std::set<Uses> Reactor_PatternImpl::getUses()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long Active_Object_Map_SizeImpl::getValue() 
+long Active_Object_Map_SizeImpl::getValue()
 {
 	return FCOImpl::getAttribute("Value")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Active_Object_Map_SizeImpl::setValue( const long val)
 {
@@ -685,7 +685,7 @@ void Active_Object_Map_SizeImpl::setValue( const long val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Reactor_Concurrency_Connection> ConcurrencyImpl::getOutReactor_Concurrency_ConnectionLinks()
 {
@@ -722,7 +722,7 @@ std::multiset<Reactor_Pattern> ConcurrencyImpl::getReactor_Concurrency_Connectio
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 ConcurrencyImpl::Concurrency_Options_Type ConcurrencyImpl::getConcurrency_Options()
 {
@@ -735,7 +735,7 @@ ConcurrencyImpl::Concurrency_Options_Type ConcurrencyImpl::getConcurrency_Option
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void ConcurrencyImpl::setConcurrency_Options( ConcurrencyImpl::Concurrency_Options_Type val)
 {
@@ -769,7 +769,7 @@ std::multiset<Acceptor_Pattern> End_PointsImpl::getEnd_Point_ConnectionDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<End_Point_Connection> End_PointsImpl::getOutEnd_Point_ConnectionLinks()
 {
@@ -787,16 +787,16 @@ std::set<End_Point_Connection> End_PointsImpl::getOutEnd_Point_ConnectionLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long End_PointsImpl::getPorts() 
+long End_PointsImpl::getPorts()
 {
 	return FCOImpl::getAttribute("Ports")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void End_PointsImpl::setPorts( const long val)
 {
@@ -805,7 +805,7 @@ void End_PointsImpl::setPorts( const long val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Notifies> HandleImpl::getInNotifiesLinks()
 {
@@ -842,25 +842,25 @@ std::multiset<SynchronousEventDemultiplexer> HandleImpl::getNotifiesSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string HandleImpl::getHandleName() 
+std::string HandleImpl::getHandleName()
 {
 	return FCOImpl::getAttribute("HandleName")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool HandleImpl::isready() 
+bool HandleImpl::isready()
 {
 	return FCOImpl::getAttribute("ready")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void HandleImpl::setHandleName( const std::string& val)
 {
@@ -869,7 +869,7 @@ void HandleImpl::setHandleName( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void HandleImpl::setready( bool val)
 {
@@ -897,7 +897,7 @@ std::multiset<AbstractEventHandler> ReactorImpl::getDispatchesDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Dispatches> ReactorImpl::getOutDispatchesLinks()
 {
@@ -915,7 +915,7 @@ std::set<Dispatches> ReactorImpl::getOutDispatchesLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Uses> ReactorImpl::getOutUsesLinks()
 {
@@ -952,7 +952,7 @@ std::multiset<SynchronousEventDemultiplexer> ReactorImpl::getUsesDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Reactor_Type_Connection> Reactor_TypeImpl::getOutReactor_Type_ConnectionLinks()
 {
@@ -989,7 +989,7 @@ std::multiset<Reactor_Pattern> Reactor_TypeImpl::getReactor_Type_ConnectionDsts(
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 Reactor_TypeImpl::Reactor_Type_Options_Type Reactor_TypeImpl::getReactor_Type_Options()
 {
@@ -1005,7 +1005,7 @@ Reactor_TypeImpl::Reactor_Type_Options_Type Reactor_TypeImpl::getReactor_Type_Op
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Reactor_TypeImpl::setReactor_Type_Options( Reactor_TypeImpl::Reactor_Type_Options_Type val)
 {
@@ -1023,7 +1023,7 @@ void Reactor_TypeImpl::setReactor_Type_Options( Reactor_TypeImpl::Reactor_Type_O
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Uses> SynchronousEventDemultiplexerImpl::getInUsesLinks()
 {
@@ -1060,7 +1060,7 @@ std::multiset<Handle> SynchronousEventDemultiplexerImpl::getNotifiesDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Notifies> SynchronousEventDemultiplexerImpl::getOutNotifiesLinks()
 {
@@ -1097,7 +1097,7 @@ std::multiset<Reactor> SynchronousEventDemultiplexerImpl::getUsesSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 SynchronousEventDemultiplexerImpl::DemultiplexerType_Type SynchronousEventDemultiplexerImpl::getDemultiplexerType()
 {
@@ -1111,7 +1111,7 @@ SynchronousEventDemultiplexerImpl::DemultiplexerType_Type SynchronousEventDemult
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void SynchronousEventDemultiplexerImpl::setDemultiplexerType( SynchronousEventDemultiplexerImpl::DemultiplexerType_Type val)
 {
@@ -1127,7 +1127,7 @@ void SynchronousEventDemultiplexerImpl::setDemultiplexerType( SynchronousEventDe
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<Reactor_Thread_Queue_Connection> Thread_QueueImpl::getOutReactor_Thread_Queue_ConnectionLinks()
 {
@@ -1164,7 +1164,7 @@ std::multiset<Reactor_Pattern> Thread_QueueImpl::getReactor_Thread_Queue_Connect
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 Thread_QueueImpl::Thread_Queue_Options_Type Thread_QueueImpl::getThread_Queue_Options()
 {
@@ -1177,7 +1177,7 @@ Thread_QueueImpl::Thread_Queue_Options_Type Thread_QueueImpl::getThread_Queue_Op
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void Thread_QueueImpl::setThread_Queue_Options( Thread_QueueImpl::Thread_Queue_Options_Type val)
 {

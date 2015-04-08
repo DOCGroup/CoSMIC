@@ -11,7 +11,7 @@
 
 namespace CQML
   {
-  
+ 
   class Rule
     {
     public:
@@ -34,13 +34,13 @@ namespace CQML
 
   typedef std::set<CQML::Rule> RuleSet;
   typedef std::map<CQML::Policy, RuleSet> PoliciesMap;
-  
+ 
   class SecurityQoSInfo
     {
     public:
-      CQML::SecurityQoS secqos_; 
+      CQML::SecurityQoS secqos_;
       RuleSet rule_set_;
-    
+   
       bool operator<(const CQML::SecurityQoSInfo& secqosinfo) const
         {
           return this->secqos_.uniqueId() < secqosinfo.secqos_.uniqueId();
@@ -49,7 +49,7 @@ namespace CQML
 
   typedef std::set<Udm::Object> SecurityQoSTargetSet;
   typedef std::map<CQML::SecurityQoSInfo, SecurityQoSTargetSet> SecurityQoSMap;
-  
+ 
   class SecurityQoSRequirements
     {
     public:

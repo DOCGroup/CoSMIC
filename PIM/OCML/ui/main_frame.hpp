@@ -28,7 +28,7 @@ public:
   virtual ~MainFrame();
 
   void add_value_change_listener(MainFrameValueChangeListener* l);
-      
+     
 private:
   wxPanel* create_button_panel();
 

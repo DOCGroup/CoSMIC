@@ -1,8 +1,6 @@
 /**
  * Contains the definitions of the Option_Definition and Option_Category.
  *
- * $Id$
- *
  * @file definitions.hpp
  *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
@@ -82,10 +80,10 @@ namespace OCML
     typedef typename option_trait::value_type value_type;
 
   public:
-    /// Constructor. 
+    /// Constructor.
     Basic_Option_Definition(const char* name, const char* description);
 
-    /// Constructor. 
+    /// Constructor.
     Basic_Option_Definition(const char* name, const char* description,
                             value_type option_default_value);
 
@@ -111,7 +109,7 @@ namespace OCML
 
   /**
    * An option category is the container for other option categories and
-   * option definitions. 
+   * option definitions.
    *
    * All the option definitions are contained in an option category. Option
    * categories form a tree structure with only one root category.
@@ -137,7 +135,7 @@ namespace OCML
     typedef categories_type::const_iterator const_category_iterator;
     /// Const iterator fot the options list.
     typedef options_type::const_iterator const_option_iterator;
-    
+   
   public:
     /// Contructor.
     OCML_Engine_Export Option_Category(const char* name, const char* description);

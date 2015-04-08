@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "PICML_MPCComponent.h"
 #include "PICML_MPCComponent_Impl.h"

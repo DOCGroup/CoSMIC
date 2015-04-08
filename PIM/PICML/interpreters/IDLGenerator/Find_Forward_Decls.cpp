@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Find_Forward_Decls.h"
 #include "IDL_File_Dependency_Processor.h"

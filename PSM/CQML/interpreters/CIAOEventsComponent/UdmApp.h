@@ -22,7 +22,7 @@
 #include "UdmStatic.h"
 #include <string>
 
-class CUdmApp  
+class CUdmApp 
 {
 public:
 	static int Initialize();

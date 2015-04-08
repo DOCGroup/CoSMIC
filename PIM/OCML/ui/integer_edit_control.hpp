@@ -1,8 +1,6 @@
 /**
  * @file Integer_Edit_Control.hpp
  *
- * $Id$
- *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
  *
  * Definition of the integer edit control.
@@ -54,22 +52,22 @@ public:
 public:
   /// Constructor.
   Integer_Edit_Control(wxWindow* parent);
-    
+   
   /// Registers the given FocusListener as a focus listener.
   void add_focus_listener(Integer_Edit_Control_Focus_Listener* l);
 
   /// Registers the given ValueChangeListener as a change listener.
   void add_value_change_listener(Integer_Edit_Control_Value_Change_Listener* l);
-    
+   
 private:
   /// The container for the focus listeners.
   std::list<Integer_Edit_Control_Focus_Listener*> focus_listeners_;
-    
+   
   /// The container for the value change listeners.
   std::list<Integer_Edit_Control_Value_Change_Listener*> value_change_listeners_;
 
   // Declares WXWindow event table.
   DECLARE_EVENT_TABLE()
-};    
+};   
 
 #endif // INTEGER_EDIT_CONTROL_HPP

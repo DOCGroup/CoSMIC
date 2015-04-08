@@ -1,5 +1,3 @@
-// $Id$
-
 #include "stdafx.h"
 #include "RootFolder.h"
 #include "Visitor.h"

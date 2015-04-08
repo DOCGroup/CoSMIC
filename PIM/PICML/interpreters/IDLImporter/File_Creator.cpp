@@ -1,5 +1,3 @@
-// $Id$
-
 #include "File_Creator.h"
 #include "game/xme/modelgen.h"
 #include "boost/bind.hpp"

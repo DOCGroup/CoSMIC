@@ -108,7 +108,7 @@ try:
     f.close()
 except:
     pass
-    
+   
 
 
 greinvocationcommand = 'gre.exe'+ space +quotes+transformations_fullpath+'Cadena2PICML_Configuration.mga'+quotes

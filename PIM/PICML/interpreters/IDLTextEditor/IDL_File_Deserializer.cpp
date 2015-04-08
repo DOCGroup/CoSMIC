@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "IDL_File_Deserializer.h"
 #include "Layout_Manager.h"

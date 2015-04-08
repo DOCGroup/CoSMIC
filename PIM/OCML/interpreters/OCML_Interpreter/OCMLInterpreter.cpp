@@ -45,7 +45,7 @@ OCMLInterpreter::write(const char* file_name, xercesc::DOMDocument* doc)
   theSerializer->writeNode(myFormTarget, *root_node);
 }
 
-xercesc::DOMDocument* 
+xercesc::DOMDocument*
 OCMLInterpreter::create_option_tree(std::set<OCML_BON::Option_Category>& categories)
 {
   // create DOMDocument
@@ -66,7 +66,7 @@ OCMLInterpreter::create_option_tree(std::set<OCML_BON::Option_Category>& categor
 }
 
 /*
-xercesc::DOMDocument* 
+xercesc::DOMDocument*
 OCMLInterpreter::create_document(std::set<BON::Model>& root_models)
 {
   // create DOMDocument

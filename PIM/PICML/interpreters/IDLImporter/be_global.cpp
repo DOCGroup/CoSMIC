@@ -1,5 +1,3 @@
-// $Id$
-
 #include "be_global.h"
 #include "be_extern.h"
 

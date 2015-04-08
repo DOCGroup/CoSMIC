@@ -4,8 +4,6 @@
 /**
  * @file      QED_Implementation_Finder.h
  *
- * $Id$
- *
  * @author    James H. Hill
  */
 //=============================================================================
@@ -18,7 +16,7 @@
 /**
  * @class QED_Implementation_Finder
  *
- * Visitor that is responsible for locating the implementation 
+ * Visitor that is responsible for locating the implementation
  * for a given instance.
  */
 class QED_Implementation_Finder : public PICML::Visitor

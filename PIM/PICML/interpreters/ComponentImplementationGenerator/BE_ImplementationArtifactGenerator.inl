@@ -1,6 +1,4 @@
 // -*- C++ -*-
-// $Id$
-
 namespace PICML_BE
 {
 
@@ -18,7 +16,7 @@ ImplementationArtifactGenerator::~ImplementationArtifactGenerator (void)
 
 }
 
-inline 
+inline
 PICML::ImplementationArtifact ImplementationArtifactGenerator::svnt_artifact (void) const
 {
   return this->svnt_artifact_;

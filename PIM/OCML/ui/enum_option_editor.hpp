@@ -22,9 +22,9 @@ namespace OCML
   public:
     Enum_Option_Editor(wxWindow* parent, Enum_Option* option);
     virtual ~Enum_Option_Editor();
-    
+   
     void add_focus_listener(Enum_Option_Editor_Focus_Listener* l);
-    
+   
     virtual void enum_edit_selected(std::string value, void* client_data);
     virtual void enum_edit_focus_gain(EnumEditControl* control);
     virtual void enum_edit_focus_lost(EnumEditControl* control);

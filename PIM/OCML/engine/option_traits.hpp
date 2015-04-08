@@ -1,8 +1,6 @@
 /**
  * @file option_traits.hpp
  *
- * $Id$
- *
  * Definition of the option type traits.
  *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
@@ -42,7 +40,7 @@ namespace OCML
 
     static void write(std::ostream& os, const value_type& value);
   };
- 
+
   /**
    * Defines type information for the integer option which maches the
    * requested template argument by the basic option class.
@@ -64,12 +62,12 @@ namespace OCML
     static value_type parse_string(const char* first, const char* last);
 
     static const char* type_string();
- 
+
     static value_type read(std::istream& is);
 
     static void write(std::ostream& os, const value_type& value);
   };
- 
+
   /**
    * Defines type information for the string option which maches the
    * requested template argument by the basic option class.
@@ -96,7 +94,7 @@ namespace OCML
 
     static void write(std::ostream& os, const value_type& value);
   };
- 
+
 } // namespace OCML
 
 #include "option_traits.ipp"

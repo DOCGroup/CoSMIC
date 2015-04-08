@@ -1,12 +1,8 @@
-// $Id$
-
 //=============================================================================
 /**
  * @file        Data_Value_Controls.h
  *
  * Defines controls for inputing complex types in PICML
- *
- * $Id$
  *
  * @author      James H. Hill
  */

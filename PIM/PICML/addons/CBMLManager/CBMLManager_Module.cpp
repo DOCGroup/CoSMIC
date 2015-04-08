@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "CBMLManager_i.c"
 #include "game/mga/dialogs/Module.h"
@@ -55,7 +53,6 @@ STDAPI DllUnregisterServer (void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//
 
 /**
  * @class PICML_Model_Intelligence_App

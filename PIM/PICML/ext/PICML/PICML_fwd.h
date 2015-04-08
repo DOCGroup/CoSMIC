@@ -1,6 +1,4 @@
 // -*- C++ -*-
-// $Id$
-
 #ifndef _PICML_FWD_H_
 #define _PICML_FWD_H_
 

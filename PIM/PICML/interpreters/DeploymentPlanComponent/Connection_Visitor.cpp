@@ -267,8 +267,8 @@ visit_InEventPortDelegate (InEventPortDelegate_in facet)
 // create_connection
 //
 void Connection_Visitor::
-create_connection (const std::string & name, 
-                   GAME::Xml::Fragment ep1, 
+create_connection (const std::string & name,
+                   GAME::Xml::Fragment ep1,
                    GAME::Xml::Fragment ep2,
                    bool is_local)
 {

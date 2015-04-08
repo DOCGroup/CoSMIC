@@ -17,7 +17,7 @@ bool try_write_info(OCML::Option_Reference* reference)
   {
     write_info(basic_reference);
   }
- 
+
   bool result = basic_reference != 0;
 
   return result;
@@ -35,7 +35,7 @@ std::string* try_str_info(OCML::Option_Reference* reference)
   {
     result = new std::string(str_info(basic_reference));
   }
- 
+
   return result;
 }
 
@@ -68,7 +68,7 @@ void clear_references(references_map* references)
 void write_info(OCML::Option_Reference* reference)
 {
   bool result = false;
-  
+ 
   if (!result)
     result = try_write_info<OCML::Boolean_Option_Trait>(reference);
   if (!result)
@@ -82,7 +82,7 @@ void write_info(OCML::Option_Reference* reference)
 std::string str_info(OCML::Option_Reference* reference)
 {
   std::string* result = 0;
-  
+ 
   if (result == 0)
     result = try_str_info<OCML::Boolean_Option_Trait>(reference);
   if (result == 0)

@@ -4,8 +4,6 @@
 /**
  *  @file        Component_Observer_Event_Handler.h
  *
- *  $Id$
- *
  *  @author      INSERT NAME HERE
  */
 //==============================================================================

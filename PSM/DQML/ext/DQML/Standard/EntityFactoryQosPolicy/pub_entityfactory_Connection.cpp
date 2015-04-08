@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "pub_entityfactory_Connection.h"
 

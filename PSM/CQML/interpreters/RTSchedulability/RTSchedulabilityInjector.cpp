@@ -13,5 +13,5 @@ namespace CQML
     RTSchedulabilityInjector::~RTSchedulabilityInjector(void)
       {
       }
-   
-  } 
+  
+  }

@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "string_type_impl.hpp"
 

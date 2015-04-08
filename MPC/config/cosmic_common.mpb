@@ -1,5 +1,3 @@
-// $Id$
-
 project : vc8warnings, boost_base, acedefaults  {
   libout = $(COSMIC_ROOT)/lib
   dllout = $(COSMIC_ROOT)/bin

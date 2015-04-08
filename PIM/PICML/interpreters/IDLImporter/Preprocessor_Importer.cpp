@@ -1,5 +1,3 @@
-// $Id$
-
 #include "Preprocessor_Importer.h"
 #include "game/xme/Model.h"
 #include "game/xme/modelgen.h"

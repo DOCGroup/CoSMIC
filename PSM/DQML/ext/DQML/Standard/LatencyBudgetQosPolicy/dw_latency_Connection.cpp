@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "dw_latency_Connection.h"
 

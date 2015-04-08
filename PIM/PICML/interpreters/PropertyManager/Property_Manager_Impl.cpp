@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Property_Manager.h"
 #include "Property_Manager_Impl.h"

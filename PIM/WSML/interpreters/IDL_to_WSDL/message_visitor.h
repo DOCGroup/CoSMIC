@@ -45,11 +45,11 @@ public:
   virtual int visit_operation (AST_Operation *node);
   virtual int visit_argument (AST_Argument *node);
   virtual int visit_attribute (AST_Attribute *node);
-  
+ 
 private:
   void gen_messages (AST_Decl *node, const char *prefix);
 
-private:  
+private: 
   DOMElement *current_msg_;
   DOMElement *current_response_msg_;
 };

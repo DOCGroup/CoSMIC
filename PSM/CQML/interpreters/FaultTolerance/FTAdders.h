@@ -11,7 +11,7 @@
 
 namespace CQML
   {
-    class ComponentAdder 
+    class ComponentAdder
       {
         public:
           ComponentAdder (const FTRequirementsVisitor *);
@@ -26,8 +26,8 @@ namespace CQML
           virtual std::string replica_suffix () const;
 
         private:
-          void populate_map (std::map <std::string, Component> &, 
-			                 std::map <std::string, Component> &, 
+          void populate_map (std::map <std::string, Component> &,
+			                 std::map <std::string, Component> &,
 							 const std::set <std::string> &);
 
           const FTRequirementsVisitor * ft_req_visitor_;
@@ -37,7 +37,7 @@ namespace CQML
           std::map <std::string, Component> assembly_comp_map_;
       };
 
-    class ConnectionAdder 
+    class ConnectionAdder
       {
         public:
           ConnectionAdder (const ComponentAdder *);
@@ -48,7 +48,7 @@ namespace CQML
       };
 
 
-    class NodeAssigner 
+    class NodeAssigner
     {
       public:
         virtual ~NodeAssigner () {};
@@ -74,8 +74,8 @@ namespace CQML
     class BranchNBoundNodeAssigner : public NodeAssigner
     {
       public:
-        BranchNBoundNodeAssigner (const SRGVisitor *srgv, 
-                                  const FTRequirementsVisitor *ft_req, 
+        BranchNBoundNodeAssigner (const SRGVisitor *srgv,
+                                  const FTRequirementsVisitor *ft_req,
                                   const ComponentAdder *comp_add);
 
         ~BranchNBoundNodeAssigner();
@@ -87,7 +87,7 @@ namespace CQML
           void nPr (std::vector<int> &, int k, int size, int r);
           bool update_best_permutation (const vector <int> &array, int depth);
           double compute_vector_value (const std::vector <int> &, int depth);
-          void compute_replica_assignement_of (const std::string &primary, 
+          void compute_replica_assignement_of (const std::string &primary,
                                                 const std::string &node_name);
 
           std::vector <int> best_permutation_;
@@ -100,4 +100,4 @@ namespace CQML
 
   }  // namespace CQML
 
-#endif // FTADDERS_H 
+#endif // FTADDERS_H

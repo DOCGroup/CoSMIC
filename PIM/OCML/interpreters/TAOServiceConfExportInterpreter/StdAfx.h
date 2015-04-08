@@ -15,7 +15,7 @@
 		#define _WIN32_WINNT 0x0500
 	#else
 		#define _WIN32_WINNT 0x0400
-	#endif 
+	#endif
 #endif#define _ATL_APARTMENT_THREADED
 
 #include <afxwin.h>

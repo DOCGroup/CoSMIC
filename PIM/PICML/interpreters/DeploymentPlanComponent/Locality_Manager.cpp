@@ -68,7 +68,7 @@ generate_default_instance_configs (GAME::Xml::Fragment parent, PICML::Collocatio
   Fragment value = configProperty.append_element ("value");
   Fragment type = value.append_element ("type");
   type.append_simple_content ("kind", "tk_string");
-  
+ 
   Fragment inner_value = value.append_element ("value");
   inner_value.append_simple_content ("string", group->name ());
 }

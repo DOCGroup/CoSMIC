@@ -23,7 +23,7 @@ int Read_Handler::connections_=0;
 String data;
 String reactor_type;
 int data_exchanges;
-int connections; 
+int connections;
 int handlers;
 
 bool XML_Reader::read_file(String file_name)
@@ -50,9 +50,9 @@ bool XML_Reader::read_file(String file_name)
     }
     if (success)
 	{
-	  /// Parse document	 
+	  /// Parse document	
 	  DOMNode *doc_ptr = parser->getDocument();
-	  DOMNode *root_node=doc_ptr->getFirstChild(); 
+	  DOMNode *root_node=doc_ptr->getFirstChild();
 	  DOMNodeList *child_nodes=root_node->getChildNodes();
 	  DOMNode *child;
 	  char *temp1;
@@ -80,16 +80,16 @@ bool XML_Reader::read_file(String file_name)
 		  DOMNode *handlers=reactor_type->getNextSibling();
 		  temp1=XMLString::transcode(handlers->getTextContent());
 		  this->no_handlers_ = atoi(temp1);
-		  
+		 
 		}
 
 	  }
 	  XMLString::release(&temp1);
-	  XMLString::release(&temp2); 
-	  doc_ptr->release(); 
+	  XMLString::release(&temp2);
+	  doc_ptr->release();
 	} 	
   }
-   
+  
   XMLPlatformUtils::Terminate();
   return success;
 }
@@ -126,7 +126,7 @@ Read_Handler::handle_input (ACE_HANDLE handle)
             return 0;
           else
             {
-			  /// close handle      
+			  /// close handle     
 			  return -1;
             }
         }
@@ -174,7 +174,7 @@ Write_Handler::open (void *)
 int
 Write_Handler::send_data ()
 {
-  int send_size = data.size(); 
+  int send_size = data.size();
   this->peer ().send_n (data.c_str(),
                             send_size);
   return 0;
@@ -268,11 +268,11 @@ print_results (ACE_Profile_Timer::ACE_Elapsed_Time &et)
 int main(int argc, char *argv[])
 {
   XML_Reader xml_reader;
-  xml_reader.read_file("benchmark_inputs.xml"); 
-  reactor_type=xml_reader.get_reactor_type(); 
-  data=xml_reader.get_data(); 
-  data_exchanges=xml_reader.get_data_exchanges(); 
-  connections=xml_reader.get_connections(); 
+  xml_reader.read_file("benchmark_inputs.xml");
+  reactor_type=xml_reader.get_reactor_type();
+  data=xml_reader.get_data();
+  data_exchanges=xml_reader.get_data_exchanges();
+  connections=xml_reader.get_connections();
 
   create_reactor(reactor_type);
 
@@ -288,11 +288,11 @@ int main(int argc, char *argv[])
 	 //auto_ptr<ACE_Reactor_Impl> auto_impl (ACE_Reactor::instance ()->implementation ());
      //impl = auto_impl;
     }
-	Read_Handler::set_connections(connections);  
+	Read_Handler::set_connections(connections); 
   // Acceptor
   ACCEPTOR acceptor;
   ACE_INET_Addr server_addr;
-  
+ 
   // Bind acceptor to any port and then find out what the port was.
   if (acceptor.open (ACE_sap_any_cast (const ACE_INET_Addr &)) == -1
       || acceptor.acceptor ().get_local_addr (server_addr) == -1)

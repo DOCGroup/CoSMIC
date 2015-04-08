@@ -3,8 +3,6 @@
 /**
  * @file XercesHelpers.hpp
  *
- * $Id$
- *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
  */
 
@@ -16,7 +14,7 @@ namespace common
 
   /**
    *  The same as std::back_insert_iterator.
-   *  The only difference; this accepts delimiter, 
+   *  The only difference; this accepts delimiter,
    *  at the constructor just like ostream_iterator.
    */
   template <typename Container>
@@ -25,14 +23,14 @@ namespace common
   protected:
     typename Container::iterator _first;
     typename Container::iterator _last;
-  
+ 
   public:
     typedef Container container_type;
     typedef void value_type;
     typedef void difference_type;
     typedef void pointer;
     typedef void reference;
-  
+ 
     explicit append_iterator(Container& container,
                              typename Container::iterator first,
                              typename Container::iterator last =

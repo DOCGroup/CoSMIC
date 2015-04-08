@@ -60,10 +60,10 @@ XERCES_CPP_NAMESPACE_USE
 class XML_Writer
 {
 public:
-  bool write_file(const String &);  
+  bool write_file(const String &); 
   void set_iterations(int no_it)
   {
-	no_iterations_=no_it; 
+	no_iterations_=no_it;
   }
   void set_connections(int no_con)
   {
@@ -71,7 +71,7 @@ public:
   }
   void set_data(const String &data)
   {
-	data_=data; 
+	data_=data;
   }
   void set_reactor_type(const String &r_type)
   {
@@ -103,7 +103,7 @@ namespace BON
   typedef std::string String;
   typedef std::set<BON::Model> Model_Set;
   typedef std::set<std::string> String_Set;
-  typedef std::set<MON::Aspect> Aspect_Set; 
+  typedef std::set<MON::Aspect> Aspect_Set;
   typedef std::set<BON::Atom> Atom_Set;
   typedef std::set<BON::Attribute> Attribute_Set;
   typedef std::set<BON::Set> Set_Set;
@@ -148,7 +148,7 @@ class Component
 private:
   bool process_benchmarking(MON::Aspect &aspect,BON::Model &model,XML_Writer &writer);
   bool process_middleware(Project &project,XML_Writer &writer);
-  
+ 
 };
 
 }; // namespace BON

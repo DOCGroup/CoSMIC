@@ -12,7 +12,7 @@ OptionEditorPanel::OptionEditorPanel(wxWindow* parent,
   this->SetScrollRate(5, 5);
   this->FitInside();
   this->SetSizer(sizer_);
-  
+ 
   set_category(category);
 }
 
@@ -39,7 +39,7 @@ OptionEditorPanel::set_category(OptionCategory* category)
     {
       Option* option = *o_iter;
       OptionEditor* editor = NULL;
-      
+     
       switch (option->value_kind())
         {
         case Option::ovk_boolean:
@@ -48,7 +48,7 @@ OptionEditorPanel::set_category(OptionCategory* category)
 	      (BooleanOptionEditorFocusListener*) this;
 	    BooleanOption* boolean_option =
 	      (BooleanOption*) option;
-	    
+	   
 	    BooleanOptionEditor* boolean_editor =
 	      new BooleanOptionEditor(this, boolean_option);
 	    editor = boolean_editor;
@@ -112,7 +112,7 @@ OptionEditorPanel::add_focus_listener(OptionEditorPanelFocusListener* l)
 {
   focus_listeners_.push_back(l);
 }
-    
+   
 void
 OptionEditorPanel::boolean_editor_focused(BooleanOptionEditor* editor)
 {

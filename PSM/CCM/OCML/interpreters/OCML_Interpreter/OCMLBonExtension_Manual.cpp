@@ -1,5 +1,3 @@
-// $Id$
-
 #include "OCMLBonX.h"
 #include "OCMLUtils.h"
 #include <algorithm>
@@ -80,7 +78,7 @@ namespace OCML_BON
   String_OptionImpl::xml_export(xercesc::DOMDocument* doc)
   {
     xercesc::DOMElement* node = Described_ItemImpl::xml_export(doc);
-    
+   
     node->setAttribute(XStr("default-value"),
                        XStr(getString_Default_Value()));
 

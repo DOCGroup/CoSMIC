@@ -1,5 +1,3 @@
-// $Id$
-
 project (DQML_iCCM_Component) : game_xml, dqml_game_mga, game_mga_interpreter, cosmic_lib {
   sharedname = DQML_iCCM_Component
 

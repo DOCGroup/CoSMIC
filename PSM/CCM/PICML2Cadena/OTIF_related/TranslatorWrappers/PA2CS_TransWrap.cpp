@@ -33,23 +33,23 @@ namespace
 
 Logger logger = Logger("PA2CS_TranslatorWrapper");
 
-class myTranslator 
-	: public UdmCORBA::Translator 
+class myTranslator
+	: public UdmCORBA::Translator
 {
 public:
-	myTranslator(const Udm::UdmDiagram &from_metainfo, const char *from_name, const char *from_version, const Uml::Class &from_rootclass, 
-				 const Udm::UdmDiagram &to_metainfo, const char *to_name, const char *to_version, const Uml::Class &to_rootclass, 
+	myTranslator(const Udm::UdmDiagram &from_metainfo, const char *from_name, const char *from_version, const Uml::Class &from_rootclass,
+				 const Udm::UdmDiagram &to_metainfo, const char *to_name, const char *to_version, const Uml::Class &to_rootclass,
 				 int argc, char **argv, Logger *logger
-				 ) : Translator(from_metainfo, from_name, from_version, from_rootclass, 
-								to_metainfo, to_name, to_version, to_rootclass, 
-								argc, argv, logger) 
+				 ) : Translator(from_metainfo, from_name, from_version, from_rootclass,
+								to_metainfo, to_name, to_version, to_rootclass,
+								argc, argv, logger)
 				{};
 
 
 	// this function is called when a datanetwork arrives
-	void notify(const char *name, const char *version, const char *remarks, const unsigned long numOfDocs) 
+	void notify(const char *name, const char *version, const char *remarks, const unsigned long numOfDocs)
 	{
-		try 
+		try
 		{
 			cout << "PA2CS_TransWrap: Document received" << endl;
 
@@ -132,7 +132,7 @@ public:
 	}
 };
 
-int main(int argc, char* argv[]) 
+int main(int argc, char* argv[])
 {
 
 	//Looping let's check that it really started
@@ -154,11 +154,11 @@ int main(int argc, char* argv[])
 
 	cout << "PA2CS_TransWrap: exiting" << endl;
 	}
-	catch (exception &e) 
+	catch (exception &e)
 	{
 		logger.log(1, "Error", e.what());
 	}
-	catch (...) 
+	catch (...)
 	{
 		cerr << "CS2PA_TransWrap: " << "Fatal std::exception " << endl;
 		logger.log(1, "Error", "Fatal std::exception");

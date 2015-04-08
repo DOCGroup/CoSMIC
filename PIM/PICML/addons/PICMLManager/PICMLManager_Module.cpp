@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "resource.h"
 
@@ -56,7 +54,6 @@ STDAPI DllUnregisterServer (void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//
 
 /**
  * @class PICML_Model_Intelligence_App

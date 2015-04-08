@@ -21,7 +21,7 @@
  * Visitor that is responsible for generating the deployment
  * configuration file for QED.
  */
-class QED_Deployment_Export QED_Deployment_Visitor : 
+class QED_Deployment_Export QED_Deployment_Visitor :
   public PICML::Visitor
 {
 public:
@@ -38,7 +38,7 @@ public:
   // Visit the RootFolder element
   virtual void Visit_RootFolder (
     const PICML::RootFolder &);
-  
+ 
   // Visit the ComponentImplementations element
   virtual void Visit_ComponentImplementations (
     const PICML::ComponentImplementations &);
@@ -98,7 +98,7 @@ private:
   void Visit_CollocationGroupMember (
     const PICML::CollocationGroupMember &);
 
-  void write_property (const std::map <std::string, 
+  void write_property (const std::map <std::string,
                                        std::string>::value_type &);
 
   std::string scope (const std::string & separator) const;
@@ -122,7 +122,7 @@ private:
   xercesc::XMLFormatTarget * target_;
 
   std::stack <xercesc::DOMElement *> root_;
-  
+ 
   std::map <std::string, std::string> default_props_;
 
   std::string location_;

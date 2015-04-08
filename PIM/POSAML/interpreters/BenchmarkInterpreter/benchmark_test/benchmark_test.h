@@ -51,14 +51,14 @@ using namespace xercesc;
 class XML_Reader
 {
 public:
-  bool read_file(String);  
+  bool read_file(String); 
   int get_connections()
   {
 	return this->no_connections_;
   }
   String get_data()
   {
-	return this->data_; 
+	return this->data_;
   }
   String get_reactor_type()
   {
@@ -95,7 +95,7 @@ public:
   virtual int handle_input (ACE_HANDLE h);
   virtual int handle_close (ACE_HANDLE handle,
                             ACE_Reactor_Mask close_mask);
-  
+ 
 
 private:
   static int connections_;

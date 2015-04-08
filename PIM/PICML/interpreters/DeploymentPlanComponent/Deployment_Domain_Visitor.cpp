@@ -19,7 +19,7 @@ Deployment_Domain_Visitor (const std::string & outpath)
 : Domain_Visitor (outpath)
 {
   this->add_shortname ("StringIOR", "edu.vanderbilt.dre.DAnCE.StringIOR");
-  this->add_shortname ("CORBAName", "edu.vanderbilt.dre.DAnCE.CORBAName"); 
+  this->add_shortname ("CORBAName", "edu.vanderbilt.dre.DAnCE.CORBAName");
 }
 
 Deployment_Domain_Visitor::~Deployment_Domain_Visitor (void)
@@ -63,7 +63,7 @@ visit_NodeReference (PICML::NodeReference_in noderef)
   PICML::Node node = noderef->refers_to_Node ();
 
   GAME::Xml::Swap_Fragment node_fragment (this->fragment_, this->fragment_.append_element ("node"));
-  this->fragment_.append_simple_content ("name", noderef->name ());   
+  this->fragment_.append_simple_content ("name", noderef->name ());  
   this->fragment_.append_simple_content ("label", node->label ());
 
   GAME::Xml::Swap_Fragment resource_fragment (this->fragment_, this->fragment_.append_element ("resource"));

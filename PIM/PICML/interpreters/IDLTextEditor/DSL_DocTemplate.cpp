@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "DSL_DocTemplate.h"
 #include "DSL_Document.h"

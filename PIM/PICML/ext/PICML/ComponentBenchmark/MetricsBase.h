@@ -4,8 +4,6 @@
 /**
  * @file    MetricsBase.h
  *
- * $Id$
- *
  * @author  Alhad Mokashi <amokashi at iupui dot edu>
  *          James H. Hill <hillj at cs dot iupui dot edu>
  */

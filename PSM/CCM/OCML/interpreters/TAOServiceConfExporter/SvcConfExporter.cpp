@@ -59,7 +59,7 @@ SvcConfExporter::parse_category(xercesc::DOMNode* source,
       xercesc::DOMNamedNodeMap* attributes = source->getAttributes();
       XMLUnicodeString name =
         attributes->getNamedItem(XMLUnicodeString("name"))->getNodeValue();
-      
+     
       XercesAutoPtr<xercesc::DOMElement> result =
         target->createElement(XMLUnicodeString("static"));
       result->setAttribute(XMLUnicodeString("id"), name);

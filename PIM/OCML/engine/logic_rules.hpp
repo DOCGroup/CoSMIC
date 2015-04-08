@@ -1,5 +1,3 @@
-// $Id$
-
 #ifndef _LOGIC_RULES_HPP_
 #define _LOGIC_RULES_HPP_
 

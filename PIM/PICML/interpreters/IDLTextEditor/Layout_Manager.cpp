@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Layout_Manager.h"
 #include "game/mga/utils/Point.h"

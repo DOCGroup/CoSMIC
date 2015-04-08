@@ -23,7 +23,7 @@ namespace CQML
           virtual void Visit_FTDeployment(const FTDeployment &);
 		  virtual void Visit_ComponentAssembly (const ComponentAssembly &assembly);
 		  virtual void Visit_ComponentAssemblyQoS (const ComponentAssemblyQoS & caq);
-		  virtual void Visit_ComponentAssemblyReference 
+		  virtual void Visit_ComponentAssemblyReference
 			  (const ComponentAssemblyReference &assembly_ref);
 
 		  virtual void Visit_ComponentRef (const ComponentRef &comp_ref);
@@ -51,7 +51,7 @@ namespace CQML
 */
           int current_req_replica_;
 		  bool attached_FOU_;
-		  std::set <ComponentAssembly> nonFT_nested_assemblies_; 
+		  std::set <ComponentAssembly> nonFT_nested_assemblies_;
           std::map <std::string, FTReq> monolith_instance_req_map_;
           std::map <std::string, FTReq> assembly_instance_req_map_;
       };

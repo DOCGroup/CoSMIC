@@ -1,8 +1,6 @@
 /**
  * @file OptionEditor.hpp
  *
- * $Id$
- *
  * Defines the OptionEditor class.
  *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>

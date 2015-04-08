@@ -1,6 +1,4 @@
 // -*- C++ -*-
-// $Id$
-
 #ifndef _DQML_FWD_H_
 #define _DQML_FWD_H_
 

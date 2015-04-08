@@ -68,7 +68,7 @@ void Deployment_Plan_Visitor::write_document (const std::string & basename)
 
   using namespace xercesc;
 
-  // Write the XML document to a file.  
+  // Write the XML document to a file. 
   DOMLSSerializer * serializer = this->document_->impl ()->createLSSerializer ();
 
   if (serializer->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true))
@@ -421,7 +421,7 @@ visit_ImplementationArtifact (PICML::ImplementationArtifact_in artifact)
   this->curr_artifact_.append_simple_content ("location", String (artifact->location ()));
 
   // Let's generate the artifact exec parameters.
-  GAME::Xml::Fragment prev_property_parent = this->property_parent_; 
+  GAME::Xml::Fragment prev_property_parent = this->property_parent_;
   this->property_parent_ = this->curr_artifact_;
 
   for (PICML::ArtifactExecParameter param : artifact->src_of_ArtifactExecParameter ())
@@ -479,7 +479,7 @@ deploy_connector_fragment (PICML::ConnectorInstance_in connector,
     {
       // Insert this instance into the current locality.
       GAME::Xml::Fragment locality = this->locality_.at (group);
-     
+    
       // Write a comment that shows the constained instances name.
       // TODO make this a debugging feature.
       xercesc::DOMComment * comment = (*this->document_)->createComment (String (name));

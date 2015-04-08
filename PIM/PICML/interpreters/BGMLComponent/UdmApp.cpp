@@ -37,9 +37,9 @@ static void showUsage()
 
 
 
-/* 
+/*
 Remarks to CUdmApp::UdmMain(...):
-0.	The p_backend points to an already open backend, and the framework 
+0.	The p_backend points to an already open backend, and the framework
 	closes it automatically. DO NOT OPEN OR CLOSE IT!
 	To commit changes use p_backend->CommitEditSequence().
 	To abort changes use p_backend->AbortEditSequence().
@@ -58,8 +58,8 @@ Remarks to CUdmApp::UdmMain(...):
 	METAMODEL_CHECK_SYNTAX	= 101
 
  3. The framework catches all the exceptions and reports the error in a message box,
-	clean up and close the transactions aborting the changes. You can override this 
-	behavior by catching udm_exception. Use udm_exception::what() to form an error 
+	clean up and close the transactions aborting the changes. You can override this
+	behavior by catching udm_exception. Use udm_exception::what() to form an error
 	message.
 */
 
@@ -85,7 +85,7 @@ void CUdmApp::UdmMain(
 
 		bool valid_interpretation = 0;
 
-		if (focusObject != Udm::null || 
+		if (focusObject != Udm::null ||
 			! selectedObjects.empty())
         {
 			std::set<Udm::Object> mySet (selectedObjects);
@@ -114,13 +114,13 @@ void CUdmApp::UdmMain(
 		{
 			Udm::Object root_obj = p_backend->GetRootObject();
 			PICML::RootFolder root_folder = PICML::RootFolder::Cast (root_obj);
-			std::set<PICML::ComponentAnalyses> child_benchmarks = 
+			std::set<PICML::ComponentAnalyses> child_benchmarks =
 				root_folder.ComponentAnalyses_children ();
 			for (std::set<PICML::ComponentAnalyses>::iterator iter = child_benchmarks.begin ();
 			iter != child_benchmarks.end ();
 			iter ++)
 			{
-				std::set<PICML::BenchmarkAnalysis> benchmarks = 
+				std::set<PICML::BenchmarkAnalysis> benchmarks =
 					iter->BenchmarkAnalysis_children();
 				for (std::set<PICML::BenchmarkAnalysis>::iterator iter2 = benchmarks.begin ();
 				iter2 != benchmarks.end ();
@@ -136,7 +136,7 @@ void CUdmApp::UdmMain(
 				}
 				
 			}
-		} 
+		}
 
 		if (valid_interpretation)		
 			AfxMessageBox ("Bencharking files successfully generated");
@@ -171,7 +171,7 @@ string CUdmApp::ExtractName(Udm::Object ob)
 	set<Uml::Attribute> aattrs=Uml::AncestorAttributes(cls);
 	attrs.insert(aattrs.begin(),aattrs.end());
 
-	for(set<Uml::Attribute>::iterator ai = attrs.begin();ai != attrs.end(); ai++) 
+	for(set<Uml::Attribute>::iterator ai = attrs.begin();ai != attrs.end(); ai++)
 	{
 		if(string(ai->type())=="String")
 		{

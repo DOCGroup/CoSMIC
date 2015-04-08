@@ -1,5 +1,3 @@
-// $Id$
-
 project (NetQoSComponent): xerces, cqmllib, gme_udm_component {
   sharedname = NetQoSComponent
 

@@ -1,8 +1,6 @@
 /**
  * @file BasicOptions.hpp
  *
- * $Id$
- *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
  *
  * Definition of the basic (integer, string, boolean) options.

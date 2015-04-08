@@ -25,6 +25,6 @@ int main(int, char*[])
   write_info(values.get());
 
   delete_values(values.get());
- 
+
   return 0;
 }

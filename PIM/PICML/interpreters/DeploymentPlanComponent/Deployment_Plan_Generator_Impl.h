@@ -4,8 +4,6 @@
 /**
  * @file        Deployment_Plan_Generator_Impl.h
  *
- * $Id$
- *
  * @author      James H. Hill
  */
 //=============================================================================

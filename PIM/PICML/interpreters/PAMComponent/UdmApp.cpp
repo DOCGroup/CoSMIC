@@ -87,7 +87,7 @@ void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,        // Backend pointer
   using PICML::Component;
   using PICML::PAMVisitor;
   using PICML::RootFolder;
-  
+ 
   try
     {
       PAMVisitor visitor (focusObject, selectedObjects);

@@ -3,12 +3,12 @@
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
  * ALL RIGHTS RESERVED
- * Vanderbilt University disclaims all warranties with regard to this 
- * software, including all implied warranties of merchantability and 
- * fitness.  In no event shall Vanderbilt University be liable for any 
+ * Vanderbilt University disclaims all warranties with regard to this
+ * software, including all implied warranties of merchantability and
+ * fitness.  In no event shall Vanderbilt University be liable for any
  * special, indirect or consequential damages or any damages whatsoever
  * resulting from loss of use, data or profits, whether in an action of
- * contract, negligence or other tortious action, arising out of or in 
+ * contract, negligence or other tortious action, arising out of or in
  * connection with the use or performance of this software.	
  */
 
@@ -18,7 +18,7 @@ import edu.vanderbilt.isis.udm.*;
 
 /**
  * Domain specific class of <code>InputMessage</code>.
- */ 
+ */
 public class InputMessage extends MgaObject
 {
 	// meta information
@@ -28,11 +28,11 @@ public class InputMessage extends MgaObject
 
 	/**
 	 * Constructor.
-	 * @param  upo The object that helps the initialization of the instance 
+	 * @param  upo The object that helps the initialization of the instance
 	 * @param  metaDiagram The diagram of the data network
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	protected InputMessage(UdmPseudoObject upo, Diagram metaDiagram) 
+	 */
+	protected InputMessage(UdmPseudoObject upo, Diagram metaDiagram)
 		throws UdmException
 	{
 		super(upo, metaDiagram);
@@ -41,7 +41,7 @@ public class InputMessage extends MgaObject
 	/**
 	 * Returns the meta class.
 	 * @return  The meta class
-	 */ 
+	 */
 	UdmPseudoObject getMetaClass()
 	{
 		return metaClass;
@@ -50,13 +50,13 @@ public class InputMessage extends MgaObject
 	/* Construction */
 
 	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
+	 * Creates an instance of the class in the container specified by the parameter.
 	 * @param  parent The parent container
 	 * @return  An instance of the class <code>InputMessage</code>
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static InputMessage create(Operation parent) 
-		throws UdmException 
+	 */
+	public static InputMessage create(Operation parent)
+		throws UdmException
 	{
 		Diagram metaDiagram = parent.getDiagram();
 		return new InputMessage(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
@@ -75,7 +75,7 @@ public class InputMessage extends MgaObject
 	 * Sets the end of the association with role name <code>srcInputMessage</code>.
 	 * @param a The end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public void setsrcInputMessage(Input a)
 		throws UdmException
 	{
@@ -88,7 +88,7 @@ public class InputMessage extends MgaObject
 	 * Returns the end of the association with role name <code>srcInputMessage</code>.
 	 * @return The end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public Input getsrcInputMessage()
 		throws UdmException
 	{
@@ -107,7 +107,7 @@ public class InputMessage extends MgaObject
 	 * Sets the end of the association with role name <code>dstInputMessage</code>.
 	 * @param a The end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public void setdstInputMessage(MessageRef a)
 		throws UdmException
 	{
@@ -120,7 +120,7 @@ public class InputMessage extends MgaObject
 	 * Returns the end of the association with role name <code>dstInputMessage</code>.
 	 * @return The end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public MessageRef getdstInputMessage()
 		throws UdmException
 	{

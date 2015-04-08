@@ -1,6 +1,4 @@
 /* -*- c++ -*- */
-// $Id$
-
 #include "xme_dom_visitor.h"
 #include "be_extern.h"
 #include "Utils/xercesc/XercesString.h"

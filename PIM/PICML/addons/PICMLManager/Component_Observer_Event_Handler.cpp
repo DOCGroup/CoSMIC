@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Component_Observer_Event_Handler.h"
 

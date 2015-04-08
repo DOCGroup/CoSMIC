@@ -1,5 +1,3 @@
-// $Id$
-
 project : register, gme_common {
   specific (prop:microsoft) {
     midl_flags    += /server none /client none

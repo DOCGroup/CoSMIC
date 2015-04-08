@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 
 #include "File_Processor.h"
@@ -43,7 +41,7 @@ public:
   virtual void visit_RequiredRequestPort (PICML::RequiredRequestPort_in item)
   {
     this->found_ = true;
-  }  
+  } 
 
 private:
   bool found_;
@@ -92,7 +90,7 @@ void IDL_File_Processor::visit_File (PICML::File_in file)
   // Generate the include files for this file.
   for (auto fwd_decl : fwd_decls.includes ())
     this->generate_include_file (fwd_decl);
- 
+
   // Write the pragma statement for the local executor mapping.
   if (fwd_decls.has_component () || this->file_has_object_with_reference (file))
     this->idl_ << nl

@@ -19,7 +19,7 @@ namespace CQML
 
   FaultToleranceVisitor::~FaultToleranceVisitor ()
   {
-/*    for(std::map <std::string, Injector *>::iterator itr 
+/*    for(std::map <std::string, Injector *>::iterator itr
           = this->plan_injector_map_.begin();
           itr != this->plan_injector_map_.end();
           ++itr)
@@ -32,7 +32,7 @@ namespace CQML
     {
 	  this->parse_ft_requirements (rf);
 /*
-      for (std::map <std::string, Injector *>::iterator itr 
+      for (std::map <std::string, Injector *>::iterator itr
             = this->plan_injector_map_.begin();
             itr != this->plan_injector_map_.end();
             ++itr)
@@ -67,13 +67,13 @@ namespace CQML
 	this->comp_addr_ = comp_addr.get ();
 
     std::auto_ptr <ConnectionAdder> conn_addr (new ConnectionAdder (comp_addr.get()));
-	this->ft_injector_ = std::auto_ptr <FTInjector>  (new FTInjector (comp_addr.release(), 
-			     		  							   conn_addr.release(), 
+	this->ft_injector_ = std::auto_ptr <FTInjector>  (new FTInjector (comp_addr.release(),
+			     		  							   conn_addr.release(),
 				  								       ft_req_visitor.release()));
 
 	accept_each_child (rf, DeploymentPlans, *this);
   }
-  
+ 
   void FaultToleranceVisitor::Visit_DeploymentPlans (const DeploymentPlans& dp_folder)
   {
 	accept_each_child (dp_folder, DeploymentPlan, *this);
@@ -83,27 +83,27 @@ namespace CQML
   {
 	std::auto_ptr <NodeAssigner> node_assgn;
 	std::string dep_plan_name = std::string (plan.name());
-	std::set <DomainRiskGroupingRef> drg_refs 
+	std::set <DomainRiskGroupingRef> drg_refs
 		= plan.DomainRiskGroupingRef_kind_children ();
- 
+
 	if (drg_refs.empty())
 	  {
 		std::auto_ptr<NodeCollector> node_collector (new NodeCollector ());
 		node_collector->Visit_DeploymentPlan (plan);
-		node_assgn = std::auto_ptr <NodeAssigner> 
+		node_assgn = std::auto_ptr <NodeAssigner>
 		  (new RandomNodeAssigner (node_collector.release (), this->comp_addr_));
 	  }
 	else
 	  {
-		std::set <DomainRiskGroupingRef>::const_iterator iter 
+		std::set <DomainRiskGroupingRef>::const_iterator iter
 			= drg_refs.begin ();
 		DomainRiskGrouping srg_con = iter->ref(); // Exactly one!!
 		std::auto_ptr <SRGVisitor> srg_visitor (new SRGVisitor());
 		srg_visitor->Visit_DomainRiskGrouping (srg_con);
 		srg_visitor->compute_metric ();
-		node_assgn = std::auto_ptr <NodeAssigner> (new BranchNBoundNodeAssigner 
-													(srg_visitor.release(), 
-													 this->ft_req_visitor_, 
+		node_assgn = std::auto_ptr <NodeAssigner> (new BranchNBoundNodeAssigner
+													(srg_visitor.release(),
+													 this->ft_req_visitor_,
 													 this->comp_addr_));
 	  }
 	this->ft_injector_->add_node_assigner(dep_plan_name, node_assgn.release());

@@ -14,7 +14,7 @@ void Prototype_Visitor::visitFCOImpl(const FCO& object)
 {
 	// print the function prototype of rule validatior
 	if (Rule(object->getParent())) {
-		os_ << "bool " << get_func_name(object) 
+		os_ << "bool " << get_func_name(object)
 			<< "(Option_Category& root);  // "
 			<< object->getName() << std::endl;
 	}

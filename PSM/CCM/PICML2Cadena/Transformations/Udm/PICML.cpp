@@ -8836,7 +8836,7 @@ namespace PICML {
 		Uml::SetClass(MgaObject::meta, umldiagram, "MgaObject");
 		Uml::SetAttribute(MgaObject::meta_position,MgaObject::meta, "position");
 		Uml::SetAttribute(MgaObject::meta_name,MgaObject::meta, "name");
-		//composition child roles 
+		//composition child roles
 		Uml::SetParentRole(RTEC_Connection::meta_EventChannelConfiguration_parent,RTEC_Connection::meta,EventChannelConfiguration::meta, "", "");
 		Uml::SetParentRole(RTEC_Filter_Group::meta_RTEC_Proxy_Supplier_parent,RTEC_Filter_Group::meta,RTEC_Proxy_Supplier::meta, "", "");
 		Uml::SetParentRole(Include_RTEC_Filter_Group::meta_RTEC_Proxy_Supplier_parent,Include_RTEC_Filter_Group::meta,RTEC_Proxy_Supplier::meta, "", "");
@@ -9041,7 +9041,7 @@ namespace PICML {
 		Uml::SetParentRole(MPC::meta_ComponentBuild_parent,MPC::meta,ComponentBuild::meta, "", "");
 		Uml::SetParentRole(Workspaces::meta_MPC_parent,Workspaces::meta,MPC::meta, "", "");
 		Uml::SetParentRole(RootFolder::meta_RootFolder_parent,RootFolder::meta,RootFolder::meta, "", "");
-		// composition parentroles 
+		// composition parentroles
 		Uml::SetChildRole(RTEC_Proxy::meta_RT_Info_Param_children,RTEC_Proxy::meta,RT_Info_Param::meta, "", "");
 		Uml::SetChildRole(RTEC_Proxy_Supplier::meta_Include_RT_Info_children,RTEC_Proxy_Supplier::meta,Include_RT_Info::meta, "", "");
 		Uml::SetChildRole(RTEC_Proxy_Supplier::meta_Include_RTEC_Filter_Group_children,RTEC_Proxy_Supplier::meta,Include_RTEC_Filter_Group::meta, "", "");
@@ -9246,7 +9246,7 @@ namespace PICML {
 		Uml::SetChildRole(RootFolder::meta_InterfaceDefinitions_children,RootFolder::meta,InterfaceDefinitions::meta, "", "");
 		Uml::SetChildRole(RootFolder::meta_ComponentBuild_children,RootFolder::meta,ComponentBuild::meta, "", "");
 		Uml::SetChildRole(RootFolder::meta_RootFolder_children,RootFolder::meta,RootFolder::meta, "", "");
-		// Association roles 
+		// Association roles
 
 		Uml::SetAssocRole(Include_RTEC_Filter_Group_Members_Base::meta_srcInclude_RTEC_Filter_Group,Include_RTEC_Filter_Group_Members_Base::meta,Include_RTEC_Filter_Group_Members_Base::meta, "dstInclude_RTEC_Filter_Group");
 		Include_RTEC_Filter_Group_Members_Base::meta_dstInclude_RTEC_Filter_Group_rev = Include_RTEC_Filter_Group_Members_Base::meta_srcInclude_RTEC_Filter_Group;

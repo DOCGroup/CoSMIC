@@ -1,5 +1,3 @@
-// $Id$
-
 project (CIAOEventsComponent): cqmllib, gme_udm_component {
   sharedname = CIAOEventsComponent
 

@@ -1,5 +1,3 @@
-// $Id$
-
 // ============================================================================
 //
 // = LIBRARY
@@ -57,15 +55,15 @@ module Noun
     long    m_id;
     char    m_begin_letter;
   };
-  
+ 
   interface emptyNoun
   {
   };
-  
+ 
   // const modifier
   const short aShortConstant = 5;
   const long  aLongConstant = 2;
-  
+ 
   // typedef complex types
   typedef Person personArray[aShortConstant];
   typedef Place  placeArray[aShortConstant];
@@ -73,7 +71,7 @@ module Noun
   typedef Event  eventArray[aShortConstant];
   typedef Idea   ideaArray[aShortConstant];
   typedef emptyNoun emptyNounArray[aShortConstant];
-  
+ 
   // typedef basic types
   typedef long longArray[aLongConstant][aLongConstant];
   typedef short shortArray[aLongConstant][aLongConstant];

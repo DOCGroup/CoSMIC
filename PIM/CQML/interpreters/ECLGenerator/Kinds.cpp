@@ -17,7 +17,7 @@ namespace CQML
   {
 	  return this->m_instance_->getName ();
   }
-  
+ 
   std::string AbstractKind::meta_type () const
   {
 	  switch (this->m_instance_->getStereotype())
@@ -64,7 +64,7 @@ namespace CQML
       parent_name = parent_instance->getName ();
       this->ancestors_.push_front (parent_instance);
     }
-    
+   
   }
 
   Kind::~Kind(void)

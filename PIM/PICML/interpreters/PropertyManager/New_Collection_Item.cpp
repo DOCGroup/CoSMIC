@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "New_Collection_Item.h"
 #include "Collection_Container_Data_Item.h"

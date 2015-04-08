@@ -2,9 +2,9 @@
 #include <string>
 using std::string;
 
-Benchmark_USCOREData_USCORECollector::Benchmark_USCOREData_USCORECollector (CUTS::BDC_Control_Handle_ptr controls, 
+Benchmark_USCOREData_USCORECollector::Benchmark_USCOREData_USCORECollector (CUTS::BDC_Control_Handle_ptr controls,
                                                                             CUTS::Path_Measurement_ptr online_measurements)
-: controls_(CUTS::BDC_Control_Handle::_duplicate (controls)), 
+: controls_(CUTS::BDC_Control_Handle::_duplicate (controls)),
 online_measurements_(CUTS::Path_Measurement::_duplicate (online_measurements))
 {
   Benchmark_USCOREData_USCORECollector_init(SOAP_IO_DEFAULT, SOAP_IO_DEFAULT);
@@ -27,7 +27,7 @@ Benchmark_USCOREData_USCORECollector::Benchmark_USCOREData_USCORECollector (soap
 
 void Benchmark_USCOREData_USCORECollector::Benchmark_USCOREData_USCORECollector_init (soap_mode imode, soap_mode omode)
 {
-  static const struct Namespace namespaces[] = 
+  static const struct Namespace namespaces[] =
   {
     {
       "SOAP-ENV", "http://schemas.xmlsoap.org/soap/envelope/", "http://www.w3.org/*/soap-envelope", NULL
@@ -249,7 +249,7 @@ static int serve_SLICE__execution_USCOREtime(Benchmark_USCOREData_USCORECollecto
       || soap_end_recv(soap))
   return soap->error;
 
-  soap->error = soap->execution_USCOREtime(request.path_USCOREid, 
+  soap->error = soap->execution_USCOREtime(request.path_USCOREid,
                                            response);
   if (soap->error)
   return soap->error;
@@ -301,7 +301,7 @@ static int serve_SLICE__unbind_USCOREto_USCOREpath(Benchmark_USCOREData_USCORECo
       || soap_end_recv(soap))
   return soap->error;
 
-  soap->error = soap->unbind_USCOREto_USCOREpath(request.path_USCOREid, 
+  soap->error = soap->unbind_USCOREto_USCOREpath(request.path_USCOREid,
                                                  response);
   if (soap->error)
   return soap->error;
@@ -353,8 +353,8 @@ static int serve_SLICE__bind_USCOREto_USCOREpath(Benchmark_USCOREData_USCOREColl
       || soap_end_recv(soap))
   return soap->error;
 
-  soap->error = soap->bind_USCOREto_USCOREpath(request.path, 
-                                               request.flags, 
+  soap->error = soap->bind_USCOREto_USCOREpath(request.path,
+                                               request.flags,
                                                response._USCOREreturn);
   if (soap->error)
   return soap->error;
@@ -409,7 +409,7 @@ int Benchmark_USCOREData_USCORECollector::collect_USCOREperformance_USCOREdata (
 }
 
 
-int Benchmark_USCOREData_USCORECollector::execution_USCOREtime (int path_USCOREid, 
+int Benchmark_USCOREData_USCORECollector::execution_USCOREtime (int path_USCOREid,
                                                                 struct SLICE__execution_USCOREtimeResponse& _param_1)
 {
   try
@@ -449,7 +449,7 @@ int Benchmark_USCOREData_USCORECollector::execution_USCOREtime (int path_USCOREi
 }
 
 
-int Benchmark_USCOREData_USCORECollector::unbind_USCOREto_USCOREpath (int path_USCOREid, 
+int Benchmark_USCOREData_USCORECollector::unbind_USCOREto_USCOREpath (int path_USCOREid,
                                                                       struct SLICE__unbind_USCOREto_USCOREpathResponse& _param_1)
 {
   try
@@ -475,8 +475,8 @@ int Benchmark_USCOREData_USCORECollector::unbind_USCOREto_USCOREpath (int path_U
 }
 
 
-int Benchmark_USCOREData_USCORECollector::bind_USCOREto_USCOREpath (CUTS_x002e_USCORESE_USCOREPath_USCORESequence* path, 
-                                                                    unsigned short flags, 
+int Benchmark_USCOREData_USCORECollector::bind_USCOREto_USCOREpath (CUTS_x002e_USCORESE_USCOREPath_USCORESequence* path,
+                                                                    unsigned short flags,
                                                                     int& _USCOREreturn)
 {
   try

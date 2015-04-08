@@ -14,7 +14,7 @@ int main(int, char*[])
   write_info(&bool_value);
   write_info(&str_value);
   std::cout << std::endl;
- 
+
   // Default values
   OCML::Integer_Option_Value def_int_value;
   OCML::Boolean_Option_Value def_bool_value;
@@ -30,7 +30,7 @@ int main(int, char*[])
   std::cout << "int(NULL) == int(3)" << std::endl;
   write_bool_str(def_int_value.compare(&int_value));
   std::cout << std::endl << std::endl;
- 
+
   // Assignment
   def_int_value.set(&int_value);
   def_bool_value.set(&bool_value);
@@ -46,7 +46,7 @@ int main(int, char*[])
   std::cout << "int(3) == int(3)" << std::endl;
   write_bool_str(def_int_value.compare(&int_value));
   std::cout << std::endl << std::endl;
-  
+ 
   // Clear
   def_int_value.clear();
   def_bool_value.clear();

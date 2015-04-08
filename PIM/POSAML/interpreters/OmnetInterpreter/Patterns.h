@@ -11,7 +11,7 @@
 
 class Reactor:public Pattern
 {
-public: 
+public:
   Reactor (const BON::Project &, const BON::Model &);
   int create_init_file ();
 private:

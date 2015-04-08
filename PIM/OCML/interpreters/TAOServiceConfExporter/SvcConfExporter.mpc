@@ -1,5 +1,3 @@
-// $Id$
-
 project {
   sharedName = OCMLSvcConfExporter
   macros += SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS _USRDLL WXMAKINGDLL

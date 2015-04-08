@@ -26,9 +26,9 @@ namespace CQML
       std::string src;
       std::string dest;
     };
-  
+ 
   typedef std::multimap <NetQoS, ConnectionInfo> NetQoSRequirements;
-  
+ 
   }
 
 #endif  // __COMMON_H_

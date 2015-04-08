@@ -1,4 +1,4 @@
-// $Id$ 
+//
 
 project (PICML_migration) {
   specific (wix) {

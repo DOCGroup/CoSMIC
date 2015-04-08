@@ -1,5 +1,3 @@
-// $Id$
-
 project : game_mga {
   after += PICML_GAME_Mga
   libs  += PICML_GAME_Mga

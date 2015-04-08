@@ -14,7 +14,7 @@ private:
   template <typename OPTION_TYPE_INFO>
   OCML::Option_Value* try_create_value(OCML::Option_Definition* definition,
                                        const char* str);
- 
+
   OCML::Option_Value* create_value(OCML::Option_Definition* definition,
                                    const char* str);
 };

@@ -37,7 +37,7 @@ Boolean_Edit_Control::on_focus_gain(wxFocusEvent&)
   {
     (*iter)->boolean_edit_focus_gain(this);
   }
-}    
+}   
 
 void
 Boolean_Edit_Control::on_focus_lost(wxFocusEvent&)
@@ -48,7 +48,7 @@ Boolean_Edit_Control::on_focus_lost(wxFocusEvent&)
   {
     (*iter)->boolean_edit_focus_lost(this);
   }
-}    
+}   
 
 BEGIN_EVENT_TABLE(Boolean_Edit_Control, wxCheckBox)
   EVT_CHECKBOX(wxID_ANY, Boolean_Edit_Control::on_click)

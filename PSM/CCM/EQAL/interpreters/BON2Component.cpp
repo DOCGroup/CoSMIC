@@ -244,7 +244,7 @@ void AssemblyVisitor::visitEvent_SourceImpl (const Event_Source& event_source)
 
           RTEC_Resource_Factory_Reference rtec_factory_ref = FCO (*rtec_factory_iter);
           if (!rtec_factory_ref) return;
-          
+         
           RTEC_Resource_Factory rtec_factory = rtec_factory_ref->getReferred ();
           if (!rtec_factory) return;
 

@@ -5,8 +5,8 @@
 // Named Loop idiom
 #define LABEL(x) goto LOOP_##x; \
 				 BREAK_##x: if(0)  \
-                 LOOP_##x: 
-#define BREAK(x) goto BREAK_##x; 
+                 LOOP_##x:
+#define BREAK(x) goto BREAK_##x;
 
 namespace CQML
 {
@@ -31,16 +31,16 @@ namespace CQML
 	  accept_each_child (rf, ComponentImplementations, *this);
   }
 
-  void FTRequirementsVisitor::Visit_ComponentImplementations 
+  void FTRequirementsVisitor::Visit_ComponentImplementations
 	  (const ComponentImplementations &comp_impls)
   {
 	  accept_each_child (comp_impls, ComponentImplementationContainer, *this);
   }
 
-  void FTRequirementsVisitor::Visit_ComponentImplementationContainer 
+  void FTRequirementsVisitor::Visit_ComponentImplementationContainer
 	  (const ComponentImplementationContainer &impl_container)
   {
-	  std::set <MonolithicImplementation> mono_impls = 
+	  std::set <MonolithicImplementation> mono_impls =
 		  impl_container.MonolithicImplementation_kind_children ();
 	  if (!mono_impls.empty()) // We don't want to visit a component implementation
 		  return;
@@ -53,7 +53,7 @@ namespace CQML
 	class FTAnnotatedAssemblyRemover : public std::unary_function <ComponentAssembly, void>
 	  {
 		public:
-			FTAnnotatedAssemblyRemover (Visitor &v, std::set <ComponentAssembly> &assembly_set) 
+			FTAnnotatedAssemblyRemover (Visitor &v, std::set <ComponentAssembly> &assembly_set)
 				:  visitor_ (v),
 				   assembly_set_ (assembly_set){}
 			result_type operator () (const argument_type & arg)
@@ -103,24 +103,24 @@ namespace CQML
 		  if (FOUs.empty ())
 			  return;
 		  std::set <ComponentAssembly> assemblies = assembly.ComponentAssembly_kind_children ();
-		  
+		 
 		  for (std::set<FailOverUnit>::const_iterator iter = FOUs.begin();
 			   iter != FOUs.end();
 			   ++iter)
 		  {
   			FTAnnotatedAssemblyRemover remover (assemblies);
-			this->qos_connection_visit <ComponentAssemblyQoS, ComponentAssembly, 
+			this->qos_connection_visit <ComponentAssemblyQoS, ComponentAssembly,
 										  ComponentAssemblyReference, FTAnnotatedAssemblyRemover>
-										  (*iter, FailOverUnit::srcComponentAssemblyQoS, 
+										  (*iter, FailOverUnit::srcComponentAssemblyQoS,
 										   ComponentQoS::srcComponentAssemblyQoS_end,
 										   remover);
 		  }
-		  accept_each (FOUs, *this);		  
+		  accept_each (FOUs, *this);		 
 		  accept_each (assemblies, *this);
 	  }*/
   }
 
-  void FTRequirementsVisitor::Visit_ComponentAssemblyReference 
+  void FTRequirementsVisitor::Visit_ComponentAssemblyReference
 	  (const ComponentAssemblyReference &assembly_ref)
   {
 	  this->attached_FOU_ = false;
@@ -154,7 +154,7 @@ namespace CQML
 
   void FTRequirementsVisitor::Visit_ComponentQoS (const ComponentQoS & cq)
   {
-	QoSCharacteristicBase qos_char = cq.dstComponentQoS_end ();  
+	QoSCharacteristicBase qos_char = cq.dstComponentQoS_end (); 
 	if (Udm::IsDerivedFrom (qos_char.type(), FailOverUnit::meta))
 	{
 		FailOverUnit fou = FailOverUnit::Cast (qos_char);
@@ -192,7 +192,7 @@ namespace CQML
 
   void FTRequirementsVisitor::Visit_ComponentAssemblyQoS (const ComponentAssemblyQoS & caq)
   {
-	QoSCharacteristicBase qos_char = caq.dstComponentAssemblyQoS_end ();  
+	QoSCharacteristicBase qos_char = caq.dstComponentAssemblyQoS_end (); 
 	if (Udm::IsDerivedFrom (qos_char.type(), FailOverUnit::meta))
 	{
 		this->attached_FOU_ = true;
@@ -201,7 +201,7 @@ namespace CQML
 		ComponentAssemblyBase assembly_base = caq.srcComponentAssemblyQoS_end ();
 		if (Udm::IsDerivedFrom (assembly_base.type(), ComponentAssemblyReference::meta))
 		{
-			ComponentAssemblyReference assembly_ref 
+			ComponentAssemblyReference assembly_ref
 				= ComponentAssemblyReference::Cast (assembly_base);
 			ComponentAssembly assembly = assembly_ref.ref ();
 			this->current_req_replica_ = (int)fou.Replica();
@@ -224,14 +224,14 @@ namespace CQML
   }
 
   template <class QoSConnectionType, class T, class TRef, class UnaryFunctor>
-  void FTRequirementsVisitor::qos_connection_visit 
+  void FTRequirementsVisitor::qos_connection_visit
 	  (const FailOverUnit & fou,
 	   void (QoSConnectionType::*srcTQoS_end)(void),
 	   void (FailOverUnit::*srcTQoS)(void),
 	   UnaryFunctor func)
   {
 	  std::set <QoSConnectionType> qos_connections = fou.*srcTQoS ();
-	  for (std::set <QoSConnectionType>::const_iterator iter 
+	  for (std::set <QoSConnectionType>::const_iterator iter
 				= qos_connections.begin();
 		   iter != qos_connections.end();
 		   ++iter)
@@ -241,16 +241,16 @@ namespace CQML
           {
             TRef ref = TRef::Cast (base);
             T t = ref.ref ();
-            func (t);  
+            func (t); 
           }
 		else if (Udm::IsDerivedFrom (base.type(), T::meta))
 		  {
             T t = T::Cast (base);
-            func (t);  
+            func (t); 
 		  }
 	  }
   }
-  
+ 
   void FTRequirementsVisitor::component_qos_connection_visit (const FailOverUnit & fou)
   {
 	  class Monolith_instance_caller : public std::unary_function <Component, void>
@@ -265,9 +265,9 @@ namespace CQML
 			Visitor &visitor_;
 	  };
 	  Monolith_instance_caller caller (*this);
-	  this->qos_connection_visit <ComponentQoS, Component, 
+	  this->qos_connection_visit <ComponentQoS, Component,
 		                          ComponentRef, Monolith_instance_caller>
-								  (fou, FailOverUnit::srcComponentQoS, 
+								  (fou, FailOverUnit::srcComponentQoS,
 								   ComponentQoS::srcComponentQoS_end,
 								   caller);
   }
@@ -286,14 +286,14 @@ namespace CQML
 			Visitor &visitor_;
 	  };
 	  Assembly_visit_caller caller (*this);
-	  this->qos_connection_visit <ComponentAssemblyQoS, ComponentAssembly, 
+	  this->qos_connection_visit <ComponentAssemblyQoS, ComponentAssembly,
 		                          ComponentAssemblyReference, Assembly_visit_caller>
-								  (fou, FailOverUnit::srcComponentAssemblyQoS, 
+								  (fou, FailOverUnit::srcComponentAssemblyQoS,
 								   ComponentQoS::srcComponentAssemblyQoS_end,
 								   caller);
 
 	  std::set <ComponentAssemblyQoS> assembly_qos_connections = fou.srcComponentAssemblyQoS ();
-	  for (std::set <ComponentAssemblyQoS>::const_iterator iter 
+	  for (std::set <ComponentAssemblyQoS>::const_iterator iter
 				= assembly_qos_connections.begin();
 		   iter != assembly_qos_connections.end();
 		   ++iter)
@@ -301,16 +301,16 @@ namespace CQML
 		ComponentAssemblyBase assembly_base = iter->srcComponentAssemblyQoS_end ();
 		if (Udm::IsDerivedFrom (assembly_base.type(), ComponentAssemblyReference::meta))
           {
-            ComponentAssemblyReference assm_ref 
+            ComponentAssemblyReference assm_ref
 				= ComponentAssemblyReference::Cast (assembly_base);
             ComponentAssembly assembly = assm_ref.ref ();
-            this->assembly_visit (assembly);  
+            this->assembly_visit (assembly); 
           }
 		else if (Udm::IsDerivedFrom (assembly_base.type(), ComponentAssembly::meta))
           {
-            ComponentAssembly assembly 
+            ComponentAssembly assembly
 				= ComponentAssembly::Cast (assembly_base);
-            this->assembly_visit (assembly);  
+            this->assembly_visit (assembly); 
           }
 	  }
 
@@ -319,7 +319,7 @@ namespace CQML
 
   void FTRequirementsVisitor::assembly_visit (const ComponentAssembly &assembly)
     {
-        std::set <ComponentAssembly> assemblies = 
+        std::set <ComponentAssembly> assemblies =
           assembly.ComponentAssembly_kind_children ();
         for (std::set <ComponentAssembly>::iterator itr = assemblies.begin();
              itr != assemblies.end ();
@@ -336,7 +336,7 @@ namespace CQML
             this->component_visit (*itr);
           }
 
-        std::set <ComponentAssemblyReference> assembly_refs = 
+        std::set <ComponentAssemblyReference> assembly_refs =
           assembly.ComponentAssemblyReference_kind_children ();
         for (std::set <ComponentAssemblyReference>::iterator itr = assembly_refs.begin();
              itr != assembly_refs.end ();
@@ -356,23 +356,23 @@ namespace CQML
 
   void FTRequirementsVisitor::assembly_instance_visit (const Component &component)
     {
-        const std::string comp_name = 
+        const std::string comp_name =
 			DeploymentPlanFrameworkVisitor::instance()->unique_id(component);
-        
+       
         // Put the component primary into the replica group set.
-        this->assembly_instance_req_map_.insert (std::make_pair(comp_name, 
-                                                 std::make_pair (this->current_req_replica_, 
+        this->assembly_instance_req_map_.insert (std::make_pair(comp_name,
+                                                 std::make_pair (this->current_req_replica_,
                                                  component)));
     }
 
   void FTRequirementsVisitor::component_visit (const Component &component)
     {
-        const std::string comp_name 
+        const std::string comp_name
 			= DeploymentPlanFrameworkVisitor::instance()->unique_id(component);
-        
+       
         // Put the component primary into the replica group set.
-        this->monolith_instance_req_map_.insert (std::make_pair(comp_name, 
-                                                 std::make_pair (this->current_req_replica_, 
+        this->monolith_instance_req_map_.insert (std::make_pair(comp_name,
+                                                 std::make_pair (this->current_req_replica_,
                                                  component)));
     }
 
@@ -404,14 +404,14 @@ namespace CQML
 
   FTReq FTRequirementsVisitor::get_requirements (const std::string &comp_name) const
     {
-      std::map <std::string, FTReq>::const_iterator assembly_itr = 
+      std::map <std::string, FTReq>::const_iterator assembly_itr =
         this->assembly_instance_req_map_.find (comp_name);
       if (assembly_itr !=  this->assembly_instance_req_map_.end())
         {
           return assembly_itr->second;
         }
 
-      std::map <std::string, FTReq>::const_iterator monolith_itr = 
+      std::map <std::string, FTReq>::const_iterator monolith_itr =
         this->monolith_instance_req_map_.find (comp_name);
       if (monolith_itr !=  this->monolith_instance_req_map_.end())
         {
@@ -448,8 +448,8 @@ namespace CQML
       std::string::const_iterator p2 = s2.begin ();
 
       while (p != s.end() && p2 != s2.end())
-        { 
-          if (toupper (*p) != toupper (*p2)) 
+        {
+          if (toupper (*p) != toupper (*p2))
             return (toupper (*p) < toupper (*p2)) ? -1 : 1;
           ++p;
           ++p2;
@@ -468,11 +468,11 @@ namespace CQML
         FailOverUnit fou = *iter;
         ReqConnection fou_connect = fou.dstReqConnection ();
         FOU_Requirement fou_req = fou_connect.dstReqConnection_end ();
-        
-        // Find out how many replica are required and store in 
+       
+        // Find out how many replica are required and store in
         // this->current_req_replica
         fou_req.Accept (*this);
-        
+       
         // Populate the ref2_instance_map with the component instance ids
         // for every FOU.
         fou.Accept (*this);
@@ -543,7 +543,7 @@ namespace CQML
     }
 
 
-  SRGVisitor::SRGVisitor () 
+  SRGVisitor::SRGVisitor ()
     {
     }
 
@@ -598,8 +598,8 @@ namespace CQML
   void SRGVisitor::Visit_HostReference (const HostReference &hr)
     {
       Node node = hr.ref();
-      this->noderef_vec_.push_back (hr); 
-      this->node_to_number_map_.insert 
+      this->noderef_vec_.push_back (hr);
+      this->node_to_number_map_.insert
         (std::make_pair (node.name(), this->noderef_vec_.size() - 1));
     }
 
@@ -610,7 +610,7 @@ namespace CQML
 
   int SRGVisitor::get_node_number (const std::string node_name) const
     {
-      std::map <std::string, int>::const_iterator itr 
+      std::map <std::string, int>::const_iterator itr
         = this->node_to_number_map_.find(node_name);
       return itr->second;
     }
@@ -644,7 +644,7 @@ namespace CQML
                   Node j_node = j_noderef.ref();
 				  std::string i_node_name = i_node.name ();
 				  std::string j_node_name = j_node.name ();
-				  
+				 
 				  //outfile << "(" << i << ", " << j << ") ";
                   //outfile << "(" << std::string (i_node.name()) << ", " << std::string (j_node.name()) << ")" << std::endl;
 
@@ -659,7 +659,7 @@ namespace CQML
 					{
                       if (i_parent == j_parent)
                         {
-                          this->node_matrix_[j][i] = this->node_matrix_[i][j] = 
+                          this->node_matrix_[j][i] = this->node_matrix_[i][j] =
                             i_dist + j_dist + 1;
                           //outfile << this->node_matrix_[i][j] << std::endl;
                           found = true;
@@ -692,7 +692,7 @@ namespace CQML
                         {
                           if (i_parent == j_parent)
                             {
-                              this->node_matrix_[j][i] = this->node_matrix_[i][j] = 
+                              this->node_matrix_[j][i] = this->node_matrix_[i][j] =
                                 i_dist + j_dist - 1;
                               //outfile << this->node_matrix_[i][j] << std::endl;
                               found = true;

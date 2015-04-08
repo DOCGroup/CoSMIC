@@ -45,9 +45,9 @@ namespace CrossLinks {
 	void Initialize(const Uml::Diagram & dgr)
 	{
 		umldiagram = dgr;
-		//composition child roles 
-		// composition parentroles 
-		// Association roles 
+		//composition child roles
+		// composition parentroles
+		// Association roles
 		
 	}
 	 Udm::UdmDiagram diagram = { &umldiagram, Initialize };

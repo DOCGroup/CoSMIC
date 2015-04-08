@@ -6,11 +6,11 @@
 
 
 //AvailableDocument constructors
-ReceiverToolAdaptor::AvailableDocument::AvailableDocument() 
+ReceiverToolAdaptor::AvailableDocument::AvailableDocument()
 {
 }
 
-ReceiverToolAdaptor::AvailableDocument::AvailableDocument(string paradigmName_, string paradigmVersion_, string name_, 
+ReceiverToolAdaptor::AvailableDocument::AvailableDocument(string paradigmName_, string paradigmVersion_, string name_,
 		string version_, string remarks_, long docId_, long keepAlive_)
 		: paradigmName(paradigmName_),
 		  paradigmVersion(paradigmVersion_),
@@ -18,14 +18,14 @@ ReceiverToolAdaptor::AvailableDocument::AvailableDocument(string paradigmName_, 
 		  version(version_),
 		  remarks(remarks_),
 		  docId(docId_),
-		  keepAlive(keepAlive_) 
+		  keepAlive(keepAlive_)
 {
 }
 
 
 
 //Creates a specific tooladaptor
-ReceiverToolAdaptor::ReceiverToolAdaptor(const char *type, int argc, char **argv) 
+ReceiverToolAdaptor::ReceiverToolAdaptor(const char *type, int argc, char **argv)
 	: ToolAdaptor(type, argc, argv),
 	  runExited(TRUE,TRUE)
 {
@@ -38,8 +38,8 @@ ReceiverToolAdaptor::~ReceiverToolAdaptor()
 };
 
 void ReceiverToolAdaptor::notify(const char *par_name, const char *par_version, const char *name,
-            const char *version, const char *remarks, long docId, long keepAlive) 
-{ 
+            const char *version, const char *remarks, long docId, long keepAlive)
+{
 	//We offset the keepAlive with the time() so that we actually record the absolute instant at which they die
 	AvailableDocument avl (par_name, par_version, name, version, remarks, docId, keepAlive+time(NULL));
 

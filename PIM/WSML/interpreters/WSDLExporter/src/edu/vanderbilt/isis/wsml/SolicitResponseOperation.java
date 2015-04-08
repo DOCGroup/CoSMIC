@@ -3,12 +3,12 @@
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
  * ALL RIGHTS RESERVED
- * Vanderbilt University disclaims all warranties with regard to this 
- * software, including all implied warranties of merchantability and 
- * fitness.  In no event shall Vanderbilt University be liable for any 
+ * Vanderbilt University disclaims all warranties with regard to this
+ * software, including all implied warranties of merchantability and
+ * fitness.  In no event shall Vanderbilt University be liable for any
  * special, indirect or consequential damages or any damages whatsoever
  * resulting from loss of use, data or profits, whether in an action of
- * contract, negligence or other tortious action, arising out of or in 
+ * contract, negligence or other tortious action, arising out of or in
  * connection with the use or performance of this software.	
  */
 
@@ -18,7 +18,7 @@ import edu.vanderbilt.isis.udm.*;
 
 /**
  * Domain specific class of <code>SolicitResponseOperation</code>.
- */ 
+ */
 public class SolicitResponseOperation extends Operation
 {
 	// meta information
@@ -28,11 +28,11 @@ public class SolicitResponseOperation extends Operation
 
 	/**
 	 * Constructor.
-	 * @param  upo The object that helps the initialization of the instance 
+	 * @param  upo The object that helps the initialization of the instance
 	 * @param  metaDiagram The diagram of the data network
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	protected SolicitResponseOperation(UdmPseudoObject upo, Diagram metaDiagram) 
+	 */
+	protected SolicitResponseOperation(UdmPseudoObject upo, Diagram metaDiagram)
 		throws UdmException
 	{
 		super(upo, metaDiagram);
@@ -41,7 +41,7 @@ public class SolicitResponseOperation extends Operation
 	/**
 	 * Returns the meta class.
 	 * @return  The meta class
-	 */ 
+	 */
 	UdmPseudoObject getMetaClass()
 	{
 		return metaClass;
@@ -50,13 +50,13 @@ public class SolicitResponseOperation extends Operation
 	/* Construction */
 
 	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
+	 * Creates an instance of the class in the container specified by the parameter.
 	 * @param  parent The parent container
 	 * @return  An instance of the class <code>SolicitResponseOperation</code>
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static SolicitResponseOperation create(PortType parent) 
-		throws UdmException 
+	 */
+	public static SolicitResponseOperation create(PortType parent)
+		throws UdmException
 	{
 		Diagram metaDiagram = parent.getDiagram();
 		return new SolicitResponseOperation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
@@ -65,16 +65,16 @@ public class SolicitResponseOperation extends Operation
 	/* Accessing children */
 
 	/**
-	 * Returns all the children of type <code>Fault<code> of this container. 
+	 * Returns all the children of type <code>Fault<code> of this container.
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public Fault[] getFaultChildren()
-		throws UdmException 
+		throws UdmException
 	{
 		UdmPseudoObjectContainer container = getChildren(null, Fault.META_TYPE, Fault.META_TYPE_NS);
 		Fault[] res = new Fault[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
+		for (int i=0; i < container.getLength(); i++)
 		{
 			res[i] = (Fault)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
@@ -82,14 +82,14 @@ public class SolicitResponseOperation extends Operation
 	}
 
 	/**
-	 * Return the child of type <code>Input<code> of this container. 
+	 * Return the child of type <code>Input<code> of this container.
 	 * @return  The child
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public Input getInputChild()
-		throws UdmException 
+		throws UdmException
 	{
-		UdmPseudoObjectContainer container = getChildren(null, Input.META_TYPE, Input.META_TYPE_NS); 
+		UdmPseudoObjectContainer container = getChildren(null, Input.META_TYPE, Input.META_TYPE_NS);
 		if (container.getLength() > 0)
 
 			return (Input)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
@@ -98,14 +98,14 @@ public class SolicitResponseOperation extends Operation
 	}
 
 	/**
-	 * Return the child of type <code>Output<code> of this container. 
+	 * Return the child of type <code>Output<code> of this container.
 	 * @return  The child
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public Output getOutputChild()
-		throws UdmException 
+		throws UdmException
 	{
-		UdmPseudoObjectContainer container = getChildren(null, Output.META_TYPE, Output.META_TYPE_NS); 
+		UdmPseudoObjectContainer container = getChildren(null, Output.META_TYPE, Output.META_TYPE_NS);
 		if (container.getLength() > 0)
 
 			return (Output)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
@@ -124,9 +124,9 @@ public class SolicitResponseOperation extends Operation
 	 * Sets the value of the attribute <code>parameterOrder</code> to a value specified by the parameter.
 	 * @param _v The new value of the attribute
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public void setparameterOrder(String _v)
-		throws UdmException 
+		throws UdmException
 	{
 		setStringVal(parameterOrder, _v);
 	}
@@ -135,9 +135,9 @@ public class SolicitResponseOperation extends Operation
 	 * Returns the value of the attribute <code>parameterOrder</code>.
 	 * @return  The value
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public String getparameterOrder()
-		throws UdmException 
+		throws UdmException
 	{
 		return getStringVal(parameterOrder);
 	}

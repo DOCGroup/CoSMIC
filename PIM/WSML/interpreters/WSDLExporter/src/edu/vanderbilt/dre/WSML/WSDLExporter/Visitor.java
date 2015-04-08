@@ -25,12 +25,12 @@ public interface Visitor
                   throws UdmException;
   public void visitBinding (Binding binding) throws UdmException;
   public void visitSOAPBinding (SOAPBinding soapBinding) throws UdmException;
-  public void visitBindingOperation (BindingOperation bindingOp) 
+  public void visitBindingOperation (BindingOperation bindingOp)
                                       throws UdmException;
-  public void visitSOAPOperation (SOAPOperation soapOperation) 
+  public void visitSOAPOperation (SOAPOperation soapOperation)
           throws UdmException;
   public void visitSOAPHeader (SOAPHeader soapHeader) throws UdmException;
-  public void visitSOAPHeaderFault (SOAPHeaderFault soapHeaderFault) 
+  public void visitSOAPHeaderFault (SOAPHeaderFault soapHeaderFault)
       throws UdmException;
   public void visitSOAPBody (SOAPBody soapBody) throws UdmException;
   public void visitSOAPFault (SOAPFault soapFault) throws UdmException;

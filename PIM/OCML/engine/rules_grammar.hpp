@@ -13,7 +13,7 @@ namespace OCML
     /*
      * Option_Value grammar
      */
- 
+
     struct Option_Value_Closure
       : public boost::spirit::closure<Option_Value_Closure, Option_Value*>
     {
@@ -42,7 +42,7 @@ namespace OCML
     /*
      * Option_Path grammar
      */
- 
+
     struct Option_Path_Closure
       : public boost::spirit::closure<Option_Path_Closure, Option_Path>
     {
@@ -70,7 +70,7 @@ namespace OCML
     /*
      * Expression grammar
      */
- 
+
      struct Expression_Closure
        : public boost::spirit::closure<Expression_Closure,
                              OCML::Constraint_Engine::rule_index,
@@ -122,14 +122,14 @@ namespace OCML
     /*
      * Rule_Definition grammar
      */
-    
+   
      struct Rule_Definition_Closure
        : public boost::spirit::closure<Rule_Definition_Closure,
                   std::pair<std::string, OCML::Constraint_Engine::rule_index> >
      {
        member1 value;
      };
- 
+
      struct Rule_Definition_Grammar
        : public boost::spirit::grammar<Rule_Definition_Grammar,
                                        Rule_Definition_Closure::context_t>
@@ -138,21 +138,21 @@ namespace OCML
        struct definition
        {
          definition(Rule_Definition_Grammar const& self);
- 
+
          boost::spirit::rule<ScannerT> rule_definition;
          common::Word_Grammar word;
          Expression_Grammar expression;
-         
+        
          const boost::spirit::rule<ScannerT>& start() const {
           return rule_definition;
         }
       };
     };
- 
+
     /*
      * Syntax grammar  -- spirit entry point --
      */
-    
+   
     struct Syntax: public boost::spirit::grammar<Syntax>
     {
     public:
@@ -171,7 +171,7 @@ namespace OCML
       };
     };
 
-    
+   
   } // namespace Rule_Parser
 
 } // namespace OCML

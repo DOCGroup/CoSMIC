@@ -1,6 +1,4 @@
 // -*- MPC -*-
-// $Id$
-
 project (MultipleInterfaces_Expected) : taoclient {
   exename = MultipleInterfaces_Expected
   install = .
@@ -8,7 +6,7 @@ project (MultipleInterfaces_Expected) : taoclient {
   Source_Files {
     MultipleInterfaces.cpp
     MultipleInterfacesC.cpp
-    
+   
   }
 
   IDL_Files {

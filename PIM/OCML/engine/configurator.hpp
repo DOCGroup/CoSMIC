@@ -21,10 +21,10 @@ namespace OCML
 {
 
   typedef std::vector<std::string> Option_Path;
-  
+ 
   /**
    * The main class of the OCML configurator library.
-   * 
+   *
    * <B> Contains </B>
    * <UL>
    *   <LI> The options tree </LI>
@@ -68,7 +68,7 @@ namespace OCML
 
     /// Exports the option tree into the return value as XML tree.
     OCML_Engine_Export std::string write() const;
-  
+ 
     /// Returns the root category.
     OCML_Engine_Export Option_Category* root_category();
 
@@ -88,7 +88,7 @@ namespace OCML
     void load_rules(const char* rules_file, size_t size);
 
     void load_values(const char* values, size_t size);
-    
+   
     /// Creates the interfaces.
     void create_interfaces(Option_Category* category);
 
@@ -98,7 +98,7 @@ namespace OCML
 
     xercesc::DOMElement* write_category(const Option_Category* category,
                                         xercesc::DOMDocument* doc) const;
- 
+
   private:
     /// Xerces environment. @see XercesSystem for more information.
     XercesSystem system_;

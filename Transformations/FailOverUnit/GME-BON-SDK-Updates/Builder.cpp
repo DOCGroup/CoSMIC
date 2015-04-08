@@ -1047,7 +1047,7 @@ const CBuilderConnectionList *CBuilderObject::GetInConnections(const CString &na
 		list =  FindInConnections(name);
 	else
 		inConnections2.Lookup(name,list);
-	if( ! list ) 
+	if( ! list )
 		return &EmptyList;
 	return list;
 }
@@ -1058,7 +1058,7 @@ const CBuilderConnectionList *CBuilderObject::GetOutConnections(const CString &n
 		list =  FindOutConnections(name);
 	else
 		outConnections2.Lookup(name,list);
-	if( ! list ) 
+	if( ! list )
 		return &EmptyList;
 	return list;
 }
@@ -2047,7 +2047,7 @@ CBuilderModel *CBuilderModel::CreateNewModel(CString partName, CBuilderModel *ba
 	ASSERT(role);
 	CComPtr<IMgaFCO> i = NULL;
 	if (baseType) {
-		COMVERIFY(GetIModel()->DeriveChildObject(baseType->GetIModel(), role, 
+		COMVERIFY(GetIModel()->DeriveChildObject(baseType->GetIModel(), role,
 			instance ? VARIANT_TRUE : VARIANT_FALSE, &i));
 	}
 	else {
@@ -2076,7 +2076,7 @@ CBuilderAtom *CBuilderModel::CreateNewAtom(CString partName, CBuilderAtom *baseT
 	ASSERT(role);
 	CComPtr<IMgaFCO> i = NULL;
 	if (baseType) {
-		COMVERIFY(GetIModel()->DeriveChildObject(baseType->GetIAtom(), role, 
+		COMVERIFY(GetIModel()->DeriveChildObject(baseType->GetIAtom(), role,
 			instance ? VARIANT_TRUE : VARIANT_FALSE, &i));
 	}
 	else {
@@ -2105,7 +2105,7 @@ CBuilderReference *CBuilderModel::CreateNewReference(CString refPartName, CBuild
 	CComPtr<IMgaFCO> i = NULL;
 	if (baseType) {
 		ASSERT(refTo == NULL);
-		COMVERIFY(GetIModel()->DeriveChildObject(baseType->GetIRef(), role, 
+		COMVERIFY(GetIModel()->DeriveChildObject(baseType->GetIRef(), role,
 			instance ? VARIANT_TRUE : VARIANT_FALSE, &i));
 	}
 	else {
@@ -2235,7 +2235,7 @@ CBuilderSet *CBuilderModel::CreateNewSet(CString condPartName, CBuilderSet *base
 	CComPtr<IMgaFCO> i;
 	HRESULT hr;
 	if (baseType) {
-		hr = GetIModel()->DeriveChildObject(baseType->GetISet(), role, 
+		hr = GetIModel()->DeriveChildObject(baseType->GetISet(), role,
 			instance ? VARIANT_TRUE : VARIANT_FALSE, &i);
 	}
 	else {

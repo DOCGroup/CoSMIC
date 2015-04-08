@@ -1,5 +1,3 @@
-// $Id$
-
 project (AspectInterpreter) : register, gme_bon2_component, cosmic_lib {
 
   sharedname = AspectInterpreter

@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "ConnectorInstance_Decorator.h"
 #include "ConnectorInstance_Decorator_Impl.h"
@@ -58,7 +56,7 @@ initialize (const GAME::Mga::Project & proj,
   if (iter.count() > 0)
   {
     using GAME::Mga::FCO;
-    
+   
     FCO refers_to = iter.first()->refers_to ();
 
     if (!refers_to.is_nil ())

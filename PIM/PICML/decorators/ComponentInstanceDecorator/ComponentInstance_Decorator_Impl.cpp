@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "ComponentInstance_Decorator.h"
 #include "ComponentInstance_Decorator_Impl.h"
@@ -68,7 +66,6 @@ private:
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-//
 
 //
 // ComponentInstance_Decorator_Impl

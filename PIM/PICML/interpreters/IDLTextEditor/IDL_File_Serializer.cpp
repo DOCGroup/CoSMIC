@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "IDL_File_Serializer.h"
 #include "IDL_Generator_File.h"

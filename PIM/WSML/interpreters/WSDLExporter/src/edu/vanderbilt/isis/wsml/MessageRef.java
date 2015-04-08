@@ -3,12 +3,12 @@
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
  * ALL RIGHTS RESERVED
- * Vanderbilt University disclaims all warranties with regard to this 
- * software, including all implied warranties of merchantability and 
- * fitness.  In no event shall Vanderbilt University be liable for any 
+ * Vanderbilt University disclaims all warranties with regard to this
+ * software, including all implied warranties of merchantability and
+ * fitness.  In no event shall Vanderbilt University be liable for any
  * special, indirect or consequential damages or any damages whatsoever
  * resulting from loss of use, data or profits, whether in an action of
- * contract, negligence or other tortious action, arising out of or in 
+ * contract, negligence or other tortious action, arising out of or in
  * connection with the use or performance of this software.	
  */
 
@@ -18,7 +18,7 @@ import edu.vanderbilt.isis.udm.*;
 
 /**
  * Domain specific class of <code>MessageRef</code>.
- */ 
+ */
 public class MessageRef extends MgaObject
 {
 	// meta information
@@ -28,11 +28,11 @@ public class MessageRef extends MgaObject
 
 	/**
 	 * Constructor.
-	 * @param  upo The object that helps the initialization of the instance 
+	 * @param  upo The object that helps the initialization of the instance
 	 * @param  metaDiagram The diagram of the data network
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	protected MessageRef(UdmPseudoObject upo, Diagram metaDiagram) 
+	 */
+	protected MessageRef(UdmPseudoObject upo, Diagram metaDiagram)
 		throws UdmException
 	{
 		super(upo, metaDiagram);
@@ -41,7 +41,7 @@ public class MessageRef extends MgaObject
 	/**
 	 * Returns the meta class.
 	 * @return  The meta class
-	 */ 
+	 */
 	UdmPseudoObject getMetaClass()
 	{
 		return metaClass;
@@ -50,26 +50,26 @@ public class MessageRef extends MgaObject
 	/* Construction */
 
 	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
+	 * Creates an instance of the class in the container specified by the parameter.
 	 * @param  parent The parent container
 	 * @return  An instance of the class <code>MessageRef</code>
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static MessageRef create(BindingOperation parent) 
-		throws UdmException 
+	 */
+	public static MessageRef create(BindingOperation parent)
+		throws UdmException
 	{
 		Diagram metaDiagram = parent.getDiagram();
 		return new MessageRef(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
 	}
 
 	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
+	 * Creates an instance of the class in the container specified by the parameter.
 	 * @param  parent The parent container
 	 * @return  An instance of the class <code>MessageRef</code>
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static MessageRef create(Operation parent) 
-		throws UdmException 
+	 */
+	public static MessageRef create(Operation parent)
+		throws UdmException
 	{
 		Diagram metaDiagram = parent.getDiagram();
 		return new MessageRef(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
@@ -89,7 +89,7 @@ public class MessageRef extends MgaObject
 	 * Sets the other ends of the association with role name <code>ref</code>.
 	 * @param a The other ends of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public void setref(Message[] a)
 		throws UdmException
 	{
@@ -100,7 +100,7 @@ public class MessageRef extends MgaObject
 	 * Returns the other ends of the association with role name <code>ref</code>.
 	 * @return The other ends of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public Message[] getref()
 		throws UdmException
 	{
@@ -116,7 +116,7 @@ public class MessageRef extends MgaObject
 	 * Sets the other end of the association with role name <code>srcHeaderMessage</code>.
 	 * @param a The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public void setsrcHeaderMessage(HeaderMessage a)
 		throws UdmException
 	{
@@ -127,7 +127,7 @@ public class MessageRef extends MgaObject
 	 * Returns the other end of the association with role name <code>srcHeaderMessage</code>.
 	 * @return The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public HeaderMessage getsrcHeaderMessage()
 		throws UdmException
 	{
@@ -143,7 +143,7 @@ public class MessageRef extends MgaObject
 	 * Sets the other end of the association with role name <code>srcFaultMessage</code>.
 	 * @param a The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public void setsrcFaultMessage(FaultMessage a)
 		throws UdmException
 	{
@@ -154,7 +154,7 @@ public class MessageRef extends MgaObject
 	 * Returns the other end of the association with role name <code>srcFaultMessage</code>.
 	 * @return The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public FaultMessage getsrcFaultMessage()
 		throws UdmException
 	{
@@ -170,7 +170,7 @@ public class MessageRef extends MgaObject
 	 * Sets the other end of the association with role name <code>srcInputMessage</code>.
 	 * @param a The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public void setsrcInputMessage(InputMessage a)
 		throws UdmException
 	{
@@ -181,7 +181,7 @@ public class MessageRef extends MgaObject
 	 * Returns the other end of the association with role name <code>srcInputMessage</code>.
 	 * @return The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public InputMessage getsrcInputMessage()
 		throws UdmException
 	{
@@ -197,7 +197,7 @@ public class MessageRef extends MgaObject
 	 * Sets the other end of the association with role name <code>srcOutputMessage</code>.
 	 * @param a The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public void setsrcOutputMessage(OutputMessage a)
 		throws UdmException
 	{
@@ -208,7 +208,7 @@ public class MessageRef extends MgaObject
 	 * Returns the other end of the association with role name <code>srcOutputMessage</code>.
 	 * @return The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public OutputMessage getsrcOutputMessage()
 		throws UdmException
 	{

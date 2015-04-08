@@ -14,11 +14,11 @@ static char THIS_FILE[] = __FILE__;
 // CDialogCompletionStatus dialog
 
 
-CDialogCompletionStatus::CDialogCompletionStatus(CWnd* pParent /*=NULL*/, 
+CDialogCompletionStatus::CDialogCompletionStatus(CWnd* pParent /*=NULL*/,
 												   const char * caption, int progressbar_minrange, int progressbar_maxrange)
-	: CDialog(CDialogCompletionStatus::IDD, pParent), 
+	: CDialog(CDialogCompletionStatus::IDD, pParent),
 	  _caption(caption),
-	  _progressbar_minrange(progressbar_minrange), 
+	  _progressbar_minrange(progressbar_minrange),
 	  _progressbar_maxrange(progressbar_maxrange)
 {
 	//{{AFX_DATA_INIT(CDialogCompletionStatus)
@@ -44,7 +44,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CDialogCompletionStatus message handlers
 
-void CDialogCompletionStatus::OnCancel() 
+void CDialogCompletionStatus::OnCancel()
 {
 	// TODO: Add extra cleanup here
 	
@@ -59,7 +59,7 @@ void CDialogCompletionStatus::UpdateState(const char *newstring, short progress_
 	((CProgressCtrl*) GetDlgItem(IDC_PROGRESS_COMPLETION))->OffsetPos(progress_offset);
 }
 
-BOOL CDialogCompletionStatus::OnInitDialog() 
+BOOL CDialogCompletionStatus::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	

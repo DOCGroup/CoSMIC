@@ -1,5 +1,3 @@
-// $Id$
-
 project (DQML_GAME_Mga) : game_extension_classes {
   sharedname = DQML_GAME_Mga
 

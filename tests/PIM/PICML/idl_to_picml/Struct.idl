@@ -1,5 +1,3 @@
-// $Id$
-
 // ============================================================================
 //
 // = LIBRARY
@@ -31,7 +29,7 @@ module StructNoun
 
   struct Place;
   struct Event;
-  
+ 
   struct Place
   {
     string m_name_of;
@@ -41,7 +39,7 @@ module StructNoun
 
   struct Event;
   struct Thing;
-  
+ 
   typedef short MyType;
 
   struct Thing
@@ -54,7 +52,7 @@ module StructNoun
 
   struct Idea
   {
-    string  m_name;    
+    string  m_name;   
     boolean m_is_great;
     MyType  m_id;
     char    m_begin_letter;

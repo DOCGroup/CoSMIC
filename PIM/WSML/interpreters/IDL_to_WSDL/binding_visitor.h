@@ -42,7 +42,7 @@ public:
   virtual int visit_component (AST_Component *node);
   virtual int visit_operation (AST_Operation *node);
   virtual int visit_attribute (AST_Attribute *node);
-  
+ 
 private:
   void gen_binding (AST_Component *node,
                     AST_Type *port_impl = 0,
@@ -54,7 +54,7 @@ private:
   void gen_inherited_comp (AST_Component *node);
   void append_ops_and_attrs (AST_Interface *ancestor);
   void gen_fault (DOMElement *binding_op, AST_Decl *user_exception);
-  
+ 
 private:
   DOMElement *current_binding_;
   AST_Component *current_comp_;

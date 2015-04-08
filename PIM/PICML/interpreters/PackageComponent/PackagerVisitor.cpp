@@ -1,5 +1,3 @@
-// $Id$
-
 #include "PackagerVisitor.h"
 #include "ZIP_create.h"
 #include "ace/SString.h"           //for ACE_CString

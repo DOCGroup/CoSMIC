@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "DSL_Serializer.h"
 

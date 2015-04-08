@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "CBMLManager_Impl.h"
 #include "Connection_Generation_Handler.h"

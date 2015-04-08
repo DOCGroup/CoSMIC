@@ -17,15 +17,15 @@ class CategoryItemData: public wxTreeItemData
 public:
   CategoryItemData(OptionCategory* category)
     : category_(category) { }
-        
+       
   OptionCategory* category()
   {
     return category_;
-  }    
-        
+  }   
+       
 private:
   OptionCategory* category_;
-};    
+};   
 
 BEGIN_EVENT_TABLE(MainFrame, wxFrame)
   EVT_TREE_SEL_CHANGED(ID_TREE_SELECTION_CHANGED, MainFrame::selection_changed)
@@ -34,7 +34,7 @@ BEGIN_EVENT_TABLE(MainFrame, wxFrame)
 END_EVENT_TABLE()
 
 MainFrame::MainFrame(const wxString& title, const wxPoint& pos,
-                     const wxSize& size, 
+                     const wxSize& size,
                      const char* tree_file,
                      const char* values, size_t values_size)
   : wxFrame((wxFrame *) NULL, -1, title, pos, size),
@@ -110,9 +110,9 @@ MainFrame::initialize_tree_node(wxTreeCtrl* tree, wxTreeItemId root_id,
        iter != category->end_categories(); ++iter)
     {
       wxTreeItemId node_id =
-        tree->AppendItem(root_id, (*iter)->name().c_str(), -1, -1, 
+        tree->AppendItem(root_id, (*iter)->name().c_str(), -1, -1,
                          new CategoryItemData(*iter));
-      initialize_tree_node(tree, node_id, *iter); 
+      initialize_tree_node(tree, node_id, *iter);
     }
 }
 
@@ -127,7 +127,7 @@ MainFrame::initialize_tree(wxWindow* root)
                   new CategoryItemData(root_category));
 
   initialize_tree_node(tree, root_id, root_category);
-    
+   
   return tree;
 }
 

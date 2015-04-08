@@ -22,7 +22,7 @@ typedef CTypedPtrMap<CMapPtrToPtr, void *, CBrush *>					CBrushTable;
 
 extern CDecoratorUtil	d_util;
 
-class CDecoratorUtil  
+class CDecoratorUtil 
 {
 public:
 	CDecoratorUtil();

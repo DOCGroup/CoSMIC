@@ -1,5 +1,3 @@
-// $Id$
-
 // ============================================================================
 //
 // = LIBRARY
@@ -27,39 +25,39 @@ module MultipleInterfaces
     attribute string m_name;
     void my_person (in string name);
   };
-  
+ 
   interface Place
   {
     attribute string m_name_of;
     void my_place (in string name_of);
   };
-  
+ 
   interface PersonPlace : Person, Place
   {
   };
-  
+ 
   interface Thing
   {
     attribute boolean m_has_more;
     void my_thing (in boolean has_more);
   };
-  
+ 
   interface Idea
   {
     attribute short m_id;
     void my_idea (in short idea_id);
   };
-  
+ 
   interface ThingIdea : Thing, Idea
   {
   };
-  
+ 
   interface Event
   {
     attribute long m_type;
     void my_event (in long type);
   };
-  
+ 
   interface Noun : PersonPlace, ThingIdea, Event
   {
   };

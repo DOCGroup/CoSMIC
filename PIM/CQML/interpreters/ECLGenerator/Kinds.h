@@ -8,7 +8,7 @@
 #include <list>
 #include <string>
 
-namespace CQML 
+namespace CQML
 {
   struct AbstractKind
   {

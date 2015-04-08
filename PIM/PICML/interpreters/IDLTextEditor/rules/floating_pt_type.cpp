@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "floating_pt_type_impl.hpp"
 

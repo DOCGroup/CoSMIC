@@ -1,5 +1,3 @@
-// $Id$
-
 project : gme_component {
   macros += RAWCOMPONENT
 

@@ -12,7 +12,7 @@ CAOP::CAOP(BON::Project &project)
 
 CAOP::~CAOP()
 {
-  if ( m_project ) 
+  if ( m_project )
   {
     m_project->finalizeObjects();
 		m_project = NULL;
@@ -35,33 +35,33 @@ BOOL CAOP::iterate_model(std::set<BON::Model> &model_set)
   }
   if( len == 0)
     return false;
-        
+       
   for (std::set<BON::Model>::iterator iter = model_set.begin();
 		iter != model_set.end();
 		++iter)
   {
     BON::Model model = (*iter);
-                   
+                  
     std::string modelType = model->getObjectMeta().name();
     std::set<BON::Model> inner_model_set = model->getChildModels();
     this->m_model_ = model;
     if (modelType == "AspectFeature")
     {
       in_aspect = true;
-      std::string modelName = (*iter)->getName();  
+      std::string modelName = (*iter)->getName(); 
       m_project->consoleMsg(modelName,MSG_INFO);
-      
+     
       if(this->setup_aspect_file(modelName))
       {
         this->process_aspect_feature(modelName);
-        this->close_aspect_file();  
+        this->close_aspect_file(); 
         std::string tmp_msg ="Aspect file "+modelName+" saved";
         AfxMessageBox(tmp_msg.c_str());
 
       }
-  
+ 
     }
-    else 
+    else
         this->iterate_model(inner_model_set);
   }
   return true;
@@ -107,14 +107,14 @@ void CAOP::process_aspect(MON::Aspect &aspect)
     std::string pointcutName = iterObj->getName ();
     this->process_individual_pointcut(pointcutName, iterObj);
     this->add_pointcut(pointcutName);
-    this->process_advice (aspect, pointcutName);  
+    this->process_advice (aspect, pointcutName); 
   }
   return;
 }
 void CAOP::process_individual_pointcut(std::string pointcutName, BON::Model &model)
 {
   MON::Model sub_meta_model = model->getModelMeta();
-  
+ 
   std::set<MON::Aspect> my_aspects = model->getModelMeta().aspects();
 
   for (std::set<MON::Aspect>::iterator iterAspect = my_aspects.begin();
@@ -156,25 +156,25 @@ void CAOP::getLinkedJointPointSet(BON::FCO &iterObj, BON::Model &model)
   std::string elementType = iterObj->getObjectMeta().name();
   std::string elementName = iterObj->getName();
 
-  std::multiset<BON::ConnectionEnd> in_ends 
+  std::multiset<BON::ConnectionEnd> in_ends
         = BON::ConnectionEnd(iterObj)->getConnEnds("AddJointPointsConnection");
   int len = in_ends.size();
   if(in_ends.size() < 1)
   {
     m_project->consoleMsg("Jointpoint set not connected",MSG_ERROR);
     return;
-  } 
-  
+  }
+ 
   bool relationset = false;
-  for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; 
-    cit != in_ends.end() ; 
+  for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ;
+    cit != in_ends.end() ;
       ++cit )
 	{
 		BON::FCO dst( *cit );
     ASSERT(dst);
     std::string elementType = dst->getObjectMeta().name();
     std::string elementName = dst->getName();
-    
+   
     getMembersOfSet(dst, model);
     if((len > 1)&& (!relationset))
     {
@@ -185,17 +185,17 @@ void CAOP::getLinkedJointPointSet(BON::FCO &iterObj, BON::Model &model)
 
 BOOL CAOP::getRelationBetweenSets(BON::FCO &iterObj, std::string connection)
 {
-  std::multiset<BON::ConnectionEnd> in_ends 
+  std::multiset<BON::ConnectionEnd> in_ends
         = BON::ConnectionEnd(iterObj)->getConnEnds(connection);
   int len = in_ends.size();
   if(len < 1)
   {
     m_project->consoleMsg("Jointpoint set not connected",MSG_ERROR);
     return false;
-  } 
+  }
   std::string relation;
-  for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; 
-    cit != in_ends.end() ; 
+  for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ;
+    cit != in_ends.end() ;
       ++cit )
 	{
 		BON::FCO dst( *cit );
@@ -219,7 +219,7 @@ BOOL CAOP::getMembersOfSet(BON::FCO &dst, BON::Model &model)
   std::string set_type = dst->getObjectMeta().name();
 
   std::set<BON::Set> handle_set = model->getChildSets();
-  
+ 
   for (std::set<BON::Set>::iterator iterSet = handle_set.begin();
     iterSet != handle_set.end();
      ++iterSet)
@@ -235,12 +235,12 @@ BOOL CAOP::getMembersOfSet(BON::FCO &dst, BON::Model &model)
       int len = fcoset_atom.size();
       if(len < 1)
         return false;
-      
+     
       for (std::set<BON::FCO>::iterator iterFCO = fcoset_atom.begin();
         iterFCO != fcoset_atom.end();
         ++iterFCO)
       {
-        
+       
         BON::FCO iterObj(*iterFCO);
         ASSERT(iterObj);
         std::string elementType = iterObj->getObjectMeta().name();
@@ -268,7 +268,7 @@ BOOL CAOP::getMembersOfSet(BON::FCO &dst, BON::Model &model)
             relation = " || ";
           else if ((set_type == "JointPointAndSet")||(set_type == "PointcutAndSet"))
             relation = " && ";
-          if(count != len) 
+          if(count != len)
             this->jointPoint_.append(relation);
           else
             this->jointPoint_.append(")");
@@ -286,7 +286,7 @@ BOOL CAOP::getMembersOfSet(BON::FCO &dst, BON::Model &model)
 BOOL CAOP::process_main_pointcut(BON::Model &model)
 {
   std::set<BON::FCO> fco_elements = model->getChildFCOs();
-  
+ 
   for (std::set<BON::FCO>::iterator iterFCO = fco_elements.begin();
     iterFCO != fco_elements.end();
      ++iterFCO)
@@ -295,10 +295,10 @@ BOOL CAOP::process_main_pointcut(BON::Model &model)
     ASSERT(iterObj);
     std::string elementType1 = iterObj->getObjectMeta().name();
     std::string elementName1 = iterObj->getName();
-       
+      
     if(elementType1 == "MainPointcut")
     {
-      std::multiset<BON::ConnectionEnd> in_ends 
+      std::multiset<BON::ConnectionEnd> in_ends
         = BON::ConnectionEnd(iterObj)->getConnEnds("AddPointCutConnection");
       if(in_ends.size() < 1)
       {
@@ -308,8 +308,8 @@ BOOL CAOP::process_main_pointcut(BON::Model &model)
       int len = in_ends.size();
       int count = 0;
       bool pointcutrelation = false;
-      for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; 
-        cit != in_ends.end() ; 
+      for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ;
+        cit != in_ends.end() ;
           ++cit )
 		  {
         count++;
@@ -331,12 +331,12 @@ BOOL CAOP::process_main_pointcut(BON::Model &model)
 
 
 
-BOOL CAOP::is_pointcut_connected_to_advice (BON::Atom &iterObj, 
+BOOL CAOP::is_pointcut_connected_to_advice (BON::Atom &iterObj,
                                            std::string pointcutName)
 {
   std::string adviceName = iterObj->getName ();
 
-  std::multiset<BON::ConnectionEnd> in_ends 
+  std::multiset<BON::ConnectionEnd> in_ends
         = BON::ConnectionEnd(iterObj)->getConnEnds("Advice_Pointcut_Connection");
   int len = in_ends.size();
   if(in_ends.size() < 1)
@@ -344,10 +344,10 @@ BOOL CAOP::is_pointcut_connected_to_advice (BON::Atom &iterObj,
     std::string temp = "Poincut "+pointcutName+" is not connected to advice";
     m_project->consoleMsg(temp.c_str(),MSG_WARNING);
     return false;
-  } 
-  
-  for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; 
-    cit != in_ends.end() ; 
+  }
+ 
+  for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ;
+    cit != in_ends.end() ;
       ++cit )
 	{
 		BON::FCO dst( *cit );
@@ -389,7 +389,7 @@ BOOL CAOP::process_advice(MON::Aspect &aspect, std::string pointcutName)
 BOOL CAOP::process_aspect_feature(std::string aspect_name)
 {
   MON::Model sub_meta_model = this->m_model_->getModelMeta();
-  
+ 
   std::set<MON::Aspect> my_aspects = this->m_model_->getModelMeta().aspects();
 
   for (std::set<MON::Aspect>::iterator iterAspect = my_aspects.begin();
@@ -410,7 +410,7 @@ BOOL CAOP::process_aspect_feature(std::string aspect_name)
 BOOL CAOP::process_root_model()
 {
   BON::Folder root = m_project->getRootFolder( ); // Get the root folder
-  if (!root ) 
+  if (!root )
   {
     AfxMessageBox("Could not find RootFolder" );
     return false;

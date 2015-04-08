@@ -34,7 +34,7 @@ static char THIS_FILE[] = __FILE__;
 //
 //		It is very important that this macro appear in each
 //		function, prior to any calls into MFC.  This means that
-//		it must appear as the first statement within the 
+//		it must appear as the first statement within the
 //		function, even before any object variable declarations
 //		as their constructors may generate calls into the MFC
 //		DLL.
@@ -90,7 +90,7 @@ STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
 }
 
 
-//Defined in 
+//Defined in
 extern struct ReceiverThreadsInfo g_rti;
 
 STDAPI DllCanUnloadNow(void)
@@ -106,7 +106,7 @@ STDAPI DllCanUnloadNow(void)
 #define COMRETURN(hr) { HRESULT res; if((res = (hr)) != S_OK) return res; }
 
 // this flag supresses running Dll(Un)RegisterServer if DllInstall is also used
-// bool called = false; 
+// bool called = false;
 
 // by exporting DllRegisterServer, you can use regsvr.exe
 STDAPI DllRegisterServer(void)
@@ -122,7 +122,7 @@ STDAPI DllRegisterServer(void)
 
 	// Note:
 	// We can register the typelib either from the .tlb file
-	// or from the resources. But the resource ID of the 
+	// or from the resources. But the resource ID of the
 	// TYPELIB must be 1 !!!
 /*
 	if( !AfxOleRegisterTypeLib(AfxGetInstanceHandle(),

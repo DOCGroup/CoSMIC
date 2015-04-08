@@ -1,5 +1,3 @@
-// $Id$
-
 project (DeploymentPlanFramework): game_xml, cqmllib {
   sharedname    = DeploymentPlanFramework
   dynamicflags += DEPLOYMENTPLANFRAMEWORK_BUILD_DLL

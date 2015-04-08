@@ -1,5 +1,3 @@
-// $Id$
-
 project (DQML_examples) {
   specific {
     install_location  = paradigms DQML examples

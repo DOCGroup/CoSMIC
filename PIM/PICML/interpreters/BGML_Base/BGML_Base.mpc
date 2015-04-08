@@ -1,6 +1,4 @@
 // -*- MPC -*-
-// $Id$
-
 project (PICML_BGML_Base): acelib {
   sharedname = PICML_BGML_Base
   dynamicflags = BGML_BUILD_DLL

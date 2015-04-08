@@ -79,7 +79,7 @@ private:
         std::string outputPath_;
         std::string file_name_;
 
-           
+          
 	#ifdef GME_ADDON
 		void globalEventPerformed( globalevent_enum event );
 		void objectEventPerformed( Object& object, unsigned long event, VARIANT v );

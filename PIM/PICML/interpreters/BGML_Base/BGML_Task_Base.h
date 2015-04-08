@@ -1,7 +1,3 @@
-//
-// $Id$
-//
-
 #ifndef BGML_TASK_BASE_H
 #define BGML_TASK_BASE_H
 

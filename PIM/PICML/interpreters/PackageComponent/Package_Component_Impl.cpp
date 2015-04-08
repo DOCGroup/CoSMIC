@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Package_Component.h"
 #include "Package_Component_Impl.h"

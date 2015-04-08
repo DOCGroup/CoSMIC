@@ -1,8 +1,6 @@
 /**
  * @file EnumEditControl.hpp
  *
- * $Id$
- *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
  *
  * Definition of the enum edit control.
@@ -25,7 +23,7 @@ public:
   /// When a select event occurs this method is called.
   virtual void enum_edit_selected(std::string value, void* client_data) = 0;
 };
-    
+   
 /// The classes which listens the focus gain/lost events should be derived
 /// from this class.
 class OCMLConfigurator_API Enum_Edit_Control_Focus_Listener
@@ -60,7 +58,7 @@ public:
   void add_select_listener(Enum_Edit_Control_Select_Listener* l);
   /// Registers the given FocusListener as a focus listener for this widget.
   void add_focus_listener(Enum_Edit_Control_Focus_Listener* l);
-    
+   
   /// Disables events so that no event handlers are called.
   void disable_events();
   /// Enables events which are disabled with disable_events call.
@@ -77,6 +75,6 @@ private:
 
   // Declares WXWindow event table.
   DECLARE_EVENT_TABLE()
-};    
+};   
 
 #endif // ENUM_EDIT_CONTROL_HPP

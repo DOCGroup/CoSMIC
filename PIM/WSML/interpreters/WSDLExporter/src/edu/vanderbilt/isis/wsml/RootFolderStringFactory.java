@@ -3,12 +3,12 @@
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
  * ALL RIGHTS RESERVED
- * Vanderbilt University disclaims all warranties with regard to this 
- * software, including all implied warranties of merchantability and 
- * fitness.  In no event shall Vanderbilt University be liable for any 
+ * Vanderbilt University disclaims all warranties with regard to this
+ * software, including all implied warranties of merchantability and
+ * fitness.  In no event shall Vanderbilt University be liable for any
  * special, indirect or consequential damages or any damages whatsoever
  * resulting from loss of use, data or profits, whether in an action of
- * contract, negligence or other tortious action, arising out of or in 
+ * contract, negligence or other tortious action, arising out of or in
  * connection with the use or performance of this software.	
  */
 
@@ -32,18 +32,18 @@ import edu.vanderbilt.isis.udm.UdmHelper;
  *        // open the data network
  *        RootFolderStringFactory gtf = FactoryRepository.getWSMLRootFolderStringFactory();
  *        RootFolder root = gtf.open(xmlString);
- * 
+ *
  *         // manipulate the data network
  *         ....;
- * 
+ *
  *         // check constraints
  *         gtf.checkConstraints();
- * 
+ *
  *         // close  and save the data network in a string
  *         String resul = gtf.save();
  *         ....;
  * </pre></blockquote>
- */ 
+ */
 public class RootFolderStringFactory
 {
 	// resource information
@@ -57,9 +57,9 @@ public class RootFolderStringFactory
 	/**
 	 * Constructor.
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public RootFolderStringFactory()
-		 throws UdmException 
+		 throws UdmException
 	{
 		factory = new UdmStringFactory(xmlMetaFile, xsdMetaFile, metaName, packagePath){
 			protected void loadDiagram() throws UdmException {
@@ -74,9 +74,9 @@ public class RootFolderStringFactory
 	/**
 	 * Initializes the meta classes.
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	private void initializeMetaClasses() 
-		 throws UdmException 
+	 */
+	private void initializeMetaClasses()
+		 throws UdmException
 	{
 		factory.getDiagram().getMetaClass(Port.META_TYPE, Port.META_TYPE_NS);
 		factory.getDiagram().getMetaClass(Import.META_TYPE, Import.META_TYPE_NS);
@@ -140,7 +140,7 @@ public class RootFolderStringFactory
 	 * Creates a new data network with root object of type <code>RootFolder</code> in a string.
 	 * @return  The root object of the data network
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public RootFolder create()
 		 throws UdmException
 	{
@@ -156,11 +156,11 @@ public class RootFolderStringFactory
 	 * @param  xmlString The string containing the xml.
 	 * @return  The root object of the data network
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public RootFolder open(String xmlString) 
+	 */
+	public RootFolder open(String xmlString)
 		 throws UdmException
 	{
-		RootFolder root = 
+		RootFolder root =
 			new RootFolder(
 				factory.openExistingDataNetwork(xmlString)
 				, factory.getDiagram());
@@ -172,11 +172,11 @@ public class RootFolderStringFactory
 	 * @param  xmlStream The stream that contains the xml
 	 * @return  The root object of the data network
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public RootFolder open(InputStream xmlStream) 
+	 */
+	public RootFolder open(InputStream xmlStream)
 		 throws UdmException
 	{
-		RootFolder root = 
+		RootFolder root =
 			new RootFolder(
 				factory.openExistingDataNetworkFromStream(xmlStream)
 				, factory.getDiagram());
@@ -186,8 +186,8 @@ public class RootFolderStringFactory
 	/**
 	 * Closes the data network without updating it and unloads the diagram.
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void close() 
+	 */
+	public void close()
 		 throws UdmException
 	{
 		factory.closeNoUpdate();
@@ -198,8 +198,8 @@ public class RootFolderStringFactory
 	 * Closes and updates the data network by saving the changes in the data network.
 	 * @return  The data network in a string
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public String save() 
+	 */
+	public String save()
 		 throws UdmException
 	{
 		factory.closeWithUpdate();
@@ -214,8 +214,8 @@ public class RootFolderStringFactory
 	 * and unloads the diagram.
 	 * @return  The data network in a stream
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public InputStream saveAsStream() 
+	 */
+	public InputStream saveAsStream()
 		 throws UdmException
 	{
 		factory.closeWithUpdate();
@@ -229,8 +229,8 @@ public class RootFolderStringFactory
 	 * Calls the constraint checker.
 	 * @return  The result of the constriant evaluation
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public String checkConstraints() 
+	 */
+	public String checkConstraints()
 		 throws UdmException
 	{
 		return (factory.getDataNetwork().checkConstraints());

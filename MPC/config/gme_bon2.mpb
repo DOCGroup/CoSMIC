@@ -1,5 +1,3 @@
-// $Id$
-
 project : gme_common {
   macros += BON2COMPONENT BUILDER_OBJECT_NETWORK_V2
 

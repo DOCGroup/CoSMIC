@@ -32,7 +32,7 @@ namespace  // anonymous
 {
 	void display (KindDialog & kind_dialog, BON::Project & project)
 {
-		std::list <std::string> comp_kinds = 
+		std::list <std::string> comp_kinds =
 				kind_dialog.get_component_kinds ();
 		
 		std::string comp_sequence ("Components: ");
@@ -40,7 +40,7 @@ namespace  // anonymous
 //			 i != comp_kinds.end();
 //			 ++i)
 		{
-			CQML::KindAggregator<CQML::AbstractComponent> 
+			CQML::KindAggregator<CQML::AbstractComponent>
 				aggregator (project, comp_kinds);
 			CQML::KindAggregator<CQML::AbstractComponent>::KindMap
 				map = aggregator.aggregate ();
@@ -55,7 +55,7 @@ namespace  // anonymous
 		}
 		AfxMessageBox (comp_sequence.c_str());
 
-		std::list <std::string> node_kinds = 
+		std::list <std::string> node_kinds =
 				kind_dialog.get_node_kinds ();
 		std::string node_sequence ("Nodes: ");
 		
@@ -63,7 +63,7 @@ namespace  // anonymous
 		//	 i != node_kinds.end();
 		//	 ++i)
 		{
-			CQML::KindAggregator<CQML::AbstractNode> 
+			CQML::KindAggregator<CQML::AbstractNode>
 				aggregator (project, node_kinds);
 			CQML::KindAggregator<CQML::AbstractNode>::KindMap
 				map = aggregator.aggregate ();
@@ -151,20 +151,20 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 #endif
 	// ======================
 	// Insert application specific code here
-	try 
+	try
 	{
 		KindDialog kind_dialog (::AfxGetMainWnd ());
 		if (kind_dialog.DoModal() != IDOK)
 			return;
         //display (kind_dialog, project);
-		std::list <std::string> comp_kinds = 
+		std::list <std::string> comp_kinds =
 			kind_dialog.get_component_kinds ();
-		CQML::KindAggregator<CQML::AbstractComponent> 
+		CQML::KindAggregator<CQML::AbstractComponent>
 			comp_aggr (project, comp_kinds);
 
-		std::list <std::string> node_kinds = 
+		std::list <std::string> node_kinds =
 			kind_dialog.get_node_kinds ();
-		CQML::KindAggregator<CQML::AbstractNode> 
+		CQML::KindAggregator<CQML::AbstractNode>
 			node_aggr (project, node_kinds);
 
 		DeploymentPlanner planner (comp_aggr.aggregate (), node_aggr.aggregate());

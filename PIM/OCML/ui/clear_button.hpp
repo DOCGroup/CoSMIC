@@ -1,8 +1,6 @@
 /**
  * @file Clear_Button.hpp
  *
- * $Id$
- *
  * Definition of the clear button.
  *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
@@ -35,15 +33,15 @@ public:
 public:
   /// The constructor accepts the wxWindows parent control.
   Clear_Button(wxWindow* parent);
-  
+ 
   /// Registers the given listeners.
   void add_click_listener(Clear_Button_Click_Listener* l);
-    
+   
 private:
   /// The container for holding the click event listerns.
   std::list<Clear_Button_Click_Listener*> click_listeners_;
-    
+   
   DECLARE_EVENT_TABLE()
-};    
+};   
 
 #endif // CLEAR_BUTTON_HPP

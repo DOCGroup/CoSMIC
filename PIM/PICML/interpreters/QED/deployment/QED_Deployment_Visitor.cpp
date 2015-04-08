@@ -1,5 +1,3 @@
-// $Id$
-
 #include "QED_Deployment_Visitor.h"
 #include "QED_Implementation_Finder.h"
 #include "Utils/xercesc/XercesString.h"

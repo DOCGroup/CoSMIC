@@ -1,6 +1,4 @@
 // -*- C++ -*-
-// $Id$
-
 //
 // Project_Generator
 //

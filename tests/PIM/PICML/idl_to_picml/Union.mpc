@@ -1,6 +1,4 @@
 // -*- MPC -*-
-// $Id$
-
 project (Union_Expected) : taoclient {
   exename = Union_Expected
   install = .

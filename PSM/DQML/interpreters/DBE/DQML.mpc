@@ -1,5 +1,3 @@
-// $Id$
-
 project (DQML_DBE_Interpreter) : register, gme_bon2_component, cosmic_lib {
   sharedname = DQML_DBE_Interpreter
 

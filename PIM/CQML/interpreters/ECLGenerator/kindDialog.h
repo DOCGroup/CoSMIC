@@ -23,8 +23,8 @@ public:
 	void OnOK ();
 
 // Dialog Data
-	enum { IDD = IDD_DIALOG2, 
-		   EDIT1 = IDC_EDIT1, 
+	enum { IDD = IDD_DIALOG2,
+		   EDIT1 = IDC_EDIT1,
 		   EDIT2 = IDC_EDIT2,
 		   EDIT3 = IDC_EDIT3  };
 

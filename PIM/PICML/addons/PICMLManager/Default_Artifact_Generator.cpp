@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Default_Artifact_Generator.h"
 #include "Implementation_Configuration.h"
@@ -124,7 +122,7 @@ generate (const Implementation_Configuration & config, Component_in type)
   type->accept (&get_location_basename);
 
   const std::string location_basename = get_location_basename.basename ();
-  const std::string svnt_location_basename =    
+  const std::string svnt_location_basename =   
     config.svnt_artifact_location_based_on_filename_ ?
     this->get_file (type)->name () : location_basename;
 
@@ -135,7 +133,7 @@ generate (const Implementation_Configuration & config, Component_in type)
   const std::string container_name = name + "Artifacts";
   ArtifactContainer container;
 
-  if (::GAME::create_if_not <Mga_t> (this->artifact_folder_, container, 
+  if (::GAME::create_if_not <Mga_t> (this->artifact_folder_, container,
       ::GAME::contains <Mga_t> ([&] (ArtifactContainer_in item) { return item->name () == container_name; })))
   {
     container->name (container_name);

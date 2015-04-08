@@ -8,7 +8,7 @@
 #endif
 
 namespace PICML
-{ 
+{
 	 class  PublishConnector;
 	 class  invoke;
 	 class  emit;
@@ -22,7 +22,7 @@ namespace PICML
 	 class  Component;
 };
 namespace cadena_scenario
-{ 
+{
 	 class  ESSConnection;
 	 class  FRConnection;
 	 class  EventSink;

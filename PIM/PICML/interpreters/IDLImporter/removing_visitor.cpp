@@ -1,5 +1,3 @@
-// $Id$
-
 #include "removing_visitor.h"
 #include "removing_closure_visitor.h"
 #include "be_extern.h"
@@ -13,7 +11,7 @@ bool
 removing_visitor::visit_gme_folder (DOMElement *node)
 {
   const XMLCh *kind = node->getAttribute (X ("kind"));
-  
+ 
   // We traverse only this folder. For each item we remove,
   // we spawn a removing_closure_visitor to traverse the others.
   return
@@ -32,7 +30,7 @@ removing_visitor::visit_gme_model (DOMElement *node)
                         "visit_children failed\n"),
                         false);
     }
-    
+   
   return (this->found_in_idl (node)
             ? true
             : this->do_closure ());
@@ -64,20 +62,20 @@ bool
 removing_visitor::found_in_idl (DOMElement *node)
 {
   this->id_holder_ = node->getAttribute (X ("id"));
-  
-  if (node->hasAttribute (X ("derivedfrom")))   
+ 
+  if (node->hasAttribute (X ("derivedfrom")))  
     {
       return true;
     }
-    
+   
   int status = be_global->gme_id_set ().find (this->id_holder_);
-  
+ 
   if (status != 0)
     {
       // Remove the node we were passed.
-      be_global->release_node (node);    
+      be_global->release_node (node);   
     }
-    
+   
   return (0 == status);
 }
 

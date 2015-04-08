@@ -1,5 +1,3 @@
-// $Id$
-
 project (GatewayGenerator): gme_bon2_component, game_codegenerationkit, boost_base, cosmic_utils {
   sharedname = GatewayGenerator
 

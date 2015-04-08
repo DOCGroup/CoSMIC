@@ -163,7 +163,7 @@ bool RTConfigVisitor::visitRealTimeConfiguration( const CQML::RealTimeConfigurat
 	}
 
 	std::string name = this->outputPath_ + "\\";
-	// 
+	//
 	
 	name += object->getName ();
 	name += ".csr";

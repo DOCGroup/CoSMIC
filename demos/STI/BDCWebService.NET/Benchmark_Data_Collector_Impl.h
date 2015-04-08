@@ -31,7 +31,7 @@ namespace SLICE
 
     virtual System::Void unbind_to_path(System::Int32 path_id);
 
-    virtual System::Int32 bind_to_path(cli::array<CUTSPath_Element^>^ path, 
+    virtual System::Int32 bind_to_path(cli::array<CUTSPath_Element^>^ path,
                                        System::UInt16 flags);
 
     virtual System::Void collect_performance_data();

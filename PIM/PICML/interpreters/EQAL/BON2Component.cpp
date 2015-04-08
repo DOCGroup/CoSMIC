@@ -151,14 +151,14 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
        ++it)
     {
       EventChannelConfiguration ec_configuration (*it);
-      
+     
       if (!ec_configuration)
         {
           AfxMessageBox ("Interpretation must start from an EventChannelConfiguration model!");
           continue;
         }
-        
-      EventChannelConfigurationVisitor visitor; 
+       
+      EventChannelConfigurationVisitor visitor;
 
       visitor.visitModelImpl (ec_configuration);
     }
@@ -302,7 +302,7 @@ void RTEC_Proxy_SupplierVisitor::visitRT_InfoImpl (const RT_Info& rt_info)
 
 void RTEC_Proxy_ConsumerVisitor::visitAtomImpl (const Atom& atom)
 {
-  // This operation will generate the CPF file to describe the 
+  // This operation will generate the CPF file to describe the
   // QoS information on the supplier side.
   // Also the service configuration file of the event channel
   // will be generated.
@@ -326,7 +326,7 @@ void RTEC_Proxy_ConsumerVisitor::visitRT_InfoImpl (const RT_Info & rt_info)
   std::string name = source_port->getName ();
   if (!source_port) return;
 
-  // Get the CCMComponent 
+  // Get the CCMComponent
   FCO component (source_port->getParent ());
   if (!component) return; //ERROR
   std::string component_name = component->getName ();
@@ -351,7 +351,7 @@ void RTEC_Proxy_ConsumerVisitor::visitRT_InfoImpl (const RT_Info & rt_info)
 
       RTEC_Resource_Factory_Reference rtec_factory_ref = FCO (*rtec_factory_iter);
       if (!rtec_factory_ref) return;
-      
+     
       RTEC_Resource_Factory rtec_factory = rtec_factory_ref->getReferred ();
       if (!rtec_factory) return;
 

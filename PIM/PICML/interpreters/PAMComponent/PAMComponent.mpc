@@ -1,5 +1,3 @@
-// $Id$
-
 project (PICML_PAMComponent): picmllib, boost_base, gme_udm_component {
   sharedname = PICML_PAMComponent
 

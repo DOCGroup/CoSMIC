@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Dialogs.h"
 #include "Default_Implementation_Event_Handler.h"

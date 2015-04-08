@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Action_Type_Handler.h"
 

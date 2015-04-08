@@ -1,5 +1,3 @@
-// $Id$
-
 #include "QED_Implementation_Finder.h"
 #include "boost/bind.hpp"
 #include <algorithm>

@@ -65,7 +65,7 @@ private:
 // Connector_Visitor
 
 Connector_Visitor::
-Connector_Visitor (Deployment_Handler * handler, 
+Connector_Visitor (Deployment_Handler * handler,
                    GAME::Xml::Document document,
                    std::vector <GAME::Xml::Fragment> & conns)
 : handler_ (handler),

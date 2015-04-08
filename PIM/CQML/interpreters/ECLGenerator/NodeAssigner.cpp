@@ -5,7 +5,7 @@
 #include <cstdlib>
 
 RandomNodeAssigner::
-RandomNodeAssigner (std::vector <std::string> const & nodes, 
+RandomNodeAssigner (std::vector <std::string> const & nodes,
                     std::set <std::string> const & components)
 : nodes_ (nodes),
   components_ (components)
@@ -23,13 +23,13 @@ compute_assignment (const CompToNodeMapping &)
       t = time (0);
       srand (static_cast <unsigned int> (t));
 
-      for (std::set <std::string>::const_iterator itr = 
+      for (std::set <std::string>::const_iterator itr =
             components_.begin ();
            itr != components_.end();
            ++itr)
         {
           int r = rand () % nodes_.size ();
-          this->comp2node_map_.insert (std::make_pair (*itr, nodes_[r])); 
+          this->comp2node_map_.insert (std::make_pair (*itr, nodes_[r]));
 		  this->node2comp_map_[nodes_[r]].insert (*itr);
         }
 }

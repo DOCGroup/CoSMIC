@@ -755,7 +755,7 @@ namespace PICML2Cadena {
 		Uml::SetAttribute(ComponentInstance_cross_ph_cadena_scenario::meta_rem_id,ComponentInstance_cross_ph_cadena_scenario::meta, "rem_id");
 		Uml::SetAttribute(ComponentInstance_cross_ph_cadena_scenario::meta_rem_sysname,ComponentInstance_cross_ph_cadena_scenario::meta, "rem_sysname");
 		Uml::SetClass(_gen_cont::meta, umldiagram, "_gen_cont");
-		//composition child roles 
+		//composition child roles
 		Uml::SetParentRole(PublishConnector_cross_ph_PICML::meta__gen_cont_parent,PublishConnector_cross_ph_PICML::meta,_gen_cont::meta, "", "");
 		Uml::SetParentRole(invoke_cross_ph_PICML::meta__gen_cont_parent,invoke_cross_ph_PICML::meta,_gen_cont::meta, "", "");
 		Uml::SetParentRole(emit_cross_ph_PICML::meta__gen_cont_parent,emit_cross_ph_PICML::meta,_gen_cont::meta, "", "");
@@ -767,7 +767,7 @@ namespace PICML2Cadena {
 		Uml::SetParentRole(FRConnection_cross_ph_cadena_scenario::meta__gen_cont_parent,FRConnection_cross_ph_cadena_scenario::meta,_gen_cont::meta, "", "");
 		Uml::SetParentRole(ComponentPort_cross_ph_cadena_scenario::meta__gen_cont_parent,ComponentPort_cross_ph_cadena_scenario::meta,_gen_cont::meta, "", "");
 		Uml::SetParentRole(ComponentInstance_cross_ph_cadena_scenario::meta__gen_cont_parent,ComponentInstance_cross_ph_cadena_scenario::meta,_gen_cont::meta, "", "");
-		// composition parentroles 
+		// composition parentroles
 		Uml::SetChildRole(_gen_cont::meta_PublishConnector_cross_ph_PICML_children,_gen_cont::meta,PublishConnector_cross_ph_PICML::meta, "", "");
 		Uml::SetChildRole(_gen_cont::meta_invoke_cross_ph_PICML_children,_gen_cont::meta,invoke_cross_ph_PICML::meta, "", "");
 		Uml::SetChildRole(_gen_cont::meta_emit_cross_ph_PICML_children,_gen_cont::meta,emit_cross_ph_PICML::meta, "", "");
@@ -779,7 +779,7 @@ namespace PICML2Cadena {
 		Uml::SetChildRole(_gen_cont::meta_FRConnection_cross_ph_cadena_scenario_children,_gen_cont::meta,FRConnection_cross_ph_cadena_scenario::meta, "", "");
 		Uml::SetChildRole(_gen_cont::meta_ComponentPort_cross_ph_cadena_scenario_children,_gen_cont::meta,ComponentPort_cross_ph_cadena_scenario::meta, "", "");
 		Uml::SetChildRole(_gen_cont::meta_ComponentInstance_cross_ph_cadena_scenario_children,_gen_cont::meta,ComponentInstance_cross_ph_cadena_scenario::meta, "", "");
-		// Association roles 
+		// Association roles
 		Uml::SetAssocRole(PublishConnector_cross_ph_PICML::meta_cadenaESSConnection,PublishConnector_cross_ph_PICML::meta,ESSConnection_cross_ph_cadena_scenario::meta, "picmlPublishConnector");
 
 		Uml::SetAssocRole(invoke_cross_ph_PICML::meta_cadenaInvoke,invoke_cross_ph_PICML::meta,FRConnection_cross_ph_cadena_scenario::meta, "picmlInvoke");

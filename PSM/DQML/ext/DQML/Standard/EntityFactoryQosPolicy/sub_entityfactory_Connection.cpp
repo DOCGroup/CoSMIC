@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "sub_entityfactory_Connection.h"
 

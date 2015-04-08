@@ -4,8 +4,6 @@
 /**
  *  @file       ConnectorInstance_Event_Handler.h
  *
- *  $Id$
- *
  *  @author     James H. Hill
  */
 //=============================================================================

@@ -1,5 +1,3 @@
-// $Id$
-
 #include "Project_Generator.h"
 #include "File_Creator.h"
 

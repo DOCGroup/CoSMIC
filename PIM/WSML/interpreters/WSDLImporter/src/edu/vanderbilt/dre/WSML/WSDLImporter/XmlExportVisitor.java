@@ -398,8 +398,8 @@ public class XmlExportVisitor implements Visitor {
             Atom atom = this.createGmeAtom (builtinTypes[i][1],
                                             "AtomicType",
                                             "AtomicType");
-            Attribute attr = this.createGmeAttribute("typeCode", 
-                                                     null, 
+            Attribute attr = this.createGmeAttribute("typeCode",
+                                                     null,
                                                      builtinTypes[i][1]);
             atom.getRegnodeOrConstraintOrAttribute().add(attr);
             QName qname = new QName (XMLConstants.W3C_XML_SCHEMA_NS_URI,
@@ -754,7 +754,7 @@ public class XmlExportVisitor implements Visitor {
         xPos = yPos = 12;
         Regnode partregs = this.createPartRegs (xPos, yPos);
         model.getRegnodeOrConstraintOrAttribute().add(partregs);
-        Attribute orderAttr = this.createGmeAttribute("Order", null, 
+        Attribute orderAttr = this.createGmeAttribute("Order", null,
                                                       Integer.toString(order));
         model.getRegnodeOrConstraintOrAttribute().add(orderAttr);
         NamedNodeMap attrs = visitedEle.getAttributes();

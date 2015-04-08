@@ -4,8 +4,6 @@
 /**
  * @file      Collection_Container_Data_Item.h
  *
- * $Id$
- *
  * @author    James H. Hill
  */
 //=============================================================================

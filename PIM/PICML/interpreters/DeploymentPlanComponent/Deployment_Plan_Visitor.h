@@ -95,7 +95,7 @@ public:
   virtual void visit_ConnectorImplementation (PICML::ConnectorImplementation_in);
 
   virtual void deploy_connector_fragment (
-    PICML::ConnectorInstance_in connector, 
+    PICML::ConnectorInstance_in connector,
     PICML::ComponentInstance_in component);
 
 private:

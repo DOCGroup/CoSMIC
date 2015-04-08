@@ -1,5 +1,3 @@
-// $Id$
-
 project (PICML_QEDDeployment): boost_base, picmllib {
   sharedname    = PICML_QEDDeployment
   dynamicflags += QED_DEPLOYMENT_BUILD_DLL

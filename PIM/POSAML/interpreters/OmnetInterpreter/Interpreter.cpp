@@ -18,6 +18,6 @@ Pattern *Pattern_Factory::get_pattern (const BON::Model &model)
 {
   if (model->getObjectMeta ().name () == "Reactor_Pattern")
   	return new Reactor (project_, model);
-  else 
+  else
 	return NULL;
 }

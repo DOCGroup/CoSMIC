@@ -48,9 +48,9 @@ public class WSDLExportVisitor implements Visitor {
     private Definition def = null;
 
     private Object currParent = null;
-    
+   
     private Stack<Context> contextStack = new Stack<Context>();
-    
+   
     private Stack<Object> parentStack = new Stack<Object>();
 
     private Map<String, String> defNsMap = new HashMap<String,String>();
@@ -61,31 +61,31 @@ public class WSDLExportVisitor implements Visitor {
 
     private Map<Referrable, QName> typeMap = new HashMap<Referrable, QName>();
 
-    private Map<Message, javax.wsdl.Message> messageMap = 
+    private Map<Message, javax.wsdl.Message> messageMap =
         new HashMap<Message, javax.wsdl.Message>();
 
-    private Map<Part, javax.wsdl.Part> partMap = 
+    private Map<Part, javax.wsdl.Part> partMap =
         new HashMap<Part, javax.wsdl.Part>();
-    
-    private Map<PortType, javax.wsdl.PortType> portTypeMap = 
+   
+    private Map<PortType, javax.wsdl.PortType> portTypeMap =
         new HashMap<PortType, javax.wsdl.PortType>();
 
     private Map<Operation, javax.wsdl.Operation> operationMap =
         new HashMap<Operation, javax.wsdl.Operation>();
-    
-    private Map<Binding, javax.wsdl.Binding> bindingMap = 
+   
+    private Map<Binding, javax.wsdl.Binding> bindingMap =
         new HashMap<Binding, javax.wsdl.Binding>();
-    
-    private static final String W3C_SOAP_NS_URI = 
+   
+    private static final String W3C_SOAP_NS_URI =
         "http://schemas.xmlsoap.org/wsdl/soap/";
-    
+   
     private ElementComparator eleComparator = new ElementComparator();
-    
+   
     private void push(Object parent) {
         this.parentStack.push (this.currParent);
         this.currParent = parent;
     }
-    
+   
     private void pop() {
         this.currParent = this.parentStack.pop();
     }
@@ -98,11 +98,11 @@ public class WSDLExportVisitor implements Visitor {
         this.def = context.def;
         this.currParent = context.currParent;
     }
-    
+   
     private class Context {
         private Definition def = null;
         private Object currParent = null;
-        
+       
         public Context (Definition def, Object currParent) {
             this.def = def;
             this.currParent = currParent;
@@ -118,7 +118,7 @@ public class WSDLExportVisitor implements Visitor {
             } catch (UdmException e) {
                 e.printStackTrace();
             }
-            if (firstOrder < secondOrder) { 
+            if (firstOrder < secondOrder) {
                 return -1;
             } else if (firstOrder == secondOrder) {
                 return 0;
@@ -200,15 +200,15 @@ public class WSDLExportVisitor implements Visitor {
 
         Messages messages = def.getMessagesChild();
         this.visitMessages(messages);
-        
+       
         for (PortType portType : def.getPortTypeChildren()) {
             this.visitPortType (portType);
         }
-        
+       
         for (Binding binding : def.getBindingChildren()) {
             this.visitBinding(binding);
         }
-        
+       
         for (Service service : def.getServiceChildren()) {
             this.visitService(service);
         }
@@ -272,7 +272,7 @@ public class WSDLExportVisitor implements Visitor {
             }
             docElement.setAttribute("targetNamespace",
                                     schema.gettargetNamespace());
-            Element[] childList = schema.getElementChildren(); 
+            Element[] childList = schema.getElementChildren();
             Arrays.sort (childList, eleComparator);
             for (Element ele : childList) {
                 this.visitElement (doc, ele, docElement, 0);
@@ -294,7 +294,7 @@ public class WSDLExportVisitor implements Visitor {
         }
     }
 
-    private void visitElement (Document doc, Element modelEle, 
+    private void visitElement (Document doc, Element modelEle,
                                org.w3c.dom.Element parent,
                                int level)
         throws UdmException {
@@ -308,9 +308,9 @@ public class WSDLExportVisitor implements Visitor {
                 this.revSchemaNsMap.get(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             eleName += ":" + schemaType;
             if (level == 0) {
-                this.typeMap.put(modelEle, 
+                this.typeMap.put(modelEle,
                                  new QName (this.def.getTargetNamespace(),
-                                            qName));    
+                                            qName));   
             }
         }
         org.w3c.dom.Element domEle = doc.createElement(eleName);
@@ -322,7 +322,7 @@ public class WSDLExportVisitor implements Visitor {
         }
         parent.appendChild(domEle);
         int newLevel = level + 1;
-        Element[] childList = modelEle.getElementChildren(); 
+        Element[] childList = modelEle.getElementChildren();
         Arrays.sort (childList, eleComparator);
         for (Element child : childList) {
             this.visitElement(doc, child, domEle, newLevel);
@@ -409,13 +409,13 @@ public class WSDLExportVisitor implements Visitor {
         wsdlPortType.setUndefined(false);
         this.portTypeMap.put(portType, wsdlPortType);
         this.def.addPortType(wsdlPortType);
-        for (RequestResponseOperation 
+        for (RequestResponseOperation
                 oper : portType.getRequestResponseOperationChildren()) {
             this.push(wsdlPortType);
             this.visitRequestResponseOperation(oper);
             this.pop();
         }
-        for (SolicitResponseOperation 
+        for (SolicitResponseOperation
                 oper : portType.getSolicitResponseOperationChildren()) {
             this.push(wsdlPortType);
             this.visitSolicitResponseOperation(oper);
@@ -427,7 +427,7 @@ public class WSDLExportVisitor implements Visitor {
             this.visitOneWayOperation(oper);
             this.pop();
         }
-        for (NotificationOperation 
+        for (NotificationOperation
                 oper : portType.getNotificationOperationChildren()) {
             this.push(wsdlPortType);
             this.visitNotificationOperation(oper);
@@ -473,8 +473,8 @@ public class WSDLExportVisitor implements Visitor {
         javax.wsdl.PortType parent = (javax.wsdl.PortType)this.currParent;
         parent.addOperation(wsdlOperation);
     }
-    
-    public void visitNotificationOperation(NotificationOperation oper) 
+   
+    public void visitNotificationOperation(NotificationOperation oper)
              throws UdmException {
         javax.wsdl.Operation wsdlOperation = this.def.createOperation();
         wsdlOperation.setName(oper.getname());
@@ -494,7 +494,7 @@ public class WSDLExportVisitor implements Visitor {
         parent.addOperation(wsdlOperation);
     }
 
-    public void visitOneWayOperation(OneWayOperation oper) 
+    public void visitOneWayOperation(OneWayOperation oper)
         throws UdmException {
         javax.wsdl.Operation wsdlOperation = this.def.createOperation();
         wsdlOperation.setName(oper.getname());
@@ -568,7 +568,7 @@ public class WSDLExportVisitor implements Visitor {
         this.push(wsdlBinding);
         this.visitSOAPBinding (soapBinding);
         this.pop();
-                
+               
         for (BindingOperation bindOp : binding.getBindingOperationChildren()) {
             this.push(wsdlBinding);
             this.visitBindingOperation(bindOp);
@@ -595,28 +595,28 @@ public class WSDLExportVisitor implements Visitor {
         }
     }
 
-    public void visitBindingOperation(BindingOperation bindingOp) 
+    public void visitBindingOperation(BindingOperation bindingOp)
         throws UdmException {
-        javax.wsdl.BindingOperation wsdlBindOp = 
+        javax.wsdl.BindingOperation wsdlBindOp =
             this.def.createBindingOperation();
         wsdlBindOp.setName(bindingOp.getname());
         SOAPOperation soapOperation = bindingOp.getSOAPOperationChild();
-        
+       
         this.push(wsdlBindOp);
         this.visitSOAPOperation(soapOperation);
         this.pop();
-        
+       
         for (BindsOperation bindsOp : bindingOp.getdstBindsOperation()) {
             OperationRef opRef = bindsOp.getdstBindsOperation();
             for (Operation oper : opRef.getref()) {
                 wsdlBindOp.setOperation(this.operationMap.get(oper));
             }
         }
-        
+       
         for (InputRef inputRef : bindingOp.getInputRefChildren()) {
             for (Input input : inputRef.getref()) {
                 javax.wsdl.BindingInput bindInput = this.def.createBindingInput();
-                bindInput.setName(input.getname());    
+                bindInput.setName(input.getname());   
                 wsdlBindOp.setBindingInput(bindInput);
                 for (BodyBinding bodyBinding : inputRef.getdstBodyBinding()) {
                     SOAPBody soapBody = bodyBinding.getdstBodyBinding();
@@ -625,15 +625,15 @@ public class WSDLExportVisitor implements Visitor {
                     this.pop();
                 }
                 for (HeaderBinding headerBinding : inputRef.getdstHeaderBinding()) {
-                    SOAPHeaders soapHeaders = 
+                    SOAPHeaders soapHeaders =
                         headerBinding.getdstHeaderBinding();
                     if (soapHeaders instanceof SOAPHeader) {
-                        SOAPHeader soapHeader = (SOAPHeader)soapHeaders; 
+                        SOAPHeader soapHeader = (SOAPHeader)soapHeaders;
                         this.push(bindInput);
                         this.visitSOAPHeader(soapHeader);
                         this.pop();
                     } else if (soapHeaders instanceof SOAPHeaderFault) {
-                        SOAPHeaderFault soapHeaderFault = 
+                        SOAPHeaderFault soapHeaderFault =
                             (SOAPHeaderFault)soapHeaders;
                         this.push(bindInput);
                         this.visitSOAPHeaderFault(soapHeaderFault);
@@ -645,7 +645,7 @@ public class WSDLExportVisitor implements Visitor {
         }
         for (OutputRef outputRef : bindingOp.getOutputRefChildren()) {
             for (Output output : outputRef.getref()) {
-                javax.wsdl.BindingOutput bindOutput = 
+                javax.wsdl.BindingOutput bindOutput =
                     this.def.createBindingOutput();
                 bindOutput.setName(output.getname());
                 wsdlBindOp.setBindingOutput(bindOutput);
@@ -656,15 +656,15 @@ public class WSDLExportVisitor implements Visitor {
                     this.pop();
                 }
                 for (HeaderBinding headerBinding : outputRef.getdstHeaderBinding()) {
-                    SOAPHeaders soapHeaders = 
+                    SOAPHeaders soapHeaders =
                         headerBinding.getdstHeaderBinding();
                     if (soapHeaders instanceof SOAPHeader) {
-                        SOAPHeader soapHeader = (SOAPHeader)soapHeaders; 
+                        SOAPHeader soapHeader = (SOAPHeader)soapHeaders;
                         this.push(bindOutput);
                         this.visitSOAPHeader(soapHeader);
                         this.pop();
                     } else if (soapHeaders instanceof SOAPHeaderFault) {
-                        SOAPHeaderFault soapHeaderFault = 
+                        SOAPHeaderFault soapHeaderFault =
                             (SOAPHeaderFault)soapHeaders;
                         this.push(bindOutput);
                         this.visitSOAPHeaderFault(soapHeaderFault);
@@ -673,13 +673,13 @@ public class WSDLExportVisitor implements Visitor {
                 }
             }
         }
-        
+       
         for (FaultRef faultRef : bindingOp.getFaultRefChildren()) {
             for (Fault fault : faultRef.getref()) {
                 javax.wsdl.BindingFault bindFault = this.def.createBindingFault();
                 bindFault.setName(fault.getname());
                 wsdlBindOp.addBindingFault(bindFault);
-                for (SOAPFaultExtension faultExt : 
+                for (SOAPFaultExtension faultExt :
                     faultRef.getdstSOAPFaultExtension()) {
                     SOAPFault soapFault = faultExt.getdstSOAPFaultExtension();
                     this.push(bindFault);
@@ -696,7 +696,7 @@ public class WSDLExportVisitor implements Visitor {
         try {
             QName elementType = new QName (W3C_SOAP_NS_URI, "operation");
             ExtensionRegistry registry = this.def.getExtensionRegistry();
-            javax.wsdl.extensions.soap.SOAPOperation wsdlSoapOper = 
+            javax.wsdl.extensions.soap.SOAPOperation wsdlSoapOper =
                 (javax.wsdl.extensions.soap.SOAPOperation)
                 registry.createExtension(javax.wsdl.BindingOperation.class,
                                          elementType);
@@ -704,7 +704,7 @@ public class WSDLExportVisitor implements Visitor {
             wsdlSoapOper.setRequired(soapOperation.getrequired());
             wsdlSoapOper.setSoapActionURI(soapOperation.getsoapAction());
             wsdlSoapOper.setStyle(soapOperation.getstyle());
-            javax.wsdl.BindingOperation bindOp = 
+            javax.wsdl.BindingOperation bindOp =
                 (javax.wsdl.BindingOperation)this.currParent;
             bindOp.addExtensibilityElement(wsdlSoapOper);
         } catch (WSDLException e) {
@@ -728,8 +728,8 @@ public class WSDLExportVisitor implements Visitor {
         try {
             QName elementType = new QName (W3C_SOAP_NS_URI, "body");
             ExtensionRegistry registry = this.def.getExtensionRegistry();
-            javax.wsdl.extensions.soap.SOAPBody wsdlSoapBody =  
-                (javax.wsdl.extensions.soap.SOAPBody) 
+            javax.wsdl.extensions.soap.SOAPBody wsdlSoapBody = 
+                (javax.wsdl.extensions.soap.SOAPBody)
                 registry.createExtension(parentClass, elementType);
             wsdlSoapBody.setElementType(elementType);
             wsdlSoapBody.setRequired(soapBody.getrequired());
@@ -740,7 +740,7 @@ public class WSDLExportVisitor implements Visitor {
             wsdlSoapBody.setUse(soapBody.getuse());
             for (BodyParts bodyParts : soapBody.getdstBodyParts()) {
                 PartRef partRef = bodyParts.getdstBodyParts();
-                List<javax.wsdl.Part> parts = 
+                List<javax.wsdl.Part> parts =
                     new ArrayList<javax.wsdl.Part>();
                 for (Part part : partRef.getref()) {
                     parts.add(this.partMap.get(part));
@@ -755,7 +755,7 @@ public class WSDLExportVisitor implements Visitor {
         } catch (WSDLException e) {
             e.printStackTrace();
         }
-        
+       
     }
 
     public void visitSOAPHeader(SOAPHeader soapHeader) throws UdmException {
@@ -774,8 +774,8 @@ public class WSDLExportVisitor implements Visitor {
             try {
                 QName elementType = new QName (W3C_SOAP_NS_URI, "header");
                 ExtensionRegistry registry = this.def.getExtensionRegistry();
-                javax.wsdl.extensions.soap.SOAPHeader wsdlSoapHeader=  
-                    (javax.wsdl.extensions.soap.SOAPHeader) 
+                javax.wsdl.extensions.soap.SOAPHeader wsdlSoapHeader= 
+                    (javax.wsdl.extensions.soap.SOAPHeader)
                     registry.createExtension(parentClass, elementType);
                 wsdlSoapHeader.setElementType(elementType);
                 wsdlSoapHeader.setRequired(soapHeader.getrequired());
@@ -793,7 +793,7 @@ public class WSDLExportVisitor implements Visitor {
                 for (HeaderMessage hdrMsg : soapHeader.getdstHeaderMessage()) {
                     MessageRef messageRef = hdrMsg.getdstHeaderMessage();
                     for (Message message : messageRef.getref()) {
-                        javax.wsdl.Message wsdlMessage = 
+                        javax.wsdl.Message wsdlMessage =
                             this.messageMap.get(message);
                         wsdlSoapHeader.setMessage(wsdlMessage.getQName());
                     }
@@ -811,17 +811,17 @@ public class WSDLExportVisitor implements Visitor {
 
     public void visitSOAPHeaderFault(SOAPHeaderFault soapHeaderFault) throws UdmException {
         // TODO Auto-generated method stub
-        
+       
     }
 
     public void visitSOAPFault(SOAPFault soapFault) throws UdmException {
-        javax.wsdl.BindingFault bindFault =  
+        javax.wsdl.BindingFault bindFault = 
             (javax.wsdl.BindingFault)this.currParent;
         try {
             QName elementType = new QName (W3C_SOAP_NS_URI, "fault");
             ExtensionRegistry registry = this.def.getExtensionRegistry();
-            javax.wsdl.extensions.soap.SOAPFault wsdlSoapFault =  
-                (javax.wsdl.extensions.soap.SOAPFault) 
+            javax.wsdl.extensions.soap.SOAPFault wsdlSoapFault = 
+                (javax.wsdl.extensions.soap.SOAPFault)
                 registry.createExtension(javax.wsdl.BindingFault.class,
                                          elementType);
             wsdlSoapFault.setElementType(elementType);
@@ -876,8 +876,8 @@ public class WSDLExportVisitor implements Visitor {
         try {
             QName elementType = new QName (W3C_SOAP_NS_URI, "address");
             ExtensionRegistry registry = this.def.getExtensionRegistry();
-            javax.wsdl.extensions.soap.SOAPAddress wsdlSoapAddr =  
-                (javax.wsdl.extensions.soap.SOAPAddress) 
+            javax.wsdl.extensions.soap.SOAPAddress wsdlSoapAddr = 
+                (javax.wsdl.extensions.soap.SOAPAddress)
                 registry.createExtension(javax.wsdl.Port.class, elementType);
             wsdlSoapAddr.setElementType(elementType);
             wsdlSoapAddr.setLocationURI(addr.getlocation());

@@ -4,8 +4,6 @@
 /**
  * @file       ComponentImplementationGenerator_Component_Impl.h
  *
- * $Id$
- *
  * @author     Tanumoy Pati
  */
 //=============================================================================

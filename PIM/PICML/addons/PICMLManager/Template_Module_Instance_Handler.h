@@ -4,8 +4,6 @@
 /**
  *  @file       Template_Module_Instance_Handler.h
  *
- *  $Id$
- *
  *  @author     James H. Hill
  */
 //=============================================================================

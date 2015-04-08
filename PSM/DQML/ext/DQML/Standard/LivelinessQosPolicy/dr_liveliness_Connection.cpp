@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "dr_liveliness_Connection.h"
 

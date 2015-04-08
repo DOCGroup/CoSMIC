@@ -95,7 +95,7 @@ protected:
     FWD_DECL,
     DONE
   };
-  
+ 
   NodeStatus node_status_;
   DOMElement *sub_tree_;
   DOMDocument *doc_;

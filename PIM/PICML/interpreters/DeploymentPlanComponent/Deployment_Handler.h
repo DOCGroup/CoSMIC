@@ -16,7 +16,7 @@ public:
   /**
    * Add a connector fragment to the deployment.
    */
-  virtual void deploy_connector_fragment (ConnectorInstance_in connector, 
+  virtual void deploy_connector_fragment (ConnectorInstance_in connector,
                                           ComponentInstance_in component) = 0;
 };
 

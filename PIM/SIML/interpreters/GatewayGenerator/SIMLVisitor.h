@@ -12,7 +12,7 @@ namespace SIML
 class SIMLVisitor
 	: public BON::Visitor
 {
-	public : 
+	public :
 		SIMLVisitor();
 		virtual ~SIMLVisitor();
 

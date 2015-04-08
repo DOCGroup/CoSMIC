@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "game/mga/component/Component_Module.h"
 #include "DQML_iCCM_Component_i.c"

@@ -3,17 +3,17 @@
 namespace CQML
   {
 
-  NetQoSRequirementsIterator::NetQoSRequirementsIterator 
+  NetQoSRequirementsIterator::NetQoSRequirementsIterator
     (NetQoSVisitor const & nqv,
      NetQoSRequirements::iterator const &iter)
-    : nqv_ (&nqv), 
+    : nqv_ (&nqv),
       current_(iter)
     { }
 
   NetQoSRequirementsIterator & NetQoSRequirementsIterator::operator ++ ()
     {
       NetQoSRequirements::iterator iter = this->current_;
-      for (;iter != nqv_->qos_conn_mmap_.end() && 
+      for (;iter != nqv_->qos_conn_mmap_.end() &&
             iter->first == current_->first;
             ++iter);
 
@@ -25,7 +25,7 @@ namespace CQML
     {
       SharedNetQoS snq;
       NetQoSRequirements::iterator iter = this->current_;
-      for (; iter != nqv_->qos_conn_mmap_.end() && 
+      for (; iter != nqv_->qos_conn_mmap_.end() &&
              iter->first == current_->first;
              ++iter)
         {
@@ -35,14 +35,14 @@ namespace CQML
       return snq;
     }
 
-  bool NetQoSRequirementsIterator::operator == 
+  bool NetQoSRequirementsIterator::operator ==
     (NetQoSRequirementsIterator const &iter) const
     {
-      return (this->nqv_ == iter.nqv_ && 
+      return (this->nqv_ == iter.nqv_ &&
               this->current_ == iter.current_);
     }
 
-  bool NetQoSRequirementsIterator::operator != 
+  bool NetQoSRequirementsIterator::operator !=
     (NetQoSRequirementsIterator const &iter) const
     {
       return !(*this == iter);

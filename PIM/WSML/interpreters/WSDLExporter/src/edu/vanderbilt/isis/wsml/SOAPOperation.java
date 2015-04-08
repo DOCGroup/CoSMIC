@@ -3,12 +3,12 @@
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
  * ALL RIGHTS RESERVED
- * Vanderbilt University disclaims all warranties with regard to this 
- * software, including all implied warranties of merchantability and 
- * fitness.  In no event shall Vanderbilt University be liable for any 
+ * Vanderbilt University disclaims all warranties with regard to this
+ * software, including all implied warranties of merchantability and
+ * fitness.  In no event shall Vanderbilt University be liable for any
  * special, indirect or consequential damages or any damages whatsoever
  * resulting from loss of use, data or profits, whether in an action of
- * contract, negligence or other tortious action, arising out of or in 
+ * contract, negligence or other tortious action, arising out of or in
  * connection with the use or performance of this software.	
  */
 
@@ -18,7 +18,7 @@ import edu.vanderbilt.isis.udm.*;
 
 /**
  * Domain specific class of <code>SOAPOperation</code>.
- */ 
+ */
 public class SOAPOperation extends ExtensibleOperation
 {
 	// meta information
@@ -28,11 +28,11 @@ public class SOAPOperation extends ExtensibleOperation
 
 	/**
 	 * Constructor.
-	 * @param  upo The object that helps the initialization of the instance 
+	 * @param  upo The object that helps the initialization of the instance
 	 * @param  metaDiagram The diagram of the data network
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	protected SOAPOperation(UdmPseudoObject upo, Diagram metaDiagram) 
+	 */
+	protected SOAPOperation(UdmPseudoObject upo, Diagram metaDiagram)
 		throws UdmException
 	{
 		super(upo, metaDiagram);
@@ -41,7 +41,7 @@ public class SOAPOperation extends ExtensibleOperation
 	/**
 	 * Returns the meta class.
 	 * @return  The meta class
-	 */ 
+	 */
 	UdmPseudoObject getMetaClass()
 	{
 		return metaClass;
@@ -50,13 +50,13 @@ public class SOAPOperation extends ExtensibleOperation
 	/* Construction */
 
 	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
+	 * Creates an instance of the class in the container specified by the parameter.
 	 * @param  parent The parent container
 	 * @return  An instance of the class <code>SOAPOperation</code>
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static SOAPOperation create(BindingOperation parent) 
-		throws UdmException 
+	 */
+	public static SOAPOperation create(BindingOperation parent)
+		throws UdmException
 	{
 		Diagram metaDiagram = parent.getDiagram();
 		return new SOAPOperation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
@@ -75,9 +75,9 @@ public class SOAPOperation extends ExtensibleOperation
 	 * Sets the value of the attribute <code>style</code> to a value specified by the parameter.
 	 * @param _v The new value of the attribute
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public void setstyle(String _v)
-		throws UdmException 
+		throws UdmException
 	{
 		setStringVal(style, _v);
 	}
@@ -86,9 +86,9 @@ public class SOAPOperation extends ExtensibleOperation
 	 * Returns the value of the attribute <code>style</code>.
 	 * @return  The value
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public String getstyle()
-		throws UdmException 
+		throws UdmException
 	{
 		return getStringVal(style);
 	}
@@ -102,9 +102,9 @@ public class SOAPOperation extends ExtensibleOperation
 	 * Sets the value of the attribute <code>soapAction</code> to a value specified by the parameter.
 	 * @param _v The new value of the attribute
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public void setsoapAction(String _v)
-		throws UdmException 
+		throws UdmException
 	{
 		setStringVal(soapAction, _v);
 	}
@@ -113,9 +113,9 @@ public class SOAPOperation extends ExtensibleOperation
 	 * Returns the value of the attribute <code>soapAction</code>.
 	 * @return  The value
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public String getsoapAction()
-		throws UdmException 
+		throws UdmException
 	{
 		return getStringVal(soapAction);
 	}

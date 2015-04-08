@@ -1,5 +1,3 @@
-// $Id$
-
 #include "stdafx.h"
 #include "Participant_File.h"
 #include "Participant_Visitor.h"

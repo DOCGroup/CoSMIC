@@ -86,7 +86,7 @@ public:
 private:
   std::ostream& strm_;
   int indent_level_;
-  
+ 
 private:
   void upcase (const char *);
 };

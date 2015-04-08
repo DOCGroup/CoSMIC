@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "component_impl.hpp"
 

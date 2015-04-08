@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Participant_Visitor.h"
 #include "Topic_Locator.h"
@@ -564,7 +562,7 @@ namespace DQML_iCCM
   //
   void Participant_Visitor::
   visit_SubscriptionKeyQosPolicy (DQML::SubscriptionKeyQosPolicy_in item)
-  {      
+  {     
     // <name><item></item><item></item></name>
     Swap_Fragment f (this->current_, this->current_.append_element ("name"));
     this->stringseq_splitter (item->key_list ());

@@ -1,5 +1,3 @@
-// $Id$
-
 project (CQML) : udm, xerces, cosmic_utils, cosmic_lib {
 
   UDM_Files {

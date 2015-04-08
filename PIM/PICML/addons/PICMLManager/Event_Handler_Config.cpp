@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Event_Handler_Config.h"
 

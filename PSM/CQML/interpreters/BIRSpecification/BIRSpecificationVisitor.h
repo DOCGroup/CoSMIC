@@ -1,6 +1,4 @@
 // -*- C++ -*-
-// $Id$
-
 #ifndef BIRSPECIFICATION_VISITOR_H
 #define BIRSPECIFICATION_VISITOR_H
 

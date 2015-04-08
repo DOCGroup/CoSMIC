@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Scope_Display_Strategy.h"
 

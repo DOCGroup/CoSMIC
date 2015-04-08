@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "op_decl_impl.hpp"
 

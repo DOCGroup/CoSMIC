@@ -14,7 +14,7 @@ try_create_option_value(OCML::Option_Definition* option);
 OCML::Option_Value*
 create_option_value(OCML::Option_Definition* option);
 
-typedef std::map<OCML::Option_Definition*, OCML::Option_Value*> 
+typedef std::map<OCML::Option_Definition*, OCML::Option_Value*>
   option_value_map;
 
 option_value_map* create_values(OCML::Option_Category* category);

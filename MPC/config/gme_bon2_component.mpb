@@ -1,5 +1,3 @@
-// $Id$
-
 project : gme_bon2, gme_component {
   Source_Files {
     BON2Component.cpp

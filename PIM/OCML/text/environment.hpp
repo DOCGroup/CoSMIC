@@ -27,7 +27,7 @@ public:
   OCML::Constraint_Engine* constraint_engine();
 
   OCML::Constraint_Engine::rule_index rule(const char* name);
-  
+ 
   void add_rule(const char* name, OCML::Constraint_Engine::rule_index rule);
 
   void delete_rule(const char* name);

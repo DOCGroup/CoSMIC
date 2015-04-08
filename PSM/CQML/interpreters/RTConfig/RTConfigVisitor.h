@@ -42,15 +42,15 @@ using xercesc::LocalFileFormatTarget;
 
 class RTConfigVisitor : public CQMLVisitor
 {
-  
-  
+ 
+ 
   public:
     RTConfigVisitor (const std::string& outputPath);
     ~RTConfigVisitor();
 
-    
+   
     // Predefined Types
-    
+   
 	virtual bool visitBoolean( const PICML::Boolean& object );
 	virtual bool visitByte(const PICML::Byte& object);
 	virtual bool visitString(const PICML::String& object);
@@ -62,7 +62,7 @@ class RTConfigVisitor : public CQMLVisitor
 
     virtual bool visitRealTimeConfiguration( const CQML::RealTimeConfiguration& object );
     virtual bool visitEnvironmentConf (const EnvironmentConf& ec);
-	virtual bool visitThreadPool( const CQML::ThreadPool& tp );            
+	virtual bool visitThreadPool( const CQML::ThreadPool& tp );           
 	virtual bool visitBandedConnection( const CQML::BandedConnection& bc);        	
     virtual bool visitPriorityModelPolicy( const CQML::PriorityModelPolicy& pmp);
 	virtual bool visitLanes (const CQML::Lanes& lns);	

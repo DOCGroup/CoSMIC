@@ -25,7 +25,7 @@ OCMLInterpreter::OCMLInterpreter()
       xercesc::XMLString::release(&pMsg);
       throw;
     }
-  
+ 
   impl_ =
     xercesc::DOMImplementationRegistry::getDOMImplementation(XStr("Core"));
 }
@@ -45,7 +45,7 @@ OCMLInterpreter::write(const char* file_name, xercesc::DOMDocument* doc)
   theSerializer->writeNode(myFormTarget, *root_node);
 }
 
-xercesc::DOMDocument* 
+xercesc::DOMDocument*
 OCMLInterpreter::create_document(std::set<BON::Model>& root_models)
 {
   // create DOMDocument

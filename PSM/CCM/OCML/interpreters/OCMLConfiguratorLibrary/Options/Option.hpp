@@ -1,8 +1,6 @@
 /**
  * @file Option.hpp
  *
- * $Id$
- *
  * Definition of the options.
  *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
@@ -45,7 +43,7 @@ namespace OCML
 
   protected:
     /// protected Constructor.
-    Option(value_kind_type value_kind, 
+    Option(value_kind_type value_kind,
            const char* name, const char* description);
 
   public:

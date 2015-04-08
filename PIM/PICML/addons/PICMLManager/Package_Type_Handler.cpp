@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Package_Type_Handler.h"
 
@@ -597,7 +595,7 @@ substitute_template_parameters (const GAME::Mga::Model_in tpi,
   if (0 != tpi->children (idl_aspect, refs))
     for (auto ref : refs)
       substitute_template_parameter_reference (ref, mapping);
-    
+   
   // Perform the same operation on all the model elements.
   std::vector <GAME::Mga::Model> models;
   if (0 != tpi->children (idl_aspect, models))

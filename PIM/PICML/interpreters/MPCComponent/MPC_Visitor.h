@@ -1,5 +1,3 @@
-// $Id$
-
 #include <iterator>
 #include "PICML/PICML.h"
 #include "PICML/Visitor.h"

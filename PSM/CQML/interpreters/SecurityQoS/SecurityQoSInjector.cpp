@@ -11,5 +11,5 @@ namespace CQML
     SecurityQoSInjector::~SecurityQoSInjector(void)
       {
       }
-   
-  } 
+  
+  }

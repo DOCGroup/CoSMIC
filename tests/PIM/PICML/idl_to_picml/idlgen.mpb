@@ -1,5 +1,3 @@
-// $Id$
-
 project {
   Define_Custom (IDL_Gen) {
     automatic_in     = 0

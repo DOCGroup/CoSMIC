@@ -1,5 +1,3 @@
-// $Id$
-
 #include "Utils/Utils.h"
 #include "BIRSpecificationVisitor.h"
 #include "UmlExt.h"

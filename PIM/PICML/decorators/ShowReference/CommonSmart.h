@@ -41,7 +41,7 @@ public:
 	void Attach(T* q) { if(p) p->Release(); p = q; }
 
 	template<class Q>
-	HRESULT QueryInterface(CComObjPtr<Q> &q) const 
+	HRESULT QueryInterface(CComObjPtr<Q> &q) const
 	{
 		ASSERT( p != NULL && q == NULL );
 		return p->QueryInterface(__uuidof(Q), (void**)&q.p);
@@ -92,7 +92,7 @@ void CopyTo(T *p, Q **q)
 { ASSERT( q != NULL ); if(p) p->AddRef(); if(*q) (*q)->Release(); *q = p; }
 
 template<class T, class Q>
-void CopyTo(const CComObjPtr<T> &p, Q **q) 
+void CopyTo(const CComObjPtr<T> &p, Q **q)
 { ASSERT( q != NULL ); if(p) p->AddRef(); if(*q) (*q)->Release(); *q = p; }
 
 // global QueryInterface

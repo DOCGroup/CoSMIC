@@ -1,5 +1,3 @@
-// $Id$
-
 project : vc8warnings, boost_base  {
   install = $(COSMIC_ROOT)/bin
 

@@ -1,5 +1,3 @@
-// $Id$
-
 #include "Template_Parameter_Manager.h"
 
 #include "boost/bind.hpp"

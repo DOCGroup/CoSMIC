@@ -31,12 +31,12 @@ namespace
 /////////////////////////////////////////////////////////////////////////////
 // CDialogBackplaneMonitor dialog
 
-CDialogBackplaneMonitor::CDialogBackplaneMonitor(const string &paradigmname, 
+CDialogBackplaneMonitor::CDialogBackplaneMonitor(const string &paradigmname,
 												 const string &projectfullpath,
 												 HWND & pushOutDialogHWND,
 												 CWnd* pParent /*=NULL*/)
-	: CDialog(CDialogBackplaneMonitor::IDD, pParent), 
-	  _paradigmname(paradigmname), 
+	: CDialog(CDialogBackplaneMonitor::IDD, pParent),
+	  _paradigmname(paradigmname),
 	  _projectfullpath(projectfullpath),
 	  _pushOutDialogHWND(pushOutDialogHWND),
 	  _ta((paradigmname+"_Receiver").c_str(), ac, av)
@@ -55,7 +55,7 @@ CDialogBackplaneMonitor::CDialogBackplaneMonitor(const string &paradigmname,
 
 	dcs.UpdateState("Getting Working Paradigms from the backplane", 10);
 
-	//Let's fetch the Diagram from the OTIF backplane. 
+	//Let's fetch the Diagram from the OTIF backplane.
 	map<long, UdmCORBA::PARADIGM_STRUCT> workingparadigms; _ta.getWorkingParadigms(workingparadigms);
 
 
@@ -129,7 +129,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CDialogBackplaneMonitor message handlers
 
-BOOL CDialogBackplaneMonitor::OnInitDialog() 
+BOOL CDialogBackplaneMonitor::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
@@ -157,16 +157,16 @@ BOOL CDialogBackplaneMonitor::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CDialogBackplaneMonitor::OnButtonGetSelectedDocument() 
+void CDialogBackplaneMonitor::OnButtonGetSelectedDocument()
 {
 	// TODO: Add your control notification handler code here
 
 
 
 	POSITION pos = m_ListDataNetworks.GetFirstSelectedItemPosition();
-	if (pos == NULL) 
+	if (pos == NULL)
 	{
-		MessageBox("No items are selected!"); 
+		MessageBox("No items are selected!");
 		return;
 	}
 
@@ -221,7 +221,7 @@ Please confirm that you intend to do so.").c_str(),
 
 
 	//Since GME does not support reloading the project from disk, we have to go dirty:
-	//we save the fetched file on the same project which was open, then we launch 
+	//we save the fetched file on the same project which was open, then we launch
 	//another GME on it and we TERMINATE the current GME (so that it does not prompt the user to save it)
 	//There is no other way than terminating it because we cannot access any COM interfaces of GME from here
 	//(because the component InvokeEx in facts has already returned, and here we are in another thread).
@@ -238,7 +238,7 @@ Please confirm that you intend to do so.").c_str(),
 
 
 
-void CDialogBackplaneMonitor::OnTimer(UINT nIDEvent) 
+void CDialogBackplaneMonitor::OnTimer(UINT nIDEvent)
 {
 	// TODO: Add your message handler code here and/or call default
 	

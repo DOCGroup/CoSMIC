@@ -1,6 +1,4 @@
 // -*- MPC -*-
-// $Id$
-
 project (Interface_Expected) : taoclient {
   exename = Interface_Expected
   install = .

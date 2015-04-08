@@ -1,5 +1,3 @@
-// $Id$
-
 project {
   after += OCMLSvcConfExporter
   exename = svc_conf_exporter

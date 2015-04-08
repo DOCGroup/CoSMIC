@@ -1,5 +1,3 @@
-// $Id$
-
 project (CIAOEvents): game_xml, cqmllib {
 
    after += CQML

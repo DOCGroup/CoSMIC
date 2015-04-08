@@ -27,7 +27,7 @@ void XML_Writer::add_child(XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument *doc,DOMEl
   XMLCh *temp=XMLString::transcode(child.c_str());
   DOMElement *child_ele=doc->createElement(temp);
   XMLString::binToText(data,temp,5,10);
-  child_ele->setTextContent(temp); 
+  child_ele->setTextContent(temp);
   root->appendChild(child_ele);
   XMLString::release(&temp);
 }
@@ -36,8 +36,8 @@ void XML_Writer::add_child(XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument *doc,DOMEl
 {
   XMLCh *temp=XMLString::transcode(child.c_str());
   DOMElement *child_ele=doc->createElement(temp);
-  temp=XMLString::transcode(data.c_str());  
-  child_ele->setTextContent(temp); 
+  temp=XMLString::transcode(data.c_str()); 
+  child_ele->setTextContent(temp);
   root->appendChild(child_ele);
   XMLString::release(&temp);
 }
@@ -54,22 +54,22 @@ bool XML_Writer::write_file(const String &xml_file)
   temp=XMLString::transcode("benchmark_inputs");
   DOMElement *root=doc->createElement(temp);
   doc->appendChild(root);
-    
+   
   //add_child(doc,root,"iterations",this->no_iterations_);
-  add_child(doc,root,"connections",this->no_connections_); 
+  add_child(doc,root,"connections",this->no_connections_);
   add_child(doc,root,"data",this->data_);
   add_child(doc,root,"data_exchanges",this->no_data_exchanges_);
 
   temp=XMLString::transcode("reactor_inputs");
   DOMElement *reactor_child=doc->createElement(temp);
-  
+ 
   add_child(doc,reactor_child,"reactor_type",this->reactor_type_);
   add_child(doc,reactor_child,"handlers",this->no_handlers_);
- 
+
   root->appendChild(reactor_child);
-  
+ 
   XMLFormatTarget *myFormTarget = new LocalFileFormatTarget(xml_file.c_str());
-  DOMElement *serialize_doc=doc->getDocumentElement(); 
+  DOMElement *serialize_doc=doc->getDocumentElement();
   temp=XMLString::transcode("utf-8");
 
   // The following lines are commented out because of compilation errors
@@ -82,7 +82,7 @@ bool XML_Writer::write_file(const String &xml_file)
   delete myFormTarget;
   XMLString::release(&temp);
   XMLPlatformUtils::Terminate();
-  
+ 
   return true;
 
 }
@@ -112,7 +112,7 @@ Component::~Component()
 bool Component::process_benchmarking(MON::Aspect &aspect,Model &model,XML_Writer &writer)
 {
   BON::Project project=model->getProject();
- 
+
   Atom_Set atom_set=model->getChildAtoms(aspect);
   Atom_Set::iterator iter;
   for(iter=atom_set.begin();iter!=atom_set.end();iter++)
@@ -120,14 +120,14 @@ bool Component::process_benchmarking(MON::Aspect &aspect,Model &model,XML_Writer
 	if((*iter)->getName()=="Threads")
 	{
 	  BON::Attribute attr=(*iter)->getAttribute("number_of_threads");
-	  writer.set_connections(attr->getIntegerValue()); 
+	  writer.set_connections(attr->getIntegerValue());
 	}		
 	else if((*iter)->getName()=="RoundtripLatency")
 	{
 	  BON::Attribute data_attr=(*iter)->getAttribute("data_exchanges");
 	  writer.set_data_exchanges(data_attr->getIntegerValue());
 	  BON::Attribute data_string_attr=(*iter)->getAttribute("StringData");
-	  writer.set_data(data_string_attr->getStringValue());  
+	  writer.set_data(data_string_attr->getStringValue()); 
 
 	  /*BON::Attribute data_iter=(*iter)->getAttribute("iterations");
 	  writer.set_iterations(data_iter->getIntegerValue()); */
@@ -135,15 +135,15 @@ bool Component::process_benchmarking(MON::Aspect &aspect,Model &model,XML_Writer
 	else if((*iter)->getName()=="Throughput")
 	{
 	  BON::Attribute data_attr=(*iter)->getAttribute("data_exchanges");
-	  writer.set_data_exchanges(data_attr->getIntegerValue()); 
+	  writer.set_data_exchanges(data_attr->getIntegerValue());
 	 /* BON::Attribute data_iter=(*iter)->getAttribute("iterations");
 	  writer.set_iterations(data_iter->getIntegerValue()); */
 	  BON::Attribute data_string_attr=(*iter)->getAttribute("StringData");
-	  writer.set_data(data_string_attr->getStringValue());  
+	  writer.set_data(data_string_attr->getStringValue()); 
 	
 	}
   }
-  Aspect_Set aspect_set = project->getProjectMeta().aspects();   
+  Aspect_Set aspect_set = project->getProjectMeta().aspects();  
   MON::Aspect feat_asp,reactor_asp;
   for(Aspect_Set::iterator asp_it=aspect_set.begin();asp_it!=aspect_set.end();asp_it++)
   {
@@ -163,7 +163,7 @@ bool Component::process_benchmarking(MON::Aspect &aspect,Model &model,XML_Writer
 	if((*feat_it)->getName()=="Reactor_Type")
 	{
 	  BON::Attribute type_att=(*feat_it)->getAttribute("Reactor_Type_Options");
-	  writer.set_reactor_type(type_att->getStringValue()); 
+	  writer.set_reactor_type(type_att->getStringValue());
 	}
   }
   Model_Set model_set=model->getChildModels(aspect);
@@ -176,17 +176,17 @@ bool Component::process_benchmarking(MON::Aspect &aspect,Model &model,XML_Writer
 	}
 
   }
-  Set_Set handle_set=reactor_model->getChildSets(reactor_asp); 
+  Set_Set handle_set=reactor_model->getChildSets(reactor_asp);
   for(Set_Set::iterator set_it=handle_set.begin();set_it!=handle_set.end();set_it++)
   {
 	if((*set_it)->getName()=="Handle_Set")
 	{
-	  int cnt=(*set_it)->getMembers(reactor_asp).size(); 
+	  int cnt=(*set_it)->getMembers(reactor_asp).size();
 	  writer.set_no_handlers(cnt);
 	}
   }
   writer.write_file("benchmark_inputs.xml");
-  project->consoleMsg("Input file for benchmarking generated",msgtype_enum(1));  
+  project->consoleMsg("Input file for benchmarking generated",msgtype_enum(1)); 
   return true;
 }
 
@@ -197,14 +197,14 @@ bool Component::process_middleware(Project &project,XML_Writer &writer)
   int len = model_set.size();
   if(len < 0)
   {
-     
+    
        return false;
     }
   for (Model_Set::iterator iter = model_set.begin();
 			iter != model_set.end();
 			++iter)
     {
-	 
+	
         BON::Model model = (*iter);
         String model_name = model->getObjectMeta().name();
         if(model_name == "Middleware")
@@ -225,7 +225,7 @@ bool Component::process_middleware(Project &project,XML_Writer &writer)
                 }
             }
         }
-       
+      
     }
     return true;
 }
@@ -277,20 +277,20 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 #endif
 	// ======================
 	// Insert application specific code here
-project->consoleMsg("Starting benchmarking interpreter...",msgtype_enum(1));  
+project->consoleMsg("Starting benchmarking interpreter...",msgtype_enum(1)); 
 	BON::Folder root = project->getRootFolder( ); // Get the root folder
-    
-    if ( !root ) 
+   
+    if ( !root )
     {
         AfxMessageBox("Could not find RootFolder" );
         return;
     }
     XML_Writer writer;
-  
+ 
 	
     process_middleware(project,writer);
     return;
-   
+  
 
 }
 

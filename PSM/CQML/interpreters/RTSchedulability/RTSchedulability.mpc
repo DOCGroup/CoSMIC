@@ -1,5 +1,3 @@
-// $Id$
-
 project(RTSchedulability): game_xml, cqmllib {
 
    after += DeploymentPlanFramework

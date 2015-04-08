@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "integer_type_impl.hpp"
 

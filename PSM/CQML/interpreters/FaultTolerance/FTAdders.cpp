@@ -25,7 +25,7 @@ namespace CQML
     {
       this->monolith_comp_map_.clear();
       std::set<std::string> comp_names = this->ft_req_visitor_->get_all_monolith_components ();
-      this->populate_map (this->monolith_comp_replica_map_, 
+      this->populate_map (this->monolith_comp_replica_map_,
 						  this->monolith_comp_map_,
 		                  comp_names);
 
@@ -44,7 +44,7 @@ namespace CQML
         {
           std::ostringstream ostr;
           ostr << comp_name << this->replica_suffix() << i;
-          replica_set.insert (ostr.str()); 
+          replica_set.insert (ostr.str());
         }
       return replica_set;
     }
@@ -57,12 +57,12 @@ namespace CQML
         {
           std::ostringstream ostr;
           ostr << comp_name << this->replica_suffix() << i;
-          replica_map.insert (std::make_pair (i, ostr.str())); 
+          replica_map.insert (std::make_pair (i, ostr.str()));
         }
       return replica_map;
     }
 
-  void ComponentAdder::populate_map (std::map <std::string, Component> & replica_map, 
+  void ComponentAdder::populate_map (std::map <std::string, Component> & replica_map,
 	                                 std::map <std::string, Component> & primary_map,
 									 const std::set <std::string> & names)
     {
@@ -71,7 +71,7 @@ namespace CQML
            ++itr)
         {
           FTReq req = this->ft_req_visitor_->get_requirements (*itr);
-          primary_map.insert (std::make_pair (*itr, req.second)); 
+          primary_map.insert (std::make_pair (*itr, req.second));
 
           std::set <std::string> replica_set = this->give_replica_set (*itr);
 
@@ -79,7 +79,7 @@ namespace CQML
                iter != replica_set.end ();
                ++iter)
             {
-              replica_map.insert (std::make_pair (*iter, req.second)); 
+              replica_map.insert (std::make_pair (*iter, req.second));
             }
         }
      }
@@ -134,7 +134,7 @@ namespace CQML
           std::set <std::string> source_instances;
 
           // It is added in the source_instances because in the replicated
-          // destination case, the two for loops in the following if block 
+          // destination case, the two for loops in the following if block
           // only looks at the source_instance set and nothing else
           source_instances.insert (source_comp_name);
 
@@ -153,9 +153,9 @@ namespace CQML
                   new_conn.first.instance_name = ostr.str ();
 
                   // It is added in the source_instances because in the replicated
-                  // destination case, the two for-loops in the following if-block 
+                  // destination case, the two for-loops in the following if-block
                   // only looks at the source_instance set and nothing else
-                  source_instances.insert (ostr.str()); 
+                  source_instances.insert (ostr.str());
 
                   ostr << "_" << dest_comp_name;
                   new_map.insert (std::make_pair (ostr.str (), new_conn));
@@ -172,10 +172,10 @@ namespace CQML
                    ++dest_replica_itr)
                 {
                   // The for loop below only considers "source_instances" set.
-                  // This loop does make distinction between one source instance 
-                  // (i.e. primary) and more-than-one source instances 
-                  // (i.e. primary + replicas) 
-                  
+                  // This loop does make distinction between one source instance
+                  // (i.e. primary) and more-than-one source instances
+                  // (i.e. primary + replicas)
+                 
                   for (std::set<std::string>::iterator source_instance_itr = source_instances.begin ();
                        source_instance_itr != source_instances.end();
                        ++source_instance_itr)
@@ -183,7 +183,7 @@ namespace CQML
                       Injector::ConnectionMap::mapped_type new_conn = input_map_itr->second;
                       new_conn.first.instance_name = *source_instance_itr;
                       new_conn.first.port_kind = std::string ("IOGR-") + new_conn.first.port_kind;
-                      
+                     
                       new_conn.second.instance_name = *dest_replica_itr;
                       new_conn.second.port_kind = std::string ("IOGR-") + new_conn.second.port_kind;
                       std::ostringstream ostr;
@@ -201,7 +201,7 @@ namespace CQML
       comp_addr_ (comp_add)
     {
     }
-  
+ 
   RandomNodeAssigner::~RandomNodeAssigner()
     {}
 
@@ -212,26 +212,26 @@ namespace CQML
       srand (static_cast <unsigned int> (t));
       const std::vector <Node> &node_vec = this->node_collector_->get_all_nodes ();
 
-      const std::map <std::string, Component> &comp_map = 
+      const std::map <std::string, Component> &comp_map =
         this->comp_addr_->get_all_monolith_components ();
-      for (std::map <std::string, Component>::const_iterator itr = 
+      for (std::map <std::string, Component>::const_iterator itr =
             comp_map.begin ();
            itr != comp_map.end();
            ++itr)
         {
           int r = rand () % node_vec.size ();
-          this->node_assignment_.insert (std::make_pair (itr->first, node_vec[r])); 
+          this->node_assignment_.insert (std::make_pair (itr->first, node_vec[r]));
         }
 
-      const std::map <std::string, Component> &assembly_comp_map = 
+      const std::map <std::string, Component> &assembly_comp_map =
         this->comp_addr_->get_all_assembly_components ();
-      for (std::map <std::string, Component>::const_iterator itr = 
+      for (std::map <std::string, Component>::const_iterator itr =
             assembly_comp_map.begin ();
            itr != assembly_comp_map.end();
            ++itr)
         {
           int r = rand () % node_vec.size ();
-          this->node_assignment_.insert (std::make_pair (itr->first, node_vec[r])); 
+          this->node_assignment_.insert (std::make_pair (itr->first, node_vec[r]));
         }
     }
 
@@ -240,8 +240,8 @@ namespace CQML
       return this->node_assignment_;
     }
 
-  BranchNBoundNodeAssigner::BranchNBoundNodeAssigner (const SRGVisitor *srgv, 
-                                                      const FTRequirementsVisitor *ft_req, 
+  BranchNBoundNodeAssigner::BranchNBoundNodeAssigner (const SRGVisitor *srgv,
+                                                      const FTRequirementsVisitor *ft_req,
                                                       const ComponentAdder *comp_add)
     : best_permutation_value_ (0),
       srg_visitor_ (srgv),
@@ -249,23 +249,23 @@ namespace CQML
       comp_addr_ (comp_add)
     {
     }
-  
+ 
   BranchNBoundNodeAssigner::~BranchNBoundNodeAssigner ()
     {}
 
-  void BranchNBoundNodeAssigner::compute_replica_assignement_of 
+  void BranchNBoundNodeAssigner::compute_replica_assignement_of
     (const std::string &primary_name, const std::string &primary_node_name)
     {
       int node_count = this->srg_visitor_->node_count ();
       //std::ofstream outfile ("C:\\Documents and Settings\\sumant\\Desktop\\DOC Files\\backup\\BranchNBound_node_assignment.txt");
       this->best_permutation_.clear ();
       this->best_permutation_.resize (node_count);
-      std::map <int, std::string> current_replica_group = 
+      std::map <int, std::string> current_replica_group =
         this->comp_addr_->give_replica_map (primary_name);
       current_replica_group.insert (std::make_pair (0, primary_name));
       int repg_size = current_replica_group.size ();
       assert (repg_size <= node_count);
-      
+     
       if (repg_size > 1) /// atleast one replica
         {
           std::vector <int> permutation_vector (node_count);
@@ -283,7 +283,7 @@ namespace CQML
             {
               permutation_vector[0] = 0;
               this->best_permutation_[0] = 0;
-              
+             
               /// No primary node is given therefore, no placement for primary can be
               /// made therefore, take the placement decision of the primary and replicas
               /// also.
@@ -295,7 +295,7 @@ namespace CQML
 			  std::swap (this->best_permutation_[n], this->best_permutation_[0]);
 			  std::swap (permutation_vector[n], permutation_vector[0]);
 
-			  /// Primary node is given and its placement therefore, take the placement 
+			  /// Primary node is given and its placement therefore, take the placement
               /// decision of the replicas only.
               this->nPr (permutation_vector, 1, permutation_vector.size(), repg_size);
             }
@@ -313,9 +313,9 @@ namespace CQML
           int node_num = this->best_permutation_[i];
           CQML::HostReference noderef = this->srg_visitor_->get_hostref (node_num);
           Node node = noderef.ref ();
-          this->node_assignment_.insert 
+          this->node_assignment_.insert
             (std::make_pair (current_replica_group[i], node));
-          //outfile << current_replica_group[i] << " : " 
+          //outfile << current_replica_group[i] << " : "
           //  << std::string (node.name ()) << std::endl;
         }
     }
@@ -324,7 +324,7 @@ namespace CQML
     {
       std::set <std::string> assembly_comp_set = this->ft_req_visitor_->get_all_assembly_components ();
       std::set <std::string> primary_set = this->ft_req_visitor_->get_all_monolith_components ();
-      std::copy (assembly_comp_set.begin (), assembly_comp_set.end (), 
+      std::copy (assembly_comp_set.begin (), assembly_comp_set.end (),
                  std::inserter(primary_set, primary_set.begin()));
       assembly_comp_set.clear ();
 
@@ -332,7 +332,7 @@ namespace CQML
            primary_itr != primary_set.end ();
            ++primary_itr)
         {
-          std::map <std::string, std::string>::const_iterator itr 
+          std::map <std::string, std::string>::const_iterator itr
             = known_mapping.find(*primary_itr);
 
           if (itr != known_mapping.end ())
@@ -371,7 +371,7 @@ namespace CQML
     {
       bool retval;
       double new_value = this->compute_vector_value (perm, depth);
-      //std::copy (perm.begin (), perm.end (), 
+      //std::copy (perm.begin (), perm.end (),
       //  std::ostream_iterator <int> (this->permfile_, " "));
       //this->permfile_ << " value = " << new_value;
 
@@ -382,7 +382,7 @@ namespace CQML
           //this->permfile_ << " Updated ";
           retval = true;
         }
-      //this->permfile_ << std::endl; 
+      //this->permfile_ << std::endl;
       retval = false;
       return retval;
     }
@@ -399,7 +399,7 @@ namespace CQML
           value += distance * distance;
         }
       value = ::sqrt (value);
-      //this->permfile_ << " SQRT = " << value << " sum = " << sum;  
+      //this->permfile_ << " SQRT = " << value << " sum = " << sum; 
       double mean = sum / depth;
       double std_dev = 0;
       for (int i = 0;i < depth; ++i)
@@ -408,7 +408,7 @@ namespace CQML
           std_dev += ::pow (distance-mean, 2);
         }
       std_dev = std::sqrt (std_dev / (depth));
-      //this->permfile_ << " STD_DEV = " << std_dev << "# "; 
+      //this->permfile_ << " STD_DEV = " << std_dev << "# ";
       return value - std_dev;
     }
 

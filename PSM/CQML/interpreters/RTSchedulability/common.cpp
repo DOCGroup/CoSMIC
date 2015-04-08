@@ -1,5 +1,3 @@
-// $Id$
-
 #include "ace/config.h"
 
 #include "common.h"

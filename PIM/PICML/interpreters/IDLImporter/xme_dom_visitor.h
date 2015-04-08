@@ -1,5 +1,3 @@
-// $Id$
-
 /* -*- c++ -*- */
 // ============================================================================
 //
@@ -35,7 +33,7 @@ class xme_dom_visitor
   //    xme_dom_visitor
   //
   // = DESCRIPTION
-  //    PICML IDL importer DOM visitor base class. This visitor 
+  //    PICML IDL importer DOM visitor base class. This visitor
   //    declares the methods that are overridden in the other DOM
   //    tree visitors in this library. The first two protected
   //    methods are defined here, since they are used unchanged in
@@ -45,15 +43,15 @@ class xme_dom_visitor
   //
 public:
   bool visit_root (DOMElement *node);
-  
+ 
 protected:
   bool visit_children (DOMElement *node);
-  
+ 
   // Visit methods for DOM node types.
   bool visit_dom_element (DOMElement *node);
   bool visit_dom_text (DOMText *node);
   bool visit_dom_attribute (DOMAttr *node);
-  
+ 
   // Visit methods for metaGME types (indicated by
   // XML tag names).
   virtual bool visit_gme_folder (DOMElement *node);

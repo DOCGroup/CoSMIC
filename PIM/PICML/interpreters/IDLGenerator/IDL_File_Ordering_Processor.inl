@@ -1,5 +1,3 @@
-// $Id$
-
 template <typename T>
 struct is_reference
 {

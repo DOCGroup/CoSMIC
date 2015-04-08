@@ -2,9 +2,9 @@
 #include <string>
 using std::string;
 
-CUTS_x002eBenchmark_USCOREData_USCORECollector::CUTS_x002eBenchmark_USCOREData_USCORECollector (CUTS::BDC_Control_Handle_ptr controls, 
+CUTS_x002eBenchmark_USCOREData_USCORECollector::CUTS_x002eBenchmark_USCOREData_USCORECollector (CUTS::BDC_Control_Handle_ptr controls,
                                                                                                 CUTS::Path_Measurement_ptr online_measurements)
-: controls_(CUTS::BDC_Control_Handle::_duplicate (controls)), 
+: controls_(CUTS::BDC_Control_Handle::_duplicate (controls)),
 online_measurements_(CUTS::Path_Measurement::_duplicate (online_measurements))
 {
   CUTS_x002eBenchmark_USCOREData_USCORECollector_init(SOAP_IO_DEFAULT, SOAP_IO_DEFAULT);
@@ -27,7 +27,7 @@ CUTS_x002eBenchmark_USCOREData_USCORECollector::CUTS_x002eBenchmark_USCOREData_U
 
 void CUTS_x002eBenchmark_USCOREData_USCORECollector::CUTS_x002eBenchmark_USCOREData_USCORECollector_init (soap_mode imode, soap_mode omode)
 {
-  static const struct Namespace namespaces[] = 
+  static const struct Namespace namespaces[] =
   {
     {
       "SOAP-ENV", "http://schemas.xmlsoap.org/soap/envelope/", "http://www.w3.org/*/soap-envelope", NULL
@@ -198,7 +198,7 @@ static int serve_SLICE__execution_USCOREtime(CUTS_x002eBenchmark_USCOREData_USCO
       || soap_end_recv(soap))
   return soap->error;
 
-  soap->error = soap->execution_USCOREtime(request.path_USCOREid, 
+  soap->error = soap->execution_USCOREtime(request.path_USCOREid,
                                            response);
   if (soap->error)
   return soap->error;
@@ -250,7 +250,7 @@ static int serve_SLICE__unbind_USCOREto_USCOREpath(CUTS_x002eBenchmark_USCOREDat
       || soap_end_recv(soap))
   return soap->error;
 
-  soap->error = soap->unbind_USCOREto_USCOREpath(request.path_USCOREid, 
+  soap->error = soap->unbind_USCOREto_USCOREpath(request.path_USCOREid,
                                                  response);
   if (soap->error)
   return soap->error;
@@ -302,8 +302,8 @@ static int serve_SLICE__bind_USCOREto_USCOREpath(CUTS_x002eBenchmark_USCOREData_
       || soap_end_recv(soap))
   return soap->error;
 
-  soap->error = soap->bind_USCOREto_USCOREpath(request.path, 
-                                               request.flags, 
+  soap->error = soap->bind_USCOREto_USCOREpath(request.path,
+                                               request.flags,
                                                response._USCOREreturn);
   if (soap->error)
   return soap->error;
@@ -391,7 +391,7 @@ static int serve_SLICE__collect_USCOREperformance_USCOREdata(CUTS_x002eBenchmark
   return soap_closesock(soap);
 }
 
-int CUTS_x002eBenchmark_USCOREData_USCORECollector::execution_USCOREtime (int path_USCOREid, 
+int CUTS_x002eBenchmark_USCOREData_USCORECollector::execution_USCOREtime (int path_USCOREid,
                                                                           struct SLICE__execution_USCOREtimeResponse& _param_1)
 {
   try
@@ -431,7 +431,7 @@ int CUTS_x002eBenchmark_USCOREData_USCORECollector::execution_USCOREtime (int pa
 }
 
 
-int CUTS_x002eBenchmark_USCOREData_USCORECollector::unbind_USCOREto_USCOREpath (int path_USCOREid, 
+int CUTS_x002eBenchmark_USCOREData_USCORECollector::unbind_USCOREto_USCOREpath (int path_USCOREid,
                                                                                 struct SLICE__unbind_USCOREto_USCOREpathResponse& _param_1)
 {
   try
@@ -457,8 +457,8 @@ int CUTS_x002eBenchmark_USCOREData_USCORECollector::unbind_USCOREto_USCOREpath (
 }
 
 
-int CUTS_x002eBenchmark_USCOREData_USCORECollector::bind_USCOREto_USCOREpath (CUTS_x002e_USCORESE_USCOREPath_USCORESequence* path, 
-                                                                              unsigned short flags, 
+int CUTS_x002eBenchmark_USCOREData_USCORECollector::bind_USCOREto_USCOREpath (CUTS_x002e_USCORESE_USCOREPath_USCORESequence* path,
+                                                                              unsigned short flags,
                                                                               int& _USCOREreturn)
 {
   try

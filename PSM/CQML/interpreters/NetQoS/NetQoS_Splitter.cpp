@@ -4,20 +4,20 @@ NetQoS_Splitter::NetQoS_Splitter (NetQoSVisitor::NetQoS_Requirements const &netq
 : netqos_req_(&netqos_req)
   {}
 
-std::map <std::string, std::string> 
-NetQoS_Splitter::assign_node_mappings (const std::string& plan_name, 
+std::map <std::string, std::string>
+NetQoS_Splitter::assign_node_mappings (const std::string& plan_name,
                                        const std::map <std::string, std::string> &
                                        known_mappings)
   {
-    for (NetQoSVisitor::NetQoS_Requirements::iterator itr = 
+    for (NetQoSVisitor::NetQoS_Requirements::iterator itr =
            this->netqos_req_->lower_bound (netqos);
          itr != this->qos_conn_mmap_.upper_bound (netqos);
          ++itr)
       {
-          this->curr_->appendChild (this->createSimpleContent ("connectionName", itr->second.connection_name));  
+          this->curr_->appendChild (this->createSimpleContent ("connectionName", itr->second.connection_name)); 
       }
   }
- /*   
+ /*  
   private:
     struct HostPair
       {

@@ -1,5 +1,3 @@
-// $Id$
-
 project (PICML_Configurator): mfc, picmllib {
    after += PICML config_exe
    sharedname = PICML_Configurator

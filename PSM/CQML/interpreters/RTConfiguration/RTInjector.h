@@ -1,4 +1,3 @@
-//$Id$
 #ifndef RTINJECTOR_H
 #define RTINJECTOR_H
 
@@ -18,12 +17,12 @@ namespace CQML
       {
         public:
 			RTInjector ( CQML::RTConfigurationVisitor *);
-          virtual ~RTInjector();		  
+          virtual ~RTInjector();		 
 		  virtual std::string get_deployed_resource (const CQML::Component& comp);
 		  virtual std::string get_resource_name ();
-			    
-		private:        
-			RTConfigurationVisitor * rt_config_visitor_;		  
+			   
+		private:       
+			RTConfigurationVisitor * rt_config_visitor_;		 
       };
 
   }  // namespace CQML

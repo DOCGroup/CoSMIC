@@ -56,7 +56,7 @@
 					<Sequence _id="id16e" name="Sequence" recursive="false" dstRule_end_="idb" srcRule_end_="idf"/>
 					<Sequence _id="id16f" name="Sequence" recursive="false" dstRule_end_="idf" srcRule_end_="ida"/>
 				</RewritingRule>
-				<RewritingRule _id="id13" cut="false" name="MatchCorrectInvokeConnection" guard="string slaveComponentName, requiredSlaveComponentName, 
+				<RewritingRule _id="id13" cut="false" name="MatchCorrectInvokeConnection" guard="string slaveComponentName, requiredSlaveComponentName,
          slavePortName, requiredSlavePortName,
          masterPortName, requiredMasterPortName;
 
@@ -100,7 +100,7 @@ CProperty.SetStrValue(&quot;value&quot;, str);"/>
 					<PatternObject _id="id26" src="id25" name="ConnectionSelector" action="Bound" objectID="0" position="(223,166)" classType="ConnectionSelector" cardinality="1" paradigmName="PICMLCadena_Xchange_embedded_EIProperties" dstObjectWrapper="id15f" srcObjectWrapper="id160 id162" isAssociationClass="false"/>
 					<PatternObject _id="id24" dst="id25" name="EProperty" action="Bound" objectID="0" position="(287,299)" classType="Property" cardinality="1" paradigmName="PICMLCadena_Xchange_embedded_EIProperties" isAssociationClass="false"/>
 				</RewritingRule>
-				<RewritingRule _id="id27" cut="false" name="MatchCorrectEmitConnection" guard="string slaveComponentName, requiredSlaveComponentName, 
+				<RewritingRule _id="id27" cut="false" name="MatchCorrectEmitConnection" guard="string slaveComponentName, requiredSlaveComponentName,
          slavePortName, requiredSlavePortName,
          masterPortName, requiredMasterPortName;
 
@@ -133,7 +133,7 @@ return true;" ruleId="39" dstRule="id16a" srcRule="id165" forBlock="false" posit
 					<Code code="string str;
 Property.GetStrValue(&quot;DataValue&quot;,str);
 
-Udm::UdmDiagram mydiagram; 
+Udm::UdmDiagram mydiagram;
 mydiagram.dgr=const_cast&lt;Uml::Diagram *>(&amp;(RootContainer.__impl()->__getdn()->GetRootMeta()));
 mydiagram.init=Uml::diagram.init;
 
@@ -143,7 +143,7 @@ try
    ddn.OpenExistingFromString(str, &quot;&quot;);
    UdmUtil::CopyObjectHierarchy(ddn.GetRootObject().__impl(), RootContainer.__impl(),    RootContainer.__impl()->__getdn(), UdmUtil::copy_assoc_map());
    ddn.CloseNoUpdate();
-} catch (udm_exception) 
+} catch (udm_exception)
 {
   cerr &lt;&lt; &quot;WARNING: Invalid XML structure found in EmbeddedEIProperties: skipped!&quot; &lt;&lt; endl;
 }"/>
@@ -611,13 +611,13 @@ set&lt;Uml::Attribute> aattrs=Uml::AncestorAttributes(PublishConnector.type());
 attrs.insert(aattrs.begin(),aattrs.end());
 
 string str = &quot;    &quot;;
-for(set&lt;Uml::Attribute>::iterator ai = attrs.begin(); ai != attrs.end(); ai++) 
+for(set&lt;Uml::Attribute>::iterator ai = attrs.begin(); ai != attrs.end(); ai++)
 {
   str += ai->name();
   str += &quot; - &quot;;
   str += ai->type();
   str += &quot; - &quot;;
-  string val; 
+  string val;
   PublishConnector.GetStrValue(ai->name(), val);
   str += val;
   str += &quot;; &quot;;
@@ -769,7 +769,7 @@ arch.GetStrValue(&quot;name&quot;, fullname);
 
 Udm::ObjectImpl *oiptr = arch.__impl()->getParent(NULL);
 while (oiptr!=&amp;Udm::_null &amp;&amp; oiptr->type()==PackageClass)
-{ 
+{
   string namepart = oiptr->getStringAttr(Uml::Attribute::meta_name);
   oiptr = oiptr->getParent(NULL);
 

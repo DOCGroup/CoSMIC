@@ -25,7 +25,7 @@ class CDialogBackplaneMonitor : public CDialog
 {
 // Construction
 public:
-	CDialogBackplaneMonitor(const string &paradigmname, 
+	CDialogBackplaneMonitor(const string &paradigmname,
 							const string &projectfullpath,
 							HWND & pushOutDialogHWND,
 							CWnd* pParent = NULL);   // standard constructor
@@ -56,7 +56,7 @@ protected:
 	Uml::Diagram _myUmlDiagram;
 	Udm::UdmDiagram _myUdmDiagram;
 	UdmCORBA::CORBADataNetwork *_dn;
-	enum 
+	enum
 	{
 		TIMERID_POLL_NOTIFIED
 	};

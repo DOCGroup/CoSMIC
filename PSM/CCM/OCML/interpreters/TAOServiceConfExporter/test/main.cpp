@@ -20,6 +20,6 @@ int main()
   // Call the function and print out to the std out.
   std::cout << exporter.generate_svc_conf(values.c_str())
             << std::endl;
-  
+ 
   return 0;
 }

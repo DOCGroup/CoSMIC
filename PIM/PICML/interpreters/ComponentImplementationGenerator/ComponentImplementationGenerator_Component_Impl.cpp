@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "ComponentImplementationGenerator_Component.h"
 #include "ComponentImplementationGenerator_Component_Impl.h"
@@ -70,8 +68,8 @@ invoke_ex (GAME::Mga::Project project,
     {
       components.push_back (PICML::Component::_narrow (fco));
     }
-    catch (const GAME::Mga::Invalid_Cast &) 
-    { 
+    catch (const GAME::Mga::Invalid_Cast &)
+    {
     }
   }
 

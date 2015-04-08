@@ -1,5 +1,3 @@
-// $Id$
-
 #include "ace/config.h"
 #include "Utils/Utils.h"
 

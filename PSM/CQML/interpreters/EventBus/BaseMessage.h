@@ -2,14 +2,14 @@
 // The Loki Library
 // Copyright (c) 2001 by Andrei Alexandrescu
 // This code accompanies the book:
-// Alexandrescu, Andrei. "Modern C++ Design: Generic Programming and Design 
+// Alexandrescu, Andrei. "Modern C++ Design: Generic Programming and Design
 //     Patterns Applied". Copyright (c) 2001. Addison-Wesley.
-// Permission to use, copy, modify, distribute and sell this software for any 
-//     purpose is hereby granted without fee, provided that the above copyright 
-//     notice appear in all copies and that both that copyright notice and this 
+// Permission to use, copy, modify, distribute and sell this software for any
+//     purpose is hereby granted without fee, provided that the above copyright
+//     notice appear in all copies and that both that copyright notice and this
 //     permission notice appear in supporting documentation.
-// The author or Addison-Wesley Longman make no representations about the 
-//     suitability of this software for any purpose. It is provided "as is" 
+// The author or Addison-Wesley Longman make no representations about the
+//     suitability of this software for any purpose. It is provided "as is"
 //     without express or implied warranty.
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -28,7 +28,7 @@ namespace CQML
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class BaseMessageHandler
-///  
+///
 /// \ingroup MessageHandlerGroup
 /// The base class of any Acyclic MessageHandler
 ////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ namespace CQML
     public:
         virtual ~BaseMessageHandler() {}
     };
-    
+   
 ////////////////////////////////////////////////////////////////////////////////
 /// \class MessageHandler
 ///
@@ -48,7 +48,7 @@ namespace CQML
 /// \par Usage
 ///
 /// Defining the visitable class:
-/// 
+///
 /// \code
 /// class RasterBitmap : public BaseMessage<>
 /// {
@@ -59,7 +59,7 @@ namespace CQML
 ///
 /// Way 1 to define a visitor:
 /// \code
-/// class SomeMessageHandler : 
+/// class SomeMessageHandler :
 ///     public BaseMessageHandler // required
 ///     public MessageHandler<RasterBitmap>,
 ///     public MessageHandler<Paragraph>
@@ -72,7 +72,7 @@ namespace CQML
 ///
 /// Way 2 to define the visitor:
 /// \code
-/// class SomeMessageHandler : 
+/// class SomeMessageHandler :
 ///     public BaseMessageHandler // required
 ///     public MessageHandler<LOKI_TYPELIST_2(RasterBitmap, Paragraph)>
 /// {
@@ -84,7 +84,7 @@ namespace CQML
 ///
 /// Way 3 to define the visitor:
 /// \code
-/// class SomeMessageHandler : 
+/// class SomeMessageHandler :
 ///     public BaseMessageHandler // required
 ///     public MessageHandler<Seq<RasterBitmap, Paragraph>::Type>
 /// {
@@ -97,7 +97,7 @@ namespace CQML
 /// \par Using const visit functions:
 ///
 /// Defining the visitable class (true for const):
-/// 
+///
 /// \code
 /// class RasterBitmap : public BaseMessage<void, DefaultCatchAll, true>
 /// {
@@ -108,7 +108,7 @@ namespace CQML
 ///
 /// Defining the visitor which only calls const member functions:
 /// \code
-/// class SomeMessageHandler : 
+/// class SomeMessageHandler :
 ///     public BaseMessageHandler // required
 ///     public MessageHandler<RasterBitmap, void, true>,
 /// {
@@ -119,7 +119,7 @@ namespace CQML
 ///
 /// \par Example:
 ///
-/// test/MessageHandler/main.cpp 
+/// test/MessageHandler/main.cpp
 ////////////////////////////////////////////////////////////////////////////////
 
     template <class T, typename R = void, bool ConstVisit = false>
@@ -150,7 +150,7 @@ namespace CQML
 // This specialization is not present in the book. It makes it easier to define
 // MessageHandlers for multiple types in a shot by using a typelist. Example:
 //
-// class SomeMessageHandler : 
+// class SomeMessageHandler :
 //     public BaseMessageHandler // required
 //     public MessageHandler<LOKI_TYPELIST_2(RasterBitmap, Paragraph)>
 // {
@@ -169,7 +169,7 @@ namespace CQML
        // using MessageHandler<Head, R>::Visit;
        // using MessageHandler<Tail, R>::Visit;
     };
-    
+   
     template <class Head, typename R>
     class MessageHandler<Typelist<Head, NullType>, R, false> : public MessageHandler<Head, R, false>
     {
@@ -187,7 +187,7 @@ namespace CQML
        // using MessageHandler<Head, R>::Visit;
        // using MessageHandler<Tail, R>::Visit;
     };
-    
+   
     template <class Head, typename R>
     class MessageHandler<Typelist<Head, NullType>, R, true> : public MessageHandler<Head, R, true>
     {
@@ -216,7 +216,7 @@ namespace CQML
         virtual R Visit(Head&)
         { return R(); }
     };
-    
+   
     template <class Head, typename R>
     class BaseMessageHandlerImpl<Typelist<Head, NullType>, R>
         : public MessageHandler<Head, R>
@@ -241,9 +241,9 @@ struct DefaultCatchAll
 // class template BaseMessage
 ////////////////////////////////////////////////////////////////////////////////
 
-    template 
+    template
     <
-        typename R = void, 
+        typename R = void,
         template <typename, class> class CatchAll = DefaultCatchAll,
         bool ConstMessage = false
     >
@@ -256,7 +256,7 @@ struct DefaultCatchAll
         typedef R ReturnType;
         virtual ~BaseMessage() {}
         virtual ReturnType Accept(BaseMessageHandler&) = 0;
-        
+       
     protected: // give access only to the hierarchy
         template <class T>
         static ReturnType AcceptImpl(T& visited, BaseMessageHandler& guest)
@@ -277,7 +277,7 @@ struct DefaultCatchAll
         typedef R ReturnType;
         virtual ~BaseMessage() {}
         virtual ReturnType Accept(BaseMessageHandler&) const = 0;
-        
+       
     protected: // give access only to the hierarchy
         template <class T>
         static ReturnType AcceptImpl(const T& visited, BaseMessageHandler& guest)
@@ -295,7 +295,7 @@ struct DefaultCatchAll
 ////////////////////////////////////////////////////////////////////////////////
 /// \def LOKI_DEFINE_MESSAGE()
 /// \ingroup MessageHandlerGroup
-/// Put it in every class that you want to make visitable 
+/// Put it in every class that you want to make visitable
 /// (in addition to deriving it from BaseMessage<R>)
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -306,7 +306,7 @@ struct DefaultCatchAll
 ////////////////////////////////////////////////////////////////////////////////
 /// \def LOKI_DEFINE_CONST_MESSAGE()
 /// \ingroup MessageHandlerGroup
-/// Put it in every class that you want to make visitable by const member 
+/// Put it in every class that you want to make visitable by const member
 /// functions (in addition to deriving it from BaseMessage<R>)
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -318,7 +318,7 @@ struct DefaultCatchAll
 /// \class CyclicMessageHandler
 ///
 /// \ingroup MessageHandlerGroup
-/// Put it in every class that you want to make visitable (in addition to 
+/// Put it in every class that you want to make visitable (in addition to
 /// deriving it from BaseMessage<R>
 ////////////////////////////////////////////////////////////////////////////////
 /*
@@ -328,7 +328,7 @@ struct DefaultCatchAll
     public:
         typedef R ReturnType;
         // using MessageHandler<TList, R>::Visit;
-        
+       
         template <class Visited>
         ReturnType GenericVisit(Visited& host)
         {
@@ -336,7 +336,7 @@ struct DefaultCatchAll
             return subObj.Visit(host);
         }
     };
-    
+   
 ////////////////////////////////////////////////////////////////////////////////
 /// \def LOKI_DEFINE_CYCLIC_MESSAGE(SomeMessageHandler)
 /// \ingroup MessageHandlerGroup

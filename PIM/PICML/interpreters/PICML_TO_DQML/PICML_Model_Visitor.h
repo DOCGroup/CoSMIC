@@ -2,8 +2,6 @@
 /**
  * @file       PICML_Model_Visitor.h
  *
- * $Id$
- *
  * @author     Hossein Karimy
  */
 //=============================================================================
@@ -15,14 +13,14 @@
 #include "PICML/Visitor.h"
 #include "DQML_Model_Factory.h"
 
-namespace PICML_To_DQML 
+namespace PICML_To_DQML
 {
 
   /**
   * @class Participant_File_Locator
   */
-  class PICML_Model_Visitor 
-    : public PICML::Visitor 
+  class PICML_Model_Visitor
+    : public PICML::Visitor
   {
   public:
     PICML_Model_Visitor (DQML_Model_Factory & factory);
@@ -39,4 +37,4 @@ namespace PICML_To_DQML
   };
 
 }
-#endif  // !defined _PICML_MODEL_VISITOR_H_ 
+#endif  // !defined _PICML_MODEL_VISITOR_H_

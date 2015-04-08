@@ -1,6 +1,3 @@
-/**
- * $Id$
- */
 
 #include "windows.h"
 #include "assert.h"
@@ -15,7 +12,7 @@
 #include "../DllEntry.hpp"
 #include "../LoadLibrary.hpp"
 
-LRESULT CALLBACK MainWndProc(HWND, UINT, WPARAM, LPARAM); 
+LRESULT CALLBACK MainWndProc(HWND, UINT, WPARAM, LPARAM);
 
 bool pause = false;
 
@@ -24,7 +21,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
                      LPTSTR    lpCmdLine,
                      int       nCmdShow)
 {
-  WNDCLASSEX wcx; 
+  WNDCLASSEX wcx;
 
   wcx.cbSize = sizeof(wcx);
   wcx.style = CS_HREDRAW | CS_VREDRAW;
@@ -39,7 +36,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
   wcx.lpszClassName = "MainWClass";
   wcx.hIconSm = NULL;
 
-  ATOM a = RegisterClassEx(&wcx); 
+  ATOM a = RegisterClassEx(&wcx);
   assert(a);
 
   HWND hwnd = CreateWindow("MainWClass",
@@ -55,12 +52,12 @@ int APIENTRY WinMain(HINSTANCE hInstance,
                            (LPVOID) NULL);
   assert(hwnd);
 
-  ShowWindow(hwnd, nCmdShow); 
-  UpdateWindow(hwnd); 
+  ShowWindow(hwnd, nCmdShow);
+  UpdateWindow(hwnd);
 
   long bRet;
   MSG msg;
-  while((bRet = GetMessage( &msg, NULL, 0, 0 )) != 0 ) 
+  while((bRet = GetMessage( &msg, NULL, 0, 0 )) != 0 )
     {
       if (bRet != -1)
         {
@@ -88,7 +85,7 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
       ss << "Click on this form to launch dll. "
          << "COSMIC_ROOT environment variable points to: "
          << picml_root;
-    
+   
       TextOut( hDC, 10, 10, ss.str().c_str(), ss.str().size());
       EndPaint( hWnd, &ps );
       break;
@@ -114,7 +111,7 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         std::copy(std::istream_iterator<char>(values_file),
                   std::istream_iterator<char>(),
                   std::back_inserter(values));
-        
+       
         // Load up the DLL and call DLLFunction
         OCML_Configurator_Library lib;
 

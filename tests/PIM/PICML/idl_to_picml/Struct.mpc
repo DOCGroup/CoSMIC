@@ -1,6 +1,4 @@
 // -*- MPC -*-
-// $Id$
-
 project (Struct_Expected) : taoclient {
   exename = Struct_Expected
   install = .

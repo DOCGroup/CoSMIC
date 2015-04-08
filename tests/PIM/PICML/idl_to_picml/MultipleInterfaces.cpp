@@ -1,5 +1,3 @@
-// $Id$
-
 #include "MultipleInterfacesC.h"
 #include "ace/Log_Msg.h"
 #include "ace/Get_Opt.h"
@@ -41,21 +39,21 @@ int ACE_TMAIN (int argc, ACE_TCHAR * argv [])
   using namespace MultipleInterfaces;
 
   ACE_DEBUG ((LM_DEBUG, "*** begin validating IDL with multiple interfaces\n"));
-  
+ 
   try
   {
     // Initialize the ORB.
     CORBA::ORB_var orb = CORBA::ORB_init ( argc, argv );
-    
+   
     if (parse_args (argc, argv) != 0)
     {
       return -1;
     }
 
     CORBA::Object_var obj = orb->string_to_object (multipleinterfaces_ior);
-    
+   
     Noun_var noun = Noun::_narrow (obj.in());
-    
+   
     if (CORBA::is_nil (noun.in ()))
     {
       ACE_ERROR_RETURN ((LM_ERROR,

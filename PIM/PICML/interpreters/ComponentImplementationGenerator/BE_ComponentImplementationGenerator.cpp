@@ -54,7 +54,7 @@ visit_Component (PICML::Component_in component)
   PICML::ComponentImplementationContainer container;
 
   if (GAME::create_if_not <GAME::Mga_t> (this->impl_folder_, container,
-      GAME::contains <GAME::Mga_t> ([&](PICML::ComponentImplementationContainer_in container) { 
+      GAME::contains <GAME::Mga_t> ([&](PICML::ComponentImplementationContainer_in container) {
         return container->name () == impl_name; })))
   {
     container->name (impl_name);
@@ -75,7 +75,7 @@ visit_Component (PICML::Component_in component)
 
   // Associate the monolithic implementation with the reference.
   GAME::Mga::Connection implements =
-    GAME::Mga::Connection_Impl::_create (container, 
+    GAME::Mga::Connection_Impl::_create (container,
                                                PICML::Implements_Impl::metaname,
                                                this->impl_,
                                                ref);
@@ -94,7 +94,7 @@ visit_Component (PICML::Component_in component)
 
   // Associate the monolithic implementation with the reference.
   GAME::Mga::Connection pa =
-    GAME::Mga::Connection_Impl::_create (container, 
+    GAME::Mga::Connection_Impl::_create (container,
                                          PICML::MonolithprimaryArtifact_Impl::metaname,
                                          this->impl_,
                                          svnt_artifact);
@@ -109,7 +109,7 @@ visit_Component (PICML::Component_in component)
   GAME::Mga::set_position ("Packaging", GAME::Mga::Point (506, 151), svnt_artifact);
 
   pa =
-    GAME::Mga::Connection_Impl::_create (container, 
+    GAME::Mga::Connection_Impl::_create (container,
                                          PICML::MonolithprimaryArtifact_Impl::metaname,
                                          this->impl_,
                                          impl_artifact);

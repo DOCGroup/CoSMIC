@@ -23,9 +23,9 @@ public:
 	DWORD Read (CFile & file, BOOL bFromResource = FALSE );
 	DWORD ReadFromResource(UINT nResID);
 
-	void DrawTransparent (CDC* pDC, const CRect &rect, 
+	void DrawTransparent (CDC* pDC, const CRect &rect,
         COLORREF clrTransparency, bool bGray, COLORREF grayColor);
-	void DrawTransparent (CDC* pDC, int x, int y, 
+	void DrawTransparent (CDC* pDC, int x, int y,
         COLORREF clrTransparency, bool bGray, COLORREF grayColor);
   void Draw (CDC* pDC, const CRect &rect);
 	void Draw (CDC* pDC, int x, int y);

@@ -1,5 +1,3 @@
-// $Id$
-
 feature (register) {
   specific (prop:microsoft) {
     postbuild += \

@@ -44,7 +44,7 @@ namespace OCML
 
     /// Exports the option tree into the return value as XML tree.
     std::string write();
-  
+ 
     /// Returns the root category.
     OptionCategory* root_category();
 

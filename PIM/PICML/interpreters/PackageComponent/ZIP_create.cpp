@@ -40,7 +40,7 @@ int ZIP_create::compress(const std::string filename,
   if (zf == NULL)
     throw udm_exception (string ("There is some problem in opening the zipfile using zipOpen: " + filename));
 
-  // add each dir passed in vector to zip file 
+  // add each dir passed in vector to zip file
   for(unsigned int i = 0; i < dirs_.size(); i++)
 	  {
       std::string dirnameinzip = dirs_.at(i);
@@ -54,11 +54,11 @@ int ZIP_create::compress(const std::string filename,
 
       // open the file inside zipfile
       int err = zipOpenNewFileInZip(zf, dirname.c_str (), &zi, NULL, 0, NULL, 0, NULL,
-                                    (compress_level != 0) ? Z_DEFLATED : 0, compress_level);                
+                                    (compress_level != 0) ? Z_DEFLATED : 0, compress_level);               
       if (err != ZIP_OK)
         throw udm_exception
           (string ("There is some problem in opening in zipfile using zipOpenNewFileInZip: " + dirnameinzip));
-    
+   
       // close the file inside zipfile
       err = zipCloseFileInZip(zf);
       if (err != ZIP_OK)
@@ -68,7 +68,7 @@ int ZIP_create::compress(const std::string filename,
 
 	void *buf = NULL;
   int size_buf = WRITEBUFFERSIZE;
-  // add each file passed in vector to zip file 
+  // add each file passed in vector to zip file
   for(unsigned int i = 0; i < files_.size(); i++)
 	  {
       std::string filenameinzip = files_.at(i);
@@ -82,7 +82,7 @@ int ZIP_create::compress(const std::string filename,
 
       // open the file inside zipfile
       int err = zipOpenNewFileInZip(zf, filename.c_str (), &zi, NULL, 0, NULL, 0, NULL,
-                                    (compress_level != 0) ? Z_DEFLATED : 0, compress_level);                
+                                    (compress_level != 0) ? Z_DEFLATED : 0, compress_level);               
       if (err != ZIP_OK)
         throw udm_exception
           (string ("There is some problem in opening zipfile using zipOpenNewFileInZip: " + filenameinzip));
@@ -92,23 +92,23 @@ int ZIP_create::compress(const std::string filename,
         throw udm_exception
           (string ("There is some problem in opening file: " + filenameinzip));
 
-      buf = (void*) malloc(WRITEBUFFERSIZE);      
+      buf = (void*) malloc(WRITEBUFFERSIZE);     
       int size_read;
       do
         {
           // read the file and write it in the zipfile
           size_read = (int)fread(buf,1,size_buf,fin);
-          
+         
           if (size_read < size_buf)
             if (feof(fin) == 0)
               err = ZIP_ERRNO;
 
           if (size_read > 0)
-            err = zipWriteInFileInZip(zf,buf,size_read);              
+            err = zipWriteInFileInZip(zf,buf,size_read);             
         } while ((err == ZIP_OK) && (size_read > 0));
 
       fclose(fin);
-    
+   
       // close the file inside zipfile
       err = zipCloseFileInZip(zf);
       if (err != ZIP_OK)
@@ -118,7 +118,7 @@ int ZIP_create::compress(const std::string filename,
 
   if (buf != NULL)
     free(buf);
-  
+ 
   files_.clear();
 
   // close the zip file
@@ -126,7 +126,7 @@ int ZIP_create::compress(const std::string filename,
   if (errclose != ZIP_OK)
     throw udm_exception
       (string ("There is some problem in closing zipFile using zipClose: " + filename));
-    
+   
   return 0;
 }
 

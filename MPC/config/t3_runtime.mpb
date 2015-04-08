@@ -1,5 +1,3 @@
-// $Id$
-
 project : game_mga, boost_base {
   after += T3_Runtime
   libs  += t3_runtime

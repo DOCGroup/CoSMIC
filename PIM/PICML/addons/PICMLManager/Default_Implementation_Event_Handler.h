@@ -4,8 +4,6 @@
 /**
  *  @file       Default_Implementation_Event_Handler.h
  *
- *  $Id$
- *
  *  @author     James H. Hill
  */
 //=============================================================================

@@ -41,7 +41,7 @@ int main(int, char*[])
 
   std::cout << "References initially:\n";
   write_info(references.get());
- 
+
   std::auto_ptr<OCML::Rule> rule;
   bool result;
   find_ref_t find_ref(category.get(), references.get());
@@ -105,7 +105,7 @@ int main(int, char*[])
     new OCML::Value_Equality_Rule<OCML::Boolean_Option_Trait>(&root_rule,
                                        basic_bool_reference,
                                        true));
-  std::auto_ptr<OCML::Rule> rule2( 
+  std::auto_ptr<OCML::Rule> rule2(
     new OCML::Value_Equality_Rule<OCML::Integer_Option_Trait>(&root_rule,
                                        basic_int_reference,
                                        12));
@@ -125,7 +125,7 @@ int main(int, char*[])
   std::cout << "  result: " << bool_as_string(result) << std::endl;
   std::cout << str_info(find_ref("bool_def_test")) << std::endl
             << str_info(find_ref("int_def_test")) << std::endl;
-        
+       
   /*
    * If rule test 2.
    */
@@ -133,7 +133,7 @@ int main(int, char*[])
     new OCML::Value_Equality_Rule<OCML::Boolean_Option_Trait>(&root_rule,
                                        basic_bool_reference,
                                        true));
-  rule2.reset( 
+  rule2.reset(
     new OCML::Value_Equality_Rule<OCML::Integer_Option_Trait>(&root_rule,
                                        basic_int_reference,
                                        12));
@@ -160,8 +160,8 @@ int main(int, char*[])
   std::cout << "  result: " << bool_as_string(result) << std::endl;
   std::cout << str_info(find_ref("bool_def_test")) << std::endl
             << str_info(find_ref("int_def_test")) << std::endl;
- 
- /* 
+
+ /*
   // create rules
   std::auto_ptr<OCML::Root_Rule>
     root_rule(create_rules(category.get(), references));
@@ -175,7 +175,7 @@ int main(int, char*[])
     std::cout << " satisfied.\n";
   else
     std::cout << " failed.\n";
-  
+ 
   std::cout << "After applying rule:" << std::endl;
   write_info(reference_list);
 */

@@ -41,10 +41,10 @@ binding_visitor::visit_component (AST_Component *node)
 {
   this->current_comp_ = node;
   this->gen_binding (node);
-  
+ 
   // Generate WSDL for our base component, if any.
   this->gen_inherited_comp (node);
-  
+ 
   for (ACE_Unbounded_Queue_Iterator<AST_Component::port_description> i (
          node->provides ());
        !i.done ();
@@ -52,11 +52,11 @@ binding_visitor::visit_component (AST_Component *node)
     {
       AST_Component::port_description *desc = 0;
       i.next (desc);
-      
+     
       this->current_port_ = desc->impl;
       this->gen_binding (node, desc->impl, desc->id->get_string ());
     }
-  
+ 
   return 0;
 }
 
@@ -66,8 +66,8 @@ binding_visitor::visit_operation (AST_Operation *node)
   DOMElement *operation =
     this->doc_->createElement (X ("operation"));
   this->current_binding_->appendChild (operation);
-  this->finish_operation (node, operation, 0);                              
-    
+  this->finish_operation (node, operation, 0);                             
+   
   return 0;
 }
 
@@ -80,15 +80,15 @@ binding_visitor::visit_attribute (AST_Attribute *node)
     this->doc_->createElement (X ("operation"));
   this->current_binding_->appendChild (get_attr);
   this->finish_operation (node, get_attr, "_get_");
-  
+ 
   if (!read_only)
     {
       DOMElement *set_attr =
         this->doc_->createElement (X ("operation"));
-      this->finish_operation (node, set_attr, "_set_");          
+      this->finish_operation (node, set_attr, "_set_");         
       this->current_binding_->appendChild (set_attr);
     }
-   
+  
   return 0;
 }
 
@@ -100,7 +100,7 @@ binding_visitor::finish_operation (AST_Decl *node,
   ACE_CString lname (0 != prefix ? prefix : "");
   lname += node->local_name ()->get_string ();
   elem->setAttribute (X ("name"), X (lname.c_str ()));
-  
+ 
   DOMElement *soap_operation =
     this->doc_->createElement (X ("soap:operation"));
   soap_operation->setAttribute (X ("style"), X ("rpc"));
@@ -109,36 +109,36 @@ binding_visitor::finish_operation (AST_Decl *node,
   DOMElement *binding_input =
     this->doc_->createElement (X ("input"));
   elem->appendChild (binding_input);
-  
+ 
   DOMElement *soap_body =
     this->doc_->createElement (X ("soap:body"));
   soap_body->setAttribute (X ("use"), X ("encoded"));
   soap_body->setAttribute (X ("encodingStyle"),
                            X ("http://schemas.xmlsoap.org/soap/encoding/"));
-  
+ 
   ACE_CString target_name_space ("urn:");
-  target_name_space += be_global->output_file (); 
+  target_name_space += be_global->output_file ();
   soap_body->setAttribute (X ("namespace"),
                            X (target_name_space.c_str ()));
-                           
+                          
   binding_input->appendChild (soap_body);
-  
+ 
   AST_Operation *op = AST_Operation::narrow_from_decl (node);
   AST_Attribute *attr = AST_Attribute::narrow_from_decl (node);
-  
+ 
   if (0 == op || AST_Operation::OP_oneway != op->flags ())
     {
       DOMElement *binding_output =
         this->doc_->createElement (X ("output"));
       elem->appendChild (binding_output);
- 
+
       DOMElement *soap_body_clone =
         dynamic_cast<DOMElement *> (soap_body->cloneNode (false));
       binding_output->appendChild (soap_body_clone);
     }
-    
+   
   UTL_ExceptList *exceptions = 0;
-  
+ 
   if (0 == prefix)
     {
       exceptions = op->exceptions ();
@@ -151,7 +151,7 @@ binding_visitor::finish_operation (AST_Decl *node,
     {
       exceptions = attr->get_set_exceptions ();
     }
-    
+   
   for (UTL_ExceptlistActiveIterator i (exceptions);
         !i.is_done ();
         i.next ())
@@ -181,7 +181,7 @@ void
 binding_visitor::gen_inherited_comp (AST_Component *node)
 {
   AST_Component *parent = node->base_component ();
-  
+ 
   if (0 != parent)
     {
       this->gen_inherited_operations (parent);
@@ -200,7 +200,7 @@ binding_visitor::append_ops_and_attrs (AST_Interface *ancestor)
       AST_Decl *d = i.item ();
       AST_Operation *op = AST_Operation::narrow_from_decl (d);
       AST_Attribute *attr = AST_Attribute::narrow_from_decl (d);
-      
+     
       if (0 != op)
         {
           DOMElement *op_elem =
@@ -214,7 +214,7 @@ binding_visitor::append_ops_and_attrs (AST_Interface *ancestor)
             this->doc_->createElement (X ("operation"));
           this->current_binding_->appendChild (attr_elem);
           this->finish_operation (attr, attr_elem, "_get_");
-          
+         
           if (!attr->readonly ())
             {
               DOMElement *attr_set_elem =
@@ -232,28 +232,28 @@ binding_visitor::gen_binding (AST_Component *node,
                               const char *port_name)
 {
   this->current_binding_ = this->doc_->createElement (X ("binding"));
-  
+ 
   be_global->root_element ()->insertBefore (
     this->current_binding_,
     be_global->binding_insert_point ());
-    
+   
   if (0 == be_global->port_type_insert_point ())
     {
       be_global->port_type_insert_point (this->current_binding_);
     }
-  
+ 
   ACE_CString scope_name;
   AST_Decl *p = ScopeAsDecl (node->defined_in ());
-  
+ 
   if (AST_Decl::NT_root != p->node_type ())
     {
       this->type_name (scope_name, p, false);
       scope_name += ".";
     }
-    
+   
   const char *lname = 0;
   const char *node_name = node->local_name ()->get_string ();
-    
+   
   if (0 == port_name)
     {
       lname = node_name;
@@ -262,12 +262,12 @@ binding_visitor::gen_binding (AST_Component *node,
     {
       scope_name += node_name;
       scope_name += ".";
-      lname = port_name; 
+      lname = port_name;
     }
-    
+   
   scope_name += "_SE_";
   scope_name += lname;
-  
+ 
   this->current_binding_->setAttribute (X ("name"),
                                         X (scope_name.c_str ()));
   ACE_CString tname (0 == port_impl
@@ -277,16 +277,16 @@ binding_visitor::gen_binding (AST_Component *node,
   tname = ACE_CString ("tns:") + tname;
   this->current_binding_->setAttribute (X ("type"),
                                         X (tname.c_str ()));
-  
+ 
   DOMElement *soap_binding =
     this->doc_->createElement (X ("soap:binding"));
   soap_binding->setAttribute (X ("style"), X ("rpc"));
   soap_binding->setAttribute (X ("transport"),
                               X ("http://schemas.xmlsoap.org/soap/http"));
   this->current_binding_->appendChild (soap_binding);
-  
+ 
   AST_Interface *scope = 0;
-  
+ 
   // TODO - code generation for receptacles and events sinks/sources.
   if (0 == port_impl)
     {
@@ -296,14 +296,14 @@ binding_visitor::gen_binding (AST_Component *node,
     {
       scope = AST_Interface::narrow_from_decl (port_impl);
     }
-  
+ 
   if (scope != 0 && this->visit_scope (scope) != 0)
     {
       ACE_ERROR((LM_ERROR,
                   "binding_visitor::gen_binding - "
                   "codegen for scope failed\n"));
     }
-   
+  
   // This also covers a component's supported interfaces.
   // A no-op if 'scope' is 0.
   this->gen_inherited_operations (scope);
@@ -316,7 +316,7 @@ binding_visitor::gen_fault (DOMElement *binding_op,
   DOMElement *fault =
     this->doc_->createElement (X ("fault"));
   ACE_CString fname;
-  
+ 
   if (0 == user_exception)
     {
       fname = "CORBA.SystemException";
@@ -326,9 +326,9 @@ binding_visitor::gen_fault (DOMElement *binding_op,
       fname = user_exception->full_name ();
       be_global->to_wsdl_name (fname);
     }
-    
+   
   fault->setAttribute (X ("name"), X (fname.c_str ()));
-  
+ 
   DOMElement *soap_fault =
     this->doc_->createElement (X ("soap:fault"));
   soap_fault->setAttribute (X ("name"), X (fname.c_str ()));

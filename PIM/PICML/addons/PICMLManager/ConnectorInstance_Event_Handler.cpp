@@ -1,6 +1,4 @@
 // -*- C++ -*-
-// $Id$
-
 #include "StdAfx.h"
 #include "ConnectorInstance_Event_Handler.h"
 

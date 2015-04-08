@@ -8,14 +8,14 @@
 // The following defines wxGetApp() which is used in DllMain.
 DECLARE_APP(MainApp)
 
-BOOL APIENTRY DllMain(HANDLE hModule, 
-                      DWORD  ul_reason_for_call, 
+BOOL APIENTRY DllMain(HANDLE hModule,
+                      DWORD  ul_reason_for_call,
                       LPVOID lpReserved)
 {
   switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-      // 
+      //
       // Start wxDLLApp
       //
       // Note the 4th entry means we don't enter the main application

@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StringOptionEditor.hpp"
 
 using namespace OCML;
@@ -26,20 +24,20 @@ StringOptionEditor::StringOptionEditor(wxWindow* parent,
   editor_->add_focus_listener(this);
   editor_->add_value_change_listener(this);
   panel()->GetSizer()->Add(editor_, 1, wxALL | wxADJUST_MINSIZE | wxEXPAND, 2);
-    
+   
   panel()->GetSizer()->SetSizeHints(panel());
 }
 
 StringOptionEditor::~StringOptionEditor()
 {
-}    
+}   
 
 void
 StringOptionEditor::add_focus_listener(StringOptionEditorFocusListener* l)
 {
   focus_listeners_.push_back(l);
 }
-    
+   
 void
 StringOptionEditor::string_edit_focus_gain(StringEditControl*)
 {
@@ -67,7 +65,7 @@ StringOptionEditor::string_edit_focus_lost(StringEditControl*)
   button()->Enable(true);
 
   focused_ = false;
-}    
+}   
 
 void
 StringOptionEditor::string_edit_value_changed(StringEditControl*)

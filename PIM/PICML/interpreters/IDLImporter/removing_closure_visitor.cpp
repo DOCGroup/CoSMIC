@@ -1,5 +1,3 @@
-// $Id$
-
 #include "removing_closure_visitor.h"
 #include "be_extern.h"
 #include "Utils/xercesc/XercesString.h"

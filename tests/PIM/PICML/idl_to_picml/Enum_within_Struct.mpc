@@ -1,6 +1,4 @@
 // -*- MPC -*-
-// $Id$
-
 project (Enum_within_Struct_Expected) : taoclient {
   exename = Enum_within_Struct_Expected
   install = .

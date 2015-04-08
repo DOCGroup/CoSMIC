@@ -1,5 +1,3 @@
-// $Id$
-
 project (POSAML_examples) {
   specific {
     install_location  = paradigms POSAML examples

@@ -1,4 +1,4 @@
-// $Id$ 
+//
 
 project (CoSMIC_migrate) {
   specific (wix) {
@@ -10,7 +10,7 @@ project (CoSMIC_migrate) {
   Resource_Files {
     conditional (wix) {
       *.jar
-      
+     
       LICENSE.txt
       NOTICE.txt
     }

@@ -101,7 +101,7 @@ BOOL  CMaskedBitmap::CreatePalette()
 			pLogPal->palPalEntry[i].peFlags = 0;
 		}
 		
-		// create the palette and get handle to it 
+		// create the palette and get handle to it
 		if (m_pPalette)
 		{
 			m_pPalette->DeleteObject();
@@ -194,7 +194,7 @@ DWORD CMaskedBitmap::ReadFromResource(UINT nResID)
 	HMODULE hModule = AfxFindResourceHandle(MAKEINTRESOURCE(nResID), RT_BITMAP);
 	// Load	from resource
 	HRSRC	hbmres = FindResource(hModule, MAKEINTRESOURCE(nResID), RT_BITMAP );
-	CMemFile file; 
+	CMemFile file;
 	HGLOBAL	hGlob;
 	
 	if (hbmres)
@@ -380,7 +380,7 @@ void CMaskedBitmap::Draw (CDC* pDC, int x, int y)
 	Draw(pDC, rect);
 }
 
-void CMaskedBitmap::DrawTransparent (CDC* pDC, int x, int y, 
+void CMaskedBitmap::DrawTransparent (CDC* pDC, int x, int y,
         COLORREF clrTransparency, bool bGray, COLORREF grayColor)
 {
 	CRect rect(x, y, x + Width(), y + Height());

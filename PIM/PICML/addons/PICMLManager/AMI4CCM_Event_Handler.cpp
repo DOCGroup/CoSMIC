@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "AMI4CCM_Event_Handler.h"
 

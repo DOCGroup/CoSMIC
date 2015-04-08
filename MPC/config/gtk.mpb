@@ -1,5 +1,3 @@
-// $Id$
-
 project {
   libpaths += $(GTK_PATH)/lib
   includes += $(GTK_PATH)/include/gtkmm-2.4 \

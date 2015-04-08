@@ -1,5 +1,3 @@
-// $Id$
-
 project (FaultToleranceComponent): cqmllib, gme_udm_component {
   sharedname = FaultToleranceComponent
 

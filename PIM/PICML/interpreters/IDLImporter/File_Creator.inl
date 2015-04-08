@@ -1,6 +1,4 @@
 // -*- C++ -*-
-// $Id$
-
 //
 // PICML_File_Creator
 //

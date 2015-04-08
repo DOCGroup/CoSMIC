@@ -1,8 +1,5 @@
 /* -*- C++ -*- */
 
-/**
- * $Id$
- */
 
 #ifndef DLL_ENTRY_HPP
 #define DLL_ENTRY_HPP

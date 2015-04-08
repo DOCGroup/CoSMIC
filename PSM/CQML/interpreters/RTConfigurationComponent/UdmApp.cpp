@@ -93,7 +93,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
         {
           std::string outputPath;
           std::string message = "Please specify the Output Directory";
-          if (! ::Utils::getPath (message, outputPath))       return;	     
+          if (! ::Utils::getPath (message, outputPath))       return;	    
 		  CQML::RTConfigurationVisitor visitor (outputPath);
           CQML::RootFolder
             start = CQML::RootFolder::Cast (p_backend->GetRootObject());
@@ -105,9 +105,9 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                          + CString (e.what()));
           return;
         }
-	  
+	 
       XMLPlatformUtils::Terminate();
-  
+ 
   AfxMessageBox ("Descriptor files were successfully generated!",
                  MB_OK| MB_ICONINFORMATION);
   return;

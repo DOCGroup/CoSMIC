@@ -345,7 +345,7 @@ IMPLEMENT_BONEXTENSION( PICML::WorkerType, "PICML::WorkerType" );
 } // namespace BON
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentAnalysesImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -373,7 +373,7 @@ std::set<PICML::BenchmarkAnalysis> PICML::ComponentAnalysesImpl::getBenchmarkAna
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentBuildImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -401,7 +401,7 @@ std::set<PICML::MPC> PICML::ComponentBuildImpl::getMPC()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentImplementationsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -429,7 +429,7 @@ std::set<PICML::ComponentImplementationContainer> PICML::ComponentImplementation
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentPackagesImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -457,7 +457,7 @@ std::set<PICML::PackageContainer> PICML::ComponentPackagesImpl::getPackageContai
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentTypesImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -485,7 +485,7 @@ std::set<PICML::ComponentContainer> PICML::ComponentTypesImpl::getComponentConta
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::DeploymentPlansImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -513,7 +513,7 @@ std::set<PICML::DeploymentPlan> PICML::DeploymentPlansImpl::getDeploymentPlan()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ImplementationArtifactsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -541,7 +541,7 @@ std::set<PICML::ArtifactContainer> PICML::ImplementationArtifactsImpl::getArtifa
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::InterfaceDefinitionsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -569,7 +569,7 @@ std::set<PICML::File> PICML::InterfaceDefinitionsImpl::getFile()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageConfigurationsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -597,7 +597,7 @@ std::set<PICML::PackageConfigurationContainer> PICML::PackageConfigurationsImpl:
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PathDiagramsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -625,7 +625,7 @@ std::set<PICML::Paths> PICML::PathDiagramsImpl::getPaths()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PredefinedTypesImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -853,7 +853,7 @@ std::set<PICML::TypeKind> PICML::PredefinedTypesImpl::getTypeKind()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TargetsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -881,7 +881,7 @@ std::set<PICML::Domain> PICML::TargetsImpl::getDomain()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TopLevelPackagesImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -909,7 +909,7 @@ std::set<PICML::TopLevelPackageContainer> PICML::TopLevelPackagesImpl::getTopLev
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::WorkerLibrariesImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -937,7 +937,7 @@ std::set<PICML::WorkerLibrary> PICML::WorkerLibrariesImpl::getWorkerLibrary()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ActionBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -986,7 +986,7 @@ std::multiset<PICML::StateBase> PICML::ActionBaseImpl::getEffectDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::BranchTransition> PICML::ActionBaseImpl::getInBranchTransitionLinks()
 {
@@ -1004,7 +1004,7 @@ std::set<PICML::BranchTransition> PICML::ActionBaseImpl::getInBranchTransitionLi
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Transition> PICML::ActionBaseImpl::getInTransitionLinks()
 {
@@ -1022,7 +1022,7 @@ std::set<PICML::Transition> PICML::ActionBaseImpl::getInTransitionLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Effect> PICML::ActionBaseImpl::getOutEffectLinks()
 {
@@ -1076,7 +1076,7 @@ std::set<PICML::Property> PICML::ActionBaseImpl::getProperty()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::BehaviorModelImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1334,7 +1334,7 @@ std::set<PICML::Variable> PICML::BehaviorModelImpl::getVariable()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PrefixableImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1345,16 +1345,16 @@ bool PICML::PrefixableImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::PrefixableImpl::getPrefixTag() 
+std::string PICML::PrefixableImpl::getPrefixTag()
 {
 	return FCOImpl::getAttribute("PrefixTag")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::PrefixableImpl::setPrefixTag( const std::string& val)
 {
@@ -1363,7 +1363,7 @@ void PICML::PrefixableImpl::setPrefixTag( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::SupportsInterfacesImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1391,7 +1391,7 @@ std::set<PICML::Supports> PICML::SupportsInterfacesImpl::getSupports()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::CommonPortAttrsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1402,34 +1402,34 @@ bool PICML::CommonPortAttrsImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::CommonPortAttrsImpl::isexclusiveProvider() 
+bool PICML::CommonPortAttrsImpl::isexclusiveProvider()
 {
 	return FCOImpl::getAttribute("exclusiveProvider")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::CommonPortAttrsImpl::isexclusiveUser() 
+bool PICML::CommonPortAttrsImpl::isexclusiveUser()
 {
 	return FCOImpl::getAttribute("exclusiveUser")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::CommonPortAttrsImpl::isoptional() 
+bool PICML::CommonPortAttrsImpl::isoptional()
 {
 	return FCOImpl::getAttribute("optional")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::CommonPortAttrsImpl::setexclusiveProvider( bool val)
 {
@@ -1438,7 +1438,7 @@ void PICML::CommonPortAttrsImpl::setexclusiveProvider( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::CommonPortAttrsImpl::setexclusiveUser( bool val)
 {
@@ -1447,7 +1447,7 @@ void PICML::CommonPortAttrsImpl::setexclusiveUser( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::CommonPortAttrsImpl::setoptional( bool val)
 {
@@ -1456,7 +1456,7 @@ void PICML::CommonPortAttrsImpl::setoptional( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ConstantTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1467,7 +1467,7 @@ bool PICML::ConstantTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::GraphVertexImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1497,7 +1497,7 @@ std::multiset<PICML::Edge> PICML::GraphVertexImpl::getDstEdgeDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::SrcEdge> PICML::GraphVertexImpl::getInSrcEdgeLinks()
 {
@@ -1515,7 +1515,7 @@ std::set<PICML::SrcEdge> PICML::GraphVertexImpl::getInSrcEdgeLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::DstEdge> PICML::GraphVertexImpl::getOutDstEdgeLinks()
 {
@@ -1552,7 +1552,7 @@ std::multiset<PICML::Edge> PICML::GraphVertexImpl::getSrcEdgeSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ManageableImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1563,7 +1563,7 @@ bool PICML::ManageableImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ManagesComponent> PICML::ManageableImpl::getInManagesComponentLinks()
 {
@@ -1600,7 +1600,7 @@ std::multiset<PICML::ComponentFactory> PICML::ManageableImpl::getManagesComponen
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MemberTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1611,7 +1611,7 @@ bool PICML::MemberTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MultiInputBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1641,7 +1641,7 @@ std::multiset<PICML::InputAction> PICML::MultiInputBaseImpl::getMultiInputDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::MultiInput> PICML::MultiInputBaseImpl::getOutMultiInputLinks()
 {
@@ -1659,7 +1659,7 @@ std::set<PICML::MultiInput> PICML::MultiInputBaseImpl::getOutMultiInputLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MultiOutputBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1670,7 +1670,7 @@ bool PICML::MultiOutputBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ProvideableImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1681,7 +1681,7 @@ bool PICML::ProvideableImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::SingleInputBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1711,7 +1711,7 @@ std::multiset<PICML::InputAction> PICML::SingleInputBaseImpl::getInputDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Input> PICML::SingleInputBaseImpl::getOutInputLinks()
 {
@@ -1729,7 +1729,7 @@ std::set<PICML::Input> PICML::SingleInputBaseImpl::getOutInputLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::SingleOutputBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1740,7 +1740,7 @@ bool PICML::SingleOutputBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TaggableImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1751,25 +1751,25 @@ bool PICML::TaggableImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::TaggableImpl::getSpecifyIdTag() 
+std::string PICML::TaggableImpl::getSpecifyIdTag()
 {
 	return FCOImpl::getAttribute("SpecifyIdTag")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::TaggableImpl::getVersionTag() 
+std::string PICML::TaggableImpl::getVersionTag()
 {
 	return FCOImpl::getAttribute("VersionTag")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::TaggableImpl::setSpecifyIdTag( const std::string& val)
 {
@@ -1778,7 +1778,7 @@ void PICML::TaggableImpl::setSpecifyIdTag( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::TaggableImpl::setVersionTag( const std::string& val)
 {
@@ -1787,7 +1787,7 @@ void PICML::TaggableImpl::setVersionTag( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ActionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1798,25 +1798,25 @@ bool PICML::ActionImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long PICML::ActionImpl::getDuration() 
+long PICML::ActionImpl::getDuration()
 {
 	return FCOImpl::getAttribute("Duration")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ActionImpl::isLogAction() 
+bool PICML::ActionImpl::isLogAction()
 {
 	return FCOImpl::getAttribute("LogAction")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ActionImpl::setDuration( const long val)
 {
@@ -1825,7 +1825,7 @@ void PICML::ActionImpl::setDuration( const long val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ActionImpl::setLogAction( bool val)
 {
@@ -1834,7 +1834,7 @@ void PICML::ActionImpl::setLogAction( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::CompositeActionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1845,7 +1845,7 @@ bool PICML::CompositeActionImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ConnectedComponentImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1964,7 +1964,7 @@ std::set<PICML::RequiredRequestPort> PICML::ConnectedComponentImpl::getRequiredR
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ExceptionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -1992,7 +1992,7 @@ std::set<PICML::Member> PICML::ExceptionImpl::getMember()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::FileImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -2322,7 +2322,7 @@ std::set<PICML::ValueObject> PICML::FileImpl::getValueObject()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::OperationBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -2350,7 +2350,7 @@ std::set<PICML::InParameter> PICML::OperationBaseImpl::getInParameter()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::OutputActionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -2361,7 +2361,7 @@ bool PICML::OutputActionImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -2674,7 +2674,7 @@ std::set<PICML::ValueObject> PICML::PackageImpl::getValueObject()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ReadonlyAttributeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -2713,7 +2713,7 @@ std::multiset<PICML::Property> PICML::ReadonlyAttributeImpl::getAttributeValueDs
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AttributeDelegate> PICML::ReadonlyAttributeImpl::getInAttributeDelegateLinks()
 {
@@ -2731,7 +2731,7 @@ std::set<PICML::AttributeDelegate> PICML::ReadonlyAttributeImpl::getInAttributeD
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AttributeValue> PICML::ReadonlyAttributeImpl::getOutAttributeValueLinks()
 {
@@ -2783,7 +2783,7 @@ std::set<PICML::GetException> PICML::ReadonlyAttributeImpl::getGetException()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TopLevelBehaviorImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -2862,7 +2862,7 @@ std::set<PICML::PeriodicEvent> PICML::TopLevelBehaviorImpl::getPeriodicEvent()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::NamedTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -2873,7 +2873,7 @@ bool PICML::NamedTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PortImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -2884,7 +2884,7 @@ bool PICML::PortImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PredefinedTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -2895,7 +2895,7 @@ bool PICML::PredefinedTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::DisplayNodeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -2906,7 +2906,7 @@ bool PICML::DisplayNodeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::EnvironmentImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -2917,7 +2917,7 @@ bool PICML::EnvironmentImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PeriodicEventImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -2928,25 +2928,25 @@ bool PICML::PeriodicEventImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::PeriodicEventImpl::getPeriod() 
+std::string PICML::PeriodicEventImpl::getPeriod()
 {
 	return FCOImpl::getAttribute("Period")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::PeriodicEventImpl::getProbability() 
+std::string PICML::PeriodicEventImpl::getProbability()
 {
 	return FCOImpl::getAttribute("Probability")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::PeriodicEventImpl::setPeriod( const std::string& val)
 {
@@ -2955,7 +2955,7 @@ void PICML::PeriodicEventImpl::setPeriod( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::PeriodicEventImpl::setProbability( const std::string& val)
 {
@@ -2964,7 +2964,7 @@ void PICML::PeriodicEventImpl::setProbability( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3051,7 +3051,7 @@ std::multiset<PICML::ComponentImplementation> PICML::ComponentRefImpl::getImplem
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Implements> PICML::ComponentRefImpl::getInImplementsLinks()
 {
@@ -3069,7 +3069,7 @@ std::set<PICML::Implements> PICML::ComponentRefImpl::getInImplementsLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageInterface> PICML::ComponentRefImpl::getInPackageInterfaceLinks()
 {
@@ -3087,7 +3087,7 @@ std::set<PICML::PackageInterface> PICML::ComponentRefImpl::getInPackageInterface
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ComponentConfigProperty> PICML::ComponentRefImpl::getOutComponentConfigPropertyLinks()
 {
@@ -3105,7 +3105,7 @@ std::set<PICML::ComponentConfigProperty> PICML::ComponentRefImpl::getOutComponen
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ComponentInfoProperty> PICML::ComponentRefImpl::getOutComponentInfoPropertyLinks()
 {
@@ -3123,7 +3123,7 @@ std::set<PICML::ComponentInfoProperty> PICML::ComponentRefImpl::getOutComponentI
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ComponentProperty> PICML::ComponentRefImpl::getOutComponentPropertyLinks()
 {
@@ -3160,7 +3160,7 @@ std::multiset<PICML::ComponentPackage> PICML::ComponentRefImpl::getPackageInterf
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Component PICML::ComponentRefImpl::getComponent()
 {
@@ -3170,7 +3170,7 @@ PICML::Component PICML::ComponentRefImpl::getComponent()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ConstantImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3181,16 +3181,16 @@ bool PICML::ConstantImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ConstantImpl::getvalue() 
+std::string PICML::ConstantImpl::getvalue()
 {
 	return FCOImpl::getAttribute("value")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ConstantImpl::setvalue( const std::string& val)
 {
@@ -3199,7 +3199,7 @@ void PICML::ConstantImpl::setvalue( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ConstantType PICML::ConstantImpl::getConstantType()
 {
@@ -3209,7 +3209,7 @@ PICML::ConstantType PICML::ConstantImpl::getConstantType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AttributeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3237,7 +3237,7 @@ std::set<PICML::SetException> PICML::AttributeImpl::getSetException()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3305,7 +3305,7 @@ std::multiset<PICML::ExternalReferenceEndPoint> PICML::ComponentImpl::getExterna
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AssemblyConfigProperty> PICML::ComponentImpl::getOutAssemblyConfigPropertyLinks()
 {
@@ -3323,7 +3323,7 @@ std::set<PICML::AssemblyConfigProperty> PICML::ComponentImpl::getOutAssemblyConf
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AssemblyselectRequirement> PICML::ComponentImpl::getOutAssemblyselectRequirementLinks()
 {
@@ -3341,7 +3341,7 @@ std::set<PICML::AssemblyselectRequirement> PICML::ComponentImpl::getOutAssemblys
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ExternalDelegate> PICML::ComponentImpl::getOutExternalDelegateLinks()
 {
@@ -3359,25 +3359,25 @@ std::set<PICML::ExternalDelegate> PICML::ComponentImpl::getOutExternalDelegateLi
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ComponentImpl::getUUID() 
+std::string PICML::ComponentImpl::getUUID()
 {
 	return FCOImpl::getAttribute("UUID")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ComponentImpl::getlabel() 
+std::string PICML::ComponentImpl::getlabel()
 {
 	return FCOImpl::getAttribute("label")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ComponentImpl::setUUID( const std::string& val)
 {
@@ -3386,7 +3386,7 @@ void PICML::ComponentImpl::setUUID( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ComponentImpl::setlabel( const std::string& val)
 {
@@ -3558,7 +3558,7 @@ std::set<PICML::WorkerType> PICML::ComponentImpl::getWorkerType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::HasExceptionsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3586,7 +3586,7 @@ std::set<PICML::ExceptionRef> PICML::HasExceptionsImpl::getExceptionRef()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::InheritableImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3669,7 +3669,7 @@ std::set<PICML::ReadonlyAttribute> PICML::InheritableImpl::getReadonlyAttribute(
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::OnewayOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3680,7 +3680,7 @@ bool PICML::OnewayOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::NoInheritableImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3691,7 +3691,7 @@ bool PICML::NoInheritableImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::BooleanImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3702,7 +3702,7 @@ bool PICML::BooleanImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ByteImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3713,7 +3713,7 @@ bool PICML::ByteImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::GenericObjectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3724,7 +3724,7 @@ bool PICML::GenericObjectImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::GenericValueImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3735,7 +3735,7 @@ bool PICML::GenericValueImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::GenericValueObjectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3746,7 +3746,7 @@ bool PICML::GenericValueObjectImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::LongIntegerImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3757,7 +3757,7 @@ bool PICML::LongIntegerImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::RealNumberImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3768,7 +3768,7 @@ bool PICML::RealNumberImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ShortIntegerImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3779,7 +3779,7 @@ bool PICML::ShortIntegerImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::StringImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3790,7 +3790,7 @@ bool PICML::StringImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TypeEncodingImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3801,7 +3801,7 @@ bool PICML::TypeEncodingImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TypeKindImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3812,7 +3812,7 @@ bool PICML::TypeKindImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::BoxedImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3823,7 +3823,7 @@ bool PICML::BoxedImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::MemberType PICML::BoxedImpl::getMemberType()
 {
@@ -3833,7 +3833,7 @@ PICML::MemberType PICML::BoxedImpl::getMemberType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::InEventPortImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -3853,7 +3853,7 @@ std::multiset<BON::ConnectionEnd> PICML::InEventPortImpl::getEventSinkDelegateDs
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::EventSinkDelegate> PICML::InEventPortImpl::getEventSinkDelegateLinks()
 {
@@ -3880,7 +3880,7 @@ std::multiset<BON::ConnectionEnd> PICML::InEventPortImpl::getEventSinkDelegateSr
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::EventSinkDelegate> PICML::InEventPortImpl::getInEventSinkDelegateLinks()
 {
@@ -3898,7 +3898,7 @@ std::set<PICML::EventSinkDelegate> PICML::InEventPortImpl::getInEventSinkDelegat
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::deliverTo> PICML::InEventPortImpl::getIndeliverToLinks()
 {
@@ -3916,7 +3916,7 @@ std::set<PICML::deliverTo> PICML::InEventPortImpl::getIndeliverToLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::emit> PICML::InEventPortImpl::getInemitLinks()
 {
@@ -3934,7 +3934,7 @@ std::set<PICML::emit> PICML::InEventPortImpl::getInemitLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::EventSinkDelegate> PICML::InEventPortImpl::getOutEventSinkDelegateLinks()
 {
@@ -3980,7 +3980,7 @@ std::multiset<BON::ConnectionEnd> PICML::InEventPortImpl::getemitSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Event PICML::InEventPortImpl::getEvent()
 {
@@ -3990,7 +3990,7 @@ PICML::Event PICML::InEventPortImpl::getEvent()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::OutEventPortImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4010,7 +4010,7 @@ std::multiset<BON::ConnectionEnd> PICML::OutEventPortImpl::getEventSourceDelegat
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::EventSourceDelegate> PICML::OutEventPortImpl::getEventSourceDelegateLinks()
 {
@@ -4037,7 +4037,7 @@ std::multiset<BON::ConnectionEnd> PICML::OutEventPortImpl::getEventSourceDelegat
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::EventSourceDelegate> PICML::OutEventPortImpl::getInEventSourceDelegateLinks()
 {
@@ -4055,7 +4055,7 @@ std::set<PICML::EventSourceDelegate> PICML::OutEventPortImpl::getInEventSourceDe
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::EventSourceDelegate> PICML::OutEventPortImpl::getOutEventSourceDelegateLinks()
 {
@@ -4073,7 +4073,7 @@ std::set<PICML::EventSourceDelegate> PICML::OutEventPortImpl::getOutEventSourceD
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::emit> PICML::OutEventPortImpl::getOutemitLinks()
 {
@@ -4091,7 +4091,7 @@ std::set<PICML::emit> PICML::OutEventPortImpl::getOutemitLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::publish> PICML::OutEventPortImpl::getOutpublishLinks()
 {
@@ -4137,7 +4137,7 @@ std::multiset<PICML::PublishConnector> PICML::OutEventPortImpl::getpublishDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::OutEventPortImpl::out_event_port_type_Type PICML::OutEventPortImpl::getout_event_port_type()
 {
@@ -4150,16 +4150,16 @@ PICML::OutEventPortImpl::out_event_port_type_Type PICML::OutEventPortImpl::getou
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::OutEventPortImpl::issingle_destination() 
+bool PICML::OutEventPortImpl::issingle_destination()
 {
 	return FCOImpl::getAttribute("single_destination")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::OutEventPortImpl::setout_event_port_type( OutEventPortImpl::out_event_port_type_Type val)
 {
@@ -4174,7 +4174,7 @@ void PICML::OutEventPortImpl::setout_event_port_type( OutEventPortImpl::out_even
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::OutEventPortImpl::setsingle_destination( bool val)
 {
@@ -4183,7 +4183,7 @@ void PICML::OutEventPortImpl::setsingle_destination( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Event PICML::OutEventPortImpl::getEvent()
 {
@@ -4193,7 +4193,7 @@ PICML::Event PICML::OutEventPortImpl::getEvent()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ProvidedRequestPortImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4213,7 +4213,7 @@ std::multiset<BON::ConnectionEnd> PICML::ProvidedRequestPortImpl::getFacetDelega
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::FacetDelegate> PICML::ProvidedRequestPortImpl::getFacetDelegateLinks()
 {
@@ -4240,7 +4240,7 @@ std::multiset<BON::ConnectionEnd> PICML::ProvidedRequestPortImpl::getFacetDelega
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::FacetDelegate> PICML::ProvidedRequestPortImpl::getInFacetDelegateLinks()
 {
@@ -4258,7 +4258,7 @@ std::set<PICML::FacetDelegate> PICML::ProvidedRequestPortImpl::getInFacetDelegat
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<SIML::PortProxy> PICML::ProvidedRequestPortImpl::getInPortProxyLinks()
 {
@@ -4276,7 +4276,7 @@ std::set<SIML::PortProxy> PICML::ProvidedRequestPortImpl::getInPortProxyLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::invoke> PICML::ProvidedRequestPortImpl::getIninvokeLinks()
 {
@@ -4294,7 +4294,7 @@ std::set<PICML::invoke> PICML::ProvidedRequestPortImpl::getIninvokeLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::FacetDelegate> PICML::ProvidedRequestPortImpl::getOutFacetDelegateLinks()
 {
@@ -4330,7 +4330,7 @@ std::multiset<BON::ConnectionEnd> PICML::ProvidedRequestPortImpl::getinvokeSrcs(
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Provideable PICML::ProvidedRequestPortImpl::getProvideable()
 {
@@ -4340,7 +4340,7 @@ PICML::Provideable PICML::ProvidedRequestPortImpl::getProvideable()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::RequiredRequestPortImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4351,7 +4351,7 @@ bool PICML::RequiredRequestPortImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ReceptacleDelegate> PICML::RequiredRequestPortImpl::getInReceptacleDelegateLinks()
 {
@@ -4369,7 +4369,7 @@ std::set<PICML::ReceptacleDelegate> PICML::RequiredRequestPortImpl::getInRecepta
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ReceptacleDelegate> PICML::RequiredRequestPortImpl::getOutReceptacleDelegateLinks()
 {
@@ -4387,7 +4387,7 @@ std::set<PICML::ReceptacleDelegate> PICML::RequiredRequestPortImpl::getOutRecept
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::invoke> PICML::RequiredRequestPortImpl::getOutinvokeLinks()
 {
@@ -4414,7 +4414,7 @@ std::multiset<BON::ConnectionEnd> PICML::RequiredRequestPortImpl::getReceptacleD
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ReceptacleDelegate> PICML::RequiredRequestPortImpl::getReceptacleDelegateLinks()
 {
@@ -4450,16 +4450,16 @@ std::multiset<BON::ConnectionEnd> PICML::RequiredRequestPortImpl::getinvokeDsts(
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::RequiredRequestPortImpl::ismultiple_connections() 
+bool PICML::RequiredRequestPortImpl::ismultiple_connections()
 {
 	return FCOImpl::getAttribute("multiple_connections")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::RequiredRequestPortImpl::setmultiple_connections( bool val)
 {
@@ -4468,7 +4468,7 @@ void PICML::RequiredRequestPortImpl::setmultiple_connections( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Provideable PICML::RequiredRequestPortImpl::getProvideable()
 {
@@ -4478,7 +4478,7 @@ PICML::Provideable PICML::RequiredRequestPortImpl::getProvideable()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AggregateImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4506,7 +4506,7 @@ std::set<PICML::Member> PICML::AggregateImpl::getMember()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::EnumImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4534,7 +4534,7 @@ std::set<PICML::EnumValue> PICML::EnumImpl::getEnumValue()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::FactoryOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4545,7 +4545,7 @@ bool PICML::FactoryOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::HasOperationsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4733,7 +4733,7 @@ std::set<PICML::TwowayOperation> PICML::HasOperationsImpl::getTwowayOperation()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::LookupOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4744,7 +4744,7 @@ bool PICML::LookupOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::SwitchedAggregateImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4823,7 +4823,7 @@ std::set<PICML::Member> PICML::SwitchedAggregateImpl::getMember()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TwowayOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4885,7 +4885,7 @@ std::set<PICML::ReturnType> PICML::TwowayOperationImpl::getReturnType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AliasImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4896,7 +4896,7 @@ bool PICML::AliasImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::MemberType PICML::AliasImpl::getMemberType()
 {
@@ -4906,7 +4906,7 @@ PICML::MemberType PICML::AliasImpl::getMemberType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::CollectionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4917,7 +4917,7 @@ bool PICML::CollectionImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::MemberType PICML::CollectionImpl::getMemberType()
 {
@@ -4927,7 +4927,7 @@ PICML::MemberType PICML::CollectionImpl::getMemberType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentFactoryImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -4957,7 +4957,7 @@ std::multiset<PICML::Manageable> PICML::ComponentFactoryImpl::getManagesComponen
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ManagesComponent> PICML::ComponentFactoryImpl::getOutManagesComponentLinks()
 {
@@ -5026,7 +5026,7 @@ std::set<PICML::LookupOperation> PICML::ComponentFactoryImpl::getLookupOperation
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ObjectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5037,25 +5037,25 @@ bool PICML::ObjectImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ObjectImpl::isabstract() 
+bool PICML::ObjectImpl::isabstract()
 {
 	return FCOImpl::getAttribute("abstract")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ObjectImpl::islocal() 
+bool PICML::ObjectImpl::islocal()
 {
 	return FCOImpl::getAttribute("local")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ObjectImpl::setabstract( bool val)
 {
@@ -5064,7 +5064,7 @@ void PICML::ObjectImpl::setabstract( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ObjectImpl::setlocal( bool val)
 {
@@ -5073,7 +5073,7 @@ void PICML::ObjectImpl::setlocal( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ObjectByValueImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5084,16 +5084,16 @@ bool PICML::ObjectByValueImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ObjectByValueImpl::isabstract() 
+bool PICML::ObjectByValueImpl::isabstract()
 {
 	return FCOImpl::getAttribute("abstract")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ObjectByValueImpl::setabstract( bool val)
 {
@@ -5170,7 +5170,7 @@ std::set<PICML::PrivateFlag> PICML::ObjectByValueImpl::getPrivateFlag()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::EventImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5181,7 +5181,7 @@ bool PICML::EventImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ValueObjectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5192,7 +5192,7 @@ bool PICML::ValueObjectImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::RequirementSatisfierImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5203,16 +5203,16 @@ bool PICML::RequirementSatisfierImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::RequirementSatisfierImpl::getresourceType() 
+std::string PICML::RequirementSatisfierImpl::getresourceType()
 {
 	return FCOImpl::getAttribute("resourceType")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::RequirementSatisfierImpl::setresourceType( const std::string& val)
 {
@@ -5238,7 +5238,7 @@ std::set<PICML::SatisfierProperty> PICML::RequirementSatisfierImpl::getSatisfier
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ElementsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5249,7 +5249,7 @@ bool PICML::ElementsImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::BridgeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5279,7 +5279,7 @@ std::multiset<PICML::Interconnect> PICML::BridgeImpl::getBridge2InterconnectDsts
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Interconnect2Bridge> PICML::BridgeImpl::getInInterconnect2BridgeLinks()
 {
@@ -5316,7 +5316,7 @@ std::multiset<PICML::Interconnect> PICML::BridgeImpl::getInterconnect2BridgeSrcs
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Bridge2Interconnect> PICML::BridgeImpl::getOutBridge2InterconnectLinks()
 {
@@ -5334,16 +5334,16 @@ std::set<PICML::Bridge2Interconnect> PICML::BridgeImpl::getOutBridge2Interconnec
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::BridgeImpl::getlabel() 
+std::string PICML::BridgeImpl::getlabel()
 {
 	return FCOImpl::getAttribute("label")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::BridgeImpl::setlabel( const std::string& val)
 {
@@ -5369,7 +5369,7 @@ std::set<PICML::Resource> PICML::BridgeImpl::getResource()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::CapabilityImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5399,7 +5399,7 @@ std::multiset<PICML::ComponentImplementation> PICML::CapabilityImpl::getImplemen
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ImplementationCapability> PICML::CapabilityImpl::getInImplementationCapabilityLinks()
 {
@@ -5417,7 +5417,7 @@ std::set<PICML::ImplementationCapability> PICML::CapabilityImpl::getInImplementa
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::InterconnectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5447,7 +5447,7 @@ std::multiset<PICML::Bridge> PICML::InterconnectImpl::getBridge2InterconnectSrcs
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Bridge2Interconnect> PICML::InterconnectImpl::getInBridge2InterconnectLinks()
 {
@@ -5465,7 +5465,7 @@ std::set<PICML::Bridge2Interconnect> PICML::InterconnectImpl::getInBridge2Interc
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Node2Interconnect> PICML::InterconnectImpl::getInNode2InterconnectLinks()
 {
@@ -5540,7 +5540,7 @@ std::multiset<PICML::Node> PICML::InterconnectImpl::getNode2InterconnectSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Interconnect2Bridge> PICML::InterconnectImpl::getOutInterconnect2BridgeLinks()
 {
@@ -5558,7 +5558,7 @@ std::set<PICML::Interconnect2Bridge> PICML::InterconnectImpl::getOutInterconnect
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Interconnect2Node> PICML::InterconnectImpl::getOutInterconnect2NodeLinks()
 {
@@ -5576,16 +5576,16 @@ std::set<PICML::Interconnect2Node> PICML::InterconnectImpl::getOutInterconnect2N
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::InterconnectImpl::getlabel() 
+std::string PICML::InterconnectImpl::getlabel()
 {
 	return FCOImpl::getAttribute("label")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::InterconnectImpl::setlabel( const std::string& val)
 {
@@ -5611,7 +5611,7 @@ std::set<PICML::Resource> PICML::InterconnectImpl::getResource()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::NodeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5622,7 +5622,7 @@ bool PICML::NodeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Interconnect2Node> PICML::NodeImpl::getInInterconnect2NodeLinks()
 {
@@ -5678,7 +5678,7 @@ std::multiset<PICML::Interconnect> PICML::NodeImpl::getNode2InterconnectDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Node2Interconnect> PICML::NodeImpl::getOutNode2InterconnectLinks()
 {
@@ -5696,7 +5696,7 @@ std::set<PICML::Node2Interconnect> PICML::NodeImpl::getOutNode2InterconnectLinks
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Shares> PICML::NodeImpl::getOutSharesLinks()
 {
@@ -5733,16 +5733,16 @@ std::multiset<PICML::SharedResource> PICML::NodeImpl::getSharesDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::NodeImpl::getlabel() 
+std::string PICML::NodeImpl::getlabel()
 {
 	return FCOImpl::getAttribute("label")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::NodeImpl::setlabel( const std::string& val)
 {
@@ -5768,7 +5768,7 @@ std::set<PICML::Resource> PICML::NodeImpl::getResource()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ResourceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5779,7 +5779,7 @@ bool PICML::ResourceImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::SharedResourceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5790,7 +5790,7 @@ bool PICML::SharedResourceImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Shares> PICML::SharedResourceImpl::getInSharesLinks()
 {
@@ -5827,7 +5827,7 @@ std::multiset<PICML::Node> PICML::SharedResourceImpl::getSharesSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::RequirementBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5838,16 +5838,16 @@ bool PICML::RequirementBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::RequirementBaseImpl::getresourceType() 
+std::string PICML::RequirementBaseImpl::getresourceType()
 {
 	return FCOImpl::getAttribute("resourceType")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::RequirementBaseImpl::setresourceType( const std::string& val)
 {
@@ -5873,7 +5873,7 @@ std::set<PICML::Property> PICML::RequirementBaseImpl::getProperty()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ImplementationRequirementImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -5884,7 +5884,7 @@ bool PICML::ImplementationRequirementImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::MonolithDeployRequirement> PICML::ImplementationRequirementImpl::getInMonolithDeployRequirementLinks()
 {
@@ -5921,7 +5921,7 @@ std::multiset<PICML::MonolithicImplementation> PICML::ImplementationRequirementI
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ImplementationRequirementImpl::ResourceUsageKind_Type PICML::ImplementationRequirementImpl::getResourceUsageKind()
 {
@@ -5937,25 +5937,25 @@ PICML::ImplementationRequirementImpl::ResourceUsageKind_Type PICML::Implementati
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ImplementationRequirementImpl::getcomponentPort() 
+std::string PICML::ImplementationRequirementImpl::getcomponentPort()
 {
 	return FCOImpl::getAttribute("componentPort")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ImplementationRequirementImpl::getresourcePort() 
+std::string PICML::ImplementationRequirementImpl::getresourcePort()
 {
 	return FCOImpl::getAttribute("resourcePort")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ImplementationRequirementImpl::setResourceUsageKind( ImplementationRequirementImpl::ResourceUsageKind_Type val)
 {
@@ -5973,7 +5973,7 @@ void PICML::ImplementationRequirementImpl::setResourceUsageKind( ImplementationR
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ImplementationRequirementImpl::setcomponentPort( const std::string& val)
 {
@@ -5982,7 +5982,7 @@ void PICML::ImplementationRequirementImpl::setcomponentPort( const std::string& 
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ImplementationRequirementImpl::setresourcePort( const std::string& val)
 {
@@ -5991,7 +5991,7 @@ void PICML::ImplementationRequirementImpl::setresourcePort( const std::string& v
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::RequirementImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6059,7 +6059,7 @@ std::multiset<PICML::Component> PICML::RequirementImpl::getAssemblyselectRequire
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ArtifactDeployRequirement> PICML::RequirementImpl::getInArtifactDeployRequirementLinks()
 {
@@ -6077,7 +6077,7 @@ std::set<PICML::ArtifactDeployRequirement> PICML::RequirementImpl::getInArtifact
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AssemblyDeployRequirement> PICML::RequirementImpl::getInAssemblyDeployRequirementLinks()
 {
@@ -6095,7 +6095,7 @@ std::set<PICML::AssemblyDeployRequirement> PICML::RequirementImpl::getInAssembly
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AssemblyselectRequirement> PICML::RequirementImpl::getInAssemblyselectRequirementLinks()
 {
@@ -6113,7 +6113,7 @@ std::set<PICML::AssemblyselectRequirement> PICML::RequirementImpl::getInAssembly
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageConfSelectRequirement> PICML::RequirementImpl::getInPackageConfSelectRequirementLinks()
 {
@@ -6150,7 +6150,7 @@ std::multiset<PICML::PackageConfiguration> PICML::RequirementImpl::getPackageCon
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ECConfigurationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6250,7 +6250,7 @@ std::set<PICML::RecursiveFilterConnection> PICML::ECConfigurationImpl::getRecurs
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::RTRequirementsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6295,7 +6295,7 @@ std::set<PICML::ServiceProvider> PICML::RTRequirementsImpl::getServiceProvider()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::OperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6391,7 +6391,7 @@ std::set<WSML::OutputMessage> WSML::OperationImpl::getOutputMessage()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::NotificationOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6419,7 +6419,7 @@ std::set<WSML::Output> WSML::NotificationOperationImpl::getOutput()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::OneWayOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6447,7 +6447,7 @@ std::set<WSML::Input> WSML::OneWayOperationImpl::getInput()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::RequestResponseOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6458,16 +6458,16 @@ bool WSML::RequestResponseOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::RequestResponseOperationImpl::getparameterOrder() 
+std::string WSML::RequestResponseOperationImpl::getparameterOrder()
 {
 	return FCOImpl::getAttribute("parameterOrder")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::RequestResponseOperationImpl::setparameterOrder( const std::string& val)
 {
@@ -6527,7 +6527,7 @@ std::set<WSML::Output> WSML::RequestResponseOperationImpl::getOutput()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SolicitResponseOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6538,16 +6538,16 @@ bool WSML::SolicitResponseOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::SolicitResponseOperationImpl::getparameterOrder() 
+std::string WSML::SolicitResponseOperationImpl::getparameterOrder()
 {
 	return FCOImpl::getAttribute("parameterOrder")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::SolicitResponseOperationImpl::setparameterOrder( const std::string& val)
 {
@@ -6607,7 +6607,7 @@ std::set<WSML::Output> WSML::SolicitResponseOperationImpl::getOutput()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentLibImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6637,7 +6637,7 @@ std::multiset<PICML::ExternalResources> PICML::ComponentLibImpl::getExtResourceC
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ExtResourceConn> PICML::ComponentLibImpl::getOutExtResourceConnLinks()
 {
@@ -6655,34 +6655,34 @@ std::set<PICML::ExtResourceConn> PICML::ComponentLibImpl::getOutExtResourceConnL
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ComponentLibImpl::getORBServices() 
+std::string PICML::ComponentLibImpl::getORBServices()
 {
 	return FCOImpl::getAttribute("ORBServices")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ComponentLibImpl::getlibraryexport() 
+std::string PICML::ComponentLibImpl::getlibraryexport()
 {
 	return FCOImpl::getAttribute("libraryexport")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ComponentLibImpl::getsharedname() 
+std::string PICML::ComponentLibImpl::getsharedname()
 {
 	return FCOImpl::getAttribute("sharedname")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ComponentLibImpl::setORBServices( const std::string& val)
 {
@@ -6691,7 +6691,7 @@ void PICML::ComponentLibImpl::setORBServices( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ComponentLibImpl::setlibraryexport( const std::string& val)
 {
@@ -6700,7 +6700,7 @@ void PICML::ComponentLibImpl::setlibraryexport( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ComponentLibImpl::setsharedname( const std::string& val)
 {
@@ -6709,7 +6709,7 @@ void PICML::ComponentLibImpl::setsharedname( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ExecutorProjectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6737,7 +6737,7 @@ std::set<PICML::ImplementationArtifactReference> PICML::ExecutorProjectImpl::get
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ServantProjectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6782,7 +6782,7 @@ std::set<PICML::ImplementationArtifactReference> PICML::ServantProjectImpl::getI
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::StubProjectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6827,7 +6827,7 @@ std::set<PICML::ImplementationArtifactReference> PICML::StubProjectImpl::getImpl
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ECRoleImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6838,16 +6838,16 @@ bool PICML::ECRoleImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ECRoleImpl::isConfigureRTQoS() 
+bool PICML::ECRoleImpl::isConfigureRTQoS()
 {
 	return FCOImpl::getAttribute("ConfigureRTQoS")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ECRoleImpl::setConfigureRTQoS( bool val)
 {
@@ -6856,7 +6856,7 @@ void PICML::ECRoleImpl::setConfigureRTQoS( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ECConsumerImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6886,7 +6886,7 @@ std::multiset<PICML::ECBehavior> PICML::ECConsumerImpl::getConsumer2BehaviorConn
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Consumer2BehaviorConnection> PICML::ECConsumerImpl::getOutConsumer2BehaviorConnectionLinks()
 {
@@ -6955,7 +6955,7 @@ std::set<PICML::RecursiveFilterConnection> PICML::ECConsumerImpl::getRecursiveFi
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ECSupplierImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -6966,7 +6966,7 @@ bool PICML::ECSupplierImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Supplier2FilterConnection> PICML::ECSupplierImpl::getOutSupplier2FilterConnectionLinks()
 {
@@ -7020,7 +7020,7 @@ std::set<PICML::Supplier2FilterConnection> PICML::ECSupplierImpl::getSupplier2Fi
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MetricsBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -7050,7 +7050,7 @@ std::multiset<PICML::BenchmarkType> PICML::MetricsBaseImpl::getBenchmarkCharacte
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::BenchmarkCharacteristics> PICML::MetricsBaseImpl::getInBenchmarkCharacteristicsLinks()
 {
@@ -7068,7 +7068,7 @@ std::set<PICML::BenchmarkCharacteristics> PICML::MetricsBaseImpl::getInBenchmark
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::MetricConnection> PICML::MetricsBaseImpl::getInMetricConnectionLinks()
 {
@@ -7105,7 +7105,7 @@ std::multiset<PICML::OperationRef> PICML::MetricsBaseImpl::getMetricConnectionSr
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::WorkloadCharacteristics> PICML::MetricsBaseImpl::getOutWorkloadCharacteristicsLinks()
 {
@@ -7142,43 +7142,43 @@ std::multiset<PICML::TaskSet> PICML::MetricsBaseImpl::getWorkloadCharacteristics
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::MetricsBaseImpl::getfileName() 
+std::string PICML::MetricsBaseImpl::getfileName()
 {
 	return FCOImpl::getAttribute("fileName")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long PICML::MetricsBaseImpl::getiterations() 
+long PICML::MetricsBaseImpl::getiterations()
 {
 	return FCOImpl::getAttribute("iterations")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long PICML::MetricsBaseImpl::getpriority() 
+long PICML::MetricsBaseImpl::getpriority()
 {
 	return FCOImpl::getAttribute("priority")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long PICML::MetricsBaseImpl::getrate() 
+long PICML::MetricsBaseImpl::getrate()
 {
 	return FCOImpl::getAttribute("rate")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::MetricsBaseImpl::resolution_Type PICML::MetricsBaseImpl::getresolution()
 {
@@ -7192,16 +7192,16 @@ PICML::MetricsBaseImpl::resolution_Type PICML::MetricsBaseImpl::getresolution()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long PICML::MetricsBaseImpl::getwarmup() 
+long PICML::MetricsBaseImpl::getwarmup()
 {
 	return FCOImpl::getAttribute("warmup")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::MetricsBaseImpl::setfileName( const std::string& val)
 {
@@ -7210,7 +7210,7 @@ void PICML::MetricsBaseImpl::setfileName( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::MetricsBaseImpl::setiterations( const long val)
 {
@@ -7219,7 +7219,7 @@ void PICML::MetricsBaseImpl::setiterations( const long val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::MetricsBaseImpl::setpriority( const long val)
 {
@@ -7228,7 +7228,7 @@ void PICML::MetricsBaseImpl::setpriority( const long val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::MetricsBaseImpl::setrate( const long val)
 {
@@ -7237,7 +7237,7 @@ void PICML::MetricsBaseImpl::setrate( const long val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::MetricsBaseImpl::setresolution( MetricsBaseImpl::resolution_Type val)
 {
@@ -7253,7 +7253,7 @@ void PICML::MetricsBaseImpl::setresolution( MetricsBaseImpl::resolution_Type val
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::MetricsBaseImpl::setwarmup( const long val)
 {
@@ -7353,7 +7353,7 @@ std::set<PICML::Minimum> PICML::MetricsBaseImpl::getMinimum()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::LatencyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -7364,7 +7364,7 @@ bool PICML::LatencyImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ThroughputImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -7375,7 +7375,7 @@ bool PICML::ThroughputImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::WorkerPackageBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -7403,7 +7403,7 @@ std::set<PICML::Worker> PICML::WorkerPackageBaseImpl::getWorker()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::WorkerFileImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -7414,16 +7414,16 @@ bool PICML::WorkerFileImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::WorkerFileImpl::getLocation() 
+std::string PICML::WorkerFileImpl::getLocation()
 {
 	return FCOImpl::getAttribute("Location")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::WorkerFileImpl::setLocation( const std::string& val)
 {
@@ -7449,7 +7449,7 @@ std::set<PICML::WorkerPackage> PICML::WorkerFileImpl::getWorkerPackage()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::WorkerPackageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -7477,7 +7477,7 @@ std::set<PICML::WorkerPackage> PICML::WorkerPackageImpl::getWorkerPackage()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SchemaReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -7488,25 +7488,25 @@ bool WSML::SchemaReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::SchemaReferenceImpl::getid() 
+std::string WSML::SchemaReferenceImpl::getid()
 {
 	return FCOImpl::getAttribute("id")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::SchemaReferenceImpl::getschemaLocation() 
+std::string WSML::SchemaReferenceImpl::getschemaLocation()
 {
 	return FCOImpl::getAttribute("schemaLocation")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::SchemaReferenceImpl::setid( const std::string& val)
 {
@@ -7515,7 +7515,7 @@ void WSML::SchemaReferenceImpl::setid( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::SchemaReferenceImpl::setschemaLocation( const std::string& val)
 {
@@ -7541,7 +7541,7 @@ std::set<WSML::Schema> WSML::SchemaReferenceImpl::getSchema()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SchemaImportImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -7552,16 +7552,16 @@ bool WSML::SchemaImportImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::SchemaImportImpl::getnamespace() 
+std::string WSML::SchemaImportImpl::getnamespace()
 {
 	return FCOImpl::getAttribute("namespace")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::SchemaImportImpl::setnamespace( const std::string& val)
 {
@@ -7570,7 +7570,7 @@ void WSML::SchemaImportImpl::setnamespace( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentImplementationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -7676,7 +7676,7 @@ std::multiset<PICML::Property> PICML::ComponentImplementationImpl::getInfoProper
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ConfigProperty> PICML::ComponentImplementationImpl::getOutConfigPropertyLinks()
 {
@@ -7694,7 +7694,7 @@ std::set<PICML::ConfigProperty> PICML::ComponentImplementationImpl::getOutConfig
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ImplementationCapability> PICML::ComponentImplementationImpl::getOutImplementationCapabilityLinks()
 {
@@ -7712,7 +7712,7 @@ std::set<PICML::ImplementationCapability> PICML::ComponentImplementationImpl::ge
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ImplementationDependsOn> PICML::ComponentImplementationImpl::getOutImplementationDependsOnLinks()
 {
@@ -7730,7 +7730,7 @@ std::set<PICML::ImplementationDependsOn> PICML::ComponentImplementationImpl::get
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Implements> PICML::ComponentImplementationImpl::getOutImplementsLinks()
 {
@@ -7748,7 +7748,7 @@ std::set<PICML::Implements> PICML::ComponentImplementationImpl::getOutImplements
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::InfoProperty> PICML::ComponentImplementationImpl::getOutInfoPropertyLinks()
 {
@@ -7766,25 +7766,25 @@ std::set<PICML::InfoProperty> PICML::ComponentImplementationImpl::getOutInfoProp
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ComponentImplementationImpl::getUUID() 
+std::string PICML::ComponentImplementationImpl::getUUID()
 {
 	return FCOImpl::getAttribute("UUID")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ComponentImplementationImpl::getlabel() 
+std::string PICML::ComponentImplementationImpl::getlabel()
 {
 	return FCOImpl::getAttribute("label")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ComponentImplementationImpl::setUUID( const std::string& val)
 {
@@ -7793,7 +7793,7 @@ void PICML::ComponentImplementationImpl::setUUID( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ComponentImplementationImpl::setlabel( const std::string& val)
 {
@@ -7802,7 +7802,7 @@ void PICML::ComponentImplementationImpl::setlabel( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentAssemblyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -7832,7 +7832,7 @@ std::multiset<PICML::PathReference> PICML::ComponentAssemblyImpl::getCriticalPat
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::CriticalPath> PICML::ComponentAssemblyImpl::getOutCriticalPathLinks()
 {
@@ -8433,7 +8433,7 @@ std::set<PICML::publish> PICML::ComponentAssemblyImpl::getpublish()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MonolithicImplementationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -8501,7 +8501,7 @@ std::multiset<PICML::ImplementationArtifactReference> PICML::MonolithicImplement
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::MonolithDeployRequirement> PICML::MonolithicImplementationImpl::getOutMonolithDeployRequirementLinks()
 {
@@ -8519,7 +8519,7 @@ std::set<PICML::MonolithDeployRequirement> PICML::MonolithicImplementationImpl::
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::MonolithExecParameter> PICML::MonolithicImplementationImpl::getOutMonolithExecParameterLinks()
 {
@@ -8537,7 +8537,7 @@ std::set<PICML::MonolithExecParameter> PICML::MonolithicImplementationImpl::getO
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::MonolithprimaryArtifact> PICML::MonolithicImplementationImpl::getOutMonolithprimaryArtifactLinks()
 {
@@ -8555,16 +8555,16 @@ std::set<PICML::MonolithprimaryArtifact> PICML::MonolithicImplementationImpl::ge
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::MonolithicImplementationImpl::getdefaultVersion() 
+std::string PICML::MonolithicImplementationImpl::getdefaultVersion()
 {
 	return FCOImpl::getAttribute("defaultVersion")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::MonolithicImplementationImpl::setdefaultVersion( const std::string& val)
 {
@@ -8573,7 +8573,7 @@ void PICML::MonolithicImplementationImpl::setdefaultVersion( const std::string& 
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::ExtensibilityElementImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -8584,16 +8584,16 @@ bool WSML::ExtensibilityElementImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool WSML::ExtensibilityElementImpl::isrequired() 
+bool WSML::ExtensibilityElementImpl::isrequired()
 {
 	return FCOImpl::getAttribute("required")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::ExtensibilityElementImpl::setrequired( bool val)
 {
@@ -8602,7 +8602,7 @@ void WSML::ExtensibilityElementImpl::setrequired( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::ExtensibleBindingImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -8613,7 +8613,7 @@ bool WSML::ExtensibleBindingImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::ExtensibleMessageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -8624,25 +8624,25 @@ bool WSML::ExtensibleMessageImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::ExtensibleMessageImpl::getencodingStyle() 
+std::string WSML::ExtensibleMessageImpl::getencodingStyle()
 {
 	return FCOImpl::getAttribute("encodingStyle")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::ExtensibleMessageImpl::getnamespace() 
+std::string WSML::ExtensibleMessageImpl::getnamespace()
 {
 	return FCOImpl::getAttribute("namespace")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::ExtensibleMessageImpl::use_Type WSML::ExtensibleMessageImpl::getuse()
 {
@@ -8655,7 +8655,7 @@ WSML::ExtensibleMessageImpl::use_Type WSML::ExtensibleMessageImpl::getuse()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::ExtensibleMessageImpl::setencodingStyle( const std::string& val)
 {
@@ -8664,7 +8664,7 @@ void WSML::ExtensibleMessageImpl::setencodingStyle( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::ExtensibleMessageImpl::setnamespace( const std::string& val)
 {
@@ -8673,7 +8673,7 @@ void WSML::ExtensibleMessageImpl::setnamespace( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::ExtensibleMessageImpl::setuse( ExtensibleMessageImpl::use_Type val)
 {
@@ -8688,7 +8688,7 @@ void WSML::ExtensibleMessageImpl::setuse( ExtensibleMessageImpl::use_Type val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::ExtensibleOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -8699,7 +8699,7 @@ bool WSML::ExtensibleOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::ExtensiblePortImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -8710,7 +8710,7 @@ bool WSML::ExtensiblePortImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SOAPHeadersImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -8778,7 +8778,7 @@ std::multiset<WSML::PartRef> WSML::SOAPHeadersImpl::getHeaderPartDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::HeaderBinding> WSML::SOAPHeadersImpl::getInHeaderBindingLinks()
 {
@@ -8796,7 +8796,7 @@ std::set<WSML::HeaderBinding> WSML::SOAPHeadersImpl::getInHeaderBindingLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::HeaderMessage> WSML::SOAPHeadersImpl::getOutHeaderMessageLinks()
 {
@@ -8814,7 +8814,7 @@ std::set<WSML::HeaderMessage> WSML::SOAPHeadersImpl::getOutHeaderMessageLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::HeaderPart> WSML::SOAPHeadersImpl::getOutHeaderPartLinks()
 {
@@ -8832,7 +8832,7 @@ std::set<WSML::HeaderPart> WSML::SOAPHeadersImpl::getOutHeaderPartLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SOAPAddressImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -8843,16 +8843,16 @@ bool WSML::SOAPAddressImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::SOAPAddressImpl::getlocation() 
+std::string WSML::SOAPAddressImpl::getlocation()
 {
 	return FCOImpl::getAttribute("location")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::SOAPAddressImpl::setlocation( const std::string& val)
 {
@@ -8861,7 +8861,7 @@ void WSML::SOAPAddressImpl::setlocation( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SOAPBindingImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -8872,7 +8872,7 @@ bool WSML::SOAPBindingImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::SOAPBindingImpl::style_Type WSML::SOAPBindingImpl::getstyle()
 {
@@ -8885,16 +8885,16 @@ WSML::SOAPBindingImpl::style_Type WSML::SOAPBindingImpl::getstyle()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::SOAPBindingImpl::gettransport() 
+std::string WSML::SOAPBindingImpl::gettransport()
 {
 	return FCOImpl::getAttribute("transport")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::SOAPBindingImpl::setstyle( SOAPBindingImpl::style_Type val)
 {
@@ -8909,7 +8909,7 @@ void WSML::SOAPBindingImpl::setstyle( SOAPBindingImpl::style_Type val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::SOAPBindingImpl::settransport( const std::string& val)
 {
@@ -8918,7 +8918,7 @@ void WSML::SOAPBindingImpl::settransport( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SOAPBodyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -8967,7 +8967,7 @@ std::multiset<WSML::PartRef> WSML::SOAPBodyImpl::getBodyPartsDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::BodyBinding> WSML::SOAPBodyImpl::getInBodyBindingLinks()
 {
@@ -8985,7 +8985,7 @@ std::set<WSML::BodyBinding> WSML::SOAPBodyImpl::getInBodyBindingLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::BodyParts> WSML::SOAPBodyImpl::getOutBodyPartsLinks()
 {
@@ -9003,7 +9003,7 @@ std::set<WSML::BodyParts> WSML::SOAPBodyImpl::getOutBodyPartsLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SOAPFaultImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -9014,7 +9014,7 @@ bool WSML::SOAPFaultImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::SOAPFaultExtension> WSML::SOAPFaultImpl::getInSOAPFaultExtensionLinks()
 {
@@ -9051,7 +9051,7 @@ std::multiset<WSML::FaultRef> WSML::SOAPFaultImpl::getSOAPFaultExtensionSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SOAPOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -9062,16 +9062,16 @@ bool WSML::SOAPOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::SOAPOperationImpl::getsoapAction() 
+std::string WSML::SOAPOperationImpl::getsoapAction()
 {
 	return FCOImpl::getAttribute("soapAction")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::SOAPOperationImpl::style_Type WSML::SOAPOperationImpl::getstyle()
 {
@@ -9084,7 +9084,7 @@ WSML::SOAPOperationImpl::style_Type WSML::SOAPOperationImpl::getstyle()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::SOAPOperationImpl::setsoapAction( const std::string& val)
 {
@@ -9093,7 +9093,7 @@ void WSML::SOAPOperationImpl::setsoapAction( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::SOAPOperationImpl::setstyle( SOAPOperationImpl::style_Type val)
 {
@@ -9108,7 +9108,7 @@ void WSML::SOAPOperationImpl::setstyle( SOAPOperationImpl::style_Type val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SOAPHeaderImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -9136,7 +9136,7 @@ std::set<WSML::SOAPHeaderFault> WSML::SOAPHeaderImpl::getSOAPHeaderFault()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SOAPHeaderFaultImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -9147,7 +9147,7 @@ bool WSML::SOAPHeaderFaultImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::ReferrableImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -9158,7 +9158,7 @@ bool WSML::ReferrableImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::ElementImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -9169,16 +9169,16 @@ bool WSML::ElementImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long WSML::ElementImpl::getOrder() 
+long WSML::ElementImpl::getOrder()
 {
 	return FCOImpl::getAttribute("Order")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::ElementImpl::schemaType_Type WSML::ElementImpl::getschemaType()
 {
@@ -9208,7 +9208,7 @@ WSML::ElementImpl::schemaType_Type WSML::ElementImpl::getschemaType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::ElementImpl::setOrder( const long val)
 {
@@ -9217,7 +9217,7 @@ void WSML::ElementImpl::setOrder( const long val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::ElementImpl::setschemaType( ElementImpl::schemaType_Type val)
 {
@@ -9283,7 +9283,7 @@ std::set<WSML::Element> WSML::ElementImpl::getElement()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::AtomicTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -9294,7 +9294,7 @@ bool WSML::AtomicTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::AtomicTypeImpl::typeCode_Type WSML::AtomicTypeImpl::gettypeCode()
 {
@@ -9349,7 +9349,7 @@ WSML::AtomicTypeImpl::typeCode_Type WSML::AtomicTypeImpl::gettypeCode()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::AtomicTypeImpl::settypeCode( AtomicTypeImpl::typeCode_Type val)
 {
@@ -9406,7 +9406,7 @@ void WSML::AtomicTypeImpl::settypeCode( AtomicTypeImpl::typeCode_Type val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ArtifactContainerImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -9626,7 +9626,7 @@ std::set<PICML::Requirement> PICML::ArtifactContainerImpl::getRequirement(int du
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::BenchmarkAnalysisImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -10185,7 +10185,7 @@ std::set<PICML::WorkloadCharacteristics> PICML::BenchmarkAnalysisImpl::getWorklo
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::BindingImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -10215,7 +10215,7 @@ std::multiset<WSML::PortType> WSML::BindingImpl::getBindingPortTypeDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::BindingPortType> WSML::BindingImpl::getOutBindingPortTypeLinks()
 {
@@ -10318,7 +10318,7 @@ std::set<WSML::SOAPBinding> WSML::BindingImpl::getSOAPBinding()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::BindingOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -10348,7 +10348,7 @@ std::multiset<WSML::OperationRef> WSML::BindingOperationImpl::getBindsOperationD
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::BindsOperation> WSML::BindingOperationImpl::getOutBindsOperationLinks()
 {
@@ -10699,7 +10699,7 @@ std::set<WSML::SOAPOperation> WSML::BindingOperationImpl::getSOAPOperation()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentContainerImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -10812,7 +10812,7 @@ std::set<PICML::Property> PICML::ComponentContainerImpl::getProperty()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentImplementationContainerImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -11150,7 +11150,7 @@ std::set<PICML::Property> PICML::ComponentImplementationContainerImpl::getProper
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentPropertyDescriptionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -11180,7 +11180,7 @@ std::multiset<PICML::ComponentRef> PICML::ComponentPropertyDescriptionImpl::getC
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ComponentProperty> PICML::ComponentPropertyDescriptionImpl::getInComponentPropertyLinks()
 {
@@ -11215,7 +11215,7 @@ std::set<PICML::DataType> PICML::ComponentPropertyDescriptionImpl::getDataType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::DefinitionsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -11226,16 +11226,16 @@ bool WSML::DefinitionsImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::DefinitionsImpl::gettargetNamespace() 
+std::string WSML::DefinitionsImpl::gettargetNamespace()
 {
 	return FCOImpl::getAttribute("targetNamespace")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::DefinitionsImpl::settargetNamespace( const std::string& val)
 {
@@ -11414,7 +11414,7 @@ std::set<WSML::Types> WSML::DefinitionsImpl::getTypes()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::DeploymentPlanImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -11425,25 +11425,25 @@ bool PICML::DeploymentPlanImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::DeploymentPlanImpl::getUUID() 
+std::string PICML::DeploymentPlanImpl::getUUID()
 {
 	return FCOImpl::getAttribute("UUID")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::DeploymentPlanImpl::getlabel() 
+std::string PICML::DeploymentPlanImpl::getlabel()
 {
 	return FCOImpl::getAttribute("label")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::DeploymentPlanImpl::setUUID( const std::string& val)
 {
@@ -11452,7 +11452,7 @@ void PICML::DeploymentPlanImpl::setUUID( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::DeploymentPlanImpl::setlabel( const std::string& val)
 {
@@ -11580,7 +11580,7 @@ std::set<PICML::SharedComponentReference> PICML::DeploymentPlanImpl::getSharedCo
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::DocumentationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -11591,25 +11591,25 @@ bool WSML::DocumentationImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::DocumentationImpl::getDocText() 
+std::string WSML::DocumentationImpl::getDocText()
 {
 	return FCOImpl::getAttribute("DocText")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool WSML::DocumentationImpl::isMixed() 
+bool WSML::DocumentationImpl::isMixed()
 {
 	return FCOImpl::getAttribute("Mixed")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::DocumentationImpl::setDocText( const std::string& val)
 {
@@ -11618,7 +11618,7 @@ void WSML::DocumentationImpl::setDocText( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::DocumentationImpl::setMixed( bool val)
 {
@@ -11644,7 +11644,7 @@ std::set<WSML::Element> WSML::DocumentationImpl::getElement()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::DomainImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -11655,25 +11655,25 @@ bool PICML::DomainImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::DomainImpl::getUUID() 
+std::string PICML::DomainImpl::getUUID()
 {
 	return FCOImpl::getAttribute("UUID")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::DomainImpl::getlabel() 
+std::string PICML::DomainImpl::getlabel()
 {
 	return FCOImpl::getAttribute("label")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::DomainImpl::setUUID( const std::string& val)
 {
@@ -11682,7 +11682,7 @@ void PICML::DomainImpl::setUUID( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::DomainImpl::setlabel( const std::string& val)
 {
@@ -11884,7 +11884,7 @@ std::set<PICML::Shares> PICML::DomainImpl::getShares()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::FaultImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -11914,7 +11914,7 @@ std::multiset<WSML::MessageRef> WSML::FaultImpl::getFaultMessageDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::FaultMessage> WSML::FaultImpl::getOutFaultMessageLinks()
 {
@@ -11949,7 +11949,7 @@ std::set<WSML::Documentation> WSML::FaultImpl::getDocumentation()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::ImportImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -11960,25 +11960,25 @@ bool WSML::ImportImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::ImportImpl::getlocation() 
+std::string WSML::ImportImpl::getlocation()
 {
 	return FCOImpl::getAttribute("location")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::ImportImpl::getnamespace() 
+std::string WSML::ImportImpl::getnamespace()
 {
 	return FCOImpl::getAttribute("namespace")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::ImportImpl::setlocation( const std::string& val)
 {
@@ -11987,7 +11987,7 @@ void WSML::ImportImpl::setlocation( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::ImportImpl::setnamespace( const std::string& val)
 {
@@ -12030,7 +12030,7 @@ std::set<WSML::Documentation> WSML::ImportImpl::getDocumentation()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::InputImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -12060,7 +12060,7 @@ std::multiset<WSML::MessageRef> WSML::InputImpl::getInputMessageDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::InputMessage> WSML::InputImpl::getOutInputMessageLinks()
 {
@@ -12095,7 +12095,7 @@ std::set<WSML::Documentation> WSML::InputImpl::getDocumentation()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::InputActionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -12125,7 +12125,7 @@ std::multiset<PICML::StateBase> PICML::InputActionImpl::getFinishSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Finish> PICML::InputActionImpl::getInFinishLinks()
 {
@@ -12143,7 +12143,7 @@ std::set<PICML::Finish> PICML::InputActionImpl::getInFinishLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Input> PICML::InputActionImpl::getInInputLinks()
 {
@@ -12161,7 +12161,7 @@ std::set<PICML::Input> PICML::InputActionImpl::getInInputLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::MultiInput> PICML::InputActionImpl::getInMultiInputLinks()
 {
@@ -12236,7 +12236,7 @@ std::multiset<PICML::MultiInputBase> PICML::InputActionImpl::getMultiInputSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::InputEffect> PICML::InputActionImpl::getOutInputEffectLinks()
 {
@@ -12271,7 +12271,7 @@ std::set<PICML::Property> PICML::InputActionImpl::getProperty()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MPCImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -12316,7 +12316,7 @@ std::set<PICML::Workspaces> PICML::MPCImpl::getWorkspaces()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::MessageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -12344,7 +12344,7 @@ std::set<WSML::Part> WSML::MessageImpl::getPart()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::MessagesImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -12372,7 +12372,7 @@ std::set<WSML::Message> WSML::MessagesImpl::getMessage()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::OutputImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -12383,7 +12383,7 @@ bool WSML::OutputImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::OutputMessage> WSML::OutputImpl::getOutOutputMessageLinks()
 {
@@ -12437,7 +12437,7 @@ std::set<WSML::Documentation> WSML::OutputImpl::getDocumentation()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageConfigurationContainerImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -12674,7 +12674,7 @@ std::set<PICML::Requirement> PICML::PackageConfigurationContainerImpl::getRequir
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageContainerImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -12821,7 +12821,7 @@ std::set<PICML::Property> PICML::PackageContainerImpl::getProperty()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PathImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -12832,7 +12832,7 @@ bool PICML::PathImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PathProperty> PICML::PathImpl::getOutPathPropertyLinks()
 {
@@ -13098,7 +13098,7 @@ std::set<PICML::SrcEdge> PICML::PathImpl::getSrcEdge()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PathsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -13160,7 +13160,7 @@ std::set<PICML::Property> PICML::PathsImpl::getProperty()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::PortImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -13171,7 +13171,7 @@ bool WSML::PortImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::PortBinding> WSML::PortImpl::getOutPortBindingLinks()
 {
@@ -13189,7 +13189,7 @@ std::set<WSML::PortBinding> WSML::PortImpl::getOutPortBindingLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<SIML::PortProxy> WSML::PortImpl::getOutPortProxyLinks()
 {
@@ -13269,7 +13269,7 @@ std::set<WSML::SOAPAddress> WSML::PortImpl::getSOAPAddress()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::PortTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -13299,7 +13299,7 @@ std::multiset<WSML::Binding> WSML::PortTypeImpl::getBindingPortTypeSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::BindingPortType> WSML::PortTypeImpl::getInBindingPortTypeLinks()
 {
@@ -13425,7 +13425,7 @@ std::set<WSML::SolicitResponseOperation> WSML::PortTypeImpl::getSolicitResponseO
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ProjectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -13560,7 +13560,7 @@ std::set<PICML::StubProject> PICML::ProjectImpl::getStubProject()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -13722,7 +13722,7 @@ std::multiset<PICML::Edge> PICML::PropertyImpl::getEdgePropertyDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ArtifactExecParameter> PICML::PropertyImpl::getInArtifactExecParameterLinks()
 {
@@ -13740,7 +13740,7 @@ std::set<PICML::ArtifactExecParameter> PICML::PropertyImpl::getInArtifactExecPar
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ArtifactInfoProperty> PICML::PropertyImpl::getInArtifactInfoPropertyLinks()
 {
@@ -13758,7 +13758,7 @@ std::set<PICML::ArtifactInfoProperty> PICML::PropertyImpl::getInArtifactInfoProp
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AssemblyConfigProperty> PICML::PropertyImpl::getInAssemblyConfigPropertyLinks()
 {
@@ -13776,7 +13776,7 @@ std::set<PICML::AssemblyConfigProperty> PICML::PropertyImpl::getInAssemblyConfig
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AttributeMappingValue> PICML::PropertyImpl::getInAttributeMappingValueLinks()
 {
@@ -13794,7 +13794,7 @@ std::set<PICML::AttributeMappingValue> PICML::PropertyImpl::getInAttributeMappin
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AttributeValue> PICML::PropertyImpl::getInAttributeValueLinks()
 {
@@ -13812,7 +13812,7 @@ std::set<PICML::AttributeValue> PICML::PropertyImpl::getInAttributeValueLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ComponentConfigProperty> PICML::PropertyImpl::getInComponentConfigPropertyLinks()
 {
@@ -13830,7 +13830,7 @@ std::set<PICML::ComponentConfigProperty> PICML::PropertyImpl::getInComponentConf
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ComponentInfoProperty> PICML::PropertyImpl::getInComponentInfoPropertyLinks()
 {
@@ -13848,7 +13848,7 @@ std::set<PICML::ComponentInfoProperty> PICML::PropertyImpl::getInComponentInfoPr
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ConfigProperty> PICML::PropertyImpl::getInConfigPropertyLinks()
 {
@@ -13866,7 +13866,7 @@ std::set<PICML::ConfigProperty> PICML::PropertyImpl::getInConfigPropertyLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::InfoProperty> PICML::PropertyImpl::getInInfoPropertyLinks()
 {
@@ -13884,7 +13884,7 @@ std::set<PICML::InfoProperty> PICML::PropertyImpl::getInInfoPropertyLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::MonolithExecParameter> PICML::PropertyImpl::getInMonolithExecParameterLinks()
 {
@@ -13902,7 +13902,7 @@ std::set<PICML::MonolithExecParameter> PICML::PropertyImpl::getInMonolithExecPar
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageConfConfigProperty> PICML::PropertyImpl::getInPackageConfConfigPropertyLinks()
 {
@@ -13920,7 +13920,7 @@ std::set<PICML::PackageConfConfigProperty> PICML::PropertyImpl::getInPackageConf
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageConfigProperty> PICML::PropertyImpl::getInPackageConfigPropertyLinks()
 {
@@ -13938,7 +13938,7 @@ std::set<PICML::PackageConfigProperty> PICML::PropertyImpl::getInPackageConfigPr
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageInfoProperty> PICML::PropertyImpl::getInPackageInfoPropertyLinks()
 {
@@ -13956,7 +13956,7 @@ std::set<PICML::PackageInfoProperty> PICML::PropertyImpl::getInPackageInfoProper
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PathProperty> PICML::PropertyImpl::getInPathPropertyLinks()
 {
@@ -14012,7 +14012,7 @@ std::multiset<PICML::MonolithicImplementation> PICML::PropertyImpl::getMonolithE
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::EdgeProperty> PICML::PropertyImpl::getOutEdgePropertyLinks()
 {
@@ -14106,16 +14106,16 @@ std::multiset<PICML::Path> PICML::PropertyImpl::getPathPropertySrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::PropertyImpl::getDataValue() 
+std::string PICML::PropertyImpl::getDataValue()
 {
 	return FCOImpl::getAttribute("DataValue")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::PropertyImpl::setDataValue( const std::string& val)
 {
@@ -14141,7 +14141,7 @@ std::set<PICML::DataType> PICML::PropertyImpl::getDataType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::SatisfierPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14152,16 +14152,16 @@ bool PICML::SatisfierPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::SatisfierPropertyImpl::getDataValue() 
+std::string PICML::SatisfierPropertyImpl::getDataValue()
 {
 	return FCOImpl::getAttribute("DataValue")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::SatisfierPropertyImpl::SatisfierPropertyKind_Type PICML::SatisfierPropertyImpl::getSatisfierPropertyKind()
 {
@@ -14178,16 +14178,16 @@ PICML::SatisfierPropertyImpl::SatisfierPropertyKind_Type PICML::SatisfierPropert
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::SatisfierPropertyImpl::isdynamic() 
+bool PICML::SatisfierPropertyImpl::isdynamic()
 {
 	return FCOImpl::getAttribute("dynamic")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::SatisfierPropertyImpl::setDataValue( const std::string& val)
 {
@@ -14196,7 +14196,7 @@ void PICML::SatisfierPropertyImpl::setDataValue( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::SatisfierPropertyImpl::setSatisfierPropertyKind( SatisfierPropertyImpl::SatisfierPropertyKind_Type val)
 {
@@ -14215,7 +14215,7 @@ void PICML::SatisfierPropertyImpl::setSatisfierPropertyKind( SatisfierPropertyIm
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::SatisfierPropertyImpl::setdynamic( bool val)
 {
@@ -14241,7 +14241,7 @@ std::set<PICML::DataType> PICML::SatisfierPropertyImpl::getDataType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SchemaImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14252,16 +14252,16 @@ bool WSML::SchemaImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::SchemaImpl::gettargetNamespace() 
+std::string WSML::SchemaImpl::gettargetNamespace()
 {
 	return FCOImpl::getAttribute("targetNamespace")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::SchemaImpl::settargetNamespace( const std::string& val)
 {
@@ -14359,7 +14359,7 @@ std::set<WSML::SchemaReference> WSML::SchemaImpl::getSchemaReference(int dummy)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SchemaBuiltinsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14387,7 +14387,7 @@ std::set<WSML::AtomicType> WSML::SchemaBuiltinsImpl::getAtomicType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::ServiceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14449,7 +14449,7 @@ std::set<WSML::PortBinding> WSML::ServiceImpl::getPortBinding()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ServiceProviderImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14460,16 +14460,16 @@ bool PICML::ServiceProviderImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ServiceProviderImpl::isfixed_prioirty_service_execution() 
+bool PICML::ServiceProviderImpl::isfixed_prioirty_service_execution()
 {
 	return FCOImpl::getAttribute("fixed_prioirty_service_execution")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ServiceProviderImpl::setfixed_prioirty_service_execution( bool val)
 {
@@ -14512,7 +14512,7 @@ std::set<PICML::ServiceLevels> PICML::ServiceProviderImpl::getServiceLevels()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool SIML::SystemImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14591,7 +14591,7 @@ std::set<WSML::ServiceRef> SIML::SystemImpl::getWSMLServiceRef()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TopLevelPackageContainerImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14653,7 +14653,7 @@ std::set<PICML::package> PICML::TopLevelPackageContainerImpl::getpackage()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::TypesImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14698,7 +14698,7 @@ std::set<WSML::Schema> WSML::TypesImpl::getSchema()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::WorkerImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14709,16 +14709,16 @@ bool PICML::WorkerImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::WorkerImpl::isAbstract() 
+bool PICML::WorkerImpl::isAbstract()
 {
 	return FCOImpl::getAttribute("Abstract")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::WorkerImpl::setAbstract( bool val)
 {
@@ -14744,7 +14744,7 @@ std::set<PICML::Action> PICML::WorkerImpl::getAction()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::WorkerLibraryImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14755,16 +14755,16 @@ bool PICML::WorkerLibraryImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::WorkerLibraryImpl::getLocation() 
+std::string PICML::WorkerLibraryImpl::getLocation()
 {
 	return FCOImpl::getAttribute("Location")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::WorkerLibraryImpl::setLocation( const std::string& val)
 {
@@ -14790,7 +14790,7 @@ std::set<PICML::WorkerFile> PICML::WorkerLibraryImpl::getWorkerFile()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::BenchmarkTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14820,7 +14820,7 @@ std::multiset<PICML::MetricsBase> PICML::BenchmarkTypeImpl::getBenchmarkCharacte
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::BenchmarkCharacteristics> PICML::BenchmarkTypeImpl::getOutBenchmarkCharacteristicsLinks()
 {
@@ -14838,7 +14838,7 @@ std::set<PICML::BenchmarkCharacteristics> PICML::BenchmarkTypeImpl::getOutBenchm
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::FixedIterationBenchmarksImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14849,16 +14849,16 @@ bool PICML::FixedIterationBenchmarksImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long PICML::FixedIterationBenchmarksImpl::getbenchmarkIterations() 
+long PICML::FixedIterationBenchmarksImpl::getbenchmarkIterations()
 {
 	return FCOImpl::getAttribute("benchmarkIterations")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::FixedIterationBenchmarksImpl::setbenchmarkIterations( const long val)
 {
@@ -14867,7 +14867,7 @@ void PICML::FixedIterationBenchmarksImpl::setbenchmarkIterations( const long val
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PeriodicBenchmarksImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14878,16 +14878,16 @@ bool PICML::PeriodicBenchmarksImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long PICML::PeriodicBenchmarksImpl::gettimeperiod() 
+long PICML::PeriodicBenchmarksImpl::gettimeperiod()
 {
 	return FCOImpl::getAttribute("timeperiod")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::PeriodicBenchmarksImpl::settimeperiod( const long val)
 {
@@ -14896,7 +14896,7 @@ void PICML::PeriodicBenchmarksImpl::settimeperiod( const long val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TriggerBenchmarksImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14907,7 +14907,7 @@ bool PICML::TriggerBenchmarksImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::DataAnalysisBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14918,7 +14918,7 @@ bool PICML::DataAnalysisBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AverageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14929,7 +14929,7 @@ bool PICML::AverageImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::JitterImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14940,7 +14940,7 @@ bool PICML::JitterImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MaximumImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14951,7 +14951,7 @@ bool PICML::MaximumImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MinimumImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -14962,7 +14962,7 @@ bool PICML::MinimumImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::IORefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -15011,7 +15011,7 @@ std::multiset<WSML::SOAPHeaders> WSML::IORefImpl::getHeaderBindingDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::BodyBinding> WSML::IORefImpl::getOutBodyBindingLinks()
 {
@@ -15029,7 +15029,7 @@ std::set<WSML::BodyBinding> WSML::IORefImpl::getOutBodyBindingLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::HeaderBinding> WSML::IORefImpl::getOutHeaderBindingLinks()
 {
@@ -15047,7 +15047,7 @@ std::set<WSML::HeaderBinding> WSML::IORefImpl::getOutHeaderBindingLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::InputRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -15058,7 +15058,7 @@ bool WSML::InputRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::Input WSML::InputRefImpl::getInput()
 {
@@ -15068,7 +15068,7 @@ WSML::Input WSML::InputRefImpl::getInput()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::OutputRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -15079,7 +15079,7 @@ bool WSML::OutputRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::Output WSML::OutputRefImpl::getOutput()
 {
@@ -15089,7 +15089,7 @@ WSML::Output WSML::OutputRefImpl::getOutput()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::AttributeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -15100,16 +15100,16 @@ bool WSML::AttributeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string WSML::AttributeImpl::getValue() 
+std::string WSML::AttributeImpl::getValue()
 {
 	return FCOImpl::getAttribute("Value")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void WSML::AttributeImpl::setValue( const std::string& val)
 {
@@ -15118,7 +15118,7 @@ void WSML::AttributeImpl::setValue( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::StateBaseImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -15167,7 +15167,7 @@ std::multiset<PICML::InputAction> PICML::StateBaseImpl::getFinishDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Effect> PICML::StateBaseImpl::getInEffectLinks()
 {
@@ -15185,7 +15185,7 @@ std::set<PICML::Effect> PICML::StateBaseImpl::getInEffectLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::InputEffect> PICML::StateBaseImpl::getInInputEffectLinks()
 {
@@ -15222,7 +15222,7 @@ std::multiset<PICML::InputAction> PICML::StateBaseImpl::getInputEffectSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Finish> PICML::StateBaseImpl::getOutFinishLinks()
 {
@@ -15240,7 +15240,7 @@ std::set<PICML::Finish> PICML::StateBaseImpl::getOutFinishLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::BranchStateImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -15270,7 +15270,7 @@ std::multiset<PICML::ActionBase> PICML::BranchStateImpl::getBranchTransitionDsts
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::BranchTransition> PICML::BranchStateImpl::getOutBranchTransitionLinks()
 {
@@ -15288,7 +15288,7 @@ std::set<PICML::BranchTransition> PICML::BranchStateImpl::getOutBranchTransition
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::StateImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -15299,7 +15299,7 @@ bool PICML::StateImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Transition> PICML::StateImpl::getOutTransitionLinks()
 {
@@ -15336,7 +15336,7 @@ std::multiset<PICML::ActionBase> PICML::StateImpl::getTransitionDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentPackageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -15366,7 +15366,7 @@ std::multiset<PICML::ComponentImplementationReference> PICML::ComponentPackageIm
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageConfBasePackage> PICML::ComponentPackageImpl::getInPackageConfBasePackageLinks()
 {
@@ -15384,7 +15384,7 @@ std::set<PICML::PackageConfBasePackage> PICML::ComponentPackageImpl::getInPackag
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Implementation> PICML::ComponentPackageImpl::getOutImplementationLinks()
 {
@@ -15402,7 +15402,7 @@ std::set<PICML::Implementation> PICML::ComponentPackageImpl::getOutImplementatio
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageConfigProperty> PICML::ComponentPackageImpl::getOutPackageConfigPropertyLinks()
 {
@@ -15420,7 +15420,7 @@ std::set<PICML::PackageConfigProperty> PICML::ComponentPackageImpl::getOutPackag
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageInfoProperty> PICML::ComponentPackageImpl::getOutPackageInfoPropertyLinks()
 {
@@ -15438,7 +15438,7 @@ std::set<PICML::PackageInfoProperty> PICML::ComponentPackageImpl::getOutPackageI
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageInterface> PICML::ComponentPackageImpl::getOutPackageInterfaceLinks()
 {
@@ -15532,25 +15532,25 @@ std::multiset<PICML::ComponentRef> PICML::ComponentPackageImpl::getPackageInterf
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ComponentPackageImpl::getUUID() 
+std::string PICML::ComponentPackageImpl::getUUID()
 {
 	return FCOImpl::getAttribute("UUID")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ComponentPackageImpl::getlabel() 
+std::string PICML::ComponentPackageImpl::getlabel()
 {
 	return FCOImpl::getAttribute("label")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ComponentPackageImpl::setUUID( const std::string& val)
 {
@@ -15559,7 +15559,7 @@ void PICML::ComponentPackageImpl::setUUID( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ComponentPackageImpl::setlabel( const std::string& val)
 {
@@ -15568,7 +15568,7 @@ void PICML::ComponentPackageImpl::setlabel( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ECBehaviorImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -15598,7 +15598,7 @@ std::multiset<PICML::ECConsumer> PICML::ECBehaviorImpl::getConsumer2BehaviorConn
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Consumer2BehaviorConnection> PICML::ECBehaviorImpl::getInConsumer2BehaviorConnectionLinks()
 {
@@ -15616,61 +15616,61 @@ std::set<PICML::Consumer2BehaviorConnection> PICML::ECBehaviorImpl::getInConsume
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ECBehaviorImpl::getDispatchingMultithreadingLevel() 
+std::string PICML::ECBehaviorImpl::getDispatchingMultithreadingLevel()
 {
 	return FCOImpl::getAttribute("DispatchingMultithreadingLevel")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ECBehaviorImpl::isConsumerBasedFiltering() 
+bool PICML::ECBehaviorImpl::isConsumerBasedFiltering()
 {
 	return FCOImpl::getAttribute("ConsumerBasedFiltering")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ECBehaviorImpl::isDisconnectDanglingConnections() 
+bool PICML::ECBehaviorImpl::isDisconnectDanglingConnections()
 {
 	return FCOImpl::getAttribute("DisconnectDanglingConnections")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ECBehaviorImpl::isMultithreadedConsumer() 
+bool PICML::ECBehaviorImpl::isMultithreadedConsumer()
 {
 	return FCOImpl::getAttribute("MultithreadedConsumer")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ECBehaviorImpl::isMultithreadedSupplier() 
+bool PICML::ECBehaviorImpl::isMultithreadedSupplier()
 {
 	return FCOImpl::getAttribute("MultithreadedSupplier")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ECBehaviorImpl::isSupplierBasedFiltering() 
+bool PICML::ECBehaviorImpl::isSupplierBasedFiltering()
 {
 	return FCOImpl::getAttribute("SupplierBasedFiltering")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ECBehaviorImpl::setConsumerBasedFiltering( bool val)
 {
@@ -15679,7 +15679,7 @@ void PICML::ECBehaviorImpl::setConsumerBasedFiltering( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ECBehaviorImpl::setDisconnectDanglingConnections( bool val)
 {
@@ -15688,7 +15688,7 @@ void PICML::ECBehaviorImpl::setDisconnectDanglingConnections( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ECBehaviorImpl::setDispatchingMultithreadingLevel( const std::string& val)
 {
@@ -15697,7 +15697,7 @@ void PICML::ECBehaviorImpl::setDispatchingMultithreadingLevel( const std::string
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ECBehaviorImpl::setMultithreadedConsumer( bool val)
 {
@@ -15706,7 +15706,7 @@ void PICML::ECBehaviorImpl::setMultithreadedConsumer( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ECBehaviorImpl::setMultithreadedSupplier( bool val)
 {
@@ -15715,7 +15715,7 @@ void PICML::ECBehaviorImpl::setMultithreadedSupplier( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ECBehaviorImpl::setSupplierBasedFiltering( bool val)
 {
@@ -15724,7 +15724,7 @@ void PICML::ECBehaviorImpl::setSupplierBasedFiltering( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ECEventFilterConfigurationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -15735,7 +15735,7 @@ bool PICML::ECEventFilterConfigurationImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::RecursiveFilterConnection> PICML::ECEventFilterConfigurationImpl::getInRecursiveFilterConnectionLinks()
 {
@@ -15753,7 +15753,7 @@ std::set<PICML::RecursiveFilterConnection> PICML::ECEventFilterConfigurationImpl
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Supplier2FilterConnection> PICML::ECEventFilterConfigurationImpl::getInSupplier2FilterConnectionLinks()
 {
@@ -15771,7 +15771,7 @@ std::set<PICML::Supplier2FilterConnection> PICML::ECEventFilterConfigurationImpl
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::RecursiveFilterConnection> PICML::ECEventFilterConfigurationImpl::getOutRecursiveFilterConnectionLinks()
 {
@@ -15808,7 +15808,7 @@ std::multiset<PICML::ECEventFilterConfiguration> PICML::ECEventFilterConfigurati
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::RecursiveFilterConnection> PICML::ECEventFilterConfigurationImpl::getRecursiveFilterConnectionLinks()
 {
@@ -15864,7 +15864,7 @@ std::multiset<PICML::ECSupplier> PICML::ECEventFilterConfigurationImpl::getSuppl
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ECEventFilterConfigurationImpl::ECFilterType_Type PICML::ECEventFilterConfigurationImpl::getECFilterType()
 {
@@ -15878,7 +15878,7 @@ PICML::ECEventFilterConfigurationImpl::ECFilterType_Type PICML::ECEventFilterCon
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ECEventFilterConfigurationImpl::setECFilterType( ECEventFilterConfigurationImpl::ECFilterType_Type val)
 {
@@ -15894,7 +15894,7 @@ void PICML::ECEventFilterConfigurationImpl::setECFilterType( ECEventFilterConfig
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::EdgeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -15933,7 +15933,7 @@ std::multiset<PICML::Property> PICML::EdgeImpl::getEdgePropertySrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::DstEdge> PICML::EdgeImpl::getInDstEdgeLinks()
 {
@@ -15951,7 +15951,7 @@ std::set<PICML::DstEdge> PICML::EdgeImpl::getInDstEdgeLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::EdgeProperty> PICML::EdgeImpl::getInEdgePropertyLinks()
 {
@@ -15969,7 +15969,7 @@ std::set<PICML::EdgeProperty> PICML::EdgeImpl::getInEdgePropertyLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::SrcEdge> PICML::EdgeImpl::getOutSrcEdgeLinks()
 {
@@ -15996,7 +15996,7 @@ std::multiset<BON::ConnectionEnd> PICML::EdgeImpl::getSrcEdgeDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::EnumValueImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -16007,7 +16007,7 @@ bool PICML::EnumValueImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ExternalReferenceEndPointImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -16037,7 +16037,7 @@ std::multiset<PICML::Component> PICML::ExternalReferenceEndPointImpl::getExterna
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ExternalDelegate> PICML::ExternalReferenceEndPointImpl::getInExternalDelegateLinks()
 {
@@ -16055,16 +16055,16 @@ std::set<PICML::ExternalDelegate> PICML::ExternalReferenceEndPointImpl::getInExt
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ExternalReferenceEndPointImpl::getlocation() 
+std::string PICML::ExternalReferenceEndPointImpl::getlocation()
 {
 	return FCOImpl::getAttribute("location")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ExternalReferenceEndPointImpl::setlocation( const std::string& val)
 {
@@ -16073,7 +16073,7 @@ void PICML::ExternalReferenceEndPointImpl::setlocation( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ImplementationArtifactImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -16103,7 +16103,7 @@ std::multiset<PICML::ImplementationArtifact> PICML::ImplementationArtifactImpl::
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ArtifactDependency> PICML::ImplementationArtifactImpl::getArtifactDependencyLinks()
 {
@@ -16216,7 +16216,7 @@ std::multiset<PICML::Property> PICML::ImplementationArtifactImpl::getArtifactInf
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ArtifactDependency> PICML::ImplementationArtifactImpl::getInArtifactDependencyLinks()
 {
@@ -16234,7 +16234,7 @@ std::set<PICML::ArtifactDependency> PICML::ImplementationArtifactImpl::getInArti
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ArtifactDependency> PICML::ImplementationArtifactImpl::getOutArtifactDependencyLinks()
 {
@@ -16252,7 +16252,7 @@ std::set<PICML::ArtifactDependency> PICML::ImplementationArtifactImpl::getOutArt
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ArtifactDependsOn> PICML::ImplementationArtifactImpl::getOutArtifactDependsOnLinks()
 {
@@ -16270,7 +16270,7 @@ std::set<PICML::ArtifactDependsOn> PICML::ImplementationArtifactImpl::getOutArti
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ArtifactDeployRequirement> PICML::ImplementationArtifactImpl::getOutArtifactDeployRequirementLinks()
 {
@@ -16288,7 +16288,7 @@ std::set<PICML::ArtifactDeployRequirement> PICML::ImplementationArtifactImpl::ge
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ArtifactExecParameter> PICML::ImplementationArtifactImpl::getOutArtifactExecParameterLinks()
 {
@@ -16306,7 +16306,7 @@ std::set<PICML::ArtifactExecParameter> PICML::ImplementationArtifactImpl::getOut
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ArtifactInfoProperty> PICML::ImplementationArtifactImpl::getOutArtifactInfoPropertyLinks()
 {
@@ -16324,16 +16324,16 @@ std::set<PICML::ArtifactInfoProperty> PICML::ImplementationArtifactImpl::getOutA
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ImplementationArtifactImpl::getUUID() 
+std::string PICML::ImplementationArtifactImpl::getUUID()
 {
 	return FCOImpl::getAttribute("UUID")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ImplementationArtifactImpl::architecture_Type PICML::ImplementationArtifactImpl::getarchitecture()
 {
@@ -16350,16 +16350,16 @@ PICML::ImplementationArtifactImpl::architecture_Type PICML::ImplementationArtifa
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ImplementationArtifactImpl::getartifactVersion() 
+std::string PICML::ImplementationArtifactImpl::getartifactVersion()
 {
 	return FCOImpl::getAttribute("artifactVersion")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ImplementationArtifactImpl::configuration_Type PICML::ImplementationArtifactImpl::getconfiguration()
 {
@@ -16372,25 +16372,25 @@ PICML::ImplementationArtifactImpl::configuration_Type PICML::ImplementationArtif
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ImplementationArtifactImpl::getlabel() 
+std::string PICML::ImplementationArtifactImpl::getlabel()
 {
 	return FCOImpl::getAttribute("label")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ImplementationArtifactImpl::getlocation() 
+std::string PICML::ImplementationArtifactImpl::getlocation()
 {
 	return FCOImpl::getAttribute("location")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ImplementationArtifactImpl::operatingSystem_Type PICML::ImplementationArtifactImpl::getoperatingSystem()
 {
@@ -16417,7 +16417,7 @@ PICML::ImplementationArtifactImpl::operatingSystem_Type PICML::ImplementationArt
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ImplementationArtifactImpl::setUUID( const std::string& val)
 {
@@ -16426,7 +16426,7 @@ void PICML::ImplementationArtifactImpl::setUUID( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ImplementationArtifactImpl::setarchitecture( ImplementationArtifactImpl::architecture_Type val)
 {
@@ -16445,7 +16445,7 @@ void PICML::ImplementationArtifactImpl::setarchitecture( ImplementationArtifactI
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ImplementationArtifactImpl::setartifactVersion( const std::string& val)
 {
@@ -16454,7 +16454,7 @@ void PICML::ImplementationArtifactImpl::setartifactVersion( const std::string& v
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ImplementationArtifactImpl::setconfiguration( ImplementationArtifactImpl::configuration_Type val)
 {
@@ -16469,7 +16469,7 @@ void PICML::ImplementationArtifactImpl::setconfiguration( ImplementationArtifact
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ImplementationArtifactImpl::setlabel( const std::string& val)
 {
@@ -16478,7 +16478,7 @@ void PICML::ImplementationArtifactImpl::setlabel( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ImplementationArtifactImpl::setlocation( const std::string& val)
 {
@@ -16487,7 +16487,7 @@ void PICML::ImplementationArtifactImpl::setlocation( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ImplementationArtifactImpl::setoperatingSystem( ImplementationArtifactImpl::operatingSystem_Type val)
 {
@@ -16516,7 +16516,7 @@ void PICML::ImplementationArtifactImpl::setoperatingSystem( ImplementationArtifa
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ImplementationDependencyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -16546,7 +16546,7 @@ std::multiset<PICML::ComponentImplementation> PICML::ImplementationDependencyImp
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ImplementationDependsOn> PICML::ImplementationDependencyImpl::getInImplementationDependsOnLinks()
 {
@@ -16564,16 +16564,16 @@ std::set<PICML::ImplementationDependsOn> PICML::ImplementationDependencyImpl::ge
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ImplementationDependencyImpl::getrequiredType() 
+std::string PICML::ImplementationDependencyImpl::getrequiredType()
 {
 	return FCOImpl::getAttribute("requiredType")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ImplementationDependencyImpl::setrequiredType( const std::string& val)
 {
@@ -16582,7 +16582,7 @@ void PICML::ImplementationDependencyImpl::setrequiredType( const std::string& va
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::LabelImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -16593,7 +16593,7 @@ bool PICML::LabelImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::LabelConnection> PICML::LabelImpl::getInLabelConnectionLinks()
 {
@@ -16630,7 +16630,7 @@ std::multiset<PICML::Member> PICML::LabelImpl::getLabelConnectionSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MultipleServiceRequestsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -16641,43 +16641,43 @@ bool PICML::MultipleServiceRequestsImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long PICML::MultipleServiceRequestsImpl::getmaximum_simultaneous_service_level() 
+long PICML::MultipleServiceRequestsImpl::getmaximum_simultaneous_service_level()
 {
 	return FCOImpl::getAttribute("maximum_simultaneous_service_level")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long PICML::MultipleServiceRequestsImpl::getminimum_simultaneous_service_level() 
+long PICML::MultipleServiceRequestsImpl::getminimum_simultaneous_service_level()
 {
 	return FCOImpl::getAttribute("minimum_simultaneous_service_level")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::MultipleServiceRequestsImpl::isbuffer_service_requests() 
+bool PICML::MultipleServiceRequestsImpl::isbuffer_service_requests()
 {
 	return FCOImpl::getAttribute("buffer_service_requests")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::MultipleServiceRequestsImpl::issimultaneous_service_execution() 
+bool PICML::MultipleServiceRequestsImpl::issimultaneous_service_execution()
 {
 	return FCOImpl::getAttribute("simultaneous_service_execution")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::MultipleServiceRequestsImpl::setbuffer_service_requests( bool val)
 {
@@ -16686,7 +16686,7 @@ void PICML::MultipleServiceRequestsImpl::setbuffer_service_requests( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::MultipleServiceRequestsImpl::setmaximum_simultaneous_service_level( const long val)
 {
@@ -16695,7 +16695,7 @@ void PICML::MultipleServiceRequestsImpl::setmaximum_simultaneous_service_level( 
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::MultipleServiceRequestsImpl::setminimum_simultaneous_service_level( const long val)
 {
@@ -16704,7 +16704,7 @@ void PICML::MultipleServiceRequestsImpl::setminimum_simultaneous_service_level( 
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::MultipleServiceRequestsImpl::setsimultaneous_service_execution( bool val)
 {
@@ -16713,7 +16713,7 @@ void PICML::MultipleServiceRequestsImpl::setsimultaneous_service_execution( bool
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageConfigurationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -16724,7 +16724,7 @@ bool PICML::PackageConfigurationImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageConfBasePackage> PICML::PackageConfigurationImpl::getOutPackageConfBasePackageLinks()
 {
@@ -16742,7 +16742,7 @@ std::set<PICML::PackageConfBasePackage> PICML::PackageConfigurationImpl::getOutP
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageConfConfigProperty> PICML::PackageConfigurationImpl::getOutPackageConfConfigPropertyLinks()
 {
@@ -16760,7 +16760,7 @@ std::set<PICML::PackageConfConfigProperty> PICML::PackageConfigurationImpl::getO
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageConfReference> PICML::PackageConfigurationImpl::getOutPackageConfReferenceLinks()
 {
@@ -16778,7 +16778,7 @@ std::set<PICML::PackageConfReference> PICML::PackageConfigurationImpl::getOutPac
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageConfSelectRequirement> PICML::PackageConfigurationImpl::getOutPackageConfSelectRequirementLinks()
 {
@@ -16796,7 +16796,7 @@ std::set<PICML::PackageConfSelectRequirement> PICML::PackageConfigurationImpl::g
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageConfSpecializedConfig> PICML::PackageConfigurationImpl::getOutPackageConfSpecializedConfigLinks()
 {
@@ -16909,25 +16909,25 @@ std::multiset<PICML::PackageConfigurationReference> PICML::PackageConfigurationI
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::PackageConfigurationImpl::getUUID() 
+std::string PICML::PackageConfigurationImpl::getUUID()
 {
 	return FCOImpl::getAttribute("UUID")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::PackageConfigurationImpl::getlabel() 
+std::string PICML::PackageConfigurationImpl::getlabel()
 {
 	return FCOImpl::getAttribute("label")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::PackageConfigurationImpl::setUUID( const std::string& val)
 {
@@ -16936,7 +16936,7 @@ void PICML::PackageConfigurationImpl::setUUID( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::PackageConfigurationImpl::setlabel( const std::string& val)
 {
@@ -16945,7 +16945,7 @@ void PICML::PackageConfigurationImpl::setlabel( const std::string& val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PrivateFlagImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -16956,7 +16956,7 @@ bool PICML::PrivateFlagImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::MakeMemberPrivate> PICML::PrivateFlagImpl::getInMakeMemberPrivateLinks()
 {
@@ -16993,7 +16993,7 @@ std::multiset<PICML::Member> PICML::PrivateFlagImpl::getMakeMemberPrivateSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PublishConnectorImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17023,7 +17023,7 @@ std::multiset<PICML::Requirement> PICML::PublishConnectorImpl::getAssemblyDeploy
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::publish> PICML::PublishConnectorImpl::getInpublishLinks()
 {
@@ -17041,7 +17041,7 @@ std::set<PICML::publish> PICML::PublishConnectorImpl::getInpublishLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AssemblyDeployRequirement> PICML::PublishConnectorImpl::getOutAssemblyDeployRequirementLinks()
 {
@@ -17059,7 +17059,7 @@ std::set<PICML::AssemblyDeployRequirement> PICML::PublishConnectorImpl::getOutAs
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::deliverTo> PICML::PublishConnectorImpl::getOutdeliverToLinks()
 {
@@ -17095,7 +17095,7 @@ std::multiset<BON::ConnectionEnd> PICML::PublishConnectorImpl::getpublishSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ServiceConsumerImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17106,16 +17106,16 @@ bool PICML::ServiceConsumerImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ServiceConsumerImpl::isprioritize_service_invocations() 
+bool PICML::ServiceConsumerImpl::isprioritize_service_invocations()
 {
 	return FCOImpl::getAttribute("prioritize_service_invocations")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ServiceConsumerImpl::setprioritize_service_invocations( bool val)
 {
@@ -17124,7 +17124,7 @@ void PICML::ServiceConsumerImpl::setprioritize_service_invocations( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ServiceLevelsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17135,16 +17135,16 @@ bool PICML::ServiceLevelsImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-bool PICML::ServiceLevelsImpl::isvarying_service_levels() 
+bool PICML::ServiceLevelsImpl::isvarying_service_levels()
 {
 	return FCOImpl::getAttribute("varying_service_levels")->getBooleanValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ServiceLevelsImpl::setvarying_service_levels( bool val)
 {
@@ -17153,7 +17153,7 @@ void PICML::ServiceLevelsImpl::setvarying_service_levels( bool val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TaskImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17164,7 +17164,7 @@ bool PICML::TaskImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::WorkLoadOperationConnection> PICML::TaskImpl::getInWorkLoadOperationConnectionLinks()
 {
@@ -17201,7 +17201,7 @@ std::multiset<PICML::OperationRef> PICML::TaskImpl::getWorkLoadOperationConnecti
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TimeProbeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17212,7 +17212,7 @@ bool PICML::TimeProbeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::TimerConnection> PICML::TimeProbeImpl::getInTimerConnectionLinks()
 {
@@ -17230,7 +17230,7 @@ std::set<PICML::TimerConnection> PICML::TimeProbeImpl::getInTimerConnectionLinks
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::TimerEventSinkConn> PICML::TimeProbeImpl::getInTimerEventSinkConnLinks()
 {
@@ -17286,7 +17286,7 @@ std::multiset<PICML::EventRef> PICML::TimeProbeImpl::getTimerEventSinkConnSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TopLevelPackageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17297,7 +17297,7 @@ bool PICML::TopLevelPackageImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::package> PICML::TopLevelPackageImpl::getOutpackageLinks()
 {
@@ -17334,7 +17334,7 @@ std::multiset<PICML::PackageConfigurationReference> PICML::TopLevelPackageImpl::
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ArtifactDependencyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17375,7 +17375,7 @@ PICML::ImplementationArtifact PICML::ArtifactDependencyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ArtifactDependsOnImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17416,7 +17416,7 @@ PICML::ImplementationArtifact PICML::ArtifactDependsOnImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ArtifactDeployRequirementImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17457,7 +17457,7 @@ PICML::ImplementationArtifact PICML::ArtifactDeployRequirementImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ArtifactExecParameterImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17498,7 +17498,7 @@ PICML::ImplementationArtifact PICML::ArtifactExecParameterImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ArtifactInfoPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17539,7 +17539,7 @@ PICML::ImplementationArtifact PICML::ArtifactInfoPropertyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AssemblyConfigPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17580,7 +17580,7 @@ PICML::Component PICML::AssemblyConfigPropertyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AssemblyDeployRequirementImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17621,7 +17621,7 @@ PICML::PublishConnector PICML::AssemblyDeployRequirementImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AssemblyselectRequirementImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17662,7 +17662,7 @@ PICML::Component PICML::AssemblyselectRequirementImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AttributeDelegateImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17691,7 +17691,7 @@ BON::ConnectionEnd PICML::AttributeDelegateImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AttributeMappingDelegateImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17720,7 +17720,7 @@ BON::ConnectionEnd PICML::AttributeMappingDelegateImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AttributeMappingValueImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17755,7 +17755,7 @@ BON::ConnectionEnd PICML::AttributeMappingValueImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AttributeValueImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17790,7 +17790,7 @@ BON::ConnectionEnd PICML::AttributeValueImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::BenchmarkCharacteristicsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17831,7 +17831,7 @@ PICML::BenchmarkType PICML::BenchmarkCharacteristicsImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::BindingPortTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17872,7 +17872,7 @@ WSML::Binding WSML::BindingPortTypeImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::BindsOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17913,7 +17913,7 @@ WSML::BindingOperation WSML::BindsOperationImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::BodyBindingImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17954,7 +17954,7 @@ WSML::IORef WSML::BodyBindingImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::BodyPartsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -17995,7 +17995,7 @@ WSML::SOAPBody WSML::BodyPartsImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::BranchTransitionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18006,16 +18006,16 @@ bool PICML::BranchTransitionImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::BranchTransitionImpl::getPrecondition() 
+std::string PICML::BranchTransitionImpl::getPrecondition()
 {
 	return FCOImpl::getAttribute("Precondition")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::BranchTransitionImpl::setPrecondition( const std::string& val)
 {
@@ -18054,7 +18054,7 @@ PICML::BranchState PICML::BranchTransitionImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::Bridge2InterconnectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18095,7 +18095,7 @@ PICML::Bridge PICML::Bridge2InterconnectImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentConfigPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18136,7 +18136,7 @@ PICML::ComponentRef PICML::ComponentConfigPropertyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentInfoPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18177,7 +18177,7 @@ PICML::ComponentRef PICML::ComponentInfoPropertyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentOperationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18218,7 +18218,7 @@ PICML::OperationRef PICML::ComponentOperationImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18259,7 +18259,7 @@ PICML::ComponentRef PICML::ComponentPropertyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ConfigPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18300,7 +18300,7 @@ PICML::ComponentImplementation PICML::ConfigPropertyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::Consumer2BehaviorConnectionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18341,7 +18341,7 @@ PICML::ECConsumer PICML::Consumer2BehaviorConnectionImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::CriticalPathImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18382,7 +18382,7 @@ PICML::ComponentAssembly PICML::CriticalPathImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::DstEdgeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18417,7 +18417,7 @@ BON::ConnectionEnd PICML::DstEdgeImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::EdgePropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18458,7 +18458,7 @@ PICML::Property PICML::EdgePropertyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::EffectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18469,16 +18469,16 @@ bool PICML::EffectImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::EffectImpl::getPostcondition() 
+std::string PICML::EffectImpl::getPostcondition()
 {
 	return FCOImpl::getAttribute("Postcondition")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::EffectImpl::setPostcondition( const std::string& val)
 {
@@ -18517,7 +18517,7 @@ PICML::ActionBase PICML::EffectImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::EventSinkDelegateImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18546,7 +18546,7 @@ BON::ConnectionEnd PICML::EventSinkDelegateImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::EventSourceDelegateImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18575,7 +18575,7 @@ BON::ConnectionEnd PICML::EventSourceDelegateImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ExtResourceConnImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18616,7 +18616,7 @@ PICML::ComponentLib PICML::ExtResourceConnImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ExternalDelegateImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18657,7 +18657,7 @@ PICML::Component PICML::ExternalDelegateImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::FacetDelegateImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18686,7 +18686,7 @@ BON::ConnectionEnd PICML::FacetDelegateImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::FaultMessageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18727,7 +18727,7 @@ WSML::Fault WSML::FaultMessageImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::FinishImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18738,16 +18738,16 @@ bool PICML::FinishImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::FinishImpl::getPostcondition() 
+std::string PICML::FinishImpl::getPostcondition()
 {
 	return FCOImpl::getAttribute("Postcondition")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::FinishImpl::setPostcondition( const std::string& val)
 {
@@ -18786,7 +18786,7 @@ PICML::StateBase PICML::FinishImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::HeaderBindingImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18827,7 +18827,7 @@ WSML::IORef WSML::HeaderBindingImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::HeaderMessageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18868,7 +18868,7 @@ WSML::SOAPHeaders WSML::HeaderMessageImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::HeaderPartImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18909,7 +18909,7 @@ WSML::SOAPHeaders WSML::HeaderPartImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ImplementationImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18950,7 +18950,7 @@ PICML::ComponentPackage PICML::ImplementationImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ImplementationCapabilityImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -18991,7 +18991,7 @@ PICML::ComponentImplementation PICML::ImplementationCapabilityImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ImplementationDependsOnImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19032,7 +19032,7 @@ PICML::ComponentImplementation PICML::ImplementationDependsOnImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ImplementsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19073,7 +19073,7 @@ PICML::ComponentImplementation PICML::ImplementsImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::InfoPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19114,7 +19114,7 @@ PICML::ComponentImplementation PICML::InfoPropertyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::InputImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19155,7 +19155,7 @@ PICML::SingleInputBase PICML::InputImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::InputEffectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19166,16 +19166,16 @@ bool PICML::InputEffectImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::InputEffectImpl::getPostcondition() 
+std::string PICML::InputEffectImpl::getPostcondition()
 {
 	return FCOImpl::getAttribute("Postcondition")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::InputEffectImpl::setPostcondition( const std::string& val)
 {
@@ -19214,7 +19214,7 @@ PICML::InputAction PICML::InputEffectImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::InputMessageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19255,7 +19255,7 @@ WSML::Input WSML::InputMessageImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::InstanceMappingImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19296,7 +19296,7 @@ PICML::CollocationGroup PICML::InstanceMappingImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::Interconnect2BridgeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19337,7 +19337,7 @@ PICML::Interconnect PICML::Interconnect2BridgeImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::Interconnect2NodeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19378,7 +19378,7 @@ PICML::Interconnect PICML::Interconnect2NodeImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::LabelConnectionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19419,7 +19419,7 @@ PICML::Member PICML::LabelConnectionImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MakeMemberPrivateImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19460,7 +19460,7 @@ PICML::Member PICML::MakeMemberPrivateImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ManagesComponentImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19501,7 +19501,7 @@ PICML::ComponentFactory PICML::ManagesComponentImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MetricConnectionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19542,7 +19542,7 @@ PICML::OperationRef PICML::MetricConnectionImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MonolithDeployRequirementImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19583,7 +19583,7 @@ PICML::MonolithicImplementation PICML::MonolithDeployRequirementImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MonolithExecParameterImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19624,7 +19624,7 @@ PICML::MonolithicImplementation PICML::MonolithExecParameterImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MonolithprimaryArtifactImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19665,7 +19665,7 @@ PICML::MonolithicImplementation PICML::MonolithprimaryArtifactImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MultiInputImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19706,7 +19706,7 @@ PICML::MultiInputBase PICML::MultiInputImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::Node2InterconnectImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19747,7 +19747,7 @@ PICML::Node PICML::Node2InterconnectImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::OutputMessageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19788,7 +19788,7 @@ WSML::Output WSML::OutputMessageImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageConfBasePackageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19829,7 +19829,7 @@ PICML::PackageConfiguration PICML::PackageConfBasePackageImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageConfConfigPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19870,7 +19870,7 @@ PICML::PackageConfiguration PICML::PackageConfConfigPropertyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageConfReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19911,7 +19911,7 @@ PICML::PackageConfiguration PICML::PackageConfReferenceImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageConfSelectRequirementImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19952,7 +19952,7 @@ PICML::PackageConfiguration PICML::PackageConfSelectRequirementImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageConfSpecializedConfigImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -19993,7 +19993,7 @@ PICML::PackageConfiguration PICML::PackageConfSpecializedConfigImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageConfigPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20034,7 +20034,7 @@ PICML::ComponentPackage PICML::PackageConfigPropertyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageInfoPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20075,7 +20075,7 @@ PICML::ComponentPackage PICML::PackageInfoPropertyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageInterfaceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20116,7 +20116,7 @@ PICML::ComponentPackage PICML::PackageInterfaceImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PathPropertyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20157,7 +20157,7 @@ PICML::Path PICML::PathPropertyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::PortBindingImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20198,7 +20198,7 @@ WSML::Port WSML::PortBindingImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool SIML::PortProxyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20209,7 +20209,7 @@ bool SIML::PortProxyImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 SIML::PortProxyImpl::mapping_Type SIML::PortProxyImpl::getmapping()
 {
@@ -20222,7 +20222,7 @@ SIML::PortProxyImpl::mapping_Type SIML::PortProxyImpl::getmapping()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void SIML::PortProxyImpl::setmapping( PortProxyImpl::mapping_Type val)
 {
@@ -20255,7 +20255,7 @@ BON::ConnectionEnd SIML::PortProxyImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ReceptacleDelegateImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20284,7 +20284,7 @@ BON::ConnectionEnd PICML::ReceptacleDelegateImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::RecursiveFilterConnectionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20325,7 +20325,7 @@ PICML::ECEventFilterConfiguration PICML::RecursiveFilterConnectionImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::SOAPFaultExtensionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20366,7 +20366,7 @@ WSML::FaultRef WSML::SOAPFaultExtensionImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::SharesImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20407,7 +20407,7 @@ PICML::Node PICML::SharesImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::SrcEdgeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20442,7 +20442,7 @@ PICML::Edge PICML::SrcEdgeImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::Supplier2FilterConnectionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20483,7 +20483,7 @@ PICML::ECSupplier PICML::Supplier2FilterConnectionImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TimerConnectionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20524,7 +20524,7 @@ PICML::OperationRef PICML::TimerConnectionImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TimerEventSinkConnImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20565,7 +20565,7 @@ PICML::EventRef PICML::TimerEventSinkConnImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TransitionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20576,16 +20576,16 @@ bool PICML::TransitionImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::TransitionImpl::getPrecondition() 
+std::string PICML::TransitionImpl::getPrecondition()
 {
 	return FCOImpl::getAttribute("Precondition")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::TransitionImpl::setPrecondition( const std::string& val)
 {
@@ -20624,7 +20624,7 @@ PICML::State PICML::TransitionImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::WorkLoadOperationConnectionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20665,7 +20665,7 @@ PICML::OperationRef PICML::WorkLoadOperationConnectionImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::WorkloadCharacteristicsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20706,7 +20706,7 @@ PICML::MetricsBase PICML::WorkloadCharacteristicsImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::deliverToImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20741,7 +20741,7 @@ PICML::PublishConnector PICML::deliverToImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::emitImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20770,7 +20770,7 @@ BON::ConnectionEnd PICML::emitImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::invokeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20799,7 +20799,7 @@ BON::ConnectionEnd PICML::invokeImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::packageImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20840,7 +20840,7 @@ PICML::TopLevelPackage PICML::packageImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::publishImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20875,7 +20875,7 @@ BON::ConnectionEnd PICML::publishImpl::getSrc()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::CollocationGroupImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -20905,7 +20905,7 @@ std::multiset<PICML::NodeReference> PICML::CollocationGroupImpl::getInstanceMapp
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::InstanceMapping> PICML::CollocationGroupImpl::getOutInstanceMappingLinks()
 {
@@ -20995,7 +20995,7 @@ std::set<PICML::SharedComponentReference> PICML::CollocationGroupImpl::getShared
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::TaskSetImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21006,7 +21006,7 @@ bool PICML::TaskSetImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::WorkloadCharacteristics> PICML::TaskSetImpl::getInWorkloadCharacteristicsLinks()
 {
@@ -21043,25 +21043,25 @@ std::multiset<PICML::MetricsBase> PICML::TaskSetImpl::getWorkloadCharacteristics
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long PICML::TaskSetImpl::getpriority() 
+long PICML::TaskSetImpl::getpriority()
 {
 	return FCOImpl::getAttribute("priority")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-long PICML::TaskSetImpl::getrate() 
+long PICML::TaskSetImpl::getrate()
 {
 	return FCOImpl::getAttribute("rate")->getIntegerValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::TaskSetImpl::setpriority( const long val)
 {
@@ -21070,7 +21070,7 @@ void PICML::TaskSetImpl::setpriority( const long val)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::TaskSetImpl::setrate( const long val)
 {
@@ -21115,7 +21115,7 @@ std::set<PICML::Task> PICML::TaskSetImpl::getTasks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::WorkspacesImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21162,7 +21162,7 @@ std::set<PICML::Project> PICML::WorkspacesImpl::getProjects()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AttributeMappingImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21191,7 +21191,7 @@ std::multiset<BON::ConnectionEnd> PICML::AttributeMappingImpl::getAttributeMappi
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AttributeMappingDelegate> PICML::AttributeMappingImpl::getAttributeMappingDelegateLinks()
 {
@@ -21237,7 +21237,7 @@ std::multiset<PICML::Property> PICML::AttributeMappingImpl::getAttributeMappingV
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AttributeMappingDelegate> PICML::AttributeMappingImpl::getInAttributeMappingDelegateLinks()
 {
@@ -21255,7 +21255,7 @@ std::set<PICML::AttributeMappingDelegate> PICML::AttributeMappingImpl::getInAttr
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AttributeDelegate> PICML::AttributeMappingImpl::getOutAttributeDelegateLinks()
 {
@@ -21273,7 +21273,7 @@ std::set<PICML::AttributeDelegate> PICML::AttributeMappingImpl::getOutAttributeD
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AttributeMappingDelegate> PICML::AttributeMappingImpl::getOutAttributeMappingDelegateLinks()
 {
@@ -21291,7 +21291,7 @@ std::set<PICML::AttributeMappingDelegate> PICML::AttributeMappingImpl::getOutAtt
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::AttributeMappingValue> PICML::AttributeMappingImpl::getOutAttributeMappingValueLinks()
 {
@@ -21309,7 +21309,7 @@ std::set<PICML::AttributeMappingValue> PICML::AttributeMappingImpl::getOutAttrib
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ReadonlyAttribute PICML::AttributeMappingImpl::getReadonlyAttribute()
 {
@@ -21319,7 +21319,7 @@ PICML::ReadonlyAttribute PICML::AttributeMappingImpl::getReadonlyAttribute()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::AttributeMemberImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21330,7 +21330,7 @@ bool PICML::AttributeMemberImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::MemberType PICML::AttributeMemberImpl::getMemberType()
 {
@@ -21340,7 +21340,7 @@ PICML::MemberType PICML::AttributeMemberImpl::getMemberType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::BindingRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21351,7 +21351,7 @@ bool WSML::BindingRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::PortBinding> WSML::BindingRefImpl::getInPortBindingLinks()
 {
@@ -21388,7 +21388,7 @@ std::multiset<WSML::Port> WSML::BindingRefImpl::getPortBindingSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::Binding WSML::BindingRefImpl::getBinding()
 {
@@ -21398,7 +21398,7 @@ WSML::Binding WSML::BindingRefImpl::getBinding()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::CompRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21428,7 +21428,7 @@ std::multiset<PICML::OperationRef> PICML::CompRefImpl::getComponentOperationSrcs
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ComponentOperation> PICML::CompRefImpl::getInComponentOperationLinks()
 {
@@ -21446,7 +21446,7 @@ std::set<PICML::ComponentOperation> PICML::CompRefImpl::getInComponentOperationL
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Component PICML::CompRefImpl::getComponent()
 {
@@ -21456,7 +21456,7 @@ PICML::Component PICML::CompRefImpl::getComponent()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentAssemblyReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21467,7 +21467,7 @@ bool PICML::ComponentAssemblyReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ComponentAssembly PICML::ComponentAssemblyReferenceImpl::getComponentAssembly()
 {
@@ -21477,7 +21477,7 @@ PICML::ComponentAssembly PICML::ComponentAssemblyReferenceImpl::getComponentAsse
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentImplementationReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21507,7 +21507,7 @@ std::multiset<PICML::ComponentPackage> PICML::ComponentImplementationReferenceIm
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::Implementation> PICML::ComponentImplementationReferenceImpl::getInImplementationLinks()
 {
@@ -21525,7 +21525,7 @@ std::set<PICML::Implementation> PICML::ComponentImplementationReferenceImpl::get
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ComponentImplementation PICML::ComponentImplementationReferenceImpl::getComponentImplementation()
 {
@@ -21535,7 +21535,7 @@ PICML::ComponentImplementation PICML::ComponentImplementationReferenceImpl::getC
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ComponentPackageReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21546,7 +21546,7 @@ bool PICML::ComponentPackageReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageConfReference> PICML::ComponentPackageReferenceImpl::getInPackageConfReferenceLinks()
 {
@@ -21583,34 +21583,34 @@ std::multiset<PICML::PackageConfiguration> PICML::ComponentPackageReferenceImpl:
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ComponentPackageReferenceImpl::getrequiredName() 
+std::string PICML::ComponentPackageReferenceImpl::getrequiredName()
 {
 	return FCOImpl::getAttribute("requiredName")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ComponentPackageReferenceImpl::getrequiredType() 
+std::string PICML::ComponentPackageReferenceImpl::getrequiredType()
 {
 	return FCOImpl::getAttribute("requiredType")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
-std::string PICML::ComponentPackageReferenceImpl::getrequiredUUID() 
+std::string PICML::ComponentPackageReferenceImpl::getrequiredUUID()
 {
 	return FCOImpl::getAttribute("requiredUUID")->getStringValue();
 }
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ComponentPackageReferenceImpl::setrequiredName( const std::string& val)
 {
@@ -21619,7 +21619,7 @@ void PICML::ComponentPackageReferenceImpl::setrequiredName( const std::string& v
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ComponentPackageReferenceImpl::setrequiredType( const std::string& val)
 {
@@ -21628,7 +21628,7 @@ void PICML::ComponentPackageReferenceImpl::setrequiredType( const std::string& v
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 void PICML::ComponentPackageReferenceImpl::setrequiredUUID( const std::string& val)
 {
@@ -21637,7 +21637,7 @@ void PICML::ComponentPackageReferenceImpl::setrequiredUUID( const std::string& v
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ComponentPackage PICML::ComponentPackageReferenceImpl::getComponentPackage()
 {
@@ -21647,7 +21647,7 @@ PICML::ComponentPackage PICML::ComponentPackageReferenceImpl::getComponentPackag
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::DataTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21658,7 +21658,7 @@ bool PICML::DataTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::PredefinedType PICML::DataTypeImpl::getPredefinedType()
 {
@@ -21668,7 +21668,7 @@ PICML::PredefinedType PICML::DataTypeImpl::getPredefinedType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::DiscriminatorImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21679,7 +21679,7 @@ bool PICML::DiscriminatorImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ConstantType PICML::DiscriminatorImpl::getConstantType()
 {
@@ -21689,7 +21689,7 @@ PICML::ConstantType PICML::DiscriminatorImpl::getConstantType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::EventRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21700,7 +21700,7 @@ bool PICML::EventRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::TimerEventSinkConn> PICML::EventRefImpl::getOutTimerEventSinkConnLinks()
 {
@@ -21737,7 +21737,7 @@ std::multiset<PICML::TimeProbe> PICML::EventRefImpl::getTimerEventSinkConnDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Event PICML::EventRefImpl::getEvent()
 {
@@ -21747,7 +21747,7 @@ PICML::Event PICML::EventRefImpl::getEvent()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ExceptionRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21758,7 +21758,7 @@ bool PICML::ExceptionRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Exception PICML::ExceptionRefImpl::getException()
 {
@@ -21768,7 +21768,7 @@ PICML::Exception PICML::ExceptionRefImpl::getException()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ExternalResourcesImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21798,7 +21798,7 @@ std::multiset<PICML::ComponentLib> PICML::ExternalResourcesImpl::getExtResourceC
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ExtResourceConn> PICML::ExternalResourcesImpl::getInExtResourceConnLinks()
 {
@@ -21816,7 +21816,7 @@ std::set<PICML::ExtResourceConn> PICML::ExternalResourcesImpl::getInExtResourceC
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ImplementationArtifact PICML::ExternalResourcesImpl::getImplementationArtifact()
 {
@@ -21826,7 +21826,7 @@ PICML::ImplementationArtifact PICML::ExternalResourcesImpl::getImplementationArt
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::FaultRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21837,7 +21837,7 @@ bool WSML::FaultRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::SOAPFaultExtension> WSML::FaultRefImpl::getOutSOAPFaultExtensionLinks()
 {
@@ -21874,7 +21874,7 @@ std::multiset<WSML::SOAPFault> WSML::FaultRefImpl::getSOAPFaultExtensionDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::Fault WSML::FaultRefImpl::getFault()
 {
@@ -21884,7 +21884,7 @@ WSML::Fault WSML::FaultRefImpl::getFault()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::FileRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21895,7 +21895,7 @@ bool PICML::FileRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::File PICML::FileRefImpl::getFile()
 {
@@ -21905,7 +21905,7 @@ PICML::File PICML::FileRefImpl::getFile()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::GetExceptionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21916,7 +21916,7 @@ bool PICML::GetExceptionImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Exception PICML::GetExceptionImpl::getException()
 {
@@ -21926,7 +21926,7 @@ PICML::Exception PICML::GetExceptionImpl::getException()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ImplementationArtifactReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -21956,7 +21956,7 @@ std::multiset<PICML::ImplementationArtifact> PICML::ImplementationArtifactRefere
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ArtifactDependsOn> PICML::ImplementationArtifactReferenceImpl::getInArtifactDependsOnLinks()
 {
@@ -21974,7 +21974,7 @@ std::set<PICML::ArtifactDependsOn> PICML::ImplementationArtifactReferenceImpl::g
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::MonolithprimaryArtifact> PICML::ImplementationArtifactReferenceImpl::getInMonolithprimaryArtifactLinks()
 {
@@ -22011,7 +22011,7 @@ std::multiset<PICML::MonolithicImplementation> PICML::ImplementationArtifactRefe
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ImplementationArtifact PICML::ImplementationArtifactReferenceImpl::getImplementationArtifact()
 {
@@ -22021,7 +22021,7 @@ PICML::ImplementationArtifact PICML::ImplementationArtifactReferenceImpl::getImp
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ParameterTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22032,7 +22032,7 @@ bool PICML::ParameterTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::MemberType PICML::ParameterTypeImpl::getMemberType()
 {
@@ -22042,7 +22042,7 @@ PICML::MemberType PICML::ParameterTypeImpl::getMemberType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::InParameterImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22053,7 +22053,7 @@ bool PICML::InParameterImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::MemberType PICML::InParameterImpl::getMemberType()
 {
@@ -22063,7 +22063,7 @@ PICML::MemberType PICML::InParameterImpl::getMemberType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::InoutParameterImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22074,7 +22074,7 @@ bool PICML::InoutParameterImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::MemberType PICML::InoutParameterImpl::getMemberType()
 {
@@ -22084,7 +22084,7 @@ PICML::MemberType PICML::InoutParameterImpl::getMemberType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::OutParameterImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22095,7 +22095,7 @@ bool PICML::OutParameterImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::MemberType PICML::OutParameterImpl::getMemberType()
 {
@@ -22105,7 +22105,7 @@ PICML::MemberType PICML::OutParameterImpl::getMemberType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::InheritsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22116,7 +22116,7 @@ bool PICML::InheritsImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Inheritable PICML::InheritsImpl::getInheritable()
 {
@@ -22126,7 +22126,7 @@ PICML::Inheritable PICML::InheritsImpl::getInheritable()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::LookupKeyImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22137,7 +22137,7 @@ bool PICML::LookupKeyImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ValueObject PICML::LookupKeyImpl::getValueObject()
 {
@@ -22147,7 +22147,7 @@ PICML::ValueObject PICML::LookupKeyImpl::getValueObject()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::MemberImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22196,7 +22196,7 @@ std::multiset<PICML::PrivateFlag> PICML::MemberImpl::getMakeMemberPrivateDsts()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::LabelConnection> PICML::MemberImpl::getOutLabelConnectionLinks()
 {
@@ -22214,7 +22214,7 @@ std::set<PICML::LabelConnection> PICML::MemberImpl::getOutLabelConnectionLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::MakeMemberPrivate> PICML::MemberImpl::getOutMakeMemberPrivateLinks()
 {
@@ -22232,7 +22232,7 @@ std::set<PICML::MakeMemberPrivate> PICML::MemberImpl::getOutMakeMemberPrivateLin
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::MemberType PICML::MemberImpl::getMemberType()
 {
@@ -22242,7 +22242,7 @@ PICML::MemberType PICML::MemberImpl::getMemberType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::MessageRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22291,7 +22291,7 @@ std::multiset<WSML::SOAPHeaders> WSML::MessageRefImpl::getHeaderMessageSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::FaultMessage> WSML::MessageRefImpl::getInFaultMessageLinks()
 {
@@ -22309,7 +22309,7 @@ std::set<WSML::FaultMessage> WSML::MessageRefImpl::getInFaultMessageLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::HeaderMessage> WSML::MessageRefImpl::getInHeaderMessageLinks()
 {
@@ -22327,7 +22327,7 @@ std::set<WSML::HeaderMessage> WSML::MessageRefImpl::getInHeaderMessageLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::InputMessage> WSML::MessageRefImpl::getInInputMessageLinks()
 {
@@ -22345,7 +22345,7 @@ std::set<WSML::InputMessage> WSML::MessageRefImpl::getInInputMessageLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::OutputMessage> WSML::MessageRefImpl::getInOutputMessageLinks()
 {
@@ -22401,7 +22401,7 @@ std::multiset<WSML::Output> WSML::MessageRefImpl::getOutputMessageSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::Message WSML::MessageRefImpl::getMessage()
 {
@@ -22411,7 +22411,7 @@ WSML::Message WSML::MessageRefImpl::getMessage()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::NodeReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22422,7 +22422,7 @@ bool PICML::NodeReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::InstanceMapping> PICML::NodeReferenceImpl::getInInstanceMappingLinks()
 {
@@ -22459,7 +22459,7 @@ std::multiset<PICML::CollocationGroup> PICML::NodeReferenceImpl::getInstanceMapp
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Node PICML::NodeReferenceImpl::getNode()
 {
@@ -22469,7 +22469,7 @@ PICML::Node PICML::NodeReferenceImpl::getNode()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::OperationRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22499,7 +22499,7 @@ std::multiset<WSML::BindingOperation> WSML::OperationRefImpl::getBindsOperationS
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::BindsOperation> WSML::OperationRefImpl::getInBindsOperationLinks()
 {
@@ -22517,7 +22517,7 @@ std::set<WSML::BindsOperation> WSML::OperationRefImpl::getInBindsOperationLinks(
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::Operation WSML::OperationRefImpl::getOperation()
 {
@@ -22527,7 +22527,7 @@ WSML::Operation WSML::OperationRefImpl::getOperation()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::OperationRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22576,7 +22576,7 @@ std::multiset<PICML::MetricsBase> PICML::OperationRefImpl::getMetricConnectionDs
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::ComponentOperation> PICML::OperationRefImpl::getOutComponentOperationLinks()
 {
@@ -22594,7 +22594,7 @@ std::set<PICML::ComponentOperation> PICML::OperationRefImpl::getOutComponentOper
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::MetricConnection> PICML::OperationRefImpl::getOutMetricConnectionLinks()
 {
@@ -22612,7 +22612,7 @@ std::set<PICML::MetricConnection> PICML::OperationRefImpl::getOutMetricConnectio
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::TimerConnection> PICML::OperationRefImpl::getOutTimerConnectionLinks()
 {
@@ -22630,7 +22630,7 @@ std::set<PICML::TimerConnection> PICML::OperationRefImpl::getOutTimerConnectionL
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::WorkLoadOperationConnection> PICML::OperationRefImpl::getOutWorkLoadOperationConnectionLinks()
 {
@@ -22686,7 +22686,7 @@ std::multiset<PICML::Task> PICML::OperationRefImpl::getWorkLoadOperationConnecti
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::OperationBase PICML::OperationRefImpl::getOperationBase()
 {
@@ -22696,7 +22696,7 @@ PICML::OperationBase PICML::OperationRefImpl::getOperationBase()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PackageConfigurationReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22707,7 +22707,7 @@ bool PICML::PackageConfigurationReferenceImpl::accept( SIML::SIMLVisitor *pVisit
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::PackageConfSpecializedConfig> PICML::PackageConfigurationReferenceImpl::getInPackageConfSpecializedConfigLinks()
 {
@@ -22725,7 +22725,7 @@ std::set<PICML::PackageConfSpecializedConfig> PICML::PackageConfigurationReferen
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::package> PICML::PackageConfigurationReferenceImpl::getInpackageLinks()
 {
@@ -22781,7 +22781,7 @@ std::multiset<PICML::TopLevelPackage> PICML::PackageConfigurationReferenceImpl::
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::PackageConfiguration PICML::PackageConfigurationReferenceImpl::getPackageConfiguration()
 {
@@ -22791,7 +22791,7 @@ PICML::PackageConfiguration PICML::PackageConfigurationReferenceImpl::getPackage
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::PartImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22802,7 +22802,7 @@ bool WSML::PartImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::Referrable WSML::PartImpl::getReferrable()
 {
@@ -22812,7 +22812,7 @@ WSML::Referrable WSML::PartImpl::getReferrable()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::PartRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22861,7 +22861,7 @@ std::multiset<WSML::SOAPHeaders> WSML::PartRefImpl::getHeaderPartSrcs()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::BodyParts> WSML::PartRefImpl::getInBodyPartsLinks()
 {
@@ -22879,7 +22879,7 @@ std::set<WSML::BodyParts> WSML::PartRefImpl::getInBodyPartsLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<WSML::HeaderPart> WSML::PartRefImpl::getInHeaderPartLinks()
 {
@@ -22897,7 +22897,7 @@ std::set<WSML::HeaderPart> WSML::PartRefImpl::getInHeaderPartLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::Part WSML::PartRefImpl::getPart()
 {
@@ -22907,7 +22907,7 @@ WSML::Part WSML::PartRefImpl::getPart()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::PathReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22937,7 +22937,7 @@ std::multiset<PICML::ComponentAssembly> PICML::PathReferenceImpl::getCriticalPat
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 std::set<PICML::CriticalPath> PICML::PathReferenceImpl::getInCriticalPathLinks()
 {
@@ -22955,7 +22955,7 @@ std::set<PICML::CriticalPath> PICML::PathReferenceImpl::getInCriticalPathLinks()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Path PICML::PathReferenceImpl::getPath()
 {
@@ -22965,7 +22965,7 @@ PICML::Path PICML::PathReferenceImpl::getPath()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::ReturnTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22976,7 +22976,7 @@ bool PICML::ReturnTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::MemberType PICML::ReturnTypeImpl::getMemberType()
 {
@@ -22986,7 +22986,7 @@ PICML::MemberType PICML::ReturnTypeImpl::getMemberType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool WSML::ServiceRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -22997,7 +22997,7 @@ bool WSML::ServiceRefImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 WSML::Service WSML::ServiceRefImpl::getService()
 {
@@ -23007,7 +23007,7 @@ WSML::Service WSML::ServiceRefImpl::getService()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::SetExceptionImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -23018,7 +23018,7 @@ bool PICML::SetExceptionImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Exception PICML::SetExceptionImpl::getException()
 {
@@ -23028,7 +23028,7 @@ PICML::Exception PICML::SetExceptionImpl::getException()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::SharedComponentReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -23039,7 +23039,7 @@ bool PICML::SharedComponentReferenceImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::ComponentRef PICML::SharedComponentReferenceImpl::getComponentRef()
 {
@@ -23049,7 +23049,7 @@ PICML::ComponentRef PICML::SharedComponentReferenceImpl::getComponentRef()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::SupportsImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -23060,7 +23060,7 @@ bool PICML::SupportsImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Object PICML::SupportsImpl::getObject()
 {
@@ -23070,7 +23070,7 @@ PICML::Object PICML::SupportsImpl::getObject()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::VariableImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -23081,7 +23081,7 @@ bool PICML::VariableImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::PredefinedType PICML::VariableImpl::getPredefinedType()
 {
@@ -23091,7 +23091,7 @@ PICML::PredefinedType PICML::VariableImpl::getPredefinedType()
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 bool PICML::WorkerTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 {
@@ -23102,7 +23102,7 @@ bool PICML::WorkerTypeImpl::accept( SIML::SIMLVisitor *pVisitor)
 
 
 //********************************************************************************
-// 
+//
 //********************************************************************************
 PICML::Worker PICML::WorkerTypeImpl::getWorker()
 {

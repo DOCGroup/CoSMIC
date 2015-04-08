@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Template_Module_Instance_Handler.h"
 

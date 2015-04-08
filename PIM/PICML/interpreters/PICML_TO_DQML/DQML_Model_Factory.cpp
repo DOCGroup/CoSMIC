@@ -172,7 +172,7 @@ namespace PICML_To_DQML
   //create_PublisherConnection
   //
   DQML::PublishesConnection DQML_Model_Factory::
-  create_PublishesConnection (DQML::Domain_in parent, 
+  create_PublishesConnection (DQML::Domain_in parent,
                               DQML::DataWriterQos_in src,
                               DQML::DataReaderQos_in dest)
   {

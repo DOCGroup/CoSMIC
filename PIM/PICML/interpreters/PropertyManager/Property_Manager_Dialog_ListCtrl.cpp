@@ -1,5 +1,3 @@
-// $Id$
-
 #include "stdafx.h"
 #include "resource.h"
 #include "Property_Manager_Dialog_ListCtrl.h"
@@ -119,7 +117,7 @@ private:
       sorted_values.insert (data_value_container);
 
     for (auto & sorted_value : sorted_values)
-      Visit_DataValueBase (sorted_value); 
+      Visit_DataValueBase (sorted_value);
 
     // We need to add a "blank" element to the end of the list
     // if this is a collection (i.e., a sequence). This will allow

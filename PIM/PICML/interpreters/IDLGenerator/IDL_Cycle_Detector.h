@@ -21,13 +21,13 @@
 /**
  * @class IDL_Cycle_Detector
  *
- * @brief Implementation of the IDL_Cycle_Detector that is responsible for 
+ * @brief Implementation of the IDL_Cycle_Detector that is responsible for
  * detecting cycles within a Graph G.
  */
 struct IDL_Cycle_Detector : public boost::dfs_visitor <>
 {
   /// Constructor
-  IDL_Cycle_Detector (bool & has_cycle, 
+  IDL_Cycle_Detector (bool & has_cycle,
                       IDL_File_Ordering_Processor::VERTEX_GRAPH & container,
                       IDL_File_Ordering_Processor::EDGE_CONTAINER & edge);
   /// Destructor

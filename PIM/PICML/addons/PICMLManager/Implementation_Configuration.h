@@ -4,8 +4,6 @@
 /**
  * @file      Implementation_Configuration.h
  *
- * $Id$
- *
  * @author    James H. Hill
  */
 //=============================================================================

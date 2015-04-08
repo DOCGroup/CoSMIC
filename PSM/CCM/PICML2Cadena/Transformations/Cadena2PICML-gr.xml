@@ -293,11 +293,11 @@ CProperty.GetStrValue(&quot;type&quot;, s); XProperty.SetStrValue(&quot;type&quo
 						<PatternObject _id="id2c4" name="CProperty" action="Bound" objectID="0" position="(301,607)" classType="Property" cardinality="1" paradigmName="cadena_scenario" srcObjectWrapper="id2c5" isAssociationClass="false"/>
 					</RewritingRule>
 					<RewritingRule _id="ida4" cut="false" name="CopyHierarchy_DumpToDisk_ReadFile_Transfer" guard="" ruleId="164" dstRule="id2ca" srcRule="id2c8" forBlock="false" position="(483,238)" ruleType="RULE" exhaustive="true">
-						<Code code="Udm::UdmDiagram mydiagram; 
+						<Code code="Udm::UdmDiagram mydiagram;
 mydiagram.dgr=const_cast&lt;Uml::Diagram *>(&amp;(RootContainer.__impl()->__getdn()->GetRootMeta()));
 mydiagram.init=Uml::diagram.init;
 UdmDom::DomDataNetwork ddn(mydiagram);
-  
+ 
 ddn.CreateNewToString(&quot;Udm\\PICMLCadena_Xchange_embedded_EIProperties.xsd&quot;, RootContainer.type());
 UdmUtil::CopyObjectHierarchy(RootContainer.__impl(), ddn.GetRootObject().__impl(), &amp;ddn, UdmUtil::copy_assoc_map());
 ddn.CloseWithUpdate();
@@ -668,7 +668,7 @@ return (pPropName==&quot;CadenaEIProperties&quot;);" ruleId="318" srcRule="id34a
 PredefinedType.type().GetStrValue(&quot;name&quot;, propType);
 if (propType!=&quot;LongInteger&quot; &amp;&amp; propType!=&quot;String&quot; &amp;&amp; propType!=&quot;Boolean&quot;) return false;
 else return true;" ruleId="326" srcRule="id34b" forBlock="false" position="(147,98)" ruleType="RULE" exhaustive="true">
-					<Code code="/*The Object Is Deleted Partially Inaccessible (TOIDPI) 
+					<Code code="/*The Object Is Deleted Partially Inaccessible (TOIDPI)
 workaround marker (for GME search queries)*/"/>
 					<ObjectLink _id="id148" name="PatternComposition" action="Delete" dst_end_="id149" position="(-1,-1)" src_end_="id147" cardinality="1" dstObjectID="0" dstRoleName="" srcObjectID="0" srcRoleName="" relationshipType="Composition"/>
 					<ObjectLink _id="id14b" name="PatternComposition" action="Bound" dst_end_="id14c" position="(-1,-1)" src_end_="id14a" cardinality="1" dstObjectID="0" dstRoleName="" srcObjectID="0" srcRoleName="" relationshipType="Composition"/>
@@ -692,7 +692,7 @@ if (pRequirementName!=&quot;CadenaProperties&quot;) return false;
 PredefinedType.type().GetStrValue(&quot;name&quot;, pPropType);
 if (pPropType==&quot;LongInteger&quot; || pPropType==&quot;String&quot; || pPropType==&quot;Boolean&quot;) return true;
 else return false;" ruleId="340" srcRule="id34c" forBlock="false" position="(147,210)" ruleType="RULE" exhaustive="true">
-					<Code code="/*The Object Is Deleted Partially Inaccessible (TOIDPI) 
+					<Code code="/*The Object Is Deleted Partially Inaccessible (TOIDPI)
 workaround marker (for GME search queries)*/"/>
 					<ObjectLink _id="id156" name="PatternComposition" action="Delete" dst_end_="id157" position="(-1,-1)" src_end_="id155" cardinality="1" dstObjectID="0" dstRoleName="" srcObjectID="0" srcRoleName="" relationshipType="Composition"/>
 					<ObjectLink _id="id159" name="PatternComposition" action="Bound" dst_end_="id15a" position="(-1,-1)" src_end_="id158" cardinality="1" dstObjectID="0" dstRoleName="" srcObjectID="0" srcRoleName="" relationshipType="Composition"/>
@@ -804,7 +804,7 @@ string propType;
 PredefinedType.type().GetStrValue(&quot;name&quot;, propType);
 if (propType!=&quot;LongInteger&quot; &amp;&amp; propType!=&quot;String&quot; &amp;&amp; propType!=&quot;Boolean&quot;) return false;
 else return true;" ruleId="368" srcRule="id3ac" forBlock="false" position="(273,84)" ruleType="RULE" exhaustive="true">
-						<Code code="/*The Object Is Deleted Partially Inaccessible (TOIDPI) 
+						<Code code="/*The Object Is Deleted Partially Inaccessible (TOIDPI)
 workaround marker (for GME search queries)*/"/>
 						<ObjectLink _id="id172" name="PatternComposition" action="Delete" dst_end_="id173" position="(-1,-1)" src_end_="id171" cardinality="1" dstObjectID="0" dstRoleName="" srcObjectID="0" srcRoleName="" relationshipType="Composition"/>
 						<ObjectLink _id="id174" name="PatternAssociation" action="Delete" dst_end_="id175" position="(-1,-1)" src_end_="id171" cardinality="1" dstObjectID="0" dstRoleName="ref" srcObjectID="0" srcRoleName="referedbyDataType" relationshipType="SimpleAssociation"/>
@@ -912,7 +912,7 @@ Component.GetStrValue(&quot;name&quot;, fullname);
 
 Udm::ObjectImpl *oiptr = Package.__impl();
 while (oiptr!=&amp;Udm::_null &amp;&amp; oiptr->type()==PackageClass)
-{ 
+{
   string namepart = oiptr->getStringAttr(Uml::Attribute::meta_name);
   oiptr = oiptr->getParent(NULL);
 
@@ -1036,7 +1036,7 @@ Property.GetStrValue(&quot;name&quot;, s); if (s!=&quot;ConnectorID&quot;) retur
 
 string pConnectorID, cConnectorID;
 Property.GetStrValue(&quot;DataValue&quot;, pConnectorID);
-ESSConnection.GetStrValue(&quot;ConnectorID&quot;, cConnectorID); 
+ESSConnection.GetStrValue(&quot;ConnectorID&quot;, cConnectorID);
 return (cConnectorID==pConnectorID &amp;&amp; pConnectorID!=&quot;&quot;);" ruleId="454" srcRule="id3c0" forBlock="false" position="(164,226)" ruleType="RULE" exhaustive="true">
 				<ObjectLink _id="id1c8" name="PatternComposition" action="Bound" dst_end_="id1c9" position="(-1,-1)" src_end_="id1c7" cardinality="1" dstObjectID="0" dstRoleName="" srcObjectID="0" srcRoleName="" relationshipType="Composition"/>
 				<ObjectLink _id="id1ca" name="PatternComposition" action="Bound" dst_end_="id1cb" position="(-1,-1)" src_end_="id1c9" cardinality="1" dstObjectID="0" dstRoleName="" srcObjectID="0" srcRoleName="" relationshipType="Composition"/>
@@ -1071,7 +1071,7 @@ arch.GetStrValue(&quot;name&quot;, fulltype);
 
 Udm::ObjectImpl *oiptr = arch.__impl()->getParent(NULL);
 while (oiptr!=&amp;Udm::_null &amp;&amp; oiptr->type()==PackageClass)
-{ 
+{
   string namepart = oiptr->getStringAttr(Uml::Attribute::meta_name);
   oiptr = oiptr->getParent(NULL);
 

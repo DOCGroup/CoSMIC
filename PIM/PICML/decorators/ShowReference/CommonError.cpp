@@ -46,7 +46,7 @@ const char *hresult_exception::what() const
 
 // --------------------------- Error Codes
 
-LPOLESTR common_descs[] = 
+LPOLESTR common_descs[] =
 {
 	OLESTR("Inproper use of object"),
 	OLESTR("Unknown exception"),
@@ -60,7 +60,7 @@ LPOLESTR common_descs[] =
 	OLESTR("COMTHROW test exception throwed"),
 };
 
-LPOLESTR core_descs[] = 
+LPOLESTR core_descs[] =
 {
 	OLESTR("Object is locked by another Core component"),
 	OLESTR("Lock value in Storage is invalid"),
@@ -82,7 +82,7 @@ LPOLESTR core_descs[] =
 	OLESTR("Project has no name")
 };
 
-LPOLESTR meta_descs[] = 
+LPOLESTR meta_descs[] =
 {
 	OLESTR("Invalid ATTVAL type"),
 	OLESTR("MetaProject is not open"),
@@ -90,7 +90,7 @@ LPOLESTR meta_descs[] =
 	OLESTR("Invalid MetaRef")
 };
 
-LPOLESTR parser_descs[] = 
+LPOLESTR parser_descs[] =
 {
 	OLESTR("Invalid DTD file"),
 	OLESTR("Invalid GUID"),

@@ -34,7 +34,7 @@ OCML_Application::~OCML_Application()
 /*
  *  print HTML documentation
  */
-void 
+void
 OCML_Application::print_html_documentation(const std::string& file_name)
 {
 	std::set<BON::Model> unsorted_children = root_->getChildModels();
@@ -66,7 +66,7 @@ OCML_Application::print_html_documentation(const std::string& file_name)
 /*
  *  print the C++ code which initializes the option hierarchy
  */
-void 
+void
 OCML_Application::print_initialization_tree(const std::string& file_name)
 {
 	std::set<BON::Model> children = root_->getChildModels();

@@ -1,5 +1,3 @@
-// $Id$
-
 #ifndef PAM_VISITOR_H
 #define PAM_VISITOR_H
 

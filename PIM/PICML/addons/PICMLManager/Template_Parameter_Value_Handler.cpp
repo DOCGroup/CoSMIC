@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Template_Parameter_Value_Handler.h"
 

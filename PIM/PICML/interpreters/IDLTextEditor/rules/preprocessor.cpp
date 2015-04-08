@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "preprocessor_impl.hpp"
 

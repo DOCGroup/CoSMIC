@@ -148,7 +148,7 @@ void GetErrorInfo(BSTR *p) NOTHROW;
 //		conversion failed
 #define E_CONVERSION					_HRESULT_TYPEDEF_(0x80731003)
 
-//		requested != count in GetAll 
+//		requested != count in GetAll
 #define E_GETALL						_HRESULT_TYPEDEF_(0x80731004)
 
 //		output parameter is not empty

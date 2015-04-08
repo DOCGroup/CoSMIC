@@ -1,5 +1,3 @@
-// $Id$
-
 #include "Type_Trait.h"
 
 namespace IDML

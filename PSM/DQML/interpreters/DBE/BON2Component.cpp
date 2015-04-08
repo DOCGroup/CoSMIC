@@ -53,19 +53,19 @@ namespace BON
 
 		// Simple checks
 		// Check that only AND and OR gates have multiple inputs - added by jhoffert
-		if (atom->getInConnEnds().size() > 1 && 
+		if (atom->getInConnEnds().size() > 1 &&
 			!(atom->getAtomMeta().name() == "AND" || atom->getAtomMeta().name() == "OR")) {
 				AfxMessageBox(CString(atom->getPath().c_str()) + ": multiple drivers", MB_ICONSTOP | MB_OK );
 			}
 
 		// Check for no lines/wires coming in - OK for top level IOBs but nothing else
-		if (atom->getInConnEnds().size() < 1 && 
+		if (atom->getInConnEnds().size() < 1 &&
 			!(!atom->getParentModel()->getParentModel() && atom->getAtomMeta().name() == "IOB")) {
 				AfxMessageBox(CString(atom->getPath().c_str()) + ": no driver", MB_ICONSTOP | MB_OK );
 		}
 
 		// Check for no lines/wires going out - OK for top level IOBs but nothing else
-		if (atom->getOutConnEnds().size() < 1 && 
+		if (atom->getOutConnEnds().size() < 1 &&
 			!(!atom->getParentModel()->getParentModel() && atom->getAtomMeta().name() == "IOB")) {
 				AfxMessageBox(CString(atom->getPath().c_str()) + ": output is not used", MB_ICONEXCLAMATION | MB_OK );
 		}
@@ -75,7 +75,7 @@ namespace BON
 			atom->getAtomMeta().name() == "OR" ||
 			atom->getAtomMeta().name() == "NOT" ||
 			atom->getAtomMeta().name() == "Register") {
-            
+           
 			parts.insert(atom->getPath("."));
 		}
 		*/
@@ -125,7 +125,7 @@ namespace BON
 						std::string filename;
 
 						char cnt_buf [10];
-						::sprintf_s (cnt_buf, "%d", entity_count); 
+						::sprintf_s (cnt_buf, "%d", entity_count);
 						std::string cnt_str = cnt_buf;
 						filename = entity_abbrev + cnt_str + "_" + dds_entity->getName () + ".txt";
 						out_file.open (filename.c_str ());

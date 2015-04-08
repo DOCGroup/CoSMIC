@@ -6,8 +6,6 @@
  *
  * Main dialog for the deployment plan interpreter.
  *
- * $Id$
- *
  * @author        James H. Hill <hillj@isis.vanderbilt.edu>
  */
 //=============================================================================

@@ -1,4 +1,4 @@
-// $Id$ 
+//
 
 project (CoSMIC_bin) {
   specific (wix) {

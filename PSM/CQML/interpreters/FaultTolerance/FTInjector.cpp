@@ -52,7 +52,7 @@ namespace CQML
   void FTInjector::register_with_DPFramework ()
   {
 /*
-	  class Register 
+	  class Register
 		  : public std::unary_function <std::pair <std::string, NodeAssigner *>, void >
 	  {
 	  public:
@@ -64,12 +64,12 @@ namespace CQML
 	  private:
 		  Injector *injector_;
 	  };
-	  std::for_each (this->node_assigner_map_.begin (), 
+	  std::for_each (this->node_assigner_map_.begin (),
 		             this->node_assigner_map_.end(),
 		             Register (this));
 */
 	  for (std::map <std::string, NodeAssigner *>::const_iterator iter (this->node_assigner_map_.begin ());
-		   iter != this->node_assigner_map_.end(); 
+		   iter != this->node_assigner_map_.end();
 		   ++iter)
 	  {
 		DeploymentPlanFrameworkVisitor::instance()->add_injector((*iter).first, this);
@@ -95,7 +95,7 @@ namespace CQML
     {
 	  NodeAssigner * node_assgn = this->node_assigner_map_.find (plan_name)->second;
       node_assgn->compute_assignment (known_mapping);
-      const std::map <std::string, Node> compname_node_map = 
+      const std::map <std::string, Node> compname_node_map =
         node_assgn->get_node_assignment ();
       std::map <std::string, std::string> compname_nodename_map;
       for (std::map <std::string, Node>::const_iterator itr = compname_node_map.begin();

@@ -49,8 +49,8 @@ MemberManager::MemberManager ()
 
 MemberManager::~MemberManager()
 {
-    std::for_each (member_map_.begin (), 
-		           member_map_.end (), 
+    std::for_each (member_map_.begin (),
+		           member_map_.end (),
 				   bind (&MemberManager::destroy_member, ref (*this), _1));
 	member_map_.clear ();
 }
@@ -63,7 +63,7 @@ void MemberManager::destroy_member (std::pair <std::string, DLL_Member_Pair> con
 
 void MemberManager::load_members (std::list <std::string> const &dll_list)
 {
-	std::for_each (dll_list.begin (), 
+	std::for_each (dll_list.begin (),
 		           dll_list.end (),
                    bind (&MemberManager::load_dll, ref (*this), _1));
 }
@@ -92,7 +92,7 @@ int MemberManager::load_dll (std::string const &dll_file)
   if (mc == 0)
   {
 	  ostr << "EventBus: ACE_DLL.symbol (\"" << MemberManager::start_symbol_
-		  << "\") failed for " << dll_file 
+		  << "\") failed for " << dll_file
 		  << " DLL.";
 	  dll.close ();
 	  throw udm_exception (ostr.str());
@@ -104,7 +104,7 @@ int MemberManager::load_dll (std::string const &dll_file)
   pair.second.dll_ = dll;
   pair.second.member_ = member.release ();
   this->member_map_.insert (pair);
-  
+ 
   return 0;
 }
 

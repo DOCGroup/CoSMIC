@@ -4,17 +4,17 @@
 module EnumTypes
 {
   enum Ecolor
-  { 
+  {
     RED,
     BLUE,
     GREEN
   };
-  
+ 
   struct Person
   {
     string m_name;
     Ecolor e;
-  }; 
+  };
 };
 
 #endif

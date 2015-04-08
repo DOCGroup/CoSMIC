@@ -8,7 +8,7 @@
 int ACE_TMAIN (int argc, ACE_TCHAR * argv [])
 {
   using namespace EnumTypes;
-  
+ 
   Ecolor ec1 = RED;
   Ecolor ec2 = BLUE;
   Ecolor ec3 = GREEN;
@@ -29,6 +29,6 @@ int ACE_TMAIN (int argc, ACE_TCHAR * argv [])
     ACE_ERROR ((LM_ERROR, "Value of Enum set incorrectly\n"));
 
   ACE_DEBUG ((LM_DEBUG, "*** end validating eum type\n"));
-  
+ 
   return 0;
 }

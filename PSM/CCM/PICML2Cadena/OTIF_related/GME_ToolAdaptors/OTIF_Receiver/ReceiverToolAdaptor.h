@@ -13,7 +13,7 @@ using std::string;
 using std::deque;
 
 
-class UML_ToolAdaptor : public UdmCORBA::ToolAdaptor 
+class UML_ToolAdaptor : public UdmCORBA::ToolAdaptor
 {
 public:
 
@@ -23,7 +23,7 @@ public:
 		const char *name, const char *version, const char *remarks, long docId, long keepAlive) {};
 };
 
-class ReceiverToolAdaptor : public UdmCORBA::ToolAdaptor 
+class ReceiverToolAdaptor : public UdmCORBA::ToolAdaptor
 {
 public:
 
@@ -41,8 +41,8 @@ public:
 	struct AvailableDocument
 	{
 		AvailableDocument();
-		AvailableDocument(string paradigmName_, string paradigmVersion_, string name_, 
-			string version_, string remarks_, long docId_, long keepAlive_);		  
+		AvailableDocument(string paradigmName_, string paradigmVersion_, string name_,
+			string version_, string remarks_, long docId_, long keepAlive_);		 
 
 		string paradigmName;
 		string paradigmVersion;

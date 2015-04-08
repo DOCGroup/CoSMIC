@@ -1,5 +1,3 @@
-// $Id$
-
 #include "stdafx.h"
 #include "PICML_Model_Visitor.h"
 #include "Component_Asm_Visitor.h"
@@ -32,7 +30,7 @@ namespace PICML_To_DQML
   //
   void PICML_Model_Visitor::visit_RootFolder (PICML::RootFolder_in item)
   {
-    GAME::Mga::Collection_T <PICML::ComponentImplementations> comp_impl_folders = 
+    GAME::Mga::Collection_T <PICML::ComponentImplementations> comp_impl_folders =
       item->get_ComponentImplementations ();
 
     if (comp_impl_folders.size () == 0)
@@ -49,7 +47,7 @@ namespace PICML_To_DQML
   //
   void PICML_Model_Visitor::visit_ComponentImplementations (PICML::ComponentImplementations_in item)
   {
-    GAME::Mga::Collection_T <PICML::ComponentImplementationContainer> comp_impl_cont_models = 
+    GAME::Mga::Collection_T <PICML::ComponentImplementationContainer> comp_impl_cont_models =
       item->get_ComponentImplementationContainers ();
 
     if (comp_impl_cont_models.size () == 0)

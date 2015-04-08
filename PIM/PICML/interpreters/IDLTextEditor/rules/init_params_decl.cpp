@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "init_params_decl_impl.hpp"
 

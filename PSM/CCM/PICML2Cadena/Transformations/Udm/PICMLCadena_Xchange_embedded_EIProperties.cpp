@@ -170,13 +170,13 @@ namespace PICMLCadena_Xchange_embedded_EIProperties {
 		Uml::SetAttribute(ConnectionSelector::meta_slaveComponentName,ConnectionSelector::meta, "slaveComponentName");
 		Uml::SetAttribute(ConnectionSelector::meta_masterPortName,ConnectionSelector::meta, "masterPortName");
 		Uml::SetAttribute(ConnectionSelector::meta_slavePortName,ConnectionSelector::meta, "slavePortName");
-		//composition child roles 
+		//composition child roles
 		Uml::SetParentRole(Property::meta_ConnectionSelector_parent,Property::meta,ConnectionSelector::meta, "", "");
 		Uml::SetParentRole(ConnectionSelector::meta_RootContainer_parent,ConnectionSelector::meta,RootContainer::meta, "", "");
-		// composition parentroles 
+		// composition parentroles
 		Uml::SetChildRole(RootContainer::meta_ConnectionSelector_children,RootContainer::meta,ConnectionSelector::meta, "", "");
 		Uml::SetChildRole(ConnectionSelector::meta_Property_children,ConnectionSelector::meta,Property::meta, "", "");
-		// Association roles 
+		// Association roles
 
 
 

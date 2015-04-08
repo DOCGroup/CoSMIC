@@ -4,8 +4,6 @@
 /**
  * @file string_utils.hpp
  *
- * $Id$
- *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
  */
 

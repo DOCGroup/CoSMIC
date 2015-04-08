@@ -106,7 +106,7 @@ BE_produce (void)
   // Get the root node.
   AST_Decl *d = idl_global->root ();
   AST_Root *ast_root = AST_Root::narrow_from_decl (d);
-  
+ 
   if (ast_root == 0)
     {
       ACE_ERROR ((LM_ERROR,
@@ -114,7 +114,7 @@ BE_produce (void)
                   ACE_TEXT ("No Root\n")));
       BE_abort ();
     }
-    
+   
   try
     {
       {

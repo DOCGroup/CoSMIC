@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Data_Value_Item.h"
 #include "Data_Value_Controls.h"

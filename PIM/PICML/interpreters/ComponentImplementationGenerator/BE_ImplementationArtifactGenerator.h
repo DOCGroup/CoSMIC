@@ -4,8 +4,6 @@
 /**
  * @file        BE_ImplementationArtifactGenerator.h
  *
- * $Id$
- *
  * @author      James H. Hill
  */
 //=============================================================================

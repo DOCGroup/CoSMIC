@@ -1,5 +1,3 @@
-// $Id$
-
 // ============================================================================
 //
 // = LIBRARY
@@ -50,9 +48,9 @@ interface NounWithAttributesAndException
   attribute boolean m_is_member;
   attribute string m_name_of;
   attribute long m_number_of;
-  
+ 
   // not a member exception
-  exception NotAMember{}; 
+  exception NotAMember{};
 
   void person(in boolean is_member);
   void place(in long how_many);
@@ -68,22 +66,22 @@ module ModuleOfAnInterface
   {
     void my_person(in boolean is_member);
   };
-  
+ 
   interface place
   {
     void my_place(in long how_many);
   };
-  
+ 
   interface thing
   {
     void my_thing(in boolean has_more);
   };
-  
+ 
   interface idea
   {
     void my_idea(in char begin_letter);
   };
-  
+ 
   interface event
   {
     void my_event(in double my_double);
@@ -99,14 +97,14 @@ module ForwardDeclaration
   interface place
   {
     attribute long m_how_many;
-    
+   
     void my_place(in long how_many);
   };
-  
+ 
   interface person
   {
     attribute boolean m_member;
-    
+   
     void my_person(in boolean is_member);
   };
 };
@@ -118,20 +116,20 @@ module NounWithOneWayOp
   {
     exception NotSoGreat{};
     attribute boolean m_is_great;
-    
+   
     void is_great(in boolean great);
-    
+   
     oneway void create_idea();
   };
-  
+ 
   interface event
   {
     exception TypeUndefined{};
     attribute long m_type_of;
-    
+   
     void get_type(out long type);
     void set_type(in long type);
-    
+   
     oneway void create_event();
   };
 };

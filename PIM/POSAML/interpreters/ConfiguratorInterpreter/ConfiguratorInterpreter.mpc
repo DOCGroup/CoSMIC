@@ -1,5 +1,3 @@
-// $Id$
-
 project (ConfiguratorInterpreter): gme_bon2_component, xerces, cosmic_lib {
 
   sharedname = ConfiguratorInterpreter

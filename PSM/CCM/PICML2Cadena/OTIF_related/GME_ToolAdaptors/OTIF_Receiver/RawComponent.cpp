@@ -70,25 +70,25 @@ UINT EventSinkThreadFunction(LPVOID pParam)
 
 
 	//Publish it
-	try 
-	{   
+	try
+	{  
 		CDialogBackplaneMonitor(paradigmname, projectfullpath, rti.OTIF_ReceiverDialogBox).DoModal();
-	} 
-	catch (udmcorba_exception &e) 
+	}
+	catch (udmcorba_exception &e)
 	{
-		if ( e.code()<11 ) 
+		if ( e.code()<11 )
 		{
 			AfxMessageBox((string()+"CORBA exception: "+ e.what()).c_str());
-		} 
-		else if (e.code()<21) 
+		}
+		else if (e.code()<21)
 		{
 			AfxMessageBox((string()+"Paradigm exception: "+e.what()).c_str());
-		} 
-		else if (e.code()<41) 
+		}
+		else if (e.code()<41)
 		{
 			AfxMessageBox((string()+"UdmCORBA exception: "+e.what()).c_str());
-		} 
-		else if (e.code()<91) 
+		}
+		else if (e.code()<91)
 		{
 			AfxMessageBox((string()+"ToolAdaptor exception: "+e.what()).c_str());
 		}
@@ -96,7 +96,7 @@ UINT EventSinkThreadFunction(LPVOID pParam)
 	catch (exception &e) //it was udm_exception but...
 	{
 		AfxMessageBox(e.what());
-	} 
+	}
 
 
 	rti.receiverThreadIsRunning=false;
@@ -122,9 +122,9 @@ UINT EventSinkThreadFunction(LPVOID pParam)
 
 
 
-// This is the main component method for interpereters and plugins. 
+// This is the main component method for interpereters and plugins.
 // May als be used in case of invokeable addons
-STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,  
+STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj, 
 									IMgaFCOs *selectedobjs,  long param) {
 	COMTRY {
 	  if(interactive) {
@@ -169,7 +169,7 @@ STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 				//We start the threads here
 				AfxBeginThread(EventSinkThreadFunction, (LPVOID) &s_rti);
 			}
-			else 
+			else
 			{
 				SetForegroundWindow(s_rti.OTIF_ReceiverDialogBox);
 			}
@@ -178,7 +178,7 @@ STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 			COMTHROW(project->CommitTransaction());
 		}	catch(...) { project->AbortTransaction(); throw; }
 		
-	  } 
+	  }
 	} COMCATCH(;);
 }
 
@@ -204,19 +204,19 @@ STDMETHODIMP RawComponent::put_ComponentParameter(BSTR name, VARIANT newVal) {
 
 #ifdef GME_ADDON
 
-// these two functions are the main 
-STDMETHODIMP RawComponent::GlobalEvent(globalevent_enum event) { 
+// these two functions are the main
+STDMETHODIMP RawComponent::GlobalEvent(globalevent_enum event) {
 	if(event == GLOBALEVENT_UNDO) {
 		AfxMessageBox("UNDO!!");
 	}
-	return S_OK; 
+	return S_OK;
 }
 
 STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v) {
 	if(eventmask & OBJEVENT_CREATED) {
 		CComBSTR objID;
 		COMTHROW(obj->get_ID(&objID));
-		AfxMessageBox( "Object created! ObjID: " + CString(objID)); 
+		AfxMessageBox( "Object created! ObjID: " + CString(objID));
 	}		
 	return S_OK;
 }

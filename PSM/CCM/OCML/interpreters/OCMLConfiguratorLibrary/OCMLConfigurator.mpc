@@ -1,5 +1,3 @@
-// $Id$
-
 // wxwindows template project does not work with windows well.
 // There is a workaround below which depends on the WXWINDOWS_ROOT environment
 // variable. This should be defined and point to the directory where the

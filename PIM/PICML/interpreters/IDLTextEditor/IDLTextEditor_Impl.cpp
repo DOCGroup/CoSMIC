@@ -1,5 +1,3 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "IDLTextEditor.h"
 #include "IDLTextEditor_Impl.h"

@@ -3,12 +3,12 @@
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
  * ALL RIGHTS RESERVED
- * Vanderbilt University disclaims all warranties with regard to this 
- * software, including all implied warranties of merchantability and 
- * fitness.  In no event shall Vanderbilt University be liable for any 
+ * Vanderbilt University disclaims all warranties with regard to this
+ * software, including all implied warranties of merchantability and
+ * fitness.  In no event shall Vanderbilt University be liable for any
  * special, indirect or consequential damages or any damages whatsoever
  * resulting from loss of use, data or profits, whether in an action of
- * contract, negligence or other tortious action, arising out of or in 
+ * contract, negligence or other tortious action, arising out of or in
  * connection with the use or performance of this software.	
  */
 
@@ -18,7 +18,7 @@ import edu.vanderbilt.isis.udm.*;
 
 /**
  * Domain specific class of <code>Message</code>.
- */ 
+ */
 public class Message extends MgaObject
 {
 	// meta information
@@ -28,11 +28,11 @@ public class Message extends MgaObject
 
 	/**
 	 * Constructor.
-	 * @param  upo The object that helps the initialization of the instance 
+	 * @param  upo The object that helps the initialization of the instance
 	 * @param  metaDiagram The diagram of the data network
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	protected Message(UdmPseudoObject upo, Diagram metaDiagram) 
+	 */
+	protected Message(UdmPseudoObject upo, Diagram metaDiagram)
 		throws UdmException
 	{
 		super(upo, metaDiagram);
@@ -41,7 +41,7 @@ public class Message extends MgaObject
 	/**
 	 * Returns the meta class.
 	 * @return  The meta class
-	 */ 
+	 */
 	UdmPseudoObject getMetaClass()
 	{
 		return metaClass;
@@ -50,13 +50,13 @@ public class Message extends MgaObject
 	/* Construction */
 
 	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
+	 * Creates an instance of the class in the container specified by the parameter.
 	 * @param  parent The parent container
 	 * @return  An instance of the class <code>Message</code>
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static Message create(Messages parent) 
-		throws UdmException 
+	 */
+	public static Message create(Messages parent)
+		throws UdmException
 	{
 		Diagram metaDiagram = parent.getDiagram();
 		return new Message(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
@@ -65,16 +65,16 @@ public class Message extends MgaObject
 	/* Accessing children */
 
 	/**
-	 * Returns all the children of type <code>Part<code> of this container. 
+	 * Returns all the children of type <code>Part<code> of this container.
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public Part[] getPartChildren()
-		throws UdmException 
+		throws UdmException
 	{
 		UdmPseudoObjectContainer container = getChildren(null, Part.META_TYPE, Part.META_TYPE_NS);
 		Part[] res = new Part[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
+		for (int i=0; i < container.getLength(); i++)
 		{
 			res[i] = (Part)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
@@ -93,7 +93,7 @@ public class Message extends MgaObject
 	 * Sets the other end of the association with role name <code>referedbyMessageRef</code>.
 	 * @param a The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public void setreferedbyMessageRef(MessageRef a)
 		throws UdmException
 	{
@@ -104,7 +104,7 @@ public class Message extends MgaObject
 	 * Returns the other end of the association with role name <code>referedbyMessageRef</code>.
 	 * @return The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
-	 */ 
+	 */
 	public MessageRef getreferedbyMessageRef()
 		throws UdmException
 	{
