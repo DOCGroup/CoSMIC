@@ -362,14 +362,20 @@ visit_MonolithicImplementationBase (PICML::MonolithicImplementationBase_in impl)
       artifact->accept (this);
 
     // Now, include the executor parameters for this artifact.
-    const std::string impl_artifact_id = this->impl_artifact_->path (".", false);
     this->write_artifact_execParameter ("component factory", this->impl_artifact_->EntryPoint ());
-    this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ExecutorArtifact", impl_artifact_id);
+    if (!this->impl_artifact_->ImplementationArtifact_is_nil ())
+    {
+      const std::string impl_artifact_id = this->impl_artifact_->refers_to_ImplementationArtifact ()->path (".", false);
+      this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ExecutorArtifact", impl_artifact_id);
+    }
 
     // Now, include the executor parameters for this artifact.
-    const std::string svnt_artifact_id = this->svnt_artifact_->path (".", false);
     this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ServantEntrypoint", this->svnt_artifact_->EntryPoint ());
-    this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ServantArtifact", svnt_artifact_id);
+    if (!this->svnt_artifact_->ImplementationArtifact_is_nil ())
+    {
+      const std::string svnt_artifact_id = this->svnt_artifact_->refers_to_ImplementationArtifact ()->path (".", false);
+      this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ServantArtifact", svnt_artifact_id);
+    }
 
     // The last part of this section of the XML document are the
     // executor parameters. So, let's visit all the monolithic executor
@@ -620,7 +626,8 @@ visit_ConfigProperty (PICML::ConfigProperty_in cp)
 void Deployment_Plan_Visitor::
 visit_AttributeInstance (PICML::AttributeInstance_in attr)
 {
-  attr->src_of_AttributeValue ()->accept (this);
+  if (attr->has_src_of_AttributeValue ())
+    attr->src_of_AttributeValue ()->accept (this);
 }
 
 void Deployment_Plan_Visitor::
