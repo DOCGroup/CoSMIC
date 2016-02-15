@@ -28,24 +28,11 @@ are the minimum system requirements for installing CoSMIC:
 
 Building from Sources
 ---------------------------------
-1. Visual Studio 2012 (or better)
-2. GAME (v1.0.0, or better)
 
-Environment Setup
----------------------------------
+Please see the following file:
 
-    set GAME_ROOT=[location of GAME]
-    set COSMIC_ROOT=[location of CoSMIC]
-    set PATH=%PATH%;%GAME_ROOT%\bin;%GAME_ROOT%\lib;%COSMIC_ROOT%\bin;%COSMIC_ROOT%\lib
-
-Quick Build
----------------------------------
-
-    mwc.pl -type [vc11 or better] CoSMIC_GAME.mwc
-    devenv /useenv CoSMIC_GAME.sln
-    
-Lastly, build the open solution. 
-
+  https://github.com/DOCGroup/CoSMIC/blob/master/BUILDING
+  
 Supported Features
 ============================
 
