@@ -68,8 +68,7 @@ GAME is stored in a Git respository. You can download GAME
 from one of the the following locations, depending on what 
 you can access:
 
-    git@github.iu.edu:SEDS/GAME.git (primary)
-    git://git.dre.vanderbilt.edu/cosmic/game.git
+    git@github.com:SEDS/GAME.git
 
 You can download GAME sources using the following command:
 
@@ -84,7 +83,7 @@ CoSMIC
 CoSMIC is stored in a Git respository. You can download the 
 CoSMIC source code using the following command:
 
-    git.exe clone git://git.dre.vanderbilt.edu/cosmic/cosmic.git [COSMIC_DIR]
+    git.exe clone git@github.com:DOCGroup/CoSMIC.git [COSMIC_DIR]
 
 Notice that [COSMIC_DIR] will be the same directory that you
 used when defining the environment variables above.
