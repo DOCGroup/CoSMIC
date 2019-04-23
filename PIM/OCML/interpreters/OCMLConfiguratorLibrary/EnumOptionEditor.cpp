@@ -39,22 +39,22 @@ EnumOptionEditor::EnumOptionEditor(wxWindow* parent, EnumOption* enum_option)
     {
       editor_->SetValue(default_line.c_str());
     }
-   
+ 
   editor_->enable_events();
-   
+ 
   panel()->GetSizer()->SetSizeHints(panel());
 }
 
 EnumOptionEditor::~EnumOptionEditor()
 {
-}   
+} 
 
 void
 EnumOptionEditor::add_focus_listener(EnumOptionEditorFocusListener* l)
 {
   focus_listeners_.push_back(l);
 }
-   
+ 
 void
 EnumOptionEditor::enum_edit_focus_gain(EnumEditControl*)
 {
@@ -68,7 +68,7 @@ void
 EnumOptionEditor::enum_edit_focus_lost(EnumEditControl*)
 {
   // Nothing to do here
-}   
+} 
 
 void
 EnumOptionEditor::enum_edit_selected(std::string value, void*)

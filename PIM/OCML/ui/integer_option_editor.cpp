@@ -33,20 +33,20 @@ Integer_Option_Editor::Integer_Option_Editor(wxWindow* parent,
   editor_->add_focus_listener(this);
   editor_->add_value_change_listener(this);
   panel()->GetSizer()->Add(editor_, 1, wxALL | wxADJUST_MINSIZE | wxEXPAND, 2);
-   
+ 
   panel()->GetSizer()->SetSizeHints(panel());
 }
 
 Integer_Option_Editor::~Integer_Option_Editor()
 {
-}   
+} 
 
 void
 Integer_Option_Editor::add_focus_listener(Integer_Option_Editor_Focus_Listener* l)
 {
   focus_listeners_.push_back(l);
 }
-   
+ 
 void
 Integer_Option_Editor::integer_edit_focus_gain(Integer_Edit_Control*)
 {
@@ -78,7 +78,7 @@ Integer_Option_Editor::integer_edit_focus_lost(Integer_Edit_Control*)
     editor_->SetValue(boost::lexical_cast<std::string>(basic_value->value()).c_str());
 
   focused_ = false;
-}   
+} 
 
 void
 Integer_Option_Editor::integer_edit_value_changed(Integer_Edit_Control*)
@@ -91,7 +91,7 @@ Integer_Option_Editor::unfocus()
 {
   integer_edit_focus_lost(0);
 }
- 
+
 void
 Integer_Option_Editor::value_changed(bool flagged, Option_Value* value)
 {

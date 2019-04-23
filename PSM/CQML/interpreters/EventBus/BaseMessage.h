@@ -38,7 +38,7 @@ namespace CQML
     public:
         virtual ~BaseMessageHandler() {}
     };
-   
+ 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class MessageHandler
 ///
@@ -169,7 +169,7 @@ namespace CQML
        // using MessageHandler<Head, R>::Visit;
        // using MessageHandler<Tail, R>::Visit;
     };
-   
+ 
     template <class Head, typename R>
     class MessageHandler<Typelist<Head, NullType>, R, false> : public MessageHandler<Head, R, false>
     {
@@ -187,7 +187,7 @@ namespace CQML
        // using MessageHandler<Head, R>::Visit;
        // using MessageHandler<Tail, R>::Visit;
     };
-   
+ 
     template <class Head, typename R>
     class MessageHandler<Typelist<Head, NullType>, R, true> : public MessageHandler<Head, R, true>
     {
@@ -216,7 +216,7 @@ namespace CQML
         virtual R Visit(Head&)
         { return R(); }
     };
-   
+ 
     template <class Head, typename R>
     class BaseMessageHandlerImpl<Typelist<Head, NullType>, R>
         : public MessageHandler<Head, R>
@@ -256,7 +256,7 @@ struct DefaultCatchAll
         typedef R ReturnType;
         virtual ~BaseMessage() {}
         virtual ReturnType Accept(BaseMessageHandler&) = 0;
-       
+     
     protected: // give access only to the hierarchy
         template <class T>
         static ReturnType AcceptImpl(T& visited, BaseMessageHandler& guest)
@@ -277,7 +277,7 @@ struct DefaultCatchAll
         typedef R ReturnType;
         virtual ~BaseMessage() {}
         virtual ReturnType Accept(BaseMessageHandler&) const = 0;
-       
+     
     protected: // give access only to the hierarchy
         template <class T>
         static ReturnType AcceptImpl(const T& visited, BaseMessageHandler& guest)
@@ -328,7 +328,7 @@ struct DefaultCatchAll
     public:
         typedef R ReturnType;
         // using MessageHandler<TList, R>::Visit;
-       
+     
         template <class Visited>
         ReturnType GenericVisit(Visited& host)
         {
@@ -336,7 +336,7 @@ struct DefaultCatchAll
             return subObj.Visit(host);
         }
     };
-   
+ 
 ////////////////////////////////////////////////////////////////////////////////
 /// \def LOKI_DEFINE_CYCLIC_MESSAGE(SomeMessageHandler)
 /// \ingroup MessageHandlerGroup

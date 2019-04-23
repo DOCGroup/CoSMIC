@@ -92,18 +92,18 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 	// ======================
 	// Insert application specific code here
 
-   
+ 
     BON::Folder root = project->getRootFolder( ); // Get the root folder
-   
+ 
     if ( !root )
     {
         AfxMessageBox("Could not find RootFolder" );
         return;
     }
-       
+     
     process_model(project);
     return;
-      
+    
 }
 
 // This method prompts a dialog to allow the user to specify a folder
@@ -195,7 +195,7 @@ Component::save_file()
 void Component::process_features(MON::Aspect & aspect, BON::Model &model, Project& project)
 {
 
-     
+   
     std::string server_strategy_factory = "static Server_Strategy_Factory \"";
     std::string client_strategy_factory = "static Client_Strategy_Factory \"";
     std::string advanced_resource_factory = "static Advanced_Resource_Factory \"";
@@ -207,7 +207,7 @@ void Component::process_features(MON::Aspect & aspect, BON::Model &model, Projec
     bool end_point = false;
 
     std::set<BON::Atom> childrenFeatureSet = model->getChildAtoms(aspect);
-                       
+                     
     if(childrenFeatureSet.size() == 0)
     {
         project->consoleMsg("No features available",MSG_WARNING);
@@ -244,7 +244,7 @@ void Component::process_features(MON::Aspect & aspect, BON::Model &model, Projec
                 server = true;
             }
         }
-   
+ 
         else if(kind_name == "Reactor_Type")
         {
             std::set<BON::FCO> Reactor_Type_Connection = model->getChildFCOsAs("Reactor_Type_Connection");
@@ -296,10 +296,10 @@ void Component::process_features(MON::Aspect & aspect, BON::Model &model, Projec
             std::string port = iterObj->getAttribute("Port")->getStringValue();
             std::string hostname = iterObj->getAttribute("HostName")->getStringValue();
             std::string protocol = iterObj->getAttribute("Protocol")->getStringValue();
-                                   
+                                 
             std::string str_protocol = protocol_list[protocol];
-           
-           
+         
+         
             if(port == "0")
             {
                 project->consoleMsg("Enter valid port number",MSG_WARNING);
@@ -308,15 +308,15 @@ void Component::process_features(MON::Aspect & aspect, BON::Model &model, Projec
             }
 
             url_link += "-ORBEndpoint "+str_protocol+"://"+hostname+":"+port;
-           
+         
             end_point = true;
-        
+      
         }
-                               
+                             
     }
     std::ofstream svc_file;
     file_name_ =  "svc.conf";
-    save_file();  
+    save_file();
     svc_file.open (file_name_.c_str ());
 
     if(advanced)
@@ -329,7 +329,7 @@ void Component::process_features(MON::Aspect & aspect, BON::Model &model, Projec
         svc_file << server_strategy_factory;
         svc_file << "\"\n";
     }
-   
+ 
     if(client)
     {
         svc_file << client_strategy_factory;
@@ -360,21 +360,21 @@ BOOL Component::process_model(Project& project)
        project->consoleMsg("Could not get any Models",MSG_INFO);
        return false;
     }
-   
+ 
     for (std::set<BON::Model>::iterator iter = myModelSet.begin();
 			iter != myModelSet.end();
 			++iter)
     {
 
         BON::Model model = (*iter);
-              
+            
 
         std::string modelName = model->getObjectMeta().name();
-       
      
+   
         if(modelName == "Middleware")
         {
-          
+        
             MON::Project myMetaModel = project->getProjectMeta();
             std::set<MON::Aspect> myAspects = myMetaModel.aspects();
 
@@ -391,7 +391,7 @@ BOOL Component::process_model(Project& project)
                 }
             }
         }
-      
+    
     }
     return true;
 }

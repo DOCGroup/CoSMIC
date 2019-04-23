@@ -175,7 +175,7 @@ namespace CQML
                   // This loop does make distinction between one source instance
                   // (i.e. primary) and more-than-one source instances
                   // (i.e. primary + replicas)
-                 
+               
                   for (std::set<std::string>::iterator source_instance_itr = source_instances.begin ();
                        source_instance_itr != source_instances.end();
                        ++source_instance_itr)
@@ -183,7 +183,7 @@ namespace CQML
                       Injector::ConnectionMap::mapped_type new_conn = input_map_itr->second;
                       new_conn.first.instance_name = *source_instance_itr;
                       new_conn.first.port_kind = std::string ("IOGR-") + new_conn.first.port_kind;
-                     
+                   
                       new_conn.second.instance_name = *dest_replica_itr;
                       new_conn.second.port_kind = std::string ("IOGR-") + new_conn.second.port_kind;
                       std::ostringstream ostr;
@@ -201,7 +201,7 @@ namespace CQML
       comp_addr_ (comp_add)
     {
     }
- 
+
   RandomNodeAssigner::~RandomNodeAssigner()
     {}
 
@@ -249,7 +249,7 @@ namespace CQML
       comp_addr_ (comp_add)
     {
     }
- 
+
   BranchNBoundNodeAssigner::~BranchNBoundNodeAssigner ()
     {}
 
@@ -265,7 +265,7 @@ namespace CQML
       current_replica_group.insert (std::make_pair (0, primary_name));
       int repg_size = current_replica_group.size ();
       assert (repg_size <= node_count);
-     
+   
       if (repg_size > 1) /// atleast one replica
         {
           std::vector <int> permutation_vector (node_count);
@@ -283,7 +283,7 @@ namespace CQML
             {
               permutation_vector[0] = 0;
               this->best_permutation_[0] = 0;
-             
+           
               /// No primary node is given therefore, no placement for primary can be
               /// made therefore, take the placement decision of the primary and replicas
               /// also.
@@ -399,7 +399,7 @@ namespace CQML
           value += distance * distance;
         }
       value = ::sqrt (value);
-      //this->permfile_ << " SQRT = " << value << " sum = " << sum; 
+      //this->permfile_ << " SQRT = " << value << " sum = " << sum;
       double mean = sum / depth;
       double std_dev = 0;
       for (int i = 0;i < depth; ++i)

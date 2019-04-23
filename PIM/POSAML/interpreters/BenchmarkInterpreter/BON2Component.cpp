@@ -36,7 +36,7 @@ void XML_Writer::add_child(XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument *doc,DOMEl
 {
   XMLCh *temp=XMLString::transcode(child.c_str());
   DOMElement *child_ele=doc->createElement(temp);
-  temp=XMLString::transcode(data.c_str()); 
+  temp=XMLString::transcode(data.c_str());
   child_ele->setTextContent(temp);
   root->appendChild(child_ele);
   XMLString::release(&temp);
@@ -54,7 +54,7 @@ bool XML_Writer::write_file(const String &xml_file)
   temp=XMLString::transcode("benchmark_inputs");
   DOMElement *root=doc->createElement(temp);
   doc->appendChild(root);
-   
+ 
   //add_child(doc,root,"iterations",this->no_iterations_);
   add_child(doc,root,"connections",this->no_connections_);
   add_child(doc,root,"data",this->data_);
@@ -62,12 +62,12 @@ bool XML_Writer::write_file(const String &xml_file)
 
   temp=XMLString::transcode("reactor_inputs");
   DOMElement *reactor_child=doc->createElement(temp);
- 
+
   add_child(doc,reactor_child,"reactor_type",this->reactor_type_);
   add_child(doc,reactor_child,"handlers",this->no_handlers_);
 
   root->appendChild(reactor_child);
- 
+
   XMLFormatTarget *myFormTarget = new LocalFileFormatTarget(xml_file.c_str());
   DOMElement *serialize_doc=doc->getDocumentElement();
   temp=XMLString::transcode("utf-8");
@@ -82,7 +82,7 @@ bool XML_Writer::write_file(const String &xml_file)
   delete myFormTarget;
   XMLString::release(&temp);
   XMLPlatformUtils::Terminate();
- 
+
   return true;
 
 }
@@ -127,7 +127,7 @@ bool Component::process_benchmarking(MON::Aspect &aspect,Model &model,XML_Writer
 	  BON::Attribute data_attr=(*iter)->getAttribute("data_exchanges");
 	  writer.set_data_exchanges(data_attr->getIntegerValue());
 	  BON::Attribute data_string_attr=(*iter)->getAttribute("StringData");
-	  writer.set_data(data_string_attr->getStringValue()); 
+	  writer.set_data(data_string_attr->getStringValue());
 
 	  /*BON::Attribute data_iter=(*iter)->getAttribute("iterations");
 	  writer.set_iterations(data_iter->getIntegerValue()); */
@@ -139,11 +139,11 @@ bool Component::process_benchmarking(MON::Aspect &aspect,Model &model,XML_Writer
 	 /* BON::Attribute data_iter=(*iter)->getAttribute("iterations");
 	  writer.set_iterations(data_iter->getIntegerValue()); */
 	  BON::Attribute data_string_attr=(*iter)->getAttribute("StringData");
-	  writer.set_data(data_string_attr->getStringValue()); 
+	  writer.set_data(data_string_attr->getStringValue());
 	
 	}
   }
-  Aspect_Set aspect_set = project->getProjectMeta().aspects();  
+  Aspect_Set aspect_set = project->getProjectMeta().aspects();
   MON::Aspect feat_asp,reactor_asp;
   for(Aspect_Set::iterator asp_it=aspect_set.begin();asp_it!=aspect_set.end();asp_it++)
   {
@@ -186,7 +186,7 @@ bool Component::process_benchmarking(MON::Aspect &aspect,Model &model,XML_Writer
 	}
   }
   writer.write_file("benchmark_inputs.xml");
-  project->consoleMsg("Input file for benchmarking generated",msgtype_enum(1)); 
+  project->consoleMsg("Input file for benchmarking generated",msgtype_enum(1));
   return true;
 }
 
@@ -197,7 +197,7 @@ bool Component::process_middleware(Project &project,XML_Writer &writer)
   int len = model_set.size();
   if(len < 0)
   {
-    
+  
        return false;
     }
   for (Model_Set::iterator iter = model_set.begin();
@@ -225,7 +225,7 @@ bool Component::process_middleware(Project &project,XML_Writer &writer)
                 }
             }
         }
-      
+    
     }
     return true;
 }
@@ -277,20 +277,20 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 #endif
 	// ======================
 	// Insert application specific code here
-project->consoleMsg("Starting benchmarking interpreter...",msgtype_enum(1)); 
+project->consoleMsg("Starting benchmarking interpreter...",msgtype_enum(1));
 	BON::Folder root = project->getRootFolder( ); // Get the root folder
-   
+ 
     if ( !root )
     {
         AfxMessageBox("Could not find RootFolder" );
         return;
     }
     XML_Writer writer;
- 
+
 	
     process_middleware(project,writer);
     return;
-  
+
 
 }
 

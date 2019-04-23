@@ -22,7 +22,7 @@
 #include "UdmStatic.h"
 
 
-class CUdmApp 
+class CUdmApp
 {
 
 public:

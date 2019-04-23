@@ -23,7 +23,7 @@ FileSaveDlg::~FileSaveDlg()
   delete[] ofn_.lpstrFile;
   free((void*) ofn_.lpstrTitle);
 }
- 
+
 bool
 FileSaveDlg::show(const char* file_name)
 {

@@ -38,14 +38,14 @@ Reactor::create_init_file ()
 	  break;
 	}
   }
- 
+
   ini_file<<"[Parameters]"<<std::endl;
 
   std::multimap <int, BON::Atom> const_params, var_params;
   std::set<BON::Set> handle_set = this->model_->getChildSets();
   std::set<BON::FCO> handles = (*handle_set.begin ())->getMembers ();
   ini_file<<"reactor_block.num_handlers = "<<handles.size ()<<std::endl;
- 
+
   std::set<BON::FCO>::iterator handle_it;
   int i;
   for (i = 0, handle_it = handles.begin (); handle_it != handles.end (); handle_it++, i++)
@@ -101,7 +101,7 @@ Reactor::create_init_file ()
 	  double diff = ((map_it->second)->getAttribute("max_param_value")->getRealValue ()
 	  				- (map_it->second)->getAttribute("min_param_value")->getRealValue ())
 					/ no_runs;
-	 
+	
 	  if ((map_it->second)->getObjectMeta ().name () == "Active_Rate")
 		ini_file<<"reactor_block.generator["<<
 		  (map_it->first)<<"].lambda=";

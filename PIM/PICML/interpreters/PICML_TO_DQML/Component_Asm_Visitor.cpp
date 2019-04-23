@@ -52,11 +52,11 @@ namespace PICML_To_DQML
   {
     GAME::Mga::Object current_node = this->current_node_;
     this->current_node_ = this->factory_.create_Participant (DQML::Domain::_narrow (this->current_node_), item->name ());
-   
+ 
     //Looking for Input ports
     for (auto & in_event_port : item->get_InEventPortInstances ())
       in_event_port->accept (this);
-   
+ 
     //Looking for Output ports
     for (auto & out_event_port : item->get_OutEventPortInstances ())
       out_event_port->accept (this);

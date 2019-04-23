@@ -14,7 +14,7 @@ public:
   CFile();
   CFile(std::string file_name);
   ~CFile();
- 
+
   BOOL set_path (const std::string& description);
   void add_content(const std::string data);
   BOOL save_file();
@@ -24,7 +24,7 @@ public:
   void add_left_brace();
   void add_aspect_key_name(std::string aspect_name);
   void add_right_brace();
-  static const std::string include_contents_;  
+  static const std::string include_contents_;
   static const std::string aspect_key_;
   static const std::string left_brace_;
   static const std::string right_brace_;

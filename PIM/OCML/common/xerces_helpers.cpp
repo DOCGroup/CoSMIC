@@ -41,6 +41,6 @@ XercesSystem::parse_string(DOMBuilder* parser, const char* systemId,
 
   Wrapper4InputSource* input_source =
     new Wrapper4InputSource(mem_buf_is);
- 
+
   return parser->parse(*input_source);
 }

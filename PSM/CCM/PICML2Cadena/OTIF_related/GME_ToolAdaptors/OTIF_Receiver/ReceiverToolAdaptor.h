@@ -42,7 +42,7 @@ public:
 	{
 		AvailableDocument();
 		AvailableDocument(string paradigmName_, string paradigmVersion_, string name_,
-			string version_, string remarks_, long docId_, long keepAlive_);		 
+			string version_, string remarks_, long docId_, long keepAlive_);		
 
 		string paradigmName;
 		string paradigmVersion;

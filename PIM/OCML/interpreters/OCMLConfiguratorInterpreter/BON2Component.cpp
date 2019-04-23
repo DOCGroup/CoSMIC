@@ -106,7 +106,7 @@ namespace BON
         AfxMessageBox(error_message);
         return;
       }
-   
+ 
     std::string old_value = config_attr->getStringValue();
 
     BON::Attribute file_name_attr =
@@ -116,7 +116,7 @@ namespace BON
         AfxMessageBox(error_message);
         return;
       }
-   
+ 
     std::string tree_file_name = file_name_attr->getStringValue();
 
     OCML_Configurator_Library lib;

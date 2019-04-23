@@ -66,7 +66,7 @@ namespace
 
 // This is the main component method for interpereters and plugins.
 // May als be used in case of invokeable addons
-STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj, 
+STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 									IMgaFCOs *selectedobjs,  long param) {
 	COMTRY {
 	  if(interactive) {
@@ -126,12 +126,12 @@ STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 
 				//Publish it
 				try
-				{  
+				{
 					dpc.UpdateState("Creating ToolAdaptor", 4);
 
 					// Instantiate the tooladaptor and login to the Backplane
 					// Note: Workflow MUST have a tooladaptor with name {paradigmname}_Publisher like PICML_Publisher!!
-					myToolAdaptor ta((paradigmname+"_Publisher").c_str(), __argc, __argv); 
+					myToolAdaptor ta((paradigmname+"_Publisher").c_str(), __argc, __argv);
 
 
 					dpc.UpdateState("Getting Working Paradigms from the backplane", 10);
@@ -218,7 +218,7 @@ STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 				{
 					AfxMessageBox(e.what());
 				}
-			}   
+			} 
 			catch (BON::Exception &e)
 			{
 				AfxMessageBox(e.getErrorMessage().c_str());

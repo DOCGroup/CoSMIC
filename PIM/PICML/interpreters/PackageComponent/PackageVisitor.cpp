@@ -2063,7 +2063,6 @@ CreateAssemblyConnections (vector <ComponentAssembly> & assemblies)
 //  return;
 //}
 //
-//
 //void PackageVisitor::
 //GetReceptacleComponents (const RequiredRequestPort& receptacle,
 //                         map<Component,string>& output)

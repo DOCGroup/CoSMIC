@@ -18,7 +18,7 @@ project (PICML_TO_DQML_Component) : game_mga_interpreter, game_mga_utils, dqml_g
 	Component.ico
     Component.rc
   }
- 
+
   specific (wix) {
     gme_install     = 1
     gme_progid      = PICML.Interpreter.PICML_TO_DQML
@@ -26,7 +26,7 @@ project (PICML_TO_DQML_Component) : game_mga_interpreter, game_mga_utils, dqml_g
     gme_paradigms   = PICML
     gme_description = PICML TO DQML Interpreter
     gme_tooltip     = PICML TO DQML Interpreter
-   
+ 
   }
 
 }

@@ -106,13 +106,13 @@ namespace OCML
                                    const Option_Value* value);
 
     rule_index create_interface(Rule* rule);
-     
+   
     /// Creates option references for the options in the given category.
     void create_references(Option_Category* category);
 
     /// Insert & delete local copies into/from root rule.
     void commit_changes();
- 
+
     /// Insert & delete the rules copied (with previous commit) into/from
     /// root rule.
     void rollback_changes();
@@ -138,7 +138,7 @@ namespace OCML
     listener_container listeners_;
 
     rule_interface_container interfaces_;
-   
+ 
     /// Holds the rules inserted into the root rule in the current transaction.
     std::list<rule_index> inserted_rules_;
     /// Holds the rules deleted from the root rule in the current transaction.

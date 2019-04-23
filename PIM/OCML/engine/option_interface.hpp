@@ -19,7 +19,7 @@ namespace OCML
     virtual void value_changed(bool flagged, Option_Value* value) = 0;
     virtual void interface_destroyed() = 0;
   };
- 
+
   /**
    * Provides the get and set methods for the options.
    *
@@ -58,7 +58,7 @@ namespace OCML
 
     OCML_Engine_Export listener_index register_listener(Option_Interface_Value_Change_Listener* l);
     OCML_Engine_Export void unregister_listener(listener_index index);
-   
+ 
     /**
      * The callback method which is invoked by the constraint manager whenever
      * the value of the option change.
@@ -81,7 +81,7 @@ namespace OCML
     create_interface(Constraint_Engine* engine,
                      Option_Definition* definition);
   };
- 
+
 } //namespace OCML
 
 #include "option_interface.ipp"

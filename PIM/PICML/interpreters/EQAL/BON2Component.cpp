@@ -151,13 +151,13 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
        ++it)
     {
       EventChannelConfiguration ec_configuration (*it);
-     
+   
       if (!ec_configuration)
         {
           AfxMessageBox ("Interpretation must start from an EventChannelConfiguration model!");
           continue;
         }
-       
+     
       EventChannelConfigurationVisitor visitor;
 
       visitor.visitModelImpl (ec_configuration);
@@ -351,7 +351,7 @@ void RTEC_Proxy_ConsumerVisitor::visitRT_InfoImpl (const RT_Info & rt_info)
 
       RTEC_Resource_Factory_Reference rtec_factory_ref = FCO (*rtec_factory_iter);
       if (!rtec_factory_ref) return;
-     
+   
       RTEC_Resource_Factory rtec_factory = rtec_factory_ref->getReferred ();
       if (!rtec_factory) return;
 

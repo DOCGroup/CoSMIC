@@ -15,7 +15,7 @@ namespace OCML
   public:
     virtual void integer_editor_focused(IntegerOptionEditor* editor) = 0;
   };
-   
+ 
   class IntegerOptionEditor: public OptionEditor,
                              public IntegerEditControlFocusListener,
                              public IntegerEditControlValueChangeListener
@@ -23,11 +23,11 @@ namespace OCML
   public:
     IntegerOptionEditor(wxWindow* parent, IntegerOption* option);
     virtual ~IntegerOptionEditor();
-   
+ 
     virtual void unfocus();
 
     void add_focus_listener(IntegerOptionEditorFocusListener* l);
-   
+ 
     virtual void integer_edit_focus_gain(IntegerEditControl* control);
     virtual void integer_edit_focus_lost(IntegerEditControl* control);
     virtual void integer_edit_value_changed(IntegerEditControl* control);

@@ -34,15 +34,15 @@ public:
 public:
   /// The constructor accepts the wxWindows parent control.
   ClearButton(wxWindow* parent);
- 
+
   /// Registers the given listeners.
   void add_click_listener(ClearButtonClickListener* l);
-   
+ 
 private:
   /// The container for holding the click event listerns.
   std::list<ClearButtonClickListener*> click_listeners_;
-   
+ 
   DECLARE_EVENT_TABLE()
-};   
+}; 
 
 #endif // CLEAR_BUTTON_HPP

@@ -29,7 +29,7 @@ BE_post_init (char *files[], long nfiles)
 {
   be_global->xerces_init ();
   be_global->cache_files (files, nfiles);
- 
+
   // We don't want to generate WSDL for implied IDL.
   idl_global->ignore_idl3 (true);
 }

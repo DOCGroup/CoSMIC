@@ -71,7 +71,7 @@ UINT EventSinkThreadFunction(LPVOID pParam)
 
 	//Publish it
 	try
-	{  
+	{
 		CDialogBackplaneMonitor(paradigmname, projectfullpath, rti.OTIF_ReceiverDialogBox).DoModal();
 	}
 	catch (udmcorba_exception &e)
@@ -124,7 +124,7 @@ UINT EventSinkThreadFunction(LPVOID pParam)
 
 // This is the main component method for interpereters and plugins.
 // May als be used in case of invokeable addons
-STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj, 
+STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 									IMgaFCOs *selectedobjs,  long param) {
 	COMTRY {
 	  if(interactive) {

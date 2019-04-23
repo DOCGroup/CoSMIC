@@ -104,7 +104,7 @@ int MemberManager::load_dll (std::string const &dll_file)
   pair.second.dll_ = dll;
   pair.second.member_ = member.release ();
   this->member_map_.insert (pair);
- 
+
   return 0;
 }
 

@@ -26,20 +26,20 @@ String_Option_Editor::String_Option_Editor(wxWindow* parent,
   editor_->add_focus_listener(this);
   editor_->add_value_change_listener(this);
   panel()->GetSizer()->Add(editor_, 1, wxALL | wxADJUST_MINSIZE | wxEXPAND, 2);
-   
+ 
   panel()->GetSizer()->SetSizeHints(panel());
 }
 
 String_Option_Editor::~String_Option_Editor()
 {
-}   
+} 
 
 void
 String_Option_Editor::add_focus_listener(String_Option_Editor_Focus_Listener* l)
 {
   focus_listeners_.push_back(l);
 }
-   
+ 
 void
 String_Option_Editor::string_edit_focus_gain(String_Edit_Control*)
 {
@@ -69,7 +69,7 @@ String_Option_Editor::string_edit_focus_lost(String_Edit_Control*)
     editor_->SetValue(basic_value->value().c_str());
 
   focused_ = false;
-}   
+} 
 
 void
 String_Option_Editor::string_edit_value_changed(String_Edit_Control*)

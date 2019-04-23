@@ -78,7 +78,7 @@ namespace OCML_BON
   String_OptionImpl::xml_export(xercesc::DOMDocument* doc)
   {
     xercesc::DOMElement* node = Described_ItemImpl::xml_export(doc);
-   
+ 
     node->setAttribute(XStr("default-value"),
                        XStr(getString_Default_Value()));
 
@@ -94,7 +94,7 @@ namespace OCML_BON
 
     typedef std::set<OCML_BON::Enum_Item> children_t;
     children_t children = getEnum_Item();
-   
+ 
     for (children_t::iterator iter = children.begin(); iter != children.end();
          ++iter)
     {

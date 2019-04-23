@@ -15,7 +15,7 @@ public:
   BOOL process_root_model();
 
 private:
- 
+
   void initialize(BON::Project &project);
   BOOL iterate_model(std::set<BON::Model> &model_set);
   BOOL process_aspect_feature(std::string aspect_name);

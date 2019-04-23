@@ -25,7 +25,7 @@ OCMLInterpreter::OCMLInterpreter()
       xercesc::XMLString::release(&pMsg);
       throw;
     }
- 
+
   impl_ =
     xercesc::DOMImplementationRegistry::getDOMImplementation(XStr("Core"));
 }

@@ -17,7 +17,7 @@ template <class OPTION_TRAIT>
 std::string str_info(OCML::Basic_Option_Reference<OPTION_TRAIT>* option);
 
 references_map* create_references(OCML::Option_Category* category);
- 
+
 void clear_references(references_map* references);
 
 void write_info(OCML::Option_Reference* reference);

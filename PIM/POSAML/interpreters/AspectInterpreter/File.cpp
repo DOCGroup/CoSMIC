@@ -62,7 +62,7 @@ void CFile::close_file()
 
 BOOL CFile::open_file()
 {
-  this->save_file();  
+  this->save_file();
   this->aspect_file_.open (this->file_name_.c_str ());
   return this->aspect_file_.is_open();
 }

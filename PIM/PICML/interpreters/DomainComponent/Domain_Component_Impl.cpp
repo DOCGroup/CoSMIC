@@ -47,13 +47,13 @@ invoke_ex (GAME::Mga::Project project,
     return 0;
 
   try
-  {  
+  {
     GAME::Mga::Transaction t (project);
 
     // Walk the domain, and generate the domain artifacts.
     Domain_Visitor domain_visitor (output_path);
     project.root_folder ()->accept (&domain_visitor);
-   
+ 
     t.commit ();
 
     ::AfxMessageBox ("Successfully generated domain descriptor");

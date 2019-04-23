@@ -49,11 +49,11 @@ protected:
   virtual bool visit_gme_atom (DOMElement *node);
   virtual bool visit_gme_reference (DOMElement *node);
   virtual bool visit_gme_connection (DOMElement *node);
- 
-private: 
+
+private:
   bool found_in_idl (DOMElement *node);
   bool do_closure (void);
- 
+
 private:
   const XMLCh *id_holder_;
 };

@@ -52,13 +52,13 @@ public:
 public:
   /// Constructor.
   String_Edit_Control(wxWindow* parent);
-   
+ 
   /// Registers the given FocusListener as a focus listener.
   void add_focus_listener(String_Edit_Control_Focus_Listener* l);
 
   /// Registers the given ValueChangeListener as a change listener.
   void add_value_change_listener(String_Edit_Control_Value_Change_Listener* l);
-   
+ 
 private:
   /// The container for the focus listeners.
   std::list<String_Edit_Control_Focus_Listener*> focus_listeners_;
@@ -68,6 +68,6 @@ private:
 
   // Declares WXWindow event table.
   DECLARE_EVENT_TABLE()
-};   
+}; 
 
 #endif // STRING_EDIT_CONTROL_HPP

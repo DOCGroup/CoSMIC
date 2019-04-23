@@ -2,7 +2,7 @@ project (PICML_ComponentImplementationGenerator_Component) : game_mga_utils, pic
   sharedname = PICML_ComponentImplementationGenerator_Component
 
   dynamicflags += PICML_BE_COMPONENTIMPLEMENTATIONGENERATOR_BUILD_DLL
-  
+
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 
@@ -18,7 +18,7 @@ project (PICML_ComponentImplementationGenerator_Component) : game_mga_utils, pic
   Resource_Files {
     Component.rc
   }
- 
+
   specific (wix) {
     gme_install     = 1
     gme_progid      = PICML.Interpreter.ComponentImplementationGenerator

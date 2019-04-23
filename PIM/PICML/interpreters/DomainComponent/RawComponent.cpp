@@ -58,7 +58,7 @@ STDMETHODIMP RawComponent::Invoke(IMgaProject* gme, IMgaFCOs *models, long param
 
 // This is the main component method for interpereters and plugins.
 // May als be used in case of invokeable addons
-STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj, 
+STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 									IMgaFCOs *selectedobjs,  long param)
 {
 	// Calling the user's initialization function
@@ -69,7 +69,7 @@ STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 
 	CComPtr<IMgaProject>ccpProject(project);
 	try
-	{	 
+	{	
 	  if(interactive)
 	  {
 		CComBSTR projname;

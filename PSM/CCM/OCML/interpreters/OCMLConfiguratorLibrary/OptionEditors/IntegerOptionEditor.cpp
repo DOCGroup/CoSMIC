@@ -30,20 +30,20 @@ IntegerOptionEditor::IntegerOptionEditor(wxWindow* parent,
   editor_->add_focus_listener(this);
   editor_->add_value_change_listener(this);
   panel()->GetSizer()->Add(editor_, 1, wxALL | wxADJUST_MINSIZE | wxEXPAND, 2);
-   
+ 
   panel()->GetSizer()->SetSizeHints(panel());
 }
 
 IntegerOptionEditor::~IntegerOptionEditor()
 {
-}   
+} 
 
 void
 IntegerOptionEditor::add_focus_listener(IntegerOptionEditorFocusListener* l)
 {
   focus_listeners_.push_back(l);
 }
-   
+ 
 void
 IntegerOptionEditor::integer_edit_focus_gain(IntegerEditControl*)
 {
@@ -74,7 +74,7 @@ IntegerOptionEditor::integer_edit_focus_lost(IntegerEditControl*)
   button()->Enable(true);
 
   focused_ = false;
-}   
+} 
 
 void
 IntegerOptionEditor::integer_edit_value_changed(IntegerEditControl*)

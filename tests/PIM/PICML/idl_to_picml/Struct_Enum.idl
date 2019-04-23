@@ -9,7 +9,7 @@ module EnumTypes
     BLUE,
     GREEN
   };
- 
+
   struct Person
   {
     string m_name;

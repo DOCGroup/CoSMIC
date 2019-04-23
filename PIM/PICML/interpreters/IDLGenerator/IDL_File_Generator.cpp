@@ -541,7 +541,7 @@ visit_ObjectByValue (PICML::ObjectByValue_in o)
 
   typedef collection_sort <PICML::Member, GAME::Mga::PS_Top_To_Bottom> sorter;
   visit_all () (sorter ()(o->get_Members (), "InterfaceDefinition"), this);
- 
+
 }
 
 //
@@ -787,7 +787,7 @@ void IDL_File_Generator::visit_Object (PICML::Object_in o)
 
   this->idl_ << nl
              << "{" << idt;
- 
+
   visit_all () (o->get_Aggregates (), this);
   visit_all () (o->get_SwitchedAggregates (), this);
   visit_all () (o->get_Aliass (), this);
@@ -821,7 +821,7 @@ void IDL_File_Generator::visit_Alias (PICML::Alias_in a)
   this->idl_ << "typedef ";
 
   this->visit_MemberType (a->refers_to_MemberType ());
- 
+
   this->idl_ << " " << a->name () << ";" << nl
              << nl;
 }

@@ -12,7 +12,7 @@ class Parse_Error
 public:
   Parse_Error(const char* msg): what_(msg) { }
   const char* what() const { return what_.c_str(); }
- 
+
 private:
   std::string what_;
 };

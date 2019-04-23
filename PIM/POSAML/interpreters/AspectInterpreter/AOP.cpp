@@ -35,31 +35,31 @@ BOOL CAOP::iterate_model(std::set<BON::Model> &model_set)
   }
   if( len == 0)
     return false;
-       
+     
   for (std::set<BON::Model>::iterator iter = model_set.begin();
 		iter != model_set.end();
 		++iter)
   {
     BON::Model model = (*iter);
-                  
+                
     std::string modelType = model->getObjectMeta().name();
     std::set<BON::Model> inner_model_set = model->getChildModels();
     this->m_model_ = model;
     if (modelType == "AspectFeature")
     {
       in_aspect = true;
-      std::string modelName = (*iter)->getName(); 
+      std::string modelName = (*iter)->getName();
       m_project->consoleMsg(modelName,MSG_INFO);
-     
+   
       if(this->setup_aspect_file(modelName))
       {
         this->process_aspect_feature(modelName);
-        this->close_aspect_file(); 
+        this->close_aspect_file();
         std::string tmp_msg ="Aspect file "+modelName+" saved";
         AfxMessageBox(tmp_msg.c_str());
 
       }
- 
+
     }
     else
         this->iterate_model(inner_model_set);
@@ -107,14 +107,14 @@ void CAOP::process_aspect(MON::Aspect &aspect)
     std::string pointcutName = iterObj->getName ();
     this->process_individual_pointcut(pointcutName, iterObj);
     this->add_pointcut(pointcutName);
-    this->process_advice (aspect, pointcutName); 
+    this->process_advice (aspect, pointcutName);
   }
   return;
 }
 void CAOP::process_individual_pointcut(std::string pointcutName, BON::Model &model)
 {
   MON::Model sub_meta_model = model->getModelMeta();
- 
+
   std::set<MON::Aspect> my_aspects = model->getModelMeta().aspects();
 
   for (std::set<MON::Aspect>::iterator iterAspect = my_aspects.begin();
@@ -164,7 +164,7 @@ void CAOP::getLinkedJointPointSet(BON::FCO &iterObj, BON::Model &model)
     m_project->consoleMsg("Jointpoint set not connected",MSG_ERROR);
     return;
   }
- 
+
   bool relationset = false;
   for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ;
     cit != in_ends.end() ;
@@ -174,7 +174,7 @@ void CAOP::getLinkedJointPointSet(BON::FCO &iterObj, BON::Model &model)
     ASSERT(dst);
     std::string elementType = dst->getObjectMeta().name();
     std::string elementName = dst->getName();
-   
+ 
     getMembersOfSet(dst, model);
     if((len > 1)&& (!relationset))
     {
@@ -219,7 +219,7 @@ BOOL CAOP::getMembersOfSet(BON::FCO &dst, BON::Model &model)
   std::string set_type = dst->getObjectMeta().name();
 
   std::set<BON::Set> handle_set = model->getChildSets();
- 
+
   for (std::set<BON::Set>::iterator iterSet = handle_set.begin();
     iterSet != handle_set.end();
      ++iterSet)
@@ -235,12 +235,12 @@ BOOL CAOP::getMembersOfSet(BON::FCO &dst, BON::Model &model)
       int len = fcoset_atom.size();
       if(len < 1)
         return false;
-     
+   
       for (std::set<BON::FCO>::iterator iterFCO = fcoset_atom.begin();
         iterFCO != fcoset_atom.end();
         ++iterFCO)
       {
-       
+     
         BON::FCO iterObj(*iterFCO);
         ASSERT(iterObj);
         std::string elementType = iterObj->getObjectMeta().name();
@@ -286,7 +286,7 @@ BOOL CAOP::getMembersOfSet(BON::FCO &dst, BON::Model &model)
 BOOL CAOP::process_main_pointcut(BON::Model &model)
 {
   std::set<BON::FCO> fco_elements = model->getChildFCOs();
- 
+
   for (std::set<BON::FCO>::iterator iterFCO = fco_elements.begin();
     iterFCO != fco_elements.end();
      ++iterFCO)
@@ -295,7 +295,7 @@ BOOL CAOP::process_main_pointcut(BON::Model &model)
     ASSERT(iterObj);
     std::string elementType1 = iterObj->getObjectMeta().name();
     std::string elementName1 = iterObj->getName();
-      
+    
     if(elementType1 == "MainPointcut")
     {
       std::multiset<BON::ConnectionEnd> in_ends
@@ -345,7 +345,7 @@ BOOL CAOP::is_pointcut_connected_to_advice (BON::Atom &iterObj,
     m_project->consoleMsg(temp.c_str(),MSG_WARNING);
     return false;
   }
- 
+
   for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ;
     cit != in_ends.end() ;
       ++cit )
@@ -389,7 +389,7 @@ BOOL CAOP::process_advice(MON::Aspect &aspect, std::string pointcutName)
 BOOL CAOP::process_aspect_feature(std::string aspect_name)
 {
   MON::Model sub_meta_model = this->m_model_->getModelMeta();
- 
+
   std::set<MON::Aspect> my_aspects = this->m_model_->getModelMeta().aspects();
 
   for (std::set<MON::Aspect>::iterator iterAspect = my_aspects.begin();

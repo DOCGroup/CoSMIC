@@ -57,7 +57,7 @@ public:
   element_type* get() const throw();
 
   element_type* release() throw();
- 
+
   void reset(element_type* p=0) throw();
 
 private:

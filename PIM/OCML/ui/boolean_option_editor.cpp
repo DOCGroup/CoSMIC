@@ -30,14 +30,14 @@ Boolean_Option_Editor::Boolean_Option_Editor(wxWindow* parent,
 
 Boolean_Option_Editor::~Boolean_Option_Editor()
 {
-}   
+} 
 
 void
 Boolean_Option_Editor::add_focus_listener(Boolean_Option_Editor_Focus_Listener* l)
 {
   focus_listeners_.push_back(l);
 }
-   
+ 
 void
 Boolean_Option_Editor::boolean_edit_focus_gain(Boolean_Edit_Control*)
 {

@@ -76,7 +76,7 @@ typedef char* xsd__ID;
 /// Class wrapper for built-in type "xs:ID" derived from xsd__anyType
 class xsd__ID_ : public xsd__anyType
 { public:
-    xsd__ID                              __item;                      
+    xsd__ID                              __item;                    
 };
 
 /// Primitive built-in type "xs:anyURI"
@@ -85,31 +85,31 @@ typedef char* xsd__anyURI;
 /// Class wrapper for built-in type "xs:anyURI" derived from xsd__anyType
 class xsd__anyURI_ : public xsd__anyType
 { public:
-    xsd__anyURI                          __item;                      
+    xsd__anyURI                          __item;                    
 };
 
 /// Class wrapper for built-in type "xs:int" derived from xsd__anyType
 class xsd__int : public xsd__anyType
 { public:
-    int                                  __item;                      
+    int                                  __item;                    
 };
 
 /// Class wrapper for built-in type "xs:string" derived from xsd__anyType
 class xsd__string : public xsd__anyType
 { public:
-    char*                                __item;                      
+    char*                                __item;                    
 };
 
 /// Class wrapper for built-in type "xs:unsignedInt" derived from xsd__anyType
 class xsd__unsignedInt : public xsd__anyType
 { public:
-    unsigned int                         __item;                      
+    unsigned int                         __item;                    
 };
 
 /// Class wrapper for built-in type "xs:unsignedShort" derived from xsd__anyType
 class xsd__unsignedShort : public xsd__anyType
 { public:
-    unsigned short                       __item;                      
+    unsigned short                       __item;                    
 };
 
 /// Built-in attribute "SOAP-ENC:arrayType".
@@ -209,7 +209,7 @@ typedef int SLICE__CUTS_x002eTime_USCOREStamp;
 /// Class wrapper
 class SLICE__CUTS_x002eTime_USCOREStamp__ : public xsd__anyType
 { public:
-    SLICE__CUTS_x002eTime_USCOREStamp    __item;                      
+    SLICE__CUTS_x002eTime_USCOREStamp    __item;                    
 };
 
 /// "http://www.omg.org/IDL-WSDL/1.0/":CORBA.completion_status is a simpleType restriction of xs:string.
@@ -224,7 +224,7 @@ enum CORBA__CORBA_x002ecompletion_USCOREstatus
 /// Class wrapper
 class CORBA__CORBA_x002ecompletion_USCOREstatus_ : public xsd__anyType
 { public:
-    enum CORBA__CORBA_x002ecompletion_USCOREstatus  __item;                      
+    enum CORBA__CORBA_x002ecompletion_USCOREstatus  __item;                    
 };
 
 /// "urn:SLICE":CUTS.Binding_Failed is a complexType.

@@ -92,7 +92,7 @@ namespace BON
 			atom->getAtomMeta().name() == "OR" ||
 			atom->getAtomMeta().name() == "NOT" ||
 			atom->getAtomMeta().name() == "Register") {
-           
+         
 			parts.insert(atom->getPath("."));
 		}
 		*/

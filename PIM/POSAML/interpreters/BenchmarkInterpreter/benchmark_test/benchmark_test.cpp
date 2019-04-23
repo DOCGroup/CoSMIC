@@ -80,7 +80,7 @@ bool XML_Reader::read_file(String file_name)
 		  DOMNode *handlers=reactor_type->getNextSibling();
 		  temp1=XMLString::transcode(handlers->getTextContent());
 		  this->no_handlers_ = atoi(temp1);
-		 
+		
 		}
 
 	  }
@@ -89,7 +89,7 @@ bool XML_Reader::read_file(String file_name)
 	  doc_ptr->release();
 	} 	
   }
-  
+
   XMLPlatformUtils::Terminate();
   return success;
 }
@@ -126,7 +126,7 @@ Read_Handler::handle_input (ACE_HANDLE handle)
             return 0;
           else
             {
-			  /// close handle     
+			  /// close handle   
 			  return -1;
             }
         }
@@ -288,11 +288,11 @@ int main(int argc, char *argv[])
 	 //auto_ptr<ACE_Reactor_Impl> auto_impl (ACE_Reactor::instance ()->implementation ());
      //impl = auto_impl;
     }
-	Read_Handler::set_connections(connections); 
+	Read_Handler::set_connections(connections);
   // Acceptor
   ACCEPTOR acceptor;
   ACE_INET_Addr server_addr;
- 
+
   // Bind acceptor to any port and then find out what the port was.
   if (acceptor.open (ACE_sap_any_cast (const ACE_INET_Addr &)) == -1
       || acceptor.acceptor ().get_local_addr (server_addr) == -1)

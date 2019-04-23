@@ -22,7 +22,7 @@ Configurator::Configurator(const char* tree_file)
   DOMDocument *tree_doc = 0;
 
   char *buffer = getenv("COSMIC_ROOT");
- 
+
   std::string tree_file_path;
   if (buffer)
     {

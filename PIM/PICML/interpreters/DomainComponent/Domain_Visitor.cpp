@@ -117,7 +117,7 @@ void Domain_Visitor::write_document (const std::string & basename)
   using namespace GAME::Xml;
   using namespace xercesc;
 
-  // Write the XML document to a file. 
+  // Write the XML document to a file.
   DOMLSSerializer * serializer = this->xml_doc_->impl ()->createLSSerializer ();
 
   if (serializer->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true))

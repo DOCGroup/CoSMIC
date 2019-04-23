@@ -4,7 +4,7 @@ project (POSAML_paradigm_icons) {
     install_location  = paradigms POSAML icons
     install_resources = 1
   }
- 
+
   Resource_Files {
     conditional (wix) {
       icons/*.bmp
@@ -18,13 +18,13 @@ project (POSAML_paradigm) {
     no_binary         = 1
     install_location  = paradigms POSAML
     install_resources = 1
-   
+ 
     gme_paradigm   = 1
     paradigm_name  = POSAML
     paradigm_guid  = 7521D7F2-29E0-4413-A3F7-B67DFD92D380
     paradigm_file  = POSAML.mta
   }
- 
+
   Resource_Files {
     conditional (wix) {
       POSAML.xme

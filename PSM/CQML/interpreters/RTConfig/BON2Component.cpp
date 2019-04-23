@@ -171,31 +171,31 @@ void Component::invokeEx( Project& project,
   if (!Utils::getPath (message, outputPath))
     {
       return;
-    } 
+    }
 
-     
+   
   try
   {
 	  XMLPlatformUtils::Initialize();
-	  std::set<Object> rtconfigs = project->findByKind ("CQML::RealTimeConfiguration");	 
-	 
+	  std::set<Object> rtconfigs = project->findByKind ("CQML::RealTimeConfiguration");	
+	
 	  char temp[256];
-	  long rtcs = rtconfigs.size ();	 
+	  long rtcs = rtconfigs.size ();	
 	  _itoa (rtcs, temp, 10);
-	  	 
+	  	
 	  for (std::set<Object>::const_iterator rtiter = rtconfigs.begin ();
 		  rtiter != rtconfigs.end ();
 		  ++rtiter)
-	  {		 
+	  {		
 		  if (!*rtiter)
 			  continue;
-		  CQML::RealTimeConfiguration rtc (*rtiter);		 
+		  CQML::RealTimeConfiguration rtc (*rtiter);		
 		  RTConfigVisitor visitor (outputPath);	
 		  if (rtc)
 			rtc->accept (&visitor);
 	
 	  }
-	 
+	
   }
   catch (Exception&)
   {
