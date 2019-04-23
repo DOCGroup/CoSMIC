@@ -31,6 +31,7 @@ The following are the optional frameworks needed for building
 parts of CoSMIC:
 
 1.  Zlib (http://gnuwin32.sourceforge.net/packages/zlib.htm)
+2.  minizip (https://github.com/DOCGroup/DAnCE)
 
 II. Environment Setup
 ======================================
@@ -45,6 +46,7 @@ and potentially corrupt your system.
   Variable Name    | Description
  ------------------|----------------------
     ACE_ROOT       | location of ACE
+    DANCE_RO       | location of DAnCE
     MPC_ROOT       | location of MPC
     XERCESCROOT    | location of Xerces-C
     BOOST_ROOT     | location of
@@ -64,8 +66,8 @@ III. Downloading the Source Code
 GAME
 ----------
 
-GAME is stored in a Git respository. You can download GAME
-from one of the the following locations, depending on what 
+GAME is stored in a Git repository. You can download GAME
+from one of the the following locations, depending on what
 you can access:
 
     git@github.com:SEDS/GAME.git
@@ -80,7 +82,7 @@ used when defining the environment variables above.
 CoSMIC
 ----------
 
-CoSMIC is stored in a Git respository. You can download the 
+CoSMIC is stored in a Git repository. You can download the
 CoSMIC source code using the following command:
 
     git.exe clone git@github.com:DOCGroup/CoSMIC.git [COSMIC_DIR]

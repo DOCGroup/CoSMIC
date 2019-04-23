@@ -1,10 +1,8 @@
-// $Id$
-
 project (PICML_Package): game_xml, acelib, boost_base, zlib, minizip {
    sharedname    = PICML_Package
    dynamicflags += PACKAGE_BUILD_DLL PACKAGER_BUILD_DLL
 
-   includes += $(ACE_ROOT)/contrib/minizip
+   includes += $(DANCE_ROOT)/contrib/minizip
    requires += zlib
 
    Source_Files {
