@@ -46,7 +46,7 @@ and potentially corrupt your system.
   Variable Name    | Description
  ------------------|----------------------
     ACE_ROOT       | location of ACE
-    DANCE_RO       | location of DAnCE
+    DANCE_ROOT     | location of DAnCE
     MPC_ROOT       | location of MPC
     XERCESCROOT    | location of Xerces-C
     BOOST_ROOT     | location of
