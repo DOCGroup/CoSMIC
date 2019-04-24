@@ -104,7 +104,7 @@ namespace BON
         AfxMessageBox("An implementation artifact should be selected");
         return;
       }
-   
+ 
     std::string value = attr->getStringValue();
 
     if (value.size() == 0)

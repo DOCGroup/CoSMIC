@@ -57,7 +57,7 @@ int main(int, char*[])
   assign_values(category.get(), engine);
   std::cout << "Assigned." << std::endl;
   std::cout << std::endl;
- 
+
   // Delete listeners and unregister them.
   std::cout << "Deleting listeners and unregistering them..." << std::endl;
   delete_listeners(listeners.get(), engine);

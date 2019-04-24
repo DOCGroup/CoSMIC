@@ -42,7 +42,7 @@ namespace OCML
       value_changed(flag_, value_.get());
     }
   }
- 
+
   /*
    * Constraint engine methods.
    */

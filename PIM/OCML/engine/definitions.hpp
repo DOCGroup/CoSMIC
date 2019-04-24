@@ -135,7 +135,7 @@ namespace OCML
     typedef categories_type::const_iterator const_category_iterator;
     /// Const iterator fot the options list.
     typedef options_type::const_iterator const_option_iterator;
-   
+ 
   public:
     /// Contructor.
     OCML_Engine_Export Option_Category(const char* name, const char* description);

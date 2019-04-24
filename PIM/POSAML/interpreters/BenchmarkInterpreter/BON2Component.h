@@ -60,7 +60,7 @@ XERCES_CPP_NAMESPACE_USE
 class XML_Writer
 {
 public:
-  bool write_file(const String &); 
+  bool write_file(const String &);
   void set_iterations(int no_it)
   {
 	no_iterations_=no_it;
@@ -148,7 +148,7 @@ class Component
 private:
   bool process_benchmarking(MON::Aspect &aspect,BON::Model &model,XML_Writer &writer);
   bool process_middleware(Project &project,XML_Writer &writer);
- 
+
 };
 
 }; // namespace BON

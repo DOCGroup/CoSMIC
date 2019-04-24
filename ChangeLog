@@ -4,7 +4,7 @@ Thu Nov  1 10:40:47 UTC 2012  Dennis Feiock  <dfeiock at iupui dot edu>
         * ChangeLogs/ChangeLog-12a:
 
           CoSMIC version 0.8.5 was released. Moved the ChangeLog
-          to ChangeLogs/ChangeLog-12a. 
+          to ChangeLogs/ChangeLog-12a.
 
    Local Variables:
    mode: change-log

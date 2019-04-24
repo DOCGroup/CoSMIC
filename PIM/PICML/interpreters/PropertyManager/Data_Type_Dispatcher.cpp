@@ -5,7 +5,7 @@
 // PICML_Data_Type_Dispatcher
 //
 PICML_Data_Type_Dispatcher::PICML_Data_Type_Dispatcher (void)
-{   
+{ 
   this->insert <PICML::Boolean> ();
 
   this->insert <PICML::Byte> ();

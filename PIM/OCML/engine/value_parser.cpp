@@ -42,15 +42,15 @@ Option_Value_Parser::parse_category(Option_Category* category, DOMNode* node)
   for (size_t i = 0; i < children->getLength(); ++i)
   {
     DOMNode* item = children->item(i);
-   
+ 
     if (item->getNodeType() != DOMNode::ELEMENT_NODE)
         continue;
-   
+ 
     XMLUnicodeString node_name =
       item->getNodeName();
 
     DOMNamedNodeMap* attributes = item->getAttributes();
-   
+ 
     XMLUnicodeString name =
       attributes->getNamedItem(XMLUnicodeString("name"))->getNodeValue();
 

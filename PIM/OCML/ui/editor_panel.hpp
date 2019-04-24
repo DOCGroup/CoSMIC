@@ -22,7 +22,7 @@ namespace OCML
   };
 
   class Configurator;
- 
+
   /**
    * Creates a panel and inserts corresponding wxWindows into the panel for
    * the options contained in the given option category.

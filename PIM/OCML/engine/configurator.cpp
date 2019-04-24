@@ -115,7 +115,7 @@ namespace OCML
     xercesc::DOMDocument *value_doc = 0;
     value_doc =
       system_.parse_string(parser.get(), "OCMLValues", values, size);
- 
+
     Option_Value_Parser::parse_xml(root_.get(), interfaces_, value_doc);
   }
 
@@ -258,7 +258,7 @@ namespace OCML
     XMLUnicodeString result;
     if (node)
       result = writer->writeToString(*node);
- 
+
     return result.str();
   }
 

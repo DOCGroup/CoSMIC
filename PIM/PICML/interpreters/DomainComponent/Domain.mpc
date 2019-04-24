@@ -15,7 +15,7 @@ project (PICML_Domain_Component) : game_mga_interpreter, picml_xml, picml_game_m
   Resource_Files {
     Component.rc
   }
- 
+
   specific (wix) {
     gme_install     = 1
     gme_progid      = PICML.Interpreter.Domain

@@ -267,7 +267,7 @@ class ECDVisitor
     void visitDisjunctionGroupImpl (const DisjunctionGroup& disjunction);
 
     void visitConjunctionGroupImpl (const ConjunctionGroup& conjunction);
- 
+
     void visitLogicalANDGroupImpl (const LogicalANDGroup& logicaland);
 
     void visitNull_RT_InfoImpl (const Null_RT_Info& null_rt_info);

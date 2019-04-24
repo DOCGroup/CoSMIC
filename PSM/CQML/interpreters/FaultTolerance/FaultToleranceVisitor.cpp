@@ -73,7 +73,7 @@ namespace CQML
 
 	accept_each_child (rf, DeploymentPlans, *this);
   }
- 
+
   void FaultToleranceVisitor::Visit_DeploymentPlans (const DeploymentPlans& dp_folder)
   {
 	accept_each_child (dp_folder, DeploymentPlan, *this);

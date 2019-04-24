@@ -15,7 +15,7 @@ namespace OCML
   public:
     virtual void boolean_editor_focused(BooleanOptionEditor* editor) = 0;
   };
-   
+ 
   class BooleanOptionEditor: public OptionEditor,
                              public BooleanEditControlFocusListener,
                              public BooleanEditControlClickListener
@@ -25,7 +25,7 @@ namespace OCML
     virtual ~BooleanOptionEditor();
 
     void add_focus_listener(BooleanOptionEditorFocusListener* l);
-   
+ 
     virtual void boolean_edit_clicked(BooleanEditControl* control);
     virtual void boolean_edit_focus_gain(BooleanEditControl* control);
     virtual void boolean_edit_focus_lost(BooleanEditControl* control);

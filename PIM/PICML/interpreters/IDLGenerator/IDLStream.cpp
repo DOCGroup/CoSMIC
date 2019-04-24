@@ -51,7 +51,7 @@ IDLStream::decr_indent (unsigned short flag)
     {
       --this->indent_level_;
     }
-   
+ 
   if (flag != 0)
     {
       this->indent ();
@@ -204,7 +204,7 @@ IDLStream::upcase (const char *str)
 {
   int i = 0;
   char c;
- 
+
   while ((c = str[i++]) != '\0')
     {
       this->strm_ << static_cast<char> (toupper (c));

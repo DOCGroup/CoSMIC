@@ -297,7 +297,7 @@ CProperty.GetStrValue(&quot;type&quot;, s); XProperty.SetStrValue(&quot;type&quo
 mydiagram.dgr=const_cast&lt;Uml::Diagram *>(&amp;(RootContainer.__impl()->__getdn()->GetRootMeta()));
 mydiagram.init=Uml::diagram.init;
 UdmDom::DomDataNetwork ddn(mydiagram);
- 
+
 ddn.CreateNewToString(&quot;Udm\\PICMLCadena_Xchange_embedded_EIProperties.xsd&quot;, RootContainer.type());
 UdmUtil::CopyObjectHierarchy(RootContainer.__impl(), ddn.GetRootObject().__impl(), &amp;ddn, UdmUtil::copy_assoc_map());
 ddn.CloseWithUpdate();

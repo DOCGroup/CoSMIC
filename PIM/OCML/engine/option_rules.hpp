@@ -56,7 +56,7 @@ namespace OCML
 
     /// (negate) Tries to add the value into the ban list.
     bool make_not_equal();
-   
+ 
   private:
     Basic_Option_Reference<option_trait>* option_;
     value_type value_;

@@ -32,14 +32,14 @@ namespace CQML
     using xercesc::DOMLSSerializer;
     using xercesc::XMLFormatTarget;
     using xercesc::LocalFileFormatTarget;
-   
+ 
     using CQML::SecurityQoSRequirements;
 
     class SecurityQoSDumper : public DOMBuilder
       {
-     
+   
       public:
-        SecurityQoSDumper(const std::string& outputPath);    
+        SecurityQoSDumper(const std::string& outputPath);  
 
         void dumpInterfaceRights (Interface2Operations2RightsMap& iface2op2rts_map);
         void dumpRoleRights (Role2RightsMap& role2rights_map);

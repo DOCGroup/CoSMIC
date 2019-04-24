@@ -43,15 +43,15 @@ class xme_dom_visitor
   //
 public:
   bool visit_root (DOMElement *node);
- 
+
 protected:
   bool visit_children (DOMElement *node);
- 
+
   // Visit methods for DOM node types.
   bool visit_dom_element (DOMElement *node);
   bool visit_dom_text (DOMText *node);
   bool visit_dom_attribute (DOMAttr *node);
- 
+
   // Visit methods for metaGME types (indicated by
   // XML tag names).
   virtual bool visit_gme_folder (DOMElement *node);

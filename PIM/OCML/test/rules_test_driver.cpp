@@ -125,7 +125,7 @@ int main(int, char*[])
   std::cout << "  result: " << bool_as_string(result) << std::endl;
   std::cout << str_info(find_ref("bool_def_test")) << std::endl
             << str_info(find_ref("int_def_test")) << std::endl;
-       
+     
   /*
    * If rule test 2.
    */
@@ -175,7 +175,7 @@ int main(int, char*[])
     std::cout << " satisfied.\n";
   else
     std::cout << " failed.\n";
- 
+
   std::cout << "After applying rule:" << std::endl;
   write_info(reference_list);
 */

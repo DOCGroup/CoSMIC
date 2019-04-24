@@ -97,7 +97,7 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
        << picml_root
        << " and the command line parameters are: "
        << p.c_str();
- 
+
     TextOut( hDC, 10, 10, ss.str().c_str(), ss.str().size());
     EndPaint( hWnd, &ps );
     break;
@@ -123,7 +123,7 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         std::copy(std::istream_iterator<char>(values_file),
                   std::istream_iterator<char>(),
                   std::back_inserter(values));
-       
+     
         // Load up the DLL and call DLLFunction
         OCML_Configurator_Library lib;
 

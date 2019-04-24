@@ -37,7 +37,7 @@ Application::run()
   ACE_DEBUG((LM_TRACE, "ENTER: Application::run()\n"));
   std::string command_line;
   command_kind command;
- 
+
   while (!quit_)
     {
       try {
@@ -121,7 +121,7 @@ std::map<std::string, std::string>
 Application::descriptions()
 {
   std::map<std::string, std::string> result;
- 
+
   for (std::map<std::string, Command*>::const_iterator iter=commands_.begin();
        iter != commands_.end(); ++iter)
     {

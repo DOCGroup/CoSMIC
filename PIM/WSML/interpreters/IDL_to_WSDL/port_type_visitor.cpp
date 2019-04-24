@@ -38,22 +38,22 @@ port_type_visitor::visit_interface (AST_Interface *node)
 {
   DOMElement *elem =
     this->doc_->createElement (X ("portType"));
-   
+ 
   be_global->root_element ()->insertBefore (
     elem,
     be_global->port_type_insert_point ());
- 
+
   if (0 == be_global->msg_insert_point ())
     {
       be_global->msg_insert_point (elem);
     }
- 
+
   ACE_CString name (node->full_name ());
   be_global->to_wsdl_name (name);
   elem->setAttribute (X ("name"), X (name.c_str ()));
- 
+
   this->current_port_type_ = elem;
- 
+
   if (this->visit_scope (node) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -61,7 +61,7 @@ port_type_visitor::visit_interface (AST_Interface *node)
                           "codegen for scope failed\n"),
                         -1);
     }
-   
+ 
   this->gen_inherited_operations (node);
   return 0;
 }
@@ -76,7 +76,7 @@ port_type_visitor::visit_component (AST_Component *node)
                           "codegen for visit_interface failed\n"),
                         -1);
     }
-   
+ 
   this->gen_inherited_comp (node);
   return 0;
 }
@@ -85,13 +85,13 @@ int
 port_type_visitor::visit_operation (AST_Operation *node)
 {
   AST_Decl::NodeType nt = ScopeAsDecl (node->defined_in ())->node_type ();
- 
+
   // We don't want to generate anything for valuetype operations.
   if (AST_Decl::NT_eventtype == nt || AST_Decl::NT_valuetype == nt)
     {
       return 0;
     }
-   
+ 
   DOMElement *sub_tree_holder = this->sub_tree_;
   this->sub_tree_ = this->current_port_type_;
 
@@ -100,9 +100,9 @@ port_type_visitor::visit_operation (AST_Operation *node)
 
   if (NOT_SEEN == this->node_status_)
     {
-      this->finish_operation (node, operation, 0);                             
+      this->finish_operation (node, operation, 0);                           
     }
-   
+ 
   this->sub_tree_ = sub_tree_holder;
   return 0;
 }
@@ -120,17 +120,17 @@ port_type_visitor::visit_attribute (AST_Attribute *node)
   if (NOT_SEEN == this->node_status_)
     {
       this->finish_operation (node, get_attr, "_get_");
-     
+   
       if (!read_only)
         {
           DOMElement *set_attr =
             this->doc_->createElement (X ("operation"));
-          this->finish_operation (node, set_attr, "_set_");         
+          this->finish_operation (node, set_attr, "_set_");       
           this->sub_tree_->appendChild (set_attr);
         }
     }
-  
-  this->sub_tree_ = sub_tree_holder; 
+
+  this->sub_tree_ = sub_tree_holder;
   return 0;
 }
 
@@ -142,21 +142,21 @@ port_type_visitor::finish_operation (AST_Decl *node,
   ACE_CString lname (0 != prefix ? prefix : "");
   lname += node->local_name ()->get_string ();
   elem->setAttribute (X ("name"), X (lname.c_str ()));
- 
+
   ACE_CString op_name ("tns:");
   ACE_CString parent_name (ScopeAsDecl (node->defined_in ())->full_name ());
   be_global->to_wsdl_name (parent_name);
   op_name += parent_name;
   op_name += ".";
   op_name += lname;
- 
+
   DOMElement *input_msg = this->doc_->createElement (X ("input"));
   input_msg->setAttribute (X ("message"), X (op_name.c_str ()));
   elem->appendChild (input_msg);
- 
+
   AST_Operation *op = AST_Operation::narrow_from_decl (node);
   AST_Attribute *attr = AST_Attribute::narrow_from_decl (node);
- 
+
   if (0 == op || AST_Operation::OP_oneway != op->flags ())
     {
       op_name += "Response";
@@ -164,9 +164,9 @@ port_type_visitor::finish_operation (AST_Decl *node,
       output_msg->setAttribute (X ("message"), X (op_name.c_str ()));
       elem->appendChild (output_msg);
     }
-   
-  UTL_ExceptList *exceptions = 0;
  
+  UTL_ExceptList *exceptions = 0;
+
   if (0 == prefix)
     {
       exceptions = op->exceptions ();
@@ -179,7 +179,7 @@ port_type_visitor::finish_operation (AST_Decl *node,
     {
       exceptions = attr->get_set_exceptions ();
     }
-   
+ 
   for (UTL_ExceptlistActiveIterator i (exceptions);
         !i.is_done ();
         i.next ())
@@ -204,7 +204,7 @@ void
 port_type_visitor::gen_inherited_comp (AST_Component *node)
 {
   AST_Component *parent = node->base_component ();
- 
+
   if (0 != parent)
     {
       this->gen_inherited_operations (parent);
@@ -223,7 +223,7 @@ port_type_visitor::append_ops_and_attrs (AST_Interface *ancestor)
       AST_Decl *d = i.item ();
       AST_Operation *op = AST_Operation::narrow_from_decl (d);
       AST_Attribute *attr = AST_Attribute::narrow_from_decl (d);
-     
+   
       if (0 != op)
         {
           DOMElement *op_elem =
@@ -237,7 +237,7 @@ port_type_visitor::append_ops_and_attrs (AST_Interface *ancestor)
             this->doc_->createElement (X ("operation"));
           this->current_port_type_->appendChild (attr_elem);
           this->finish_operation (attr, attr_elem, "_get_");
-         
+       
           if (!attr->readonly ())
             {
               DOMElement *attr_set_elem =
@@ -254,10 +254,10 @@ port_type_visitor::gen_fault (DOMElement *port_op,
                               AST_Decl *user_exception)
 {
   ACE_CString fname, mname;
- 
+
   DOMElement *except_msg =
     this->doc_->createElement (X ("fault"));
- 
+
   if (0 == user_exception)
     {
       fname = "CORBA.SystemException";
@@ -269,7 +269,7 @@ port_type_visitor::gen_fault (DOMElement *port_op,
       be_global->to_wsdl_name (fname);
       mname = ACE_CString ("tns:_exception.") + fname;
     }
-   
+ 
   except_msg->setAttribute (X ("name"), X (fname.c_str ()));
   except_msg->setAttribute (X ("message"), X (mname.c_str ()));
   port_op->appendChild (except_msg);

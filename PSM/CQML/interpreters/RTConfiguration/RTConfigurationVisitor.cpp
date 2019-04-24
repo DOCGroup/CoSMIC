@@ -239,7 +239,7 @@ namespace CQML
 
     std::set<RealTimeConfiguration> rts = assembly.RealTimeConfiguration_kind_children ();
 
-	 
+	
 	for(auto rtsiter : rts)
 		rtsiter.Accept(*this);
 

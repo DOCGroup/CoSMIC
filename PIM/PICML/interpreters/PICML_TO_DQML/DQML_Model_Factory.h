@@ -44,7 +44,7 @@ namespace PICML_To_DQML
   private:
     GAME::Mga::Project project_;
     GAME::Mga::Transaction writter_trans_;
-   
+ 
     //Internal States
     DQML::TopicQosFolder topic_qos_folder_;
     std::map <std::string, DQML::TopicQos> topic_qos_list_;

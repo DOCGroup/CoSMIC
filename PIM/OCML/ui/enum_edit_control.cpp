@@ -26,7 +26,7 @@ EnumEditControl::on_select(wxCommandEvent&)
     {
       std::string selection;
       void* client_data = NULL;
-     
+   
       int selection_index = GetSelection();
       if (selection_index != -1) // -1 means there is no selection
         {
@@ -37,7 +37,7 @@ EnumEditControl::on_select(wxCommandEvent&)
         {
           // TODO: See if the user can select NONE
         }
-     
+   
       for (std::list<Enum_Edit_Control_Select_Listener*>::iterator
 	     iter=select_listeners_.begin();
            iter != select_listeners_.end(); ++iter)
@@ -53,7 +53,7 @@ EnumEditControl::on_focus_gain(wxFocusEvent&)
 	   iter = focus_listeners_.begin();
          iter != focus_listeners_.end(); ++iter)
       (*iter)->enum_edit_focus_gain(this);
-}   
+} 
 
 void
 EnumEditControl::on_focus_lost(wxFocusEvent&)
@@ -63,7 +63,7 @@ EnumEditControl::on_focus_lost(wxFocusEvent&)
 	   iter = focus_listeners_.begin();
          iter != focus_listeners_.end(); ++iter)
       (*iter)->enum_edit_focus_lost(this);
-}   
+} 
 
 void
 EnumEditControl::disable_events()

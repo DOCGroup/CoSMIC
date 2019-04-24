@@ -46,7 +46,7 @@ int main(int, char*[])
   std::cout << "int(3) == int(3)" << std::endl;
   write_bool_str(def_int_value.compare(&int_value));
   std::cout << std::endl << std::endl;
- 
+
   // Clear
   def_int_value.clear();
   def_bool_value.clear();

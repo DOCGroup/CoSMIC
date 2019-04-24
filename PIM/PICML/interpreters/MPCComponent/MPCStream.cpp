@@ -130,7 +130,7 @@ MPCStream::dependent_project (PICML::ImplementationArtifact_in artifact,
       // Indicates that this artifact is not present in the
       // folder
       // continue;
-    }  
+    }
   }
 
   return ret_val;

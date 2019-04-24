@@ -17,15 +17,15 @@ class CategoryItemData: public wxTreeItemData
 public:
   CategoryItemData(OptionCategory* category)
     : category_(category) { }
-       
+     
   OptionCategory* category()
   {
     return category_;
-  }   
-       
+  } 
+     
 private:
   OptionCategory* category_;
-};   
+}; 
 
 BEGIN_EVENT_TABLE(MainFrame, wxFrame)
   EVT_TREE_SEL_CHANGED(ID_TREE_SELECTION_CHANGED, MainFrame::selection_changed)
@@ -127,7 +127,7 @@ MainFrame::initialize_tree(wxWindow* root)
                   new CategoryItemData(root_category));
 
   initialize_tree_node(tree, root_id, root_category);
-   
+ 
   return tree;
 }
 

@@ -71,7 +71,7 @@ namespace CQML
         for_each (bon_instances.begin (),
           bon_instances.end (),
           insertKindInstance <BON::Object> (this->outer_));
-       
+     
         //this->bon_project_->consoleMsg (
         // x + std::string("Instances Found: "), MSG_INFO);		
 

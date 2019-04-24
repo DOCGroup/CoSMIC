@@ -11,7 +11,7 @@ public:
   FileSaveDlg(const char* title = "Save file");
 
   ~FileSaveDlg();
- 
+
   bool show(const char* file_name = "");
 
   const char* file_name() const;

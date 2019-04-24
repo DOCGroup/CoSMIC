@@ -78,7 +78,7 @@ namespace OCML
     /*
      * Virtual method implementations.
      */
-   
+ 
     virtual bool is_null() const;
 
     virtual void clear();
@@ -100,7 +100,7 @@ namespace OCML
   typedef Basic_Option_Value<Boolean_Option_Trait> Boolean_Option_Value;
   typedef Basic_Option_Value<Integer_Option_Trait> Integer_Option_Value;
   typedef Basic_Option_Value<String_Option_Trait>  String_Option_Value;
- 
+
 } // namespace OCML
 
 #include "option_value.ipp"

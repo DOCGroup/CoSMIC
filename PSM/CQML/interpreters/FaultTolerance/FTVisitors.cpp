@@ -103,7 +103,7 @@ namespace CQML
 		  if (FOUs.empty ())
 			  return;
 		  std::set <ComponentAssembly> assemblies = assembly.ComponentAssembly_kind_children ();
-		 
+		
 		  for (std::set<FailOverUnit>::const_iterator iter = FOUs.begin();
 			   iter != FOUs.end();
 			   ++iter)
@@ -115,7 +115,7 @@ namespace CQML
 										   ComponentQoS::srcComponentAssemblyQoS_end,
 										   remover);
 		  }
-		  accept_each (FOUs, *this);		 
+		  accept_each (FOUs, *this);		
 		  accept_each (assemblies, *this);
 	  }*/
   }
@@ -154,7 +154,7 @@ namespace CQML
 
   void FTRequirementsVisitor::Visit_ComponentQoS (const ComponentQoS & cq)
   {
-	QoSCharacteristicBase qos_char = cq.dstComponentQoS_end (); 
+	QoSCharacteristicBase qos_char = cq.dstComponentQoS_end ();
 	if (Udm::IsDerivedFrom (qos_char.type(), FailOverUnit::meta))
 	{
 		FailOverUnit fou = FailOverUnit::Cast (qos_char);
@@ -192,7 +192,7 @@ namespace CQML
 
   void FTRequirementsVisitor::Visit_ComponentAssemblyQoS (const ComponentAssemblyQoS & caq)
   {
-	QoSCharacteristicBase qos_char = caq.dstComponentAssemblyQoS_end (); 
+	QoSCharacteristicBase qos_char = caq.dstComponentAssemblyQoS_end ();
 	if (Udm::IsDerivedFrom (qos_char.type(), FailOverUnit::meta))
 	{
 		this->attached_FOU_ = true;
@@ -241,16 +241,16 @@ namespace CQML
           {
             TRef ref = TRef::Cast (base);
             T t = ref.ref ();
-            func (t); 
+            func (t);
           }
 		else if (Udm::IsDerivedFrom (base.type(), T::meta))
 		  {
             T t = T::Cast (base);
-            func (t); 
+            func (t);
 		  }
 	  }
   }
- 
+
   void FTRequirementsVisitor::component_qos_connection_visit (const FailOverUnit & fou)
   {
 	  class Monolith_instance_caller : public std::unary_function <Component, void>
@@ -304,13 +304,13 @@ namespace CQML
             ComponentAssemblyReference assm_ref
 				= ComponentAssemblyReference::Cast (assembly_base);
             ComponentAssembly assembly = assm_ref.ref ();
-            this->assembly_visit (assembly); 
+            this->assembly_visit (assembly);
           }
 		else if (Udm::IsDerivedFrom (assembly_base.type(), ComponentAssembly::meta))
           {
             ComponentAssembly assembly
 				= ComponentAssembly::Cast (assembly_base);
-            this->assembly_visit (assembly); 
+            this->assembly_visit (assembly);
           }
 	  }
 
@@ -358,7 +358,7 @@ namespace CQML
     {
         const std::string comp_name =
 			DeploymentPlanFrameworkVisitor::instance()->unique_id(component);
-       
+     
         // Put the component primary into the replica group set.
         this->assembly_instance_req_map_.insert (std::make_pair(comp_name,
                                                  std::make_pair (this->current_req_replica_,
@@ -369,7 +369,7 @@ namespace CQML
     {
         const std::string comp_name
 			= DeploymentPlanFrameworkVisitor::instance()->unique_id(component);
-       
+     
         // Put the component primary into the replica group set.
         this->monolith_instance_req_map_.insert (std::make_pair(comp_name,
                                                  std::make_pair (this->current_req_replica_,
@@ -468,11 +468,11 @@ namespace CQML
         FailOverUnit fou = *iter;
         ReqConnection fou_connect = fou.dstReqConnection ();
         FOU_Requirement fou_req = fou_connect.dstReqConnection_end ();
-       
+     
         // Find out how many replica are required and store in
         // this->current_req_replica
         fou_req.Accept (*this);
-       
+     
         // Populate the ref2_instance_map with the component instance ids
         // for every FOU.
         fou.Accept (*this);
@@ -644,7 +644,7 @@ namespace CQML
                   Node j_node = j_noderef.ref();
 				  std::string i_node_name = i_node.name ();
 				  std::string j_node_name = j_node.name ();
-				 
+				
 				  //outfile << "(" << i << ", " << j << ") ";
                   //outfile << "(" << std::string (i_node.name()) << ", " << std::string (j_node.name()) << ")" << std::endl;
 

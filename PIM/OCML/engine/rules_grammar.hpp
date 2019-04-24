@@ -122,7 +122,7 @@ namespace OCML
     /*
      * Rule_Definition grammar
      */
-   
+ 
      struct Rule_Definition_Closure
        : public boost::spirit::closure<Rule_Definition_Closure,
                   std::pair<std::string, OCML::Constraint_Engine::rule_index> >
@@ -142,7 +142,7 @@ namespace OCML
          boost::spirit::rule<ScannerT> rule_definition;
          common::Word_Grammar word;
          Expression_Grammar expression;
-        
+      
          const boost::spirit::rule<ScannerT>& start() const {
           return rule_definition;
         }
@@ -152,7 +152,7 @@ namespace OCML
     /*
      * Syntax grammar  -- spirit entry point --
      */
-   
+ 
     struct Syntax: public boost::spirit::grammar<Syntax>
     {
     public:
@@ -171,7 +171,7 @@ namespace OCML
       };
     };
 
-   
+ 
   } // namespace Rule_Parser
 
 } // namespace OCML

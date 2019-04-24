@@ -5,14 +5,14 @@ Modeling Languages (DSML) and related tools for meta-data generation,
 quality-of-service (QoS) analysis and more. CoSMIC tool-suite consists
 of following DSMLs.
 
-* **Platform-Independent Component Modeling Language (PICML)** - A 
+* **Platform-Independent Component Modeling Language (PICML)** - A
   paradigm for modeling CORBA Component Model (CCM) based applications.
 
 * **Component QoS Modeling Language (CQML)** - A paradigm for modeling
-  QoS characteristics such as fault-tolerance, real-time on top of PICML 
+  QoS characteristics such as fault-tolerance, real-time on top of PICML
   models.
 
-* **Data Distribution Service (DDS) QoS Modeling Language (DQML)** - A 
+* **Data Distribution Service (DDS) QoS Modeling Language (DQML)** - A
   paradigm for modeling QoS of DDS-based systems.
 
 If you have problems with the installation, please send mail to:
@@ -32,7 +32,7 @@ Building from Sources
 Please see the following file:
 
   https://github.com/DOCGroup/CoSMIC/blob/master/BUILDING
-  
+ 
 Supported Features
 ============================
 

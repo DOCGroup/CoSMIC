@@ -14,10 +14,10 @@ NetQoS_Splitter::assign_node_mappings (const std::string& plan_name,
          itr != this->qos_conn_mmap_.upper_bound (netqos);
          ++itr)
       {
-          this->curr_->appendChild (this->createSimpleContent ("connectionName", itr->second.connection_name)); 
+          this->curr_->appendChild (this->createSimpleContent ("connectionName", itr->second.connection_name));
       }
   }
- /*  
+ /*
   private:
     struct HostPair
       {

@@ -37,12 +37,12 @@ public class MgaEntityResolver implements EntityResolver
       // We only care about the mga.dtd systemId.
       if (!systemId.endsWith ("mga.dtd"))
         return null;
- 
+
       // Get the COSMIC_ROOT environment variable. Use it to
       // construct the location of mga.dtd.
       final String COSMIC_ROOT = System.getenv ("COSMIC_ROOT");
       final String mgaPath = "file:///" + COSMIC_ROOT + "/includes/GME/mga.dtd";
-     
+   
       return new InputSource (mgaPath);
     }
     catch (Exception ex)

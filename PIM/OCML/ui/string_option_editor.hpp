@@ -16,7 +16,7 @@ namespace OCML
   public:
     virtual void string_editor_focused(String_Option_Editor* editor) = 0;
   };
-   
+ 
   class String_Option_Editor: public Option_Editor,
                               public String_Edit_Control_Focus_Listener,
                               public String_Edit_Control_Value_Change_Listener
@@ -24,11 +24,11 @@ namespace OCML
   public:
     String_Option_Editor(wxWindow* parent, Option_Interface* option);
     virtual ~String_Option_Editor();
-   
+ 
     virtual void unfocus();
 
     void add_focus_listener(String_Option_Editor_Focus_Listener* l);
-   
+ 
     virtual void string_edit_focus_gain(String_Edit_Control* control);
     virtual void string_edit_focus_lost(String_Edit_Control* control);
     virtual void string_edit_value_changed(String_Edit_Control* control);

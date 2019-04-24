@@ -27,7 +27,7 @@ public:
   virtual ~MainFrame();
 
   void add_value_change_listener(MainFrameValueChangeListener* l);
-     
+   
 private:
   void initialize_tree_node(wxTreeCtrl* tree, wxTreeItemId root_id,
                             OCML::OptionCategory* category);

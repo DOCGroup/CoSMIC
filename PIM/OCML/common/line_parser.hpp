@@ -24,15 +24,15 @@ namespace common
     // exception thrown when there is an escape character at the end
     // of the input stream  -if escape is true in destructor-
     class open_escape { };
- 
+
   public:
     line_parser(const line_parser<OutputIterator>& lp);
- 
+
     line_parser(OutputIterator iter);
 
     /// Append the last word, check if escape is true
     ~line_parser();
- 
+
     /// appends words into the container by also handling escape character
     void operator()(char ch);
 

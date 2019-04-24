@@ -41,7 +41,7 @@ public:
   virtual void visit_RequiredRequestPort (PICML::RequiredRequestPort_in item)
   {
     this->found_ = true;
-  } 
+  }
 
 private:
   bool found_;

@@ -57,15 +57,15 @@ public:
   void add_click_listener(BooleanEditControlClickListener* l);
   /// Registers the given FocusListener as a focus listener for this widget.
   void add_focus_listener(BooleanEditControlFocusListener* l);
-   
+ 
 private:
   /// The container for the click listeners.
   std::list<BooleanEditControlClickListener*> click_listeners_;
   /// The container for the focus listeners.
   std::list<BooleanEditControlFocusListener*> focus_listeners_;
-   
+ 
   // Declares WXWindow event table.
   DECLARE_EVENT_TABLE()
-};   
+}; 
 
 #endif // BOOLEAN_EDIT_CONTROL_HPP

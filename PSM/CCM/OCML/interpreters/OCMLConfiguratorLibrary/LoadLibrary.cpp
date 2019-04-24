@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <iterator>
- 
+
 #ifdef _DEBUG
 #define OCML_CONFIGURATOR_LIBRARY_NAME "OCMLConfiguratord.dll"
 #else
@@ -15,7 +15,7 @@
 OCML_Configurator_Library::OCML_Configurator_Library()
 {
   char *buffer = getenv("COSMIC_ROOT");
- 
+
   std::string library_path;
   if (buffer)
     {
@@ -25,10 +25,10 @@ OCML_Configurator_Library::OCML_Configurator_Library()
       library_path += "\\bin\\";
     }
   library_path += OCML_CONFIGURATOR_LIBRARY_NAME;
- 
+
   lib_ = LoadLibrary(library_path.c_str());
   assert(lib_);
- 
+
   DLLFunctionPtr pProc =
     (DLLFunctionPtr)GetProcAddress(lib_, "DLLFunction");
   assert(pProc);

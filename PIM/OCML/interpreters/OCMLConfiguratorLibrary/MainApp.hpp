@@ -17,7 +17,7 @@ public:
   void new_instance(const char* values, size_t values_size,
                     MainFrameValueChangeListener* l,
                     const char* tree_file);
-   
+ 
   OCML::OptionCategory* initialize_options();
 
 private:

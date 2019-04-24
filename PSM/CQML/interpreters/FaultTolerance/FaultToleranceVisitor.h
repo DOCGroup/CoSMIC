@@ -30,7 +30,7 @@ namespace CQML
 		  ComponentAdder *comp_addr_;
           std::string output_path_;
           //std::map <std::string, Injector *> plan_injector_map_;
-/***************************************************************************/	 
+/***************************************************************************/	
 	  // The const auto_ptr idiom by Hurb Sutter.
 	  // The const auto_ptr is the only owner of the singleton framework pointer
 	  // See Tom Cargill's ownership patterns in PLoPD2.

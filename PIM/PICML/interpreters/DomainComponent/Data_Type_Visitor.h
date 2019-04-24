@@ -26,7 +26,7 @@ public:
   Data_Type_Visitor (const GAME::Xml::Fragment & parent);
 
   /// Destructor.
-  virtual ~Data_Type_Visitor (void);       
+  virtual ~Data_Type_Visitor (void);     
 
   virtual void visit_DataType (PICML::DataType_in dt);
   virtual void visit_Boolean (PICML::Boolean_in boolean);

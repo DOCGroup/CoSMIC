@@ -106,7 +106,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 	filename = root->getName ();
 	filename = filename + ".xml";
 	ofstream outf;
- 
+
   outf.open (filename.c_str ());
 
 	outf << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << endl << endl;
@@ -215,7 +215,7 @@ void Federated_ECImpl::check (std::set<BON::Atom> &atoms, std::set<BON::Model> &
 
 void Federated_ECImpl::writeFile (std::set<BON::Atom> &atoms, std::set<BON::Model> &models, ofstream &outf)
 {
- 
+
   // each host has a strstream corresponding to it, which outputs
   // XML elments <hostcollocation>.
   std::strstream* host_str = new std::strstream[models.size ()];
@@ -246,8 +246,8 @@ void Federated_ECImpl::writeFile (std::set<BON::Atom> &atoms, std::set<BON::Mode
           // Get the parent Site Node reference and site name.
           BON::Model parentSite = (*it)->getParentModel ();
           std::string localSiteName = parentSite->getName ().c_str ();
-         
-         
+       
+       
           // Get the Source (Remote) event channel name
           std::multiset<BON::ConnectionEnd> srcs =
             BON::ConnectionEnd (*it) -> getConnEnds (MON::Connection (), "src");
@@ -308,7 +308,7 @@ void Federated_ECImpl::writeFile (std::set<BON::Atom> &atoms, std::set<BON::Mode
       host_str[siteID] << "\t\t</extension>"<< endl;
       host_str[siteID] << "\t\t<destination>" << site_name << "</destination>" << endl;
       host_str[siteID] << "\t</hostcollocation>" << endl << endl;
- 
+
       outf << host_str[siteID].str ();
     }
   }
